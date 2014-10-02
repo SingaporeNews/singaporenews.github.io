@@ -207,7 +207,7 @@ function updateBarChart(year){
       .attr('width', function(d){ return bar_x(d.value); })
       .attr('height', bar_y.rangeBand());
 
-    bar_svg.selectAll('text')
+    bar_svg.selectAll('.value')
       .data(spec_data)
       .transition()
       .duration(2000)
