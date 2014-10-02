@@ -99,8 +99,16 @@ function type(d){
   return d;
 };
 
-d3.csv("transposed_terms.csv", type, function(error, data){
-  console.log(data);
+d3.csv("transposed_terms.csv", function(error, data){
+  var bar_terms = data[0].map(function(term){
+      return {
+        term: term,
+        value: data.map(function(d){
+          return +d[term];
+        })
+      };
+    });
+  console.log(bar_terms);
 })
 
 
