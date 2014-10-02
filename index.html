@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="http://d3js.org/d3.v3.js"></script>
 
-<style>
-  body {
-    font: 10px sans-serif;
-  }
+  <style>
+    body {
+      font: 10px sans-serif;
+    }
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
 
-  .x.axis path {
-    display: none;
-  }
+    .x.axis path {
+      display: none;
+    }
 
-  .line {
-    fill: none;
-    stroke: steelblue;
-    stroke-width: 1.5px;
-  }
-</style>
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+  </style>
+</head>
 
 <body>
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="static/SingaporeFlag.png"></a>
+      </div>
+    </div>
+  </div>
 
   <form name="test">
     <p>Enter a term from the headlines and press the button. <input type="text" name="term">
       <input type="button" value="Search" onClick="showAndClearField(this.form)">
     </p>
   </form>
-
-<script src="http://d3js.org/d3.v3.js"></script>
 
 <script>
 
