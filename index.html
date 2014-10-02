@@ -100,7 +100,8 @@ function type(d){
 };
 
 d3.csv("transposed_terms.csv", function(error, data){
-  var bar_terms = data[0].map(function(term){
+  console.log(data);
+  var bar_terms = data.map(function(term){
       return {
         term: term,
         value: data.map(function(d){
