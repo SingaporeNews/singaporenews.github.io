@@ -170,10 +170,19 @@ function updateBarChart(year){
     bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
     bar_y.domain(spec_data.map(function(d){ return d.term; }));
 
-    bar_svg.selectAll('.bar_label')
-      .transition()
-      .duration(400)
-      .text(bar_year);
+    d3.selectAll('.bar_label').remove();
+
+    bar_svg
+        .append('text')
+          .attr('class', 'bar_label')
+          .attr("x", width / 2)
+          .attr("y", -10)
+          .style("text-anchor", "middle")
+          .style("font-size", "16px")
+          .style("fill", "#53565A")
+          .transition()
+          .duration(750)
+          .text(bar_year);
 
     bar_svg.selectAll('.bar_y.axis')
       .transition()
