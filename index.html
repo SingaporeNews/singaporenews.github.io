@@ -94,24 +94,16 @@ var svg = d3.select('div#chart').append('svg')
 createChart('bomb');
 
 //****************Bar Chart*********************//
-function type(d){
-  d.value = +d.value; 
-  return d;
+function convertNumbers(row){
+  var r = {};
+  for (var k in row){
+    r[k] = +row[k];
+  }
+  return r;
 };
 
-d3.csv("transposed_terms.csv", function(error, data){
-  term_list = d3.keys(
-      data[0]).filter(function(key){ return key !== '' || key !== 'headline_year'; });
-
-  var bar_terms = term_list.map(function(term){
-      return {
-        term: term,
-        value: data.map(function(d){
-          return +d[term];
-        })
-      };
-    });
-  console.log(bar_terms);
+d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
+  console.log(data);
 })
 
 
