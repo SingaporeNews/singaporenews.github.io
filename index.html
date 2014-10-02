@@ -146,6 +146,7 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
   console.log(bar_data[0].values.slice(1,11));
   spec_data = bar_data[0].values.slice(1,11);
   bar_year = bar_data[0].year;
+  console.log(bar_year);
 
   bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
   bar_y.domain(spec_data.map(function(d){ return d.term; }));
