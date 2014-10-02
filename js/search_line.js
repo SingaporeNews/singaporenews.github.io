@@ -72,8 +72,9 @@ function updateData(frm){
 
 function createChart(frm){
   d3.csv("transposed_terms.csv", function(error, data){
-
-    console.log(data);
+    num_data = data;
+    num_data = num_data.map(function(d){ return +d; });
+    console.log(num_data);
 
     color.domain(d3.keys(
       data[0]).filter(function(key){ return key !== 'headline_year'; }
