@@ -185,6 +185,12 @@ function updateBarChart(year){
       .duration(400)
       .call(bar_xAxis);
 
+    bar_svg.selectAll('g.bar')
+      .data(spec_data)
+      .transition()
+      .duration(400)
+      .attr('transform', function(d){ return 'translate(0,' + bar_y(d.term) + ')'; });
+
     bar_svg.selectAll('rect')
       .data(spec_data)
       .transition()
