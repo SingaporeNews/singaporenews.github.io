@@ -136,7 +136,7 @@ var bar_svg = d3.select('div#barChart').append('svg')
                     .append('g')
                       .attr("transform", "translate(" + margin.left + "," + margin.top*2 + ")");
 
-createBarChart(1);
+createBarChart(25);
 
 d3.select('#nYear').on('input', function(){
   updateBarChart(this.value);
@@ -186,31 +186,31 @@ function updateBarChart(year){
 
     bar_svg.selectAll('.bar_y.axis')
       .transition()
-      .duration(400)
+      .duration(1000)
       .call(bar_yAxis);
 
     bar_svg.selectAll('.bar_x.axis')
       .transition()
-      .duration(400)
+      .duration(1000)
       .call(bar_xAxis);
 
     bar_svg.selectAll('g.bar')
       .data(spec_data)
       .transition()
-      .duration(400)
+      .duration(1000)
       .attr('transform', function(d){ return 'translate(0,' + bar_y(d.term) + ')'; });
 
     bar_svg.selectAll('rect')
       .data(spec_data)
       .transition()
-      .duration(400)
+      .duration(1000)
       .attr('width', function(d){ return bar_x(d.value); })
       .attr('height', bar_y.rangeBand());
 
     bar_svg.selectAll('text')
       .data(spec_data)
       .transition()
-      .duration(400)
+      .duration(1000)
       .attr('x', function(d){ return bar_x(d.value); })
       .attr('y', bar_y.rangeBand() / 2)
       .attr('dx', -3)
