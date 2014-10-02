@@ -111,10 +111,10 @@ function convertNumbers(row){
 };
 
 var bar_x = d3.scale.linear().range([0, width]),
-      bar_y = d3.scale.ordinal().rangeRoundBands([0, height], .1);
+    bar_y = d3.scale.ordinal().rangeRoundBands([0, height], .1);
 
-var bar_xAxis = d3.svg.axis().scale(x).orient('top').tickSize(-height),
-    bar_yAxis = d3.svg.axis().scale(y).orient('left').tickSize(0);
+var bar_xAxis = d3.svg.axis().scale(bar_x).orient('top').tickSize(-height),
+    bar_yAxis = d3.svg.axis().scale(bar_y).orient('left').tickSize(0);
 
 var bar_svg = d3.select('div#barChart').append('svg')
                       .attr("width", width + margin.left + margin.right + margin.right)
@@ -146,23 +146,23 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
   console.log(bar_data[0].values.slice(1,11));
   spec_data = bar_data[0].values.slice(1,11);
 
-  x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
-  y.domain(spec_data.map(function(d){ return d.term; }));
+  bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
+  bar_y.domain(spec_data.map(function(d){ return d.term; }));
 
   var bar = bar_svg.selectAll('g.bar')
       .data(spec_data)
     .enter().append('g')
       .attr('class', 'bar')
-      .attr('transform', function(d){ return 'translate(0,' + y(d.term) + ')'; });
+      .attr('transform', function(d){ return 'translate(0,' + bar_y(d.term) + ')'; });
 
   bar.append('rect')
-      .attr('width', function(d){ return x(d.value); })
-      .attr('height', y.rangeBand());
+      .attr('width', function(d){ return bar_x(d.value); })
+      .attr('height', bar_y.rangeBand());
 
   bar.append('text')
       .attr('class', 'value')
-      .attr('x', function(d){ return x(d.value); })
-      .attr('y', y.rangeBand() / 2)
+      .attr('x', function(d){ return bar_x(d.value); })
+      .attr('y', bar_y.rangeBand() / 2)
       .attr('dx', -3)
       .attr('dy', '.35em')
       .attr('text-anchor', 'end')
