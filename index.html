@@ -131,10 +131,10 @@ var bar_xAxis = d3.svg.axis().scale(bar_x).orient('top').tickSize(-height),
 
 var bar_svg = d3.select('div#barChart').append('svg')
                       .attr("width", width + margin.left + margin.right + margin.right)
-                      .attr("height", height + margin.top + margin.bottom)
+                      .attr("height", height + margin.top*4 + margin.bottom)
                       .attr('class', 'bar_svg')
                     .append('g')
-                      .attr("transform", "translate(" + margin.left + "," + margin.top*4 + ")");
+                      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 createBarChart(25);
 
