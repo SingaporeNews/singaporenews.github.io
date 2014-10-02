@@ -118,9 +118,9 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
     new_data.push(temp_data);
   }
 
-  new_data[0].values.sort(function(a,b){ return a.value-b.value;});
+  new_data[0].values.sort(function(a,b){ return b.value-a.value;});
 
-  console.log(new_data[0]);
+  console.log(new_data[0][:10]);
 })
 
 
