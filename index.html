@@ -165,7 +165,7 @@ function updateBarChart(year){
 
     spec_data = bar_data[year].values.slice(1,11);
     bar_year = bar_data[year].year.toString();
-    console.log(bar_year);
+    console.log(spec_data);
 
     bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
     bar_y.domain(spec_data.map(function(d){ return d.term; }));
@@ -186,31 +186,31 @@ function updateBarChart(year){
 
     bar_svg.selectAll('.bar_y.axis')
       .transition()
-      .duration(1000)
+      .duration(2000)
       .call(bar_yAxis);
 
     bar_svg.selectAll('.bar_x.axis')
       .transition()
-      .duration(1000)
+      .duration(2000)
       .call(bar_xAxis);
 
     bar_svg.selectAll('g.bar')
       .data(spec_data)
       .transition()
-      .duration(1000)
+      .duration(2000)
       .attr('transform', function(d){ return 'translate(0,' + bar_y(d.term) + ')'; });
 
     bar_svg.selectAll('rect')
       .data(spec_data)
       .transition()
-      .duration(1000)
+      .duration(2000)
       .attr('width', function(d){ return bar_x(d.value); })
       .attr('height', bar_y.rangeBand());
 
     bar_svg.selectAll('text')
       .data(spec_data)
       .transition()
-      .duration(1000)
+      .duration(2000)
       .attr('x', function(d){ return bar_x(d.value); })
       .attr('y', bar_y.rangeBand() / 2)
       .attr('dx', -3)
