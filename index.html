@@ -165,11 +165,12 @@ function updateBarChart(year){
 
     spec_data = bar_data[year].values.slice(1,11);
     bar_year = bar_data[year].year.toString();
+    console.log(bar_year);
 
     bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
     bar_y.domain(spec_data.map(function(d){ return d.term; }));
 
-    bar_svg.select('.bar_label')
+    bar_svg.selectAll('.bar_label')
       .transition()
       .duration(400)
       .text(bar_year);
