@@ -107,10 +107,10 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
   new_data = {};
   for (i=0; i<data.length; i++){
     myrow = [];
-    for (var k in row){
+    for (var k in data[i]){
       r = {};
       r['term'] = k;
-      r['value'] = row[k];
+      r['value'] = data[i][k];
       myrow.push(r);
     }
     new_data['year'] = data[i]['headline_year']
