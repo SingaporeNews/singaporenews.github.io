@@ -34,7 +34,9 @@
 
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-        <a class="brand" href="static/SingaporeFlag.png"></a>
+      <a class="navbar-brand" href="#">
+        <img src="static/SingaporeFlag.png">
+      </a>
     </div>
   </nav>
 
@@ -43,10 +45,10 @@
     <div class="row">
       <form name="test">
         <p>Enter a term from the headlines and press the button. <input type="text" name="term">
-      <input type="button" value="Search" onClick="showAndClearField(this.form)">
+        <input type="button" value="Search" onClick="showAndClearField(this.form)">
+      </form>
       <div class="col-md-12" id="chart" style="margin-top:25px;"></div>
     </p>
-  </form>
     </div>
   </div>
 
