@@ -145,13 +145,12 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
 
   console.log(bar_data[0].values.slice(1,11));
   spec_data = bar_data[0].values.slice(1,11);
+  bar_year = bar_data[0].year;
 
   bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
   bar_y.domain(spec_data.map(function(d){ return d.term; }));
 
   var bar_label = bar_svg.selectAll('bar_label')
-        .data(bar_data[i])
-        .enter()
       .append('text')
         .attr('class', 'bar_label')
         .attr("x", width / 2)
@@ -161,7 +160,7 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
         .style("fill", "#53565A")
         .transition()
         .duration(750)
-        .text(function(d){ return d.year; });
+        .text(bar_year);
 
   var bar = bar_svg.selectAll('g.bar')
       .data(spec_data)
