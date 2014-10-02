@@ -26,8 +26,15 @@
 
     .line {
       fill: none;
-      stroke: steelblue;
+      stroke: #FA0020;
       stroke-width: 1.5px;
+    }
+    .bar rect {
+      fill: #FA0020;
+    }
+
+    .bar text.value {
+      fill: white;
     }
   </style>
 </head>
@@ -46,6 +53,7 @@
 
   <div class="container">
     <div class="row">
+      <div class="col-md-12" id="barChart"></div>
       <div class="col-md-12">
         <form name="test">
           <p>Enter a term from the headlines and press the button. <input type="text" name="term">
@@ -102,8 +110,21 @@ function convertNumbers(row){
   return r;
 };
 
+var bar_x = d3.scale.linear().range([0, width]),
+      bar_y = d3.scale.ordinal().rangeRoundBands([0, height], .1);
+
+var bar_xAxis = d3.svg.axis().scale(x).orient('top').tickSize(-height),
+    bar_yAxis = d3.svg.axis().scale(y).orient('left').tickSize(0);
+
+var bar_svg = d3.select('div#barChart').append('svg')
+                      .attr("width", width + margin.left + margin.right + margin.right)
+                      .attr("height", height + margin.top + margin.bottom*2)
+                      .attr('class', 'line_svg')
+                    .append('g')
+                      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
-  new_data = [];
+  bar_data = [];
   for (i=0; i<data.length; i++){
     temp_data = {};
     myrow = [];
@@ -115,13 +136,47 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
     }
     temp_data['year'] = data[i]['headline_year']
     temp_data['values'] = myrow;
-    new_data.push(temp_data);
+    bar_data.push(temp_data);
   }
 
-  new_data[0].values.sort(function(a,b){ return b.value-a.value;});
+  for (i=0; i<bar_data.length; i++){
+    bar_data[i].values.sort(function(a,b){ return b.value-a.value;});
+  }
 
-  console.log(new_data[0].values.slice(0,10));
-})
+  console.log(bar_data[0].values.slice(1,11));
+  spec_data = bar_data[0].values.slice(1,11);
+
+  x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
+  y.domain(spec_data.map(function(d){ return d.term; }));
+
+  var bar = bar_svg.selectAll('g.bar')
+      .data(spec_data)
+    .enter().append('g')
+      .attr('class', 'bar')
+      .attr('transform', function(d){ return 'translate(0,' + y(d.term) + ')'; });
+
+  bar.append('rect')
+      .attr('width', function(d){ return x(d.value); })
+      .attr('height', y.rangeBand());
+
+  bar.append('text')
+      .attr('class', 'value')
+      .attr('x', function(d){ return x(d.value); })
+      .attr('y', y.rangeBand() / 2)
+      .attr('dx', -3)
+      .attr('dy', '.35em')
+      .attr('text-anchor', 'end')
+      .text(function(d){ return d.value; });
+
+  bar_svg.append('g')
+      .attr('class', 'bar_x axis')
+      .call(bar_xAxis);
+
+  bar_svg.append('g')
+      .attr('class', 'bar_y axis')
+      .call(bar_yAxis);
+
+});
 
 
 </script>
