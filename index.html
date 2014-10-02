@@ -104,6 +104,19 @@ function convertNumbers(row){
 
 d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
   console.log(data);
+  new_data = {};
+  for (i=0; i<data.length; i++){
+    myrow = [];
+    for (var k in row){
+      r = {};
+      r['term'] = k;
+      r['value'] = row[k];
+      myrow.push(r);
+    }
+    new_data['year'] = data[i]['headline_year']
+    new_data['values'] = myrow;
+  }
+  console.log(new_data);
 })
 
 
