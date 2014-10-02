@@ -120,7 +120,7 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
 
   new_data[0].values.sort(function(a,b){ return b.value-a.value;});
 
-  console.log(new_data[0].slice(0,10));
+  console.log(new_data[0].values.slice(0,10));
 })
 
 
