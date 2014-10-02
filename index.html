@@ -202,7 +202,8 @@ function updateBarChart(year){
       .attr('text-anchor', 'end')
       .text(function(d){ return d.value; });
 
-};
+  });
+}
 
 function createBarChart(year){
   d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
