@@ -161,7 +161,7 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
         .style("fill", "#53565A")
         .transition()
         .duration(750)
-        .text(bar_year);
+        .text(bar_year.toString());
 
   var bar = bar_svg.selectAll('g.bar')
       .data(spec_data)
