@@ -151,8 +151,7 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
   bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
   bar_y.domain(spec_data.map(function(d){ return d.term; }));
 
-  var bar_label = bar_svg.selectAll('.bar_label')
-        .enter()
+  bar_svg
       .append('text')
         .attr('class', 'bar_label')
         .attr("x", width / 2)
