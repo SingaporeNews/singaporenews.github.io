@@ -57,7 +57,14 @@
     <div class="row">
       <div class="col-md-12">
         <div id="barChart"></div>
-        <div id="slider"></div>
+        <div id="slider">
+          <p>
+            <label for="nYear" style="display: inline-block; width: 500px; text-align: right">
+              Year: <span id="nYear-value"></span>
+            </label>
+            <input type="range" min="0" max="54" id="nYear">
+          </p>
+        </div>
       </div>
       <div class="col-md-12">
         <form name="test">
@@ -130,6 +137,14 @@ var bar_svg = d3.select('div#barChart').append('svg')
                       .attr("transform", "translate(" + margin.left + "," + margin.top*2 + ")");
 
 createBarChart(1);
+
+function updateBarChart(year){
+
+};
+
+d3.select('#nYear').on('input', function(){
+  console.log(this.value);
+});
 
 function createBarChart(year){
   d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
