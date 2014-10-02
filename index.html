@@ -149,6 +149,20 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
   bar_x.domain([0, d3.max(spec_data, function(d){ return d.value; })]);
   bar_y.domain(spec_data.map(function(d){ return d.term; }));
 
+  var bar_label = bar_svg.selectAll('bar_label')
+        .data(bar_data[i])
+        .enter()
+      .append('text')
+        .attr('class', 'bar_label')
+        .attr("x", width / 2)
+        .attr("y", -5)
+        .style("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("fill", "#53565A")
+        .transition()
+        .duration(750)
+        .text(function(d){ return d.year; });
+
   var bar = bar_svg.selectAll('g.bar')
       .data(spec_data)
     .enter().append('g')
