@@ -94,9 +94,14 @@ var svg = d3.select('div#chart').append('svg')
 createChart('bomb');
 
 //****************Bar Chart*********************//
-//d3.csv("terms.csv", function(error, data){
+function type(d){
+  d.value = +d.value; 
+  return d;
+};
 
-//})
+d3.csv("transformed_terms.csv", type, function(error, data){
+  console.log(data);
+})
 
 
 </script>
