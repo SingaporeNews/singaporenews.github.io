@@ -6,6 +6,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="http://d3js.org/d3.v3.js"></script>
   <script src="js/search_line.js"></script>
+  <script src="http://thematicmapping.org/playground/d3/d3.slider/d3.slider.js"></script>
 
   <style>
     body {
@@ -53,7 +54,9 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12" id="barChart"></div>
+      <div class="col-md-12" id="barChart">
+        <div id="slider"></div>
+      </div>
       <div class="col-md-12">
         <form name="test">
           <p>Enter a term from the headlines and press the button. <input type="text" name="term">
@@ -109,6 +112,8 @@ function convertNumbers(row){
   }
   return r;
 };
+
+d3.select('#slider').call(d3.slider().axis(true).min(1955).max(2011).step(1));
 
 var bar_x = d3.scale.linear().range([0, width]),
     bar_y = d3.scale.ordinal().rangeRoundBands([0, height], .1);
