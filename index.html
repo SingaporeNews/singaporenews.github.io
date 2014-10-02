@@ -100,8 +100,10 @@ function type(d){
 };
 
 d3.csv("transposed_terms.csv", function(error, data){
-  console.log(data);
-  var bar_terms = data.map(function(term){
+  term_list = d3.keys(
+      data[0]).filter(function(key){ return key !== '' || key !== 'headline_year'; });
+
+  var bar_terms = term_list.map(function(term){
       return {
         term: term,
         value: data.map(function(d){
