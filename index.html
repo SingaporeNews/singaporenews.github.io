@@ -103,7 +103,6 @@ function convertNumbers(row){
 };
 
 d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
-  console.log(data);
   new_data = [];
   for (i=0; i<data.length; i++){
     temp_data = {};
@@ -118,10 +117,10 @@ d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
     temp_data['values'] = myrow;
     new_data.push(temp_data);
   }
-  for (i=0; i<new_data.length; i++){
-    new_data[i].sort(function(a,b){ return b.value-a.value;});
-  };
-  console.log(new_data);
+
+  new_data[i].sort(function(a,b){ return b.value-a.value;});
+
+  console.log(new_data[0]);
 })
 
 
