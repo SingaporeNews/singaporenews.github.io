@@ -162,8 +162,8 @@ d3.select('#nYear').on('input', function(){
 //****************Tree Map*********************//
 
 var tree_margin = {top: 40, right: 10, bottom: 10, left: 10},
-    tree_width = 560 - tree_margin.left - tree_margin.right,
-    tree_height = 300 - tree_margin.top - tree_margin.bottom;
+    tree_width = 760 - tree_margin.left - tree_margin.right,
+    tree_height = 600 - tree_margin.top - tree_margin.bottom;
 
 var tree_color = d3.scale.category20c();
 
@@ -180,7 +180,7 @@ var div = d3.select("div#treeParent").append("div")
     .style("top", tree_margin.top + "px");
 
 d3.json("Words_politics_decade.json", function(error, root) {
-  console.log(root);
+  console.log(root[0]);
   var node = div.datum(root).selectAll(".node")
       .data(treemap.nodes)
     .enter().append("div")
