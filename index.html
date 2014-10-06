@@ -230,7 +230,7 @@ function position() {
         .attr("height", chartHeight)
         .append("svg:g");
 
-    d3.json("Words_politics_decade.json", function(data) {
+    d3.json("Words_politics_1950s.json", function(data) {
         node = root = data;
         var nodes = treemap.nodes(root);
 
