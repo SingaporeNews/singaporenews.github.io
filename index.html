@@ -485,10 +485,12 @@ function position() {
                             return d.parent === self.node; // only get the children for selected group
                         })
                         .select(".label")
-                        .style("display", "")
+                        .style("display", "");
+                        /*
                         .style("fill", function(d) {
                             return color(d.parent.name);
                         });
+*/
                 }
             });
 
