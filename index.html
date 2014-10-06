@@ -280,6 +280,7 @@ function position() {
         .append("svg:g");
 
     d3.json("Words_politics_decade.json", function(data) {
+        console.log(data);
         node = root = data;
         var nodes = treemap.nodes(root);
 
