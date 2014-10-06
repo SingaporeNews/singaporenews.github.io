@@ -189,7 +189,13 @@ d3.json("Words_politics_1950s.json", function(error, root) {
       .style("background", function(d) { return d.children ? tree_color(d.name) : null; })
       .text(function(d) { return d.children ? null : d.name; });
 
-  node.on('click', function(d){ console.log(d.parent); });
+  node.append('text')
+    .attr('x', tree_width+10)
+    .attr('y', function(d, i){ return i*10})
+    .style('fill', function(d){ return d.children ? tree_color(d.name) : null; })
+    .text(function(d){ return d.children ? d.name : null})
+
+  node.on('click', function(d){ console.log(d.parent.name, ); });
 });
 
 function position() {
