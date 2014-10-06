@@ -67,9 +67,8 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-8" id="treeParent" style="margin-top:25px;">
-        <div id="treeMap"></div>
-      </div>
+      <div class="col-md-8" id="treeParent" style="margin-top:25px;"></div>
+      <div class="col-md-4" id="treeLegend"></div>
     </div>
     <div class="row">
       <div class="col-md-12" style="margin-top:25px;">
@@ -189,13 +188,14 @@ d3.json("Words_politics_1950s.json", function(error, root) {
       .style("background", function(d) { return d.children ? tree_color(d.name) : null; })
       .text(function(d) { return d.children ? null : d.name; });
 
-  node.append('text')
-    .attr('x', 760)
-    .attr('y', function(d, i){ return i*10})
-    .style('fill', function(d){ return d.children ? tree_color(d.name) : null; })
-    .text(function(d){ return d.children ? d.name : null; });
+  d3.selectAll('.legend_title')
+    .data(treemap.nodes)
+    .enter()
+    .append('text')
+    .attr('x', tree_width / 2)
+    .attr('y', -10);
 
-  node.on('click', function(d){ console.log(d.parent.name); });
+  node.on('click', function(d){ d3.select('div#treeLegend').style('fill', tree_color(d.name)).text(function(d){ return d.parent.name; }) });
 });
 
 function position() {
