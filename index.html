@@ -190,7 +190,7 @@ d3.json("Words_politics_1950s.json", function(error, root) {
       .text(function(d) { return d.children ? null : d.name; });
 
   node.append('text')
-    .attr('x', tree_width+10)
+    .attr('x', tree_width-20)
     .attr('y', function(d, i){ return i*10})
     .style('fill', function(d){ return d.children ? tree_color(d.name) : null; })
     .text(function(d){ return d.children ? d.name : null; });
