@@ -197,7 +197,7 @@ d3.json(file, function(error, root) {
       .attr("class", "node")
       .call(position)
       .style("background", function(d) { return d.children ? tree_color(d.name) : null; })
-      .text(function(d) { return d.children ? null : d.name; });
+      .text(function(d) { return d.children ? null : d.parent.name + "-" + d.name; });
 
   d3.selectAll('.legend_title')
     .data(treemap.nodes)
