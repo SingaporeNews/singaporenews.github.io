@@ -186,7 +186,7 @@ d3.json("Words_politics_1950s.json", function(error, root) {
     .enter().append("div")
       .attr("class", "node")
       .call(position)
-      .style("background", function(d) { return d.children ? color(d.name) : null; })
+      .style("background", function(d) { return d.children ? tree_color(d.name) : null; })
       .text(function(d) { return d.children ? null : d.name; });
 });
 
