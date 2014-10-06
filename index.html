@@ -195,7 +195,7 @@ d3.json("Words_politics_1950s.json", function(error, root) {
     .attr('x', tree_width / 2)
     .attr('y', -10);
 
-  node.on('click', function(d){ d3.select('div#treeLegend').style('fill', tree_color(d.name)).text(function(d){ return d.parent.name; }) });
+  node.on('click', function(d){ d3.select('div#treeLegend').style('fill', tree_color(d.name)).text(function(d){ return d.name }) });
 });
 
 function position() {
