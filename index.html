@@ -209,7 +209,7 @@ function position() {
     var chartHeight = 550;
     var xscale = d3.scale.linear().range([0, chartWidth]);
     var yscale = d3.scale.linear().range([0, chartHeight]);
-    var color = d3.scale.category10();
+    var tree_color = d3.scale.category20();
     var headerHeight = 20;
     var headerColor = "#555555";
     var transitionDuration = 500;
@@ -316,7 +316,7 @@ function position() {
         childEnterTransition.append("rect")
             .classed("background", true)
             .style("fill", function(d) {
-                return color(d.parent.name);
+                return tree_color(d.parent.name);
             });
         childEnterTransition.append('text')
             .attr("class", "label")
@@ -346,7 +346,7 @@ function position() {
                 return d.dy;
             })
             .style("fill", function(d) {
-                return color(d.parent.name);
+                return tree_color(d.parent.name);
             });
         childUpdateTransition.select(".label")
             .attr('x', function(d) {
@@ -449,7 +449,7 @@ function position() {
                         .select(".label")
                         .style("display", "")
                         .style("fill", function(d) {
-                            return idealTextColor(color(d.parent.name));
+                            return tree_color(d.parent.name);
                         });
                 }
             });
@@ -489,7 +489,7 @@ function position() {
                 return d.children ? headerHeight : Math.max(0.01, (ky * d.dy));
             })
             .style("fill", function(d) {
-                return d.children ? headerColor : color(d.parent.name);
+                return d.children ? headerColor : tree_color(d.parent.name);
             });
 
         node = d;
