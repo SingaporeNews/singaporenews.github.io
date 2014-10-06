@@ -55,7 +55,17 @@
 
 
 
-    .chart {
+        svg {
+            overflow: hidden;
+        }
+
+        rect {
+            pointer-events: all;
+            cursor: pointer;
+            stroke: #EEEEEE;
+        }
+
+        .chart {
             display: block;
             margin: auto;
         }
@@ -77,8 +87,6 @@
 
         .child .label {
             font-size: 11px;
-            stroke: #FFFFFF;
-            fill: #FFFFFF;
         }
 
         .cell {
@@ -241,7 +249,7 @@ function position() {
       .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
 }
 */
-  var chartWidth = 550;
+    var chartWidth = 550;
     var chartHeight = 550;
     var xscale = d3.scale.linear().range([0, chartWidth]);
     var yscale = d3.scale.linear().range([0, chartHeight]);
