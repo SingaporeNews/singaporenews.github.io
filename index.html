@@ -180,8 +180,11 @@ var div = d3.select("div#treeParent").append("div")
     .style("top", tree_margin.top + "px");
 
 d3.json("Words_politics_decade.json", function(error, root) {
-  console.log(root.children[0].children);
-  var node = div.datum(root.children[0].children).selectAll(".node")
+  var decade = JSON.parse(root).filter(entry) {
+    return entry.name === '1950s';
+  });
+  console.log(decade);
+  var node = div.datum(root).selectAll(".node")
       .data(treemap.nodes)
     .enter().append("div")
       .attr("class", "node")
