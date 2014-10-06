@@ -181,7 +181,7 @@ var div = d3.select("div#treeParent").append("div")
 
 d3.json("Words_politics_decade.json", function(error, root) {
   console.log(root)
-  var node = div.datum(root).selectAll(".node")
+  var node = div.datum(root.children[0]).selectAll(".node")
       .data(treemap.nodes)
     .enter().append("div")
       .attr("class", "node")
