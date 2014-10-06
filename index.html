@@ -54,45 +54,6 @@
 
 
 
-
-        svg {
-            overflow: hidden;
-        }
-
-        rect {
-            pointer-events: all;
-            cursor: pointer;
-            stroke: #EEEEEE;
-        }
-
-        .chart {
-            display: block;
-            margin: auto;
-        }
-
-        .label {
-            stroke: #000000;
-            fill: #000000;
-            stroke-width: 0;
-            margin: 2px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .parent .label {
-            font-size: 12px;
-            stroke: #FFFFFF;
-            fill: #FFFFFF;
-        }
-
-        .child .label {
-            font-size: 11px;
-        }
-
-        .cell {
-            font-size: 11px;
-            cursor: pointer
-        }
   </style>
 </head>
 
@@ -139,7 +100,7 @@
 
 
 <script>
-/*
+
 
 function showAndClearField(frm){
   if (frm.term.value == "")
@@ -173,10 +134,10 @@ var svg = d3.select('div#chart').append('svg')
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 createChart('bomb');
-*/
+
 
 //****************Bar Chart*********************//
-/*
+
 function convertNumbers(row){
   var r = {};
   for (var k in row){
@@ -205,10 +166,9 @@ d3.select('#nYear').on('input', function(){
   updateBarChart(this.value);
 });
 
-*/
+
 
 //****************Tree Map*********************//
-/*
 var tree_margin = {top: 40, right: 10, bottom: 10, left: 10},
     tree_width = 760 - tree_margin.left - tree_margin.right,
     tree_height = 600 - tree_margin.top - tree_margin.bottom;
@@ -253,7 +213,7 @@ function position() {
       .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
       .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
 }
-*/
+/*
     var chartWidth = 550;
     var chartHeight = 550;
     var xscale = d3.scale.linear().range([0, chartWidth]);
@@ -500,11 +460,11 @@ function position() {
                         })
                         .select(".label")
                         .style("display", "");
-                        /*
+                        
                         .style("fill", function(d) {
                             return color(d.parent.name);
                         });
-*/
+                        
                 }
             });
 
