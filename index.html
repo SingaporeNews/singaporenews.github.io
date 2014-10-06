@@ -221,7 +221,7 @@ function position() {
         .size([chartWidth, chartHeight])
         .sticky(true)
         .value(function(d) {
-            return d.size;
+            return +d.size;
         });
 
     var chart = d3.select("div#treeParent")
@@ -378,7 +378,7 @@ function position() {
 
 
     function size(d) {
-        return d.size;
+        return +d.size;
     }
 
 
