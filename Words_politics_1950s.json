@@ -4,9 +4,9 @@
 "children": [
      {
           "name": 1955, 
-          "terms": [
+          "children": [
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Rhodesians kill Reds"
                          }, 
@@ -42,7 +42,7 @@
                     "size": "186"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "London will see red, Marshall warns"
                          }, 
@@ -78,7 +78,7 @@
                     "size": "79"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Brighter' disarm talks"
                          }, 
@@ -114,7 +114,7 @@
                     "size": "68"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "No spot rubber in London"
                          }, 
@@ -150,7 +150,7 @@
                     "size": "49"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "This is the  true  Malaya"
                          }, 
@@ -186,7 +186,7 @@
                     "size": "43"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Tempter riddle: Is he visiting Singapore this month?"
                          }, 
@@ -222,7 +222,7 @@
                     "size": "40"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Now PAP declares  war  on T.U.C."
                          }, 
@@ -261,9 +261,9 @@
      }, 
      {
           "name": 1956, 
-          "terms": [
+          "children": [
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "A Tengku breaks fasting law"
                          }, 
@@ -299,7 +299,7 @@
                     "size": "86"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Five Commonwealth men  will draw up merdeka constitution"
                          }, 
@@ -329,7 +329,7 @@
                     "size": "69"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "The Reds  will not  give up  arms"
                          }, 
@@ -365,7 +365,7 @@
                     "size": "128"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "9-hour fire  destroys rubber trees"
                          }, 
@@ -395,7 +395,7 @@
                     "size": "43"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Closed  door  talks on  finance"
                          }, 
@@ -431,7 +431,7 @@
                     "size": "43"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Boyd  meets  Tengku,  Lim"
                          }, 
@@ -467,7 +467,7 @@
                     "size": "42"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Marshall ill"
                          }, 
@@ -503,7 +503,7 @@
                     "size": "41"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Gang war  threat    police  stand by"
                          }, 
@@ -539,7 +539,7 @@
                     "size": "38"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Cars for China"
                          }, 
@@ -575,7 +575,7 @@
                     "size": "37"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Man lost on  way home  from Malaya"
                          }, 
@@ -614,9 +614,9 @@
      }, 
      {
           "name": 1957, 
-          "terms": [
+          "children": [
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Tengku:  A great  step  forward"
                          }, 
@@ -652,7 +652,7 @@
                     "size": "77"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Front sure it  can  stay in power  Better living conditions after merdeka, says Tengku"
                          }, 
@@ -688,7 +688,7 @@
                     "size": "51"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Nuclear talks In express train"
                          }, 
@@ -724,7 +724,7 @@
                     "size": "46"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Malaya stands alone -the wall is full"
                          }, 
@@ -760,7 +760,7 @@
                     "size": "43"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Girl looks  on as Reds  kill father"
                          }, 
@@ -796,7 +796,7 @@
                     "size": "76"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Singapore Govt. releases 15 detained students"
                          }, 
@@ -832,7 +832,7 @@
                     "size": "38"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "'Raise the rubber cess for war on synthetic'"
                          }, 
@@ -868,7 +868,7 @@
                     "size": "28"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Lim wiii tackle labour  trouble"
                          }, 
@@ -904,7 +904,7 @@
                     "size": "28"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "China backs  Russia's  Mid-East  proposals"
                          }, 
@@ -940,7 +940,7 @@
                     "size": "26"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Queen undecided"
                          }, 
@@ -976,7 +976,7 @@
                     "size": "26"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Doctors fight back: Virus  will be flown  to London"
                          }, 
@@ -1015,9 +1015,9 @@
      }, 
      {
           "name": 1958, 
-          "terms": [
+          "children": [
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Evening  dress test  for Miss  Singapore"
                          }, 
@@ -1053,7 +1053,7 @@
                     "size": "68"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "But Tengku won't kill liberalism"
                          }, 
@@ -1089,7 +1089,7 @@
                     "size": "63"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "University of Malaya to teach music"
                          }, 
@@ -1125,12 +1125,12 @@
                     "size": "63"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Geneva talks"
                          }, 
                          {
-                              "name": "De Gaulle sets  terms: Parties  in vital talks"
+                              "name": "De Gaulle sets  children: Parties  in vital talks"
                          }, 
                          {
                               "name": "Europe talks"
@@ -1161,7 +1161,7 @@
                     "size": "48"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Why, if it isn't Mr. Lim"
                          }, 
@@ -1197,7 +1197,7 @@
                     "size": "48"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Reds hold  more  anti-West rallies"
                          }, 
@@ -1205,7 +1205,7 @@
                               "name": "Reds rebuke three top officials"
                          }, 
                          {
-                              "name": "The 4 Reds who wanted to talk peace terms"
+                              "name": "The 4 Reds who wanted to talk peace children"
                          }, 
                          {
                               "name": "Six plump Reds quit jungle"
@@ -1233,12 +1233,12 @@
                     "size": "89"
                }, 
                {
-                    "children": [], 
+                    "headlines": [], 
                     "name": "U.S.", 
                     "size": "40"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Home from war on terrorists"
                          }, 
@@ -1274,7 +1274,7 @@
                     "size": "33"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Malayan tin quota cut again"
                          }, 
@@ -1286,7 +1286,7 @@
                     "size": "31"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Blackout9 on man held in Jakarta"
                          }, 
@@ -1322,7 +1322,7 @@
                     "size": "31"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Colony rubber imports"
                          }, 
@@ -1355,7 +1355,7 @@
                     "size": "29"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Cyprus  rebels  warn  of war"
                          }, 
@@ -1394,9 +1394,9 @@
      }, 
      {
           "name": 1959, 
-          "terms": [
+          "children": [
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Tengku ingered  by report about a rabel Istemte state"
                          }, 
@@ -1432,7 +1432,7 @@
                     "size": "64"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Five-year  PAP  plan for S'pore"
                          }, 
@@ -1468,7 +1468,7 @@
                     "size": "75"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Russia back  in rubber  market"
                          }, 
@@ -1492,7 +1492,7 @@
                     "size": "38"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Why the Alliance lost in  Trengganu: Political  rallies not good enough  says the Tengku"
                          }, 
@@ -1528,7 +1528,7 @@
                     "size": "38"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Lim heads team to the capital  for talks on entry law"
                          }, 
@@ -1564,7 +1564,7 @@
                     "size": "35"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Vice-Premier  of Si am here  for visit"
                          }, 
@@ -1600,7 +1600,7 @@
                     "size": "35"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "THOSE  BLACKOUTS:  Now Fiuczek  talks..."
                          }, 
@@ -1636,7 +1636,7 @@
                     "size": "34"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Lim opposes Marshall in Cairnhill:  Lee in Tanjong Pagar"
                          }, 
@@ -1672,7 +1672,7 @@
                     "size": "32"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Malaya not at Tibet talks"
                          }, 
@@ -1708,7 +1708,7 @@
                     "size": "32"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "PAP backbenchers to help the Govt."
                          }, 
@@ -1744,7 +1744,7 @@
                     "size": "30"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "No Report until full  council says 'yes'"
                          }
@@ -1753,7 +1753,7 @@
                     "size": "26"
                }, 
                {
-                    "children": [
+                    "headlines": [
                          {
                               "name": "Glamour and  glitter  as King opens film festival"
                          }, 
