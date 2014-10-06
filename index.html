@@ -90,8 +90,14 @@
     <div class="tab-pane active" style="font-size: 14px;" id="Summary">
       <br>
       <br>
-      <p>News represents a vital repository of historical records in a society. Headline news, in particular, takes a snapshot of contemporary events and concerns and is hence a powerful medium to capture the state of society at that moment in history. By analysing the frequency of words or phrases in the headlines and displaying them in a compact form such as a treemap (hyperlink to treemap wiki?), it is possible to distill a sense of historical contingency and mood. More interestingly, by organising such displays according to time period (such as year or decade), one can demonstrate how the state of society changes from one period to the next, with the aid of effective transitions. Our visualisation hence represents a literal Singapore Story unfolding and changing through the decades, as told by the news.</p>
+      <p>News represents a vital repository of historical records in a society. Headline news, in particular, takes a snapshot of contemporary events and concerns and is hence a powerful medium to capture the state of society at that moment in history. By analysing the frequency of words or phrases in the headlines and displaying them in a compact form such as a treemap, it is possible to distill a sense of historical contingency and mood. More interestingly, by organising such displays according to time period (such as year or decade), one can demonstrate how the state of society changes from one period to the next, with the aid of effective transitions. Our visualisation will hence represent a literal Singapore Story unfolding and changing through the decades, as told by the news.</p>
+
+      <h4>Ongoing work</h4>
+
       <p>Here we have collected a corpus of headlines from 1955 to 2009 of The Straits Times, the premier English-language daily of Singapore, through the digitized news archive NewspaperSG maintained by the <a href="http://eresources.nlb.gov.sg/newspapers/Default.aspx">National Library Board</a>. To filter out non-informative word forms such as pronouns and prepositions (‘of’,’the,’them’), we employed Part-of-Speech (PoS) tagging to the corpus and retained only nouns, verbs and adjectives. The top 50 most common words for each year’s group of headlines is then computed. Analysing the kind of words that tend to appear, we are in the process of curating this set into the themes ‘Politics and Personalities’ and ‘Episodes and Emergencies’. ‘Politics and Personalities’ captures country names, person names and other politically-related nouns such as ‘Reds’ and ‘opposition’. ‘Episodes and Emergencies’ covers much of the verbs that remain and tends to capture newsworthy events of the time, such as major accidents or a public health crisis. A sample of headlines is associated to each word to reveal the context in which the word is used.</p>
+
+      <h4>A story and a tool</h4>
+      <p>In this website we will use data from over fifty years of headlines from The Straits Times to tell a few stories about Singapore's history. However, our goal is also to provide a data visualization tool that anyone can use to discover and tell the stories and patterns that matter to them.</p>
     </div>
 
     <div class="tab-pane" id="visualization">
@@ -107,7 +113,9 @@
             </p>
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <p style="font-size: 14px;">This chart displays the top terms from the headlines for the given year. The slider at the bottom of the chart allows you to browse through history and see the words and themes that dominated the news in each year.</p>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12" style="margin-top:50px;">
@@ -117,7 +125,10 @@
             </p>
           </form>
         </div>
-        <div class="col-md-12" id="chart" style="margin-top:25px;"></div>
+        <div class="col-md-8" id="chart" style="margin-top:25px;"></div>
+        <div class="col-md-4" id="chart_text" style="margin-top:25px;">
+          <p style="font-size: 14px;">This chart displays the frequency of a specified term over the years. Search for a word like "Tengku", or "China", or "terror", or "police" and see how its use has risen and fallen over the years.</p>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-8" id="treeParent" style="margin-top:25px;"></div>
