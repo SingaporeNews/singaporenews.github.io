@@ -35,7 +35,7 @@ tic = timeit.default_timer()
 #corpus of all headlines, unvectorized, by year
 allcurrent = []
 #PoS-tagged headlines
-alltagged = []
+#alltagged = []
 
 ##Cycle through each year's headlines
 count = 1
@@ -58,10 +58,10 @@ for year in range(1955,2010):
 		logging.info('Converted %d headlines to bag-of-words', year)
 
 		#Tag unvectorized headlines
-		logging.info('PoS tagging %d headlines...', year)
-		tokens = [nltk.word_tokenize(headline) for headline in currentstring]
-		tagged = [nltk.pos_tag(token) for token in tokens]
-		alltagged.append(tagged)
+		#logging.info('PoS tagging %d headlines...', year)
+		#tokens = [nltk.word_tokenize(headline) for headline in currentstring]
+		#tagged = [nltk.pos_tag(token) for token in tokens]
+		#alltagged.append(tagged)
 		allcurrent.append(current)
 		logging.info('Done!', year)
 
@@ -89,6 +89,7 @@ finalset = [y for y in stopset if y not in keepset]
 
 #additional prepositions to remove; may have been in keepset 
 stoplist = list('for a at of the and to in is was are were with it on be by but or from its have has that this as who sa ys mala ya'.split())
+
 for y in finalset:
 	stoplist.append(y)
 
