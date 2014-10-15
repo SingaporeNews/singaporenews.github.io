@@ -35,7 +35,7 @@ tic = timeit.default_timer()
 #corpus of all headlines, unvectorized, by year
 allcurrent = []
 #PoS-tagged headlines
-#alltagged = []
+alltagged = []
 
 ##Cycle through each year's headlines
 count = 1
@@ -58,10 +58,10 @@ for year in range(1955,2010):
 		logging.info('Converted %d headlines to bag-of-words', year)
 
 		#Tag unvectorized headlines
-		#logging.info('PoS tagging %d headlines...', year)
-		#tokens = [nltk.word_tokenize(headline) for headline in currentstring]
-		#tagged = [nltk.pos_tag(token) for token in tokens]
-		#alltagged.append(tagged)
+		logging.info('PoS tagging %d headlines...', year)
+		tokens = [nltk.word_tokenize(headline) for headline in currentstring]
+		tagged = [nltk.pos_tag(token) for token in tokens]
+		alltagged.append(tagged)
 		allcurrent.append(current)
 		logging.info('Done!', year)
 
