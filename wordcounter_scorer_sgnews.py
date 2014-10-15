@@ -40,9 +40,10 @@ alltagged = []
 ##Cycle through each year's headlines
 count = 1
 for year in range(1955,2010):
-	#unvectorized headlines for current year
+	#unvectorized headlines for current year, for tagging
 	currentstring = []
-	#
+	#unvectorized headlines for current year
+	current = []
 	logging.info('Reading headlines for %d...', year)
 	with open('Headlines_' + str(year) + '.txt') as f:
 		for x in f.readlines()[1:]:
@@ -53,6 +54,7 @@ for year in range(1955,2010):
 				xx = x.strip('\r\n').split('\t')
 				xy = xx[1].lower()
 				currentstring.append(xy.decode('utf-8'))
+				current.append(xy)
 		logging.info('Converted %d headlines to bag-of-words', year)
 
 		#Tag unvectorized headlines
@@ -60,7 +62,7 @@ for year in range(1955,2010):
 		tokens = [nltk.word_tokenize(headline) for headline in currentstring]
 		tagged = [nltk.pos_tag(token) for token in tokens]
 		alltagged.append(tagged)
-		allcurrent.append(currentstring)
+		allcurrent.append(current)
 		logging.info('Done!', year)
 
 		#Counter for timer
@@ -123,7 +125,7 @@ count = 1
 for year in range(1955,2010):
 	current = []
 	logging.info('Reading headlines for %d...', year)
-	with codecs.open('Headlines_' + str(year) + '.txt', 'r','utf-8-sig') as f:
+	with open('Headlines_' + str(year) + '.txt') as f:
 		for x in f.readlines()[1:]:
 			x = re.sub(r'\xe2\x80\x93|\xe2\x80\x94|\xc3\x82|\xe2\x80\xa2|\xc2\xa75|14\xbd', r' ', x)
 			x = re.sub(r'([()?:!,\'])', r'', x)
@@ -145,7 +147,7 @@ for year in range(1955,2010):
 		#Count 50 most common words
 		logging.info('Extracting 100 most common words for %d..', year)
 		counter = collections.Counter(goodcur_bag)
-		freq = counter.most_common(100)
+		freq = counter.most_common(50)
 		lfreq = [list(y) for y in freq]
 		allfreq.append(lfreq)
 		logging.info('Done!')
