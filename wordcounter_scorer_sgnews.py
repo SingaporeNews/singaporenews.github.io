@@ -10,6 +10,7 @@ import csv
 import re
 import pandas
 import pickle
+import codecs
 from gensim import corpora, models, similarities
 from nltk.util import ngrams 
 from datetime import timedelta
@@ -41,21 +42,26 @@ count = 1
 for year in range(1955,2010):
 	#unvectorized headlines for current year
 	currentstring = []
+	#
 	logging.info('Reading headlines for %d...', year)
 	with open('Headlines_' + str(year) + '.txt') as f:
 		for x in f.readlines()[1:]:
-			x = re.sub(r'\xe2\x80\x93|\xe2\x80\x94|\xc3\x82|\xe2\x80\xa2|\xc2\xa75|14\xbd', r' ', x)
+			x = re.sub(r'\xe2\x80\x93|\xe2\x80\x94|\xc3\x82|\xe2\x80\xa2|\xc2\xa75|14\xbd|\0xc2', r' ', x)
+			x = re.sub(r'([()?:!,\'])', r'', x)
 			#remove non-informative headlines
 			if re.search(r'\b(miscellaneous|am latest|highlights|section|pages|stop press|latest)\b', x) is None:
 				xx = x.strip('\r\n').split('\t')
-				currentstring.append(xx[1])
+				xy = xx[1].lower()
+				currentstring.append(xy.decode('utf-8'))
 		logging.info('Converted %d headlines to bag-of-words', year)
 
-		#Append unvectorized headlines
+		#Tag unvectorized headlines
+		logging.info('PoS tagging %d headlines...', year)
 		tokens = [nltk.word_tokenize(headline) for headline in currentstring]
-		tagged = [nltk.pos_tag(token) for token in current]
+		tagged = [nltk.pos_tag(token) for token in tokens]
 		alltagged.append(tagged)
 		allcurrent.append(currentstring)
+		logging.info('Done!', year)
 
 		#Counter for timer
 		if count % 10 == 0:
@@ -103,7 +109,7 @@ termyear = vec.fit_transform(yeardoc)
 df = pandas.DataFrame(termyear.toarray().transpose(), index = vec.get_feature_names())
 df.columns = range(1955,2010)
 #write to file
-df.to_csv('term_by_year_2oct.csv', sep=',')
+df.to_csv('term_by_year_15oct.csv', sep=',')
 
 #########################################################
 #Count top 50 words by year, excluding those in stoplist
@@ -161,7 +167,7 @@ n = 1955
 for freq in allfreq:
 	for word in freq:
 		word.append(str(n))
-		with open('Top_words_allyears_2oct.txt','a') as h:
+		with open('Top_words_allyears_15oct.txt','a') as h:
 			writer = csv.writer(h, delimiter='\t')
 			writer.writerows([word])
 	n +=1
