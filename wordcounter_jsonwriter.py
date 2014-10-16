@@ -126,8 +126,13 @@ vec = CountVectorizer(stop_words=stoplistw)
 termyear = vec.fit_transform(yeardoc)
 df = pandas.DataFrame(termyear.toarray().transpose(), index = vec.get_feature_names())
 df.columns = range(1955,2010)
+
+#remove numeric word elements
+index = vec.get_feature_names()
+indexi = [y for y in index if re.search(r'[0-9]|_',y) is None]
+df2 = df.ix[indexi]
 #write to file
-df.to_csv('term_by_year_15oct.csv', sep=',')
+df2.to_csv('term_by_year_15oct.csv', sep=',')
 
 ############################################################
 #C) Count top 50 words by year, excluding those in stoplist
