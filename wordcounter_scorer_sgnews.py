@@ -11,6 +11,8 @@ import re
 import pandas
 import pickle
 import codecs
+import random
+import json
 from gensim import corpora, models, similarities
 from nltk.util import ngrams 
 from datetime import timedelta
@@ -18,7 +20,9 @@ from time import strftime
 from sklearn.feature_extraction.text import CountVectorizer 
 
 ################################################################################################
-#Script to count top 50 words from each year's headlines, using only nouns, verbs and adjectives
+#Script to:
+#1) Count top 50 words from each year's headlines, using only nouns, verbs and adjectives
+#2) Grab headlines associated with top words and convert to json
 ################################################################################################
 
 #Write process to a log file
@@ -28,30 +32,40 @@ logging.info('Starting frequency analysis for Straits Times headlines 1955-2009'
 #Timer
 tic = timeit.default_timer()
 
-#################################
-#Obtain stoplist via PoS tagging
-#################################
+####################################
+#A) Obtain stoplist via PoS tagging
+####################################
 
-#corpus of all headlines, unvectorized, by year
+#corpus of all headlines, unvectorized, lowercase, by year (RETAIN FOR TERM-YEAR MATRIX, PART B)
 allcurrent = []
+#corpus of all headlines, unvectorized, original, by year (RETAIN FOR GRABBING HEADLINES, PART E)
+allhead = []
 #PoS-tagged headlines
-alltagged = []
+#alltagged = []
 
-##Cycle through each year's headlines
+
+#Cycle through each year's headlines
+#######################################################################
+#Ignore TypeError: not all arguments converted during string formatting
+#######################################################################
 count = 1
 for year in range(1955,2010):
 	#unvectorized headlines for current year, for tagging
 	currentstring = []
-	#unvectorized headlines for current year
+	#unvectorized headlines for current year, lowercase
 	current = []
+	#unvectorized headlines for current year, original
+	head = []
 	logging.info('Reading headlines for %d...', year)
 	with open('Headlines_' + str(year) + '.txt') as f:
 		for x in f.readlines()[1:]:
 			x = re.sub(r'\xe2\x80\x93|\xe2\x80\x94|\xc3\x82|\xe2\x80\xa2|\xc2\xa75|14\xbd|\0xc2', r' ', x)
-			x = re.sub(r'([()?:!,\'])', r'', x)
-			#remove non-informative headlines
 			if re.search(r'\b(miscellaneous|am latest|highlights|section|pages|stop press|latest)\b', x) is None:
-				xx = x.strip('\r\n').split('\t')
+				x0 = x.strip('\r\n').split('\t')
+				head.append(x0[1])
+				x1 = re.sub(r'([()?:!,\'])', r'', x)
+				#remove non-informative headlines
+				xx = x1.strip('\r\n').split('\t')
 				xy = xx[1].lower()
 				currentstring.append(xy.decode('utf-8'))
 				current.append(xy)
@@ -59,10 +73,11 @@ for year in range(1955,2010):
 
 		#Tag unvectorized headlines
 		logging.info('PoS tagging %d headlines...', year)
-		tokens = [nltk.word_tokenize(headline) for headline in currentstring]
-		tagged = [nltk.pos_tag(token) for token in tokens]
-		alltagged.append(tagged)
+		#tokens = [nltk.word_tokenize(headline) for headline in currentstring]
+		#tagged = [nltk.pos_tag(token) for token in tokens]
+		#alltagged.append(tagged)
 		allcurrent.append(current)
+		allhead.append(head)
 		logging.info('Done!', year)
 
 		#Counter for timer
@@ -99,9 +114,9 @@ stoplistw = set(stoplist)
 with open('stoplistw.sp', 'wb') as h:
 	pickle.dump(stoplistw, h)
 
-###########################################
-#Get term-year matrix, excluding stopwords
-###########################################
+#############################################
+#B) Get term-year matrix, excluding stopwords
+#############################################
 
 yeardoc =[]
 for current in allcurrent:
@@ -114,9 +129,9 @@ df.columns = range(1955,2010)
 #write to file
 df.to_csv('term_by_year_15oct.csv', sep=',')
 
-#########################################################
-#Count top 50 words by year, excluding those in stoplist
-#########################################################
+############################################################
+#C) Count top 50 words by year, excluding those in stoplist
+############################################################
 
 #most common words per year
 allfreq = []
@@ -175,7 +190,136 @@ for freq in allfreq:
 			writer.writerows([word])
 	n +=1
 
+#########################################
+#D) DATA CLEANING AND CURATION STEP IN R
+#########################################
+
+##########################################################
+#E) Grab headlines for top words in events, politics sets
+##########################################################
+
+with open('Top_words_events_15oct.txt') as f:
+	curated = [x.strip().split('\t') for x in f.readlines() if x]
+
+#numpy array to subset by column
+ncurated = numpy.array(curated)
+
+#Function to grab headlines according to word
+def grepWord(word,headlinelist):
+	hits =[]
+	for headline in headlinelist:
+		wordsub = re.sub('\$',r'\$',word)
+		wordsub = re.sub('\.',r'\.',wordsub)
+		my_regex = r'\b' + wordsub + r'\b' 
+		aa = re.search(my_regex, headline, re.IGNORECASE)
+		if aa is not None:
+			hits.append(headline)
+	return hits
+
+def grepWordSpore(word,headlinelist):
+	hits = []
+	for headline in headlinelist:
+		aa = re.search(r'\b(Singapore|S\'pore)\b', headline, re.IGNORECASE)
+		if aa is not None:
+			hits.append(headline)
+	return hits
+
+#Create list of parent,child tuples by year
+linksall = []
+for year,head in zip(range(1955,2010),allhead):
+	links = []
+	yearcur = ncurated[ncurated[:,2] == str(year)].tolist()
+	n = 1
+	for word in yearcur:
+		logging.info('looking for word #%d in %d',n,year)
+		if word[0] == 'Singapore':
+			hlist = grepWordSpore(word[0],head)
+		else:
+			hlist = grepWord(word[0],head)
+		if len(hlist) > 10:
+			#decade,year
+			links.append((word[3],int(year)))
+			#year,word
+			links.append((int(year),word[0]))
+			#word,frequency
+			links.append((word[0],int(word[1])))
+			ind = random.sample(range(0,len(hlist)-1),10)
+			for i in ind:
+				#word, headline
+				links.append((word[0],hlist[i]))
+		elif len(hlist) > 0:
+			links.append((word[3],int(year)))
+			links.append((int(year),word[0]))
+			links.append((word[0],int(word[1])))
+			for i in range(0,len(hlist)-1):
+				links.append((word[0],hlist[i]))
+		n +=1
+	logging.info('Year %d done!',year)
+	linksall.append(links)
+
+#Function to get correct child for parent: Year>
+def get_nodes(node,links):
+	d = {}
+	d['name'] = node
+	children = [x[1] for x in links if x[0] == node and isinstance(x[1],int) is False]
+	childrenint = [x[1] for x in links if x[0] == node and isinstance(x[1],int) is True]
+	#size element
+	if len(childrenint) == 1:
+		#logging.info('Starting level WORD in hierarchy...')
+		d['size'] = str(childrenint[0])
+		d['children'] = [get_nodes_h(child) for child in children]
+	elif children:
+		#logging.info('Starting level YEAR in hierarchy...')
+		d['children'] = [get_nodes(child,links) for child in children]
+	return d
+
+def get_nodes_h(node):
+	d = {}
+	d['name'] = node
+	return d
+
+#create year>word>headline hierarchy
+tree = []
+n = 1955
+for links in linksall:
+	node = n
+	subtree = get_nodes(node,links)
+	tree.append(subtree)
+	n +=1
 
 
+#Attach decade parent
+e50s = {}
+e50s['name'] = '1950s'
+e50s['children'] = tree[0:5]
+
+e60s = {}
+e60s['name'] = '1960s'
+e60s['children'] = tree[5:15]
+
+e70s = {}
+e70s['name'] = '1970s'
+e70s['children'] = tree[15:25]
+
+e80s = {}
+e80s['name'] = '1970s'
+e80s['children'] = tree[25:35]
+
+e90s = {}
+e90s['name'] = '1970s'
+e90s['children'] = tree[35:45]
+
+e00s = {}
+e00s['name'] = '1970s'
+e00s['children'] = tree[45:55]
+
+#root parent
+e = {}
+e['name'] = 'root'
+e['children'] = [e50s,e60s,e70s,e80s,e90s,e00s]
+
+#write to file
+with open('Words_events_decade_15oct.json', 'wb') as g:
+	json.dump(e,g,indent=5)
 
 	
