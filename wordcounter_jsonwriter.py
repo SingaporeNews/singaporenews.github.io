@@ -41,7 +41,7 @@ allcurrent = []
 #corpus of all headlines, unvectorized, original, by year (RETAIN FOR GRABBING HEADLINES, PART E)
 allhead = []
 #PoS-tagged headlines
-#alltagged = []
+alltagged = []
 
 
 #Cycle through each year's headlines
@@ -73,9 +73,9 @@ for year in range(1955,2010):
 
 		#Tag unvectorized headlines
 		logging.info('PoS tagging %d headlines...', year)
-		#tokens = [nltk.word_tokenize(headline) for headline in currentstring]
-		#tagged = [nltk.pos_tag(token) for token in tokens]
-		#alltagged.append(tagged)
+		tokens = [nltk.word_tokenize(headline) for headline in currentstring]
+		tagged = [nltk.pos_tag(token) for token in tokens]
+		alltagged.append(tagged)
 		allcurrent.append(current)
 		allhead.append(head)
 		logging.info('Done!', year)
@@ -261,7 +261,7 @@ for year,head in zip(range(1955,2010),allhead):
 	logging.info('Year %d done!',year)
 	linksall.append(links)
 
-#Function to get correct child for parent: Year>
+#Function to get correct child for parent: Year>word>headline
 def get_nodes(node,links):
 	d = {}
 	d['name'] = node
