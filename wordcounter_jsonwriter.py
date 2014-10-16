@@ -225,6 +225,10 @@ def grepWordSpore(word,headlinelist):
 	return hits
 
 #Create list of parent,child tuples by year
+#######################################
+#Depends on list 'allhead' from Part A
+#######################################
+
 linksall = []
 for year,head in zip(range(1955,2010),allhead):
 	links = []
