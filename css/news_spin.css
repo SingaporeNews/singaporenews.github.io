@@ -21,9 +21,9 @@ animation-timing-function: ease;
 -moz-animation-timing-function: ease;
 -webkit-animation-timing-function: ease;
  
-animation-delay: 5s;
--moz-animation-delay: 5s;
--webkit-animation-delay: 5s;
+animation-delay: 0s;
+-moz-animation-delay: 0s;
+-webkit-animation-delay: 0s;
  
 animation-iteration-count: 1;
 -moz-animation-iteration-count: 1;
