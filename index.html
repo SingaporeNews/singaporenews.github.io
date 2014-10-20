@@ -102,6 +102,7 @@
             {
               currentChar=1;
               d3.select('#first').transition().duration(400).remove();
+              embedsvg();
               setTimeout("type()", 500000000);
             }
             else
@@ -144,7 +145,7 @@
       }
 
       startTyping(text, 75, "singHist");
-      setTimeout(embedsvg(), 100000);
+      //setTimeout(embedsvg(), 100000);
     </script>
 
     <!-- Bootstrap core JavaScript
