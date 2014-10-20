@@ -121,8 +121,6 @@
 
       function embedsvg() {
 
-        d3.select('#first').transition().duration(400).remove();
-
         var canvas = d3.select("body").append("canvas").attr("id","newCanvas").attr("width", "300px").attr("height", "276px").node();
         var context = canvas.getContext('2d');
         var imageObj = new Image();
@@ -139,6 +137,7 @@
 
             //Here's the data embedded in the img element __data__ property
             console.log(d3.select("img").node().__data__)
+            d3.select('#first').transition().duration(400).remove();
 
           };
       
