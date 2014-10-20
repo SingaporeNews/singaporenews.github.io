@@ -21,9 +21,9 @@ animation-timing-function: linear;
 -moz-animation-timing-function: linear;
 -webkit-animation-timing-function: linear;
  
-animation-delay: 20s;
--moz-animation-delay: 20s;
--webkit-animation-delay: 20s;
+animation-delay: 5s;
+-moz-animation-delay: 5s;
+-webkit-animation-delay: 5s;
  
 animation-iteration-count: 1;
 -moz-animation-iteration-count: 1;
