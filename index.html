@@ -51,7 +51,7 @@
                 <p class="lead" id="singHist"></p>
                 <p class="lead">
                 <!--<a href="#" class="btn btn-lg btn-default"></a>-->
-              </p>
+                </p>
               </div>
               <div class="col-md-4">
                 <div class="viewport">
@@ -126,7 +126,7 @@
           var imageData = document.getElementById("newCanvas").toDataURL("image/png")
           
           //Add as HTML img element
-            d3.select("#box1").append("img").datum(imageData).attr("src", function(d) {return d})
+            d3.select(".box1").append("img").datum(imageData).attr("src", function(d) {return d})
 
             //Here's the data embedded in the img element __data__ property
             console.log(d3.select("img").node().__data__)
