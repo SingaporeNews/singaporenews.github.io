@@ -45,13 +45,21 @@
           </div>
 
           <div class="inner cover">
-            <div class="row">
-              <div class="col-md-4">
+            <div class="row" id="first">
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-8">
                 <!--<h1 class="cover-heading">Cover your page.</h1>-->
                 <p class="lead" id="singHist"></p>
                 <p class="lead">
                 <!--<a href="#" class="btn btn-lg btn-default"></a>-->
                 </p>
+              </div>
+              <div class="col-md-2">
+              </div>
+            </div>
+            <div class="row" id="second">
+              <div class="col-md-4">
               </div>
               <div class="col-md-4">
                 <div class="viewport">
@@ -59,8 +67,7 @@
                   <!--<img src="static/ST_microfilm_1956.png">-->
                 </div>
               </div>
-              <div class="col-md-4">
-              </div>
+              <div class="col-md-4"></div>
             </div>
           </div>
 
@@ -113,6 +120,8 @@
       }
 
       function embedsvg() {
+
+        d3.select('#first').transition().duration(400).remove();
 
         var canvas = d3.select("body").append("canvas").attr("id","newCanvas").attr("width", "300px").attr("height", "276px").node();
         var context = canvas.getContext('2d');
