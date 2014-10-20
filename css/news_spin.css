@@ -13,13 +13,13 @@ animation-name: spinning;
 -moz-animation-name:spinning;
 -webkit-animation-name:spinning;
  
-animation-duration: 5s;
--moz-animation-duration: 5s;
--webkit-animation-duration: 5s;
+animation-duration: 1.2s;
+-moz-animation-duration: 1.2s;
+-webkit-animation-duration: 1.2s;
  
-animation-timing-function: linear;
--moz-animation-timing-function: linear;
--webkit-animation-timing-function: linear;
+animation-timing-function: ease;
+-moz-animation-timing-function: ease;
+-webkit-animation-timing-function: ease;
  
 animation-delay: 5s;
 -moz-animation-delay: 5s;
