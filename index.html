@@ -121,7 +121,7 @@
 
       function embedsvg() {
 
-        //d3.select('#first').transition().duration(400).remove();
+        d3.select('#first').transition().duration(400).remove();
 
         var canvas = d3.select("body").append("canvas").attr("id","newCanvas").attr("width", "300px").attr("height", "276px").node();
         var context = canvas.getContext('2d');
@@ -145,7 +145,7 @@
       }
 
       startTyping(text, 75, "singHist");
-      setTimeout(embedsvg(), 6000);
+      setTimeout(embedsvg(), 20000);
     </script>
 
     <!-- Bootstrap core JavaScript
