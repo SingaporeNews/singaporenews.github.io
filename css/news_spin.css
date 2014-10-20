@@ -13,9 +13,9 @@ animation-name: spinning;
 -moz-animation-name:spinning;
 -webkit-animation-name:spinning;
  
-animation-duration: 1.2s;
--moz-animation-duration: 1.2s;
--webkit-animation-duration: 1.2s;
+animation-duration: 3s;
+-moz-animation-duration: 3s;
+-webkit-animation-duration: 3s;
  
 animation-timing-function: ease;
 -moz-animation-timing-function: ease;
