@@ -101,7 +101,7 @@
             if (currentChar>text.length)
             {
               currentChar=1;
-              d3.select('#first').transition().duration(400).remove();
+              d3.select('#first').transition().duration(10).remove();
               embedsvg();
               setTimeout("type()", 500000000);
             }
@@ -144,7 +144,7 @@
       
       }
 
-      startTyping(text, 75, "singHist");
+      startTyping(text, 50, "singHist");
       //setTimeout(embedsvg(), 100000);
     </script>
 
