@@ -51,9 +51,9 @@ animation-direction: normal;
 }
 
 .fade-in.five {
-    -webkit-animation-delay: 5.6s;
-    -moz-animation-delay: 5.6s;
-    animation-delay: 5.6s;
+    -webkit-animation-delay: 10.2s;
+    -moz-animation-delay: 10.2s;
+    animation-delay: 10.2s;
 }
 
 /* make keyframes that tell the start state and the end state of our object */
