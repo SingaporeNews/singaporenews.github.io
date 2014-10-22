@@ -123,12 +123,11 @@
 
       function embedsvg() {
 
-        var canvas = d3.select("body").append("canvas").attr("id","newCanvas").node();
-        //.attr("width", "300px").attr("height", "276px").node();
+        var canvas = d3.select("body").append("canvas").attr("id","newCanvas").attr("width", "400px").attr("height", "300px").node();
         var context = canvas.getContext('2d');
         var imageObj = new Image();
 
-        imageObj.src = 'static/ST_microfilm_1965.png';
+        imageObj.src = 'static/ST_microfilm_1956.png';
 
         imageObj.onload = function() {
           context.drawImage(imageObj, 0, 0);
