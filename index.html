@@ -64,7 +64,7 @@
               <div class="col-md-4">
                 <div class="viewport">
                   <div class="box1 fade-in five"></div>
-                  <img src="static/ST_microfilm_1956.png">
+                  <!--<img src="static/ST_microfilm_1956.png">-->
                 </div>
               </div>
               <div class="col-md-4"></div>
@@ -102,7 +102,7 @@
             {
               currentChar=1;
               d3.select('#first').transition().duration(10).remove();
-              //embedsvg();
+              embedsvg();
               setTimeout("type()", 500000000);
             }
             else
@@ -123,7 +123,8 @@
 
       function embedsvg() {
 
-        var canvas = d3.select("body").append("canvas").attr("id","newCanvas").attr("width", "300px").attr("height", "276px").node();
+        var canvas = d3.select("body").append("canvas").attr("id","newCanvas").node();
+        //.attr("width", "300px").attr("height", "276px").node();
         var context = canvas.getContext('2d');
         var imageObj = new Image();
 
