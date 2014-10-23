@@ -159,10 +159,17 @@
 
       startTyping(text, 50, "singHist");
       //setTimeout(embedsvg(), 100000);
-
-      d3.csv("terms.csv", function(error, data){
-        console.log(data[10].headline_year);
-      })
+      function massive_words(){
+        d3.csv("terms.csv", function(error, data){
+          var words_text = "news";
+          for (i=0; i<1000; i++){
+            words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year + " ";
+          }
+          console.log(words_text);
+        })
+      }
+      massive_words();
+      
     </script>
 
     <!-- Bootstrap core JavaScript
