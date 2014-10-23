@@ -62,9 +62,9 @@
               <div class="col-md-4">
               </div>
               <div class="col-md-4">
-                <div class="viewport">
+                <div class="viewport" id="image_div" style="display:none;">
                   <div class="box1 fade-in five"></div>
-                  <!--<img src="static/ST_microfilm_1956.png">-->
+                  <img src="static/ST_microfilm_1956.png">
                 </div>
               </div>
               <div class="col-md-4"></div>
@@ -102,7 +102,8 @@
             {
               currentChar=1;
               d3.select('#first').transition().duration(10).remove();
-              embedsvg();
+              //embedsvg();
+              $(document.getElementById('image_div')).show();
               setTimeout("type()", 500000000);
             }
             else
