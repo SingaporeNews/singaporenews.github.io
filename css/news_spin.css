@@ -1,11 +1,71 @@
 .viewport {
-        width: 468px;
-        height: 330px;
+        width: 100%;
+        height: auto;
         margin: 0 auto;
 }
  
-.box1 img,
-.box2 img,
+.box1 img {
+width:100%;
+height:auto;
+background:rgba(255,0,0,0.5);
+ 
+animation-name: spinning;
+-moz-animation-name:spinning;
+-webkit-animation-name:spinning;
+ 
+animation-duration: 3s;
+-moz-animation-duration: 3s;
+-webkit-animation-duration: 3s;
+ 
+animation-timing-function: ease;
+-moz-animation-timing-function: ease;
+-webkit-animation-timing-function: ease;
+ 
+animation-delay: 0s;
+-moz-animation-delay: 0s;
+-webkit-animation-delay: 0s;
+ 
+animation-iteration-count: 1;
+-moz-animation-iteration-count: 1;
+-webkit-animation-iteration-count: 1;
+ 
+animation-direction: normal;
+-moz-animation-direction: normal;
+-webkit-animation-direction: normal;
+ 
+}
+
+.box2 img {
+width:100%;
+height:auto;
+background:rgba(255,0,0,0.5);
+ 
+animation-name: spinning;
+-moz-animation-name:spinning;
+-webkit-animation-name:spinning;
+ 
+animation-duration: 3s;
+-moz-animation-duration: 3s;
+-webkit-animation-duration: 3s;
+ 
+animation-timing-function: ease;
+-moz-animation-timing-function: ease;
+-webkit-animation-timing-function: ease;
+ 
+animation-delay: 0s;
+-moz-animation-delay: 0s;
+-webkit-animation-delay: 0s;
+ 
+animation-iteration-count: 1;
+-moz-animation-iteration-count: 1;
+-webkit-animation-iteration-count: 1;
+ 
+animation-direction: normal;
+-moz-animation-direction: normal;
+-webkit-animation-direction: normal;
+ 
+}
+
 .box3 img {
 width:100%;
 height:auto;
