@@ -111,9 +111,9 @@
             {
               currentChar=1;
               d3.select('#first').transition().duration(10).remove();
-              embedsvg(".box1", 'static/ST_microfilm_1956.png');
-              embedsvg(".box2", 'static/ST_microfilm_1965.png');
-              embedsvg(".box3", 'static/ST_microfilm_1975.png');
+              embedsvg(".box1", 'static/ST_microfilm_1956.png', "canvas1");
+              embedsvg(".box2", 'static/ST_microfilm_1965.png', 'canvas2');
+              embedsvg(".box3", 'static/ST_microfilm_1975.png', 'canvas3');
               //$(document.getElementById('image_div')).show();
               setTimeout("type()", 500000000);
             }
@@ -133,9 +133,9 @@
         type();
       }
 
-      function embedsvg(div, image) {
+      function embedsvg(div, image, canvas) {
 
-        var canvas = d3.select("body").append("canvas").attr("id","newCanvas").attr("width", "400px").attr("height", "300px").node();
+        var canvas = d3.select("body").append("canvas").attr("id", canvas).attr("width", "400px").attr("height", "300px").node();
         var context = canvas.getContext('2d');
         var imageObj = new Image();
 
@@ -144,7 +144,7 @@
         imageObj.onload = function() {
           context.drawImage(imageObj, 0, 0);
   //      var imageData = canvas.toDataURL("image/png");
-          var imageData = document.getElementById("newCanvas").toDataURL("image/png")
+          var imageData = document.getElementById(canvas).toDataURL("image/png")
           
           //Add as HTML img element
             d3.select(div).append("img").datum(imageData).attr("src", function(d) {return d})
