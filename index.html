@@ -27,7 +27,7 @@
 
   <body>
 
-    <div class="site-wrapper">
+    <div class="site-wrapper" id="site">
 
       <div class="site-wrapper-inner">
 
@@ -125,6 +125,27 @@
           }
         }
       }
+      function screenType()
+      {
+        if (document.getElementById)
+        {
+          var dest=document.getElementById(destination);
+          if (dest)
+          {
+            dest.innerHTML=text.substr(0, currentChar);
+            currentChar++
+            if (currentChar>text.length)
+            {
+              currentChar=1;
+              setTimeout("type()", 500000000);
+            }
+            else
+            {
+              setTimeout("type()", delay);
+            }
+          }
+        }
+      }
       function startTyping(textParam, delayParam, destinationParam)
       {
         text=textParam;
@@ -132,6 +153,15 @@
         currentChar=1;
         destination=destinationParam;
         type();
+      }
+      function screenTyping(textParam, delayParam, destinationParam)
+      {
+        d3.selectAll('img').transition().style('opacity', .09);
+        text=textParam;
+        delay=delayParam;
+        currentChar=1;
+        destination=destinationParam;
+        screenType();
       }
 
       function embedsvg(div, image, imgcanvas) {
@@ -165,10 +195,10 @@
           for (i=0; i<1000; i++){
             words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year + " ";
           }
-          console.log(words_text);
+          return words_text; 
         })
       }
-      massive_words();
+      setTimeout("screenTyping(massive_words(), 50, 'site')", 1000);
       
     </script>
 
