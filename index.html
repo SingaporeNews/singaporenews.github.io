@@ -193,7 +193,7 @@
         d3.csv("terms.csv", function(error, data){
           var words_text = "news";
           for (i=0; i<1000; i++){
-            words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year + " ";
+            words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year;
           }
           screenTyping(words_text, 50, 'site');
         })
