@@ -194,12 +194,13 @@
           var words_text = "news";
           for (i=0; i<1000; i++){
             words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year;
+            words_text += " ";
           }
           screenTyping(words_text, 1, 'site');
         })
       }
       
-      setTimeout("massive_words()", 15000);
+      setTimeout("massive_words()", 20000);
       
     </script>
 
