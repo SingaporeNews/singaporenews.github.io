@@ -110,10 +110,10 @@
             if (currentChar>text.length)
             {
               currentChar=1;
-              d3.select('#first').transition().duration(10).remove();
-              embedsvg(".box1", 'static/ST_microfilm_1956.png', "canvas1");
-              embedsvg(".box2", 'static/ST_microfilm_1965.png', 'canvas2');
-              embedsvg(".box3", 'static/ST_microfilm_1975.png', 'canvas3');
+              d3.select('#first').transition().remove();
+              setTimeout("embedsvg('.box1', 'static/ST_microfilm_1956.png', 'canvas1')", 500);
+              setTimeout("embedsvg('.box2', 'static/ST_microfilm_1965.png', 'canvas2')", 500);
+              setTimeout("embedsvg('.box3', 'static/ST_microfilm_1975.png', 'canvas3')", 500);
               //$(document.getElementById('image_div')).show();
               setTimeout("type()", 500000000);
             }
