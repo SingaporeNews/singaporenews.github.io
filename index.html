@@ -133,9 +133,9 @@
         type();
       }
 
-      function embedsvg(div, image, canvas) {
+      function embedsvg(div, image, imgcanvas) {
 
-        var canvas = d3.select("body").append("canvas").attr("id", canvas).attr("width", "400px").attr("height", "300px").node();
+        var canvas = d3.select("body").append("canvas").attr("id", imgcanvas).attr("width", "400px").attr("height", "300px").node();
         var context = canvas.getContext('2d');
         var imageObj = new Image();
 
@@ -144,7 +144,7 @@
         imageObj.onload = function() {
           context.drawImage(imageObj, 0, 0);
   //      var imageData = canvas.toDataURL("image/png");
-          var imageData = document.getElementById(canvas).toDataURL("image/png")
+          var imageData = document.getElementById(imgcanvas).toDataURL("image/png")
           
           //Add as HTML img element
             d3.select(div).append("img").datum(imageData).attr("src", function(d) {return d})
