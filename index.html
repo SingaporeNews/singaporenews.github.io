@@ -114,6 +114,7 @@
               currentChar=1;
               d3.select('#first').transition().remove();
               embedsvg('.box1', 'static/ST_microfilm_1956.png', 'canvas1');
+              d3.select('#canvas1').remove();
               /*
               setTimeout("embedsvg('.box2', 'static/ST_microfilm_1965.png', 'canvas2')", 500);
               setTimeout("embedsvg('.box3', 'static/ST_microfilm_1975.png', 'canvas3')", 500);
