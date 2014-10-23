@@ -197,7 +197,10 @@
             words_text += " ";
           }
           d3.selectAll('img').transition().style('opacity', .09);
-          screenTyping(words_text, 1, 'second');
+          //screenTyping(words_text, 1, 'second');
+          for (i=0; i<words_text.length; i++){
+            d3.select('#second').append('text').text(words_text[i]);
+          }
         })
       }
       
