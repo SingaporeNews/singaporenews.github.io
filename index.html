@@ -195,12 +195,11 @@
           for (i=0; i<1000; i++){
             words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year + " ";
           }
-          return words_text; 
+          screenTyping(words_text, 50, 'site');
         })
       }
-      words_text = massive_words();
-      console.log(words_text);
-      setTimeout("screenTyping(words_text, 50, 'site')", 20000);
+      
+      setTimeout("massive_words()", 20000);
       
     </script>
 
