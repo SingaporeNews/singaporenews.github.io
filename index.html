@@ -198,8 +198,9 @@
           }
           d3.selectAll('img').transition().style('opacity', .09);
           //screenTyping(words_text, 1, 'second');
+          var mytext = d3.select('#second');
           for (i=0; i<words_text.length; i++){
-            d3.select('#second').transition().duration(10).text(words_text[i]);
+            mytext.transition().duration(400).text(words_text[i]);
           }
         })
       }
