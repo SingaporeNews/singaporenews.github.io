@@ -31,7 +31,7 @@
 
       <div class="site-wrapper-inner">
 
-        <div class="cover-container" id="site">
+        <div class="cover-container">
           <!--
           <div class="masthead clearfix">
             <div class="inner">
@@ -156,7 +156,6 @@
       }
       function screenTyping(textParam, delayParam, destinationParam)
       {
-        d3.selectAll('img').transition().style('opacity', .09);
         text=textParam;
         delay=delayParam;
         currentChar=1;
@@ -196,7 +195,8 @@
             words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year;
             words_text += " ";
           }
-          screenTyping(words_text, 1, 'site');
+          d3.selectAll('img').transition().style('opacity', .09);
+          screenTyping(words_text, 1, 'second');
         })
       }
       
