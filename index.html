@@ -62,7 +62,7 @@
               <div class="col-md-4">
                 <div class="viewport" id="image_div">
                   <div class="box1 fade-in five"></div>
-                  <img src="static/ST_microfilm_1956.png">
+                  <!--<img src="static/ST_microfilm_1956.png">-->
                 </div>
               </div>
               <!--
@@ -113,8 +113,8 @@
             {
               currentChar=1;
               d3.select('#first').transition().remove();
+              embedsvg('.box1', 'static/ST_microfilm_1956.png', 'canvas1');
               /*
-              setTimeout("embedsvg('.box1', 'static/ST_microfilm_1956.png', 'canvas1')", 500);
               setTimeout("embedsvg('.box2', 'static/ST_microfilm_1965.png', 'canvas2')", 500);
               setTimeout("embedsvg('.box3', 'static/ST_microfilm_1975.png', 'canvas3')", 500);
               //$(document.getElementById('image_div')).show();
