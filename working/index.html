@@ -87,7 +87,7 @@
 
 
     <ul class="nav nav-tabs" role="tablist">
-      <li class="active"><a href="#Summary" role="tab" data-toggle="tab" style="background-image:url('static/noisy-texture.png'); font-size: 14px;">Summary &amp; Vision</a></li>
+      <li class="active"><a href="#Summary" role="tab" data-toggle="tab" style="background-image:url('http://singaporenews.github.io/static/noisy-texture.png'); font-size: 14px;">Summary &amp; Vision</a></li>
       <li><a href="#visualization" role="tab" data-toggle="tab" style="background-image:url('http://singaporenews.github.io/static/noisy-texture.png'); font-size: 14px;">Visualizations</a></li>
     </ul>
 
@@ -239,7 +239,7 @@ var div = d3.select("div#treeParent").append("div")
     .style("left", tree_margin.left + "px")
     .style("top", tree_margin.top + "px");
 
-var file = "https://singaporenews.github.io/Words_politics_1950s.json";
+var file = "http://singaporenews.github.io/Words_politics_1950s.json";
 
 d3.json(file, function(error, root) {
   console.log(root)
