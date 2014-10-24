@@ -1,6 +1,6 @@
 
 function updateBarChart(year){
-  d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
+  d3.csv("https://singaporenews.github.io/transposed_terms.csv", convertNumbers, function(error, data){
     bar_data = [];
     for (i=0; i<data.length; i++){
       temp_data = {};
@@ -79,7 +79,7 @@ function updateBarChart(year){
 }
 
 function createBarChart(year){
-  d3.csv("transposed_terms.csv", convertNumbers, function(error, data){
+  d3.csv("https://singaporenews.github.io/transposed_terms.csv", convertNumbers, function(error, data){
     bar_data = [];
     for (i=0; i<data.length; i++){
       temp_data = {};
