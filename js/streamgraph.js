@@ -8,7 +8,7 @@ $(document).on('click', '.dropdown-menu li a', function () {
 $(function(){
     $(".dropdown-menu li a").click(function(){
       $(".btn:first-child").text($(this).text());
-      $(".btn:first-child").val($(this).text());
+      $(".btn:first-child").val("# of top words" + $(this).text());
    });
 });
 
@@ -110,19 +110,6 @@ function drawStackedChart(word_num){
         .attr("class", "layer")
         .attr("d", function(d) { return area(d.values); })
         .style("fill", function(d, i) { return color(i); });
-
-    chartLayers
-        .transition()
-        .duration(200)
-        .attr("class", "layer")
-        .attr("d", function(d) { return area(d.values); })
-        .style("fill", function(d, i) { return color(i); });
-
-    chartLayers
-        .exit()
-        .transition()
-        .duration(200)
-        .remove();
 
     svg.append("g")
         .attr("class", "x axis")
@@ -233,7 +220,7 @@ function updateStackedChart(word_num, start, end){
 
     chartLayers
         .transition()
-        .duration(200)
+        .duration(550)
         .attr("class", "layer")
         .attr("d", function(d) { return area(d.values); })
         .style("fill", function(d, i) { return color(i); });
@@ -241,17 +228,17 @@ function updateStackedChart(word_num, start, end){
     chartLayers
         .exit()
         .transition()
-        .duration(200)
+        .duration(550)
         .remove();
 
     svg.selectAll('.x.axis')
         .transition()
-        .duration(200)
+        .duration(550)
         .call(xAxis);
 
     svg.selectAll('.y.axis')
         .transition()
-        .duration(200)
+        .duration(550)
         .call(yAxis);
 
     svg.selectAll(".layer")
@@ -288,7 +275,7 @@ function updateStackedChart(word_num, start, end){
       .on("mouseout", function(d, i) {
        svg.selectAll(".layer")
         .transition()
-        .duration(250)
+        .duration(550)
         .attr("opacity", "1");
         d3.select(this)
         .classed("hover", false)
