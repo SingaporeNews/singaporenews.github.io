@@ -82,6 +82,7 @@ function chart(csvpath, color, width) {
       }
     }
     data.filter(function(d){ if (d.wordCol in list){ return d.wordCol; }  });
+    console.log(data);
 
     var layers = stack(nest.entries(data));
 
