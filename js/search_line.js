@@ -172,7 +172,8 @@ function createChart(frm){
     termsLines.exit().remove();
 
     termsLines
-      .attr('d', function(d){ return line(d.values); });
+      .attr('d', function(d){ return line(d.values); })
+      .style('stroke', function(d){ return color(d.term); });
 
   });
 }
