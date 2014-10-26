@@ -43,15 +43,22 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   console.log(data);
 
+  data.forEach(function(d){
+    d.countCol = +d.countCol;
+    d.yearCol = +d.yearCol;
+  });
+
+  var summed_data = d3.nest()
+                      .key(function(d){ return d.wordCol; })
+                      .rollup(function(leaves){ 
+                          return {"total": d3.sum(
+                            leaves, function(d){ return d.countCol; })}});
+  console.log(summed_data);
+
   var list = ['war', 'bomb', 'blast'];
 
   var data = $.map(data, function(element){
     return ($.inArray(element.wordCol,list)>-1?element:null)
-  });
-
-  data.forEach(function(d){
-    d.countCol = +d.countCol;
-    d.yearCol = +d.yearCol;
   });
 
   function complete(x, key){
