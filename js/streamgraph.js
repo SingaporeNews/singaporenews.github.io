@@ -2,13 +2,13 @@
 drawStackedChart(10);
 
 $(document).on('click', '#top_num li a', function () {
-    if ($('#start-group').text() == "Start year"){
+    if ($.trim($('#start-group').text()) == "Start year"){
       var start_year = 1955;
     } else {
       var start_year = parseFloat(
         $('#start-group').text().substr($('#start-group').text().length - 4));
     }
-    if ($('#end-group').text() == "End year"){
+    if ($.trim($('#end-group').text()) == "End year"){
       var end_year = 2010;
     } else {
       var end_year = parseFloat(
@@ -17,13 +17,13 @@ $(document).on('click', '#top_num li a', function () {
     updateStackedChart(($(this).text()), start_year, end_year);
 });
 $(document).on('click', '#start_year li a', function () {
-    if ($('#words-group').text() == "# of top words"){
+    if ($.trim($('#words-group').text()) == "# of top words"){
       var terms_num = 10;
     } else {
       var terms_num = parseFloat(
         $('#words-group').text().substr($('#words-group').text().length - 2));
     }
-    if ($('#end-group').text() == "End year"){
+    if ($.trim($('#end-group').text()) == "End year"){
       var end_year = 2010;
     } else {
       var end_year = parseFloat(
@@ -32,13 +32,13 @@ $(document).on('click', '#start_year li a', function () {
     updateStackedChart(terms_num, ($(this).text().substr($('#start-group').text().length - 4)), end_year);
 });
 $(document).on('click', '#end_year li a', function () {
-    if ($('#words-group').text() == "# of top words"){
+    if ($.trim($('#words-group').text()) == "# of top words"){
       var terms_num = 10;
     } else {
       var terms_num = parseFloat(
         $('#words-group').text().substr($('#words-group').text().length - 2));
     }
-    if ($('#start-group').text() == "Start year"){
+    if ($.trim($('#start-group').text()) == "Start year"){
       var start_year = 1955;
     } else {
       var start_year = parseFloat(
