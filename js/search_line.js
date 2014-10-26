@@ -26,6 +26,7 @@ function updateData(frm){
     function search_filter(x){
       if (search_list.indexOf(x) < 0){
         return x;
+      }
     };
 
     used_data = headline_terms.filter(function(d){ return search_filter(d.term); });
