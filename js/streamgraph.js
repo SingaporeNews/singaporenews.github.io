@@ -79,9 +79,10 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   };
   complete(data, list);
 
+  data.sort(function(a,b){ return parseFloat(a.yearCol) - parseFloat(b.yearCol); });
+  console.log(data);
   var nest = d3.nest()
     .key(function(d){ return d.wordCol; })
-    .sortValues(function(a,b){ return parseFloat(a.yearCol) - parseFloat(b.yearCol); })
     .entries(data);
 
   console.log(nest);
