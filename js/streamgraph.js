@@ -2,7 +2,7 @@
 drawStackedChart(10);
 
 $(document).on('click', '.dropdown-menu li a', function () {
-    updateStackedChart(parseFloat($(this).text()));
+    updateStackedChart(parseFloat($(this).text()), 1955, 1965);
 });
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -168,7 +168,7 @@ function drawStackedChart(word_num){
   });  
 }
 
-function updateStackedChart(word_num){
+function updateStackedChart(word_num, start, end){
   d3.csv('Words_allyears_26oct.csv', function(error, data){
 
     data.forEach(function(d){
@@ -194,6 +194,15 @@ function updateStackedChart(word_num){
     });
 
     complete(data, list, data);
+
+    var year_list = [];
+    for (i=start; i<end+1; i++){
+      year_list.push(i);
+    };
+
+    data = $.map(data, function(element){
+      return ($.inArray(element.yearCol, year_list) > -1 ? element:null)
+    });
 
     data.sort(function(a,b){ return a.yearCol - b.yearCol; });
 
