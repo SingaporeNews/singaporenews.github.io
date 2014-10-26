@@ -44,7 +44,7 @@ $(document).on('click', '#end_year li a', function () {
       var start_year = parseFloat(
         $('#start-group').text().substr($('#start-group').text().length - 4));
     }
-    updateStackedChart(terms_num, start_year, ($(this).text().substr($('#end-group').text().length - 4))));
+    updateStackedChart(terms_num, start_year, ($(this).text().substr($('#end-group').text().length - 4)));
 });
 
 $(function(){
