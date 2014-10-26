@@ -42,14 +42,44 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   data.forEach(function(d){
     d.countCol = +d.countCol;
+    d.yearCol = +d.yearCol;
   });
+
+  console.log(data);
+
+  /*
+
+  function complete(x){
+    counter = 0;
+    yearsPresent = []
+    years = [];
+    for (i=1955; i<55; i++){
+      years.push(i)
+      for (j=0; j<x.length; j++){
+        if (x.yearCol === i){
+          counter += 1;
+          yearsPresent.push(i);
+        }
+      }
+    }
+    for (i=0; i<years.length; i++){
+      if (yearsPresent.indexOf(years[i]) < 0){
+        x[]
+      }
+    }
+  }
+
+
+
+  data.filter(function(d){ return d.wordCol == key; })
+
+  
 
   data = d3.nest()
             .key(function(d){ return d.wordCol; })
-            .key(function(d){ return d.yearCol; })
             .entries(data);
+  */
 
-  console.log(data);
 
 })  
 
