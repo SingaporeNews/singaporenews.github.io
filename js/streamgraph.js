@@ -1,6 +1,10 @@
 
 stacked_chart(10);
 
+$(document).on('click', '.dropdown-menu li a', function () {
+    stacked_chart(parseFloat($(this).text()));
+});
+
 function stacked_chart(word_num){
 
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -124,17 +128,41 @@ function stacked_chart(word_num){
     x.domain(d3.extent(data, function(d){ return d.yearCol; }));
     y.domain([0, d3.max(data, function(d){ return d.y0 + d.y; })]);
 
-    svg.selectAll(".layer")
-        .data(layers)
+    var chartLayers = svg.selectAll(".layer")
+        .data(layers);
+
+    chartLayers
       .enter().append("path")
         .attr("class", "layer")
         .attr("d", function(d) { return area(d.values); })
         .style("fill", function(d, i) { return color(i); });
 
+    chartLayers
+        .transition()
+        .duration(200)
+        .attr("class", "layer")
+        .attr("d", function(d) { return area(d.values); })
+        .style("fill", function(d, i) { return color(i); });
+
+    chartLayers
+        .transition()
+        .duration(200)
+        .exit().remove();
+
+    svg.selectAll('.x.axis')
+        .transition()
+        .duration(200)
+        .call(xAxis);
+
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
+
+    svg.selectAll('.y.axis')
+        .transition()
+        .duration(200)
+        .call(yAxis);
 
     svg.append("g")
         .attr("class", "y axis")
