@@ -41,6 +41,8 @@ var svg = d3.select("div#chart").append("svg")
 
 d3.csv('Words_allyears_26oct.csv', function(error, data){
 
+  console.log(data);
+
   var list = ['war', 'bomb', 'blast'];
 
   var data = $.map(data, function(element){
@@ -82,12 +84,11 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   complete(data, list);
 
   data.sort(function(a,b){ return a.yearCol - b.yearCol; });
-  console.log(data);
+
   var nest = d3.nest()
     .key(function(d){ return d.wordCol; })
     .entries(data);
 
-  console.log(nest);
 
 
   var layers = stack(nest);
