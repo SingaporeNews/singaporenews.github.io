@@ -34,6 +34,8 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv('Words_allyears_26oct.csv', function(error, data){
+
+  console.log(data);
   var list = ['war', 'bomb', 'blast'];
 
   data = $.map(data, function(element){
