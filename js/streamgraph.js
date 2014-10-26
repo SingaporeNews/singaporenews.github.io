@@ -1,6 +1,6 @@
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
@@ -37,6 +37,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   var list = ['war', 'bomb', 'blast'];
   color.domain(list);
+  console.log(color);
 
   var data = $.map(data, function(element){
     return ($.inArray(element.wordCol,list)>-1?element:null)
