@@ -25,9 +25,6 @@ var stack = d3.layout.stack()
   .x(function(d){ return d.yearCol; })
   .y(function(d){ return d.countCol; });
 
-var nest = d3.nest()
-  .key(function(d){ return d.wordCol; })
-  .sortValues(function(a,b){ return parseFloat(a.countCol) - parseFloat(b.countCol); });
 
 var area = d3.svg.area()
     .interpolate('cardinal')
@@ -84,7 +81,13 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   };
   complete(data, list);
 
-  var layers = stack(nest.entries(data));
+  var nest = d3.nest()
+    .key(function(d){ return d.wordCol; })
+    .sortValues(function(a,b){ return parseFloat(a.yearCol) - parseFloat(b.yearCol); })
+    .entries(data);
+
+
+  var layers = stack(nest);
 
   x.domain(d3.extent(data, function(d){ return d.yearCol; }));
   y.domain([0, d3.max(data, function(d){ return d.y0 + d.y; })]);
