@@ -49,32 +49,36 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   console.log(data);
 
   function complete(x, key){
-    x = x.filter(function(d){ return d.wordCol == key; });
-    yearsPresent = []
-    years = [];
-    for (i=1955; i<2010; i++){
-      years.push(i)
-      for (j=0; j<x.length; j++){
-        if (x[j].yearCol === i){
-          yearsPresent.push(i);
+    for (i=0; i<key.length; i++){
+      tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
+      yearsPresent = []
+      years = [];
+      for (i=1955; i<2010; i++){
+        years.push(i)
+        for (j=0; j<tempdata.length; j++){
+          if (tempdata[j].yearCol === i){
+            yearsPresent.push(i);
+          }
+        }
+      }
+      for (i=0; i<years.length; i++){
+        if (yearsPresent.indexOf(years[i]) < 0){
+          dict = {}
+          dict['countCol'] = 0;
+          dict['wordCol'] = tempdata[0].wordCol;
+          dict['yearCol'] = years[i];
+          data.push(dict);
         }
       }
     }
-    for (i=0; i<years.length; i++){
-      if (yearsPresent.indexOf(years[i]) < 0){
-        dict = {}
-        dict['countCol'] = 0;
-        dict['wordCol'] = x[0].wordCol;
-        dict['yearCol'] = years[i];
-        data.push(dict);
-      }
-    }
+    
   };
-
-  for (i=0; i<list.length; i++){
-    data = complete(data, list[i]);
-  }; 
+  complete(data, list);
   /*
+  for (i=0; i<list.length; i++){
+    complete(data, list[i]);
+  }; 
+  
   complete(data, "war");
   complete(data, "blast");
   complete(data, "bomb"); 
