@@ -57,6 +57,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
     for (i=1955; i<55; i++){
       years.push(i)
       for (j=0; j<x.length; j++){
+        console.log(x.yearCol);
         if (x.yearCol === i){
           counter += 1;
           yearsPresent.push(i);
