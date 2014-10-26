@@ -54,7 +54,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
                           return {"total": d3.sum(
                             leaves, function(d){ return d.countCol; })}})
                       .entries(data);
-  summed_data.sort(function(a,b){ return a.values.total - b.values.total; });
+  summed_data.sort(function(a,b){ return b.values.total - a.values.total; });
   console.log(summed_data);
 
   var list = ['war', 'bomb', 'blast'];
