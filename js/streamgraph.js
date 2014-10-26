@@ -82,7 +82,7 @@ function drawStackedChart(word_num){
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
 
-    complete(data, list);
+    complete(data, list, data);
 
     data.sort(function(a,b){ return a.yearCol - b.yearCol; });
 
@@ -138,7 +138,6 @@ function drawStackedChart(word_num){
         mousex = d3.mouse(this);
         mousex = mousex[0];
         var invertedx = x.invert(mousex);
-        console.log(invertedx);
         //invertedx = invertedx.getMonth() + invertedx.getDate();
         var selected = (d.values);
         for (var k = 0; k < selected.length; k++) {
@@ -194,7 +193,7 @@ function updateStackedChart(word_num){
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
 
-    complete(data, list);
+    complete(data, list, data);
 
     data.sort(function(a,b){ return a.yearCol - b.yearCol; });
 
@@ -251,7 +250,6 @@ function updateStackedChart(word_num){
         mousex = d3.mouse(this);
         mousex = mousex[0];
         var invertedx = x.invert(mousex);
-        console.log(invertedx);
         //invertedx = invertedx.getMonth() + invertedx.getDate();
         var selected = (d.values);
         for (var k = 0; k < selected.length; k++) {
@@ -282,7 +280,7 @@ function updateStackedChart(word_num){
 }
 
 
-function complete(x, key){
+function complete(x, key, data){
   for (i=0; i<key.length; i++){
     tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
     yearsPresent = []
