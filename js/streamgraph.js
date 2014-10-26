@@ -20,6 +20,7 @@ function chart(csvpath, color) {
   var width = 900 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
 
+  /*
   var tooltip = d3.select("body")
       .append("div")
       .attr("class", "remove")
@@ -28,6 +29,7 @@ function chart(csvpath, color) {
       .style("visibility", "hidden")
       .style("top", "30px")
       .style("left", "55px");
+      */
 
   var x = d3.scale.linear()
       .range([0, width]);
@@ -60,7 +62,7 @@ function chart(csvpath, color) {
       .y0(function(d) { return y(d.y0); })
       .y1(function(d) { return y(d.y0 + d.y); });
 
-  var svg = d3.select("#chart").append("svg")
+  var svg = d3.select("div#chart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
