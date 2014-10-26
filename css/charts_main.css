@@ -166,6 +166,7 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 1200px;
+    width: 100%;
+    /*width: 1200px;*/
   }
 }
