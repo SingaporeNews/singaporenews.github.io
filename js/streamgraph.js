@@ -26,7 +26,7 @@ var stack = d3.layout.stack()
   .y(function(d){ return d.countCol; });
 
 var nest = d3.nest()
-  .key(function(d){ retur d.wordCol; });
+  .key(function(d){ return d.wordCol; });
 
 var area = d3.svg.area()
     .interpolate('cardinal')
