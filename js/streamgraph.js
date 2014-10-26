@@ -86,6 +86,8 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
     .sortValues(function(a,b){ return parseFloat(a.yearCol) - parseFloat(b.yearCol); })
     .entries(data);
 
+  console.log(nest);
+
 
   var layers = stack(nest);
 
