@@ -10,6 +10,12 @@
   shape-rendering: crispEdges;
 }
 
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
 /* Links */
 a,
 a:focus,
