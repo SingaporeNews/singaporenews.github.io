@@ -49,14 +49,12 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   console.log(data);
 
   function complete(x){
-    counter = 0;
     yearsPresent = []
     years = [];
     for (i=1955; i<2010; i++){
       years.push(i)
       for (j=0; j<x.length; j++){
         if (x[j].yearCol === i){
-          counter += 1;
           yearsPresent.push(i);
         }
       }
@@ -74,9 +72,10 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   };
 
   for (i=0; i<list.length; i++){
+    console.log(i):
     console.log(list[i]);
     complete(data.filter(function(d){ return d.wordCol == list[i]; }));
-  }  
+  };  
 
   //complete(data.filter(function(d){ return d.wordCol == 'war'; }));
 
