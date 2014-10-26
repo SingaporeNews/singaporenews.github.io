@@ -27,7 +27,7 @@ function updateData(frm){
       return ($.inArray(element.term,search_list)>-1?element:null)
     });
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
-    console.log(used_data);
+    console.log(color(used_data[0].term));
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom")
