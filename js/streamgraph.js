@@ -55,6 +55,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
       console.log(tempdata);
       yearsPresent = []
       years = [];
+      /*
       for (i=1955; i<2010; i++){
         years.push(i)
         for (j=0; j<tempdata.length; j++){
@@ -63,7 +64,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
           }
         }
       }
-      /*
+      
       for (i=0; i<years.length; i++){
         if (yearsPresent.indexOf(years[i]) < 0){
           dict = {}
