@@ -81,6 +81,7 @@ function chart(csvpath, color, width) {
     var nest = d3.nest()
       .key(function(d) { return d.wordCol; })
       .entries(data);
+    console.log(nest);
 
     var layers = stack(nest);
 
