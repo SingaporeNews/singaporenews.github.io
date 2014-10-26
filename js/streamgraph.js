@@ -8,8 +8,8 @@ $(document).on('click', '#top_num li a', function () {
 
 $(function(){
     $("#top_num li a").click(function(){
-      $(".btn:first-child").text("# of top words: " + $(this).text());
-      $(".btn:first-child").val($(this).text());
+      $("#words-group:first-child").text("# of top words: " + $(this).text());
+      $("#words-group:first-child").val($(this).text());
    });
 });
 
