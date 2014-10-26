@@ -138,6 +138,9 @@ df2.to_csv('term_by_year_15oct.csv', sep=',')
 #C) Count top 50 words by year, excluding those in stoplist
 ############################################################
 
+#load stoplist
+stoplistw = pickle.load(open('stoplistw.sp','rb'))
+
 #most common words per year
 allfreq = []
 
@@ -155,7 +158,7 @@ for year in range(1955,2010):
 				headlines = x.split()
 				#vectorize headlines
 				current.append([y for y in headlines[1:] if y not in stoplistw])
-				#yearindex.append(headlines[0][0:4])
+				#dateindex.append(headlines[0])
 		logging.info('Converted %d headlines to bag-of-words', year)
 
 		#Index of words for the year; remove words if they are unique 
@@ -203,7 +206,7 @@ for freq in allfreq:
 #E) Grab headlines for top words in events, politics sets
 ##########################################################
 
-with open('Top_words_events_15oct.txt') as f:
+with open('Top_words_events_24oct.txt') as f:
 	curated = [x.strip().split('\t') for x in f.readlines() if x]
 
 #numpy array to subset by column
@@ -276,7 +279,7 @@ def get_nodes(node,links):
 	if len(childrenint) == 1:
 		#logging.info('Starting level WORD in hierarchy...')
 		d['size'] = str(childrenint[0])
-		d['children'] = [get_nodes_h(child) for child in children]
+		d['headlines'] = [get_nodes_h(child) for child in children]
 	elif children:
 		#logging.info('Starting level YEAR in hierarchy...')
 		d['children'] = [get_nodes(child,links) for child in children]
