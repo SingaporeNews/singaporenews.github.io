@@ -48,6 +48,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   data.forEach(function(d){
     d.countCol = +d.countCol;
+    d.yearCol = +d.yearCol;
   });
 
   function complete(x, key){
@@ -79,7 +80,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   };
   complete(data, list);
 
-  data.sort(function(a,b){ return parseFloat(a.yearCol) - parseFloat(b.yearCol); });
+  data.sort(function(a,b){ return a.yearCol - b.yearCol; });
   console.log(data);
   var nest = d3.nest()
     .key(function(d){ return d.wordCol; })
