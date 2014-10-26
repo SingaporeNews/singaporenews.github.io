@@ -16,6 +16,36 @@ $(document).on('click', '#top_num li a', function () {
     }
     updateStackedChart(($(this).text()), start_year, end_year);
 });
+$(document).on('click', '#start_year li a', function () {
+    if ($('#words-group').text() == "# of top words"){
+      var terms_num = 10;
+    } else {
+      var terms_num = parseFloat(
+        $('#words-group').text().substr($('#words-group').text().length - 2));
+    }
+    if ($('#end-group').text() == "End year"){
+      var end_year = 2010;
+    } else {
+      var end_year = parseFloat(
+        $('#end-group').text().substr($('#end-group').text().length - 4));
+    }
+    updateStackedChart(terms_num, ($(this).text().substr($('#start-group').text().length - 4))), end_year);
+});
+$(document).on('click', '#end_year li a', function () {
+    if ($('#words-group').text() == "# of top words"){
+      var terms_num = 10;
+    } else {
+      var terms_num = parseFloat(
+        $('#words-group').text().substr($('#words-group').text().length - 2));
+    }
+    if ($('#start-group').text() == "Start year"){
+      var start_year = 1955;
+    } else {
+      var start_year = parseFloat(
+        $('#start-group').text().substr($('#start-group').text().length - 4));
+    }
+    updateStackedChart(terms_num, start_year, ($(this).text().substr($('#end-group').text().length - 4))));
+});
 
 $(function(){
     $("#top_num li a").click(function(){
