@@ -81,7 +81,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   };  
   */
 
-  //complete(data, "war");
+  complete(data, "war");
   complete(data, "bomb");
 
   console.log(data);
