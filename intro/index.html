@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Singapore News</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/cover.css" rel="stylesheet">
+    <link href="/css/news_spin.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://d3js.org/d3.v3.js"></script>
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+          <!--
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">The Singapore News Story</h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+              </ul>
+            </div>
+          </div>
+          -->
+          <div class="inner cover">
+            <div class="row" id="first">
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-8">
+                <!--<h1 class="cover-heading">Cover your page.</h1>-->
+                <p class="lead" id="singHist"></p>
+                <p class="lead">
+                <!--<a href="#" class="btn btn-lg btn-default"></a>-->
+                </p>
+              </div>
+              <div class="col-md-2">
+              </div>
+            </div>
+            <div class="row" id="second">
+              <div class="col-md-4">
+                <div class="viewport" id="image_div">
+                  <div class="box1 fade-in five"></div>
+                  <!--<img src="static/ST_microfilm_1956.png">-->
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="viewport" id="image_div">
+                  <div class="box2 fade-in five"></div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="viewport" id="image_div">
+                  <div class="box3 fade-in five"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <script>
+      var text="Singapore history history history history history history history history. Straits Times history history history history history history history history history.";
+      var delay=50;
+      var currentChar=1;
+      var destination="[not defined]";
+
+      function type()
+      {
+        if (document.getElementById)
+        {
+          var dest=document.getElementById(destination);
+          if (dest)
+          {
+            dest.innerHTML=text.substr(0, currentChar);
+            currentChar++
+            if (currentChar>text.length)
+            {
+              currentChar=1;
+              d3.select('#first').transition().remove();
+              embedsvg('.box1', 'static/ST_microfilm_1956.png', 'canvas1');
+              embedsvg('.box2', 'static/ST_microfilm_1965.png', 'canvas2');
+              embedsvg('.box3', 'static/ST_microfilm_1975.png', 'canvas3');
+              setTimeout("d3.select('#canvas1').remove()", 5000);
+              setTimeout("d3.select('#canvas2').remove()", 5000);
+              setTimeout("d3.select('#canvas3').remove()", 5000);
+              //$(document.getElementById('image_div')).show();
+              setTimeout("d3.selectAll('img').transition().style('opacity', .09);", 15000);
+              setTimeout("type()", 500000000);
+            }
+            else
+            {
+              setTimeout("type()", delay);
+            }
+          }
+        }
+      }
+      function screenType()
+      {
+        if (document.getElementById)
+        {
+          var dest=document.getElementById(destination);
+          if (dest)
+          {
+            dest.innerHTML=text.substr(0, currentChar);
+            currentChar++
+            if (currentChar>text.length)
+            {
+              currentChar=1;
+              setTimeout("type()", 500000000);
+            }
+            else
+            {
+              setTimeout("type()", delay);
+            }
+          }
+        }
+      }
+      function startTyping(textParam, delayParam, destinationParam)
+      {
+        text=textParam;
+        delay=delayParam;
+        currentChar=1;
+        destination=destinationParam;
+        type();
+      }
+      function screenTyping(textParam, delayParam, destinationParam)
+      {
+        text=textParam;
+        delay=delayParam;
+        currentChar=1;
+        destination=destinationParam;
+        screenType();
+      }
+
+      function embedsvg(div, image, imgcanvas) {
+
+        var canvas = d3.select("body").append("canvas").attr("id", imgcanvas).attr("width", "400px").attr("height", "300px").node();
+        var context = canvas.getContext('2d');
+        var imageObj = new Image();
+
+        imageObj.src = image;
+
+        imageObj.onload = function() {
+          context.drawImage(imageObj, 0, 0);
+  //      var imageData = canvas.toDataURL("image/png");
+          var imageData = document.getElementById(imgcanvas).toDataURL("image/png")
+          
+          //Add as HTML img element
+            d3.select(div).append("img").datum(imageData).attr("src", function(d) {return d})
+
+            //Here's the data embedded in the img element __data__ property
+            console.log(d3.select("img").node().__data__)
+
+          };
+      
+      }
+
+      startTyping(text, 50, "singHist");
+      //setTimeout(embedsvg(), 100000);
+      function massive_words(){
+        d3.csv("https://singaporenews.github.io/terms.csv", function(error, data){
+          var words_text = "news";
+          for (i=0; i<1000; i++){
+            words_text += data[Math.floor((Math.random() * data.length) + 1)].headline_year;
+            words_text += " ";
+          }
+          d3.selectAll('img').transition().style('opacity', .09);
+          //screenTyping(words_text, 1, 'second');
+          var mytext = d3.select('#second');
+          for (i=0; i<words_text.length; i++){
+            mytext.append('rect').transition().duration(700).text(words_text[i]);
+          }
+        })
+      }
+      
+      //setTimeout("massive_words()", 12000);
+      
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/js/docs.min.js"></script>
+  </body>
+</html>
