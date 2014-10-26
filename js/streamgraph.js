@@ -35,10 +35,9 @@ var svg = d3.select("body").append("svg")
 
 d3.csv('Words_allyears_26oct.csv', function(error, data){
 
-  console.log(data);
   var list = ['war', 'bomb', 'blast'];
 
-  data = $.map(data, function(element){
+  var data = $.map(data, function(element){
     return ($.inArray(element.wordCol,list)>-1?element:null)
   });
 
@@ -49,7 +48,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   console.log(data);
 
-  /*
+  
 
   function complete(x){
     counter = 0;
@@ -66,15 +65,22 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
     }
     for (i=0; i<years.length; i++){
       if (yearsPresent.indexOf(years[i]) < 0){
-        x[]
+        dict = {}
+        dict['countCol'] = 0;
+        dict['wordCol'] = x[0].wordCol;
+        dict['yearCol'] = i;
+        data.push(dict);
       }
     }
-  }
+  };
 
+  
 
+  complete(data.filter(function(d){ return d.wordCol == 'war'; }));
 
-  data.filter(function(d){ return d.wordCol == key; })
+  console.log(data);
 
+  /*
   
 
   data = d3.nest()
