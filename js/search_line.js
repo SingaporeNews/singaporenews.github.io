@@ -69,7 +69,7 @@ function updateData(frm){
         .duration(400)
         .attr('class', 'line')
         .attr('d', function(d){ return line(d.values); })
-        .style('fill', function(d){ color(d.term); });
+        .style('stroke', function(d){ color(d.term); });
 
     termsLines.exit().transition().duration(400).remove();
 
@@ -78,7 +78,7 @@ function updateData(frm){
       .duration(400)
       .attr('class', 'line')
       .attr('d', function(d){ return line(d.values); })
-      .style('fill', function(d){ color(d.term); });
+      .style('stroke', function(d){ color(d.term); });
 
   });
 };
