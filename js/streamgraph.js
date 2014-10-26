@@ -72,13 +72,14 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
     //return data;
   };
 
+  /*
   for (i=0; i<list.length; i++){
-    console.log(i);
-    console.log(list[i]);
     complete(data, list[i]);
   };  
+  */
 
-  //complete(data.filter(function(d){ return d.wordCol == 'war'; }));
+  complete(data, "war");
+  complete(data, "bomb");
 
   console.log(data);
 
