@@ -160,7 +160,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
       d3.select(this)
       .classed("hover", true)
-      .attr("stroke", strokecolor)
+      .attr("stroke", color[0])
       .attr("stroke-width", "0.5px"), 
       tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "visible");
       
