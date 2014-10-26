@@ -13,7 +13,7 @@ var color = d3.scale.category20();
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .tickFormat(d3.format('s'))
+    .tickFormat(d3.format('d'))
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
