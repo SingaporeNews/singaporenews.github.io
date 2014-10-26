@@ -30,7 +30,7 @@ $(document).on('click', '#start_year li a', function () {
         $('#end-group').text().substr($('#end-group').text().length - 4));
     }
     var start_year = parseFloat(
-      ($(this).text().substr($('#start-group').text().length - 4)))
+      ($('#start-group').text().substr($('#start-group').text().length - 4)))
     updateStackedChart(terms_num, start_year, end_year);
 });
 $(document).on('click', '#end_year li a', function () {
@@ -47,7 +47,7 @@ $(document).on('click', '#end_year li a', function () {
         $('#start-group').text().substr($('#start-group').text().length - 4));
     }
     var end_year = parseFloat(
-      ($(this).text().substr($('#end-group').text().length - 4)))
+      ($('#end-group').text().substr($('#end-group').text().length - 4)))
     updateStackedChart(terms_num, start_year, end_year);
 });
 
