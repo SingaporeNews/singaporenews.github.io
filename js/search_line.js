@@ -24,7 +24,7 @@ function updateData(frm){
     };
 
     function search_filter(x){
-      if (search_list.indexOf(x) < 0){
+      if (search_list.indexOf(x) > 0){
         return x;
       }
     };
