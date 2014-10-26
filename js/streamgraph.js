@@ -78,7 +78,7 @@ function chart(csvpath, color, width) {
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
     console.log(data);
-    for (i=1955)
+    
     var nest = d3.nest()
       .key(function(d) { return d.wordCol; })
       .entries(data);
