@@ -98,6 +98,7 @@ function chart(csvpath, color, width) {
     */
 
     var layers = stack(nest);
+    console.log(layers);
 
     x.domain(d3.extent(data, function(d) { return d.yearCol; }));
     y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
