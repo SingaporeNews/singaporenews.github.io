@@ -12,7 +12,12 @@ $(function(){
       $("#words-group:first-child").val($(this).text());
    });
 });
-
+$(function(){
+    $("#start_year li a").click(function(){
+      $("#start-group:first-child").text("Start year: " + $(this).text());
+      $("#start-group:first-child").val($(this).text());
+   });
+});
 
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
