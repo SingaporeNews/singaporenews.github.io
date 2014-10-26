@@ -12,6 +12,8 @@ var tooltip = d3.select("div#chart")
     .style("top", "30px")
     .style("left", "55px");
 
+var datearray = [];
+
 var x = d3.scale.linear()
     .range([0, width]);
 
@@ -153,7 +155,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
         datearray[k] = selected[k].yearCol;
       }
 
-      mousedate = datearray.indexOf(invertedx);
+      mousedate = datearray.indexOf(Math.round(invertedx));
       pro = d.values[mousedate].countCol;
 
       d3.select(this)
