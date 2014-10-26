@@ -1,8 +1,8 @@
 
-stacked_chart(10);
+drawStackedChart(10);
 
 $(document).on('click', '.dropdown-menu li a', function () {
-    stacked_chart(parseFloat($(this).text()));
+    updateStackedChart(parseFloat($(this).text()));
 });
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -56,11 +56,9 @@ var svg = d3.select("div#chart").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-function stacked_chart(word_num){
+function drawStackedChart(word_num){
 
   d3.csv('Words_allyears_26oct.csv', function(error, data){
-
-    console.log(data);
 
     data.forEach(function(d){
       d.countCol = +d.countCol;
@@ -74,9 +72,7 @@ function stacked_chart(word_num){
                               leaves, function(d){ return d.countCol; })}})
                         .entries(data);
     summed_data.sort(function(a,b){ return b.values.total - a.values.total; });
-    console.log(summed_data);
 
-    //var list = ['war', 'bomb', 'blast'];
     var list = [];
     for (i=0; i<word_num; i++){
       list.push(summed_data[i].key);
@@ -86,33 +82,6 @@ function stacked_chart(word_num){
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
 
-    function complete(x, key){
-      for (i=0; i<key.length; i++){
-        tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
-        yearsPresent = []
-        years = [];
-
-        for (year=1955; year<2010; year++){
-          years.push(year)
-          for (row=0; row<tempdata.length; row++){
-            if (tempdata[row].yearCol === year){
-              yearsPresent.push(year);
-            }
-          }
-        }
-        
-        for (year=0; year<years.length; year++){
-          if (yearsPresent.indexOf(years[year]) < 0){
-            dict = {}
-            dict['countCol'] = 0;
-            dict['wordCol'] = tempdata[0].wordCol;
-            dict['yearCol'] = years[year];
-            data.push(dict);
-          }
-        }
-      }
-      
-    };
     complete(data, list);
 
     data.sort(function(a,b){ return a.yearCol - b.yearCol; });
@@ -120,8 +89,6 @@ function stacked_chart(word_num){
     var nest = d3.nest()
       .key(function(d){ return d.wordCol; })
       .entries(data);
-
-
 
     var layers = stack(nest);
 
@@ -150,20 +117,10 @@ function stacked_chart(word_num){
         .duration(200)
         .remove();
 
-    svg.selectAll('.x.axis')
-        .transition()
-        .duration(200)
-        .call(xAxis);
-
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
-
-    svg.selectAll('.y.axis')
-        .transition()
-        .duration(200)
-        .call(yAxis);
 
     svg.append("g")
         .attr("class", "y axis")
@@ -212,6 +169,144 @@ function stacked_chart(word_num){
   });  
 }
 
+function updateStackedChart(word_num){
+  d3.csv('Words_allyears_26oct.csv', function(error, data){
 
+    data.forEach(function(d){
+      d.countCol = +d.countCol;
+      d.yearCol = +d.yearCol;
+    });
+
+    var summed_data = d3.nest()
+                        .key(function(d){ return d.wordCol; })
+                        .rollup(function(leaves){ 
+                            return {"total": d3.sum(
+                              leaves, function(d){ return d.countCol; })}})
+                        .entries(data);
+    summed_data.sort(function(a,b){ return b.values.total - a.values.total; });
+
+    var list = [];
+    for (i=0; i<word_num; i++){
+      list.push(summed_data[i].key);
+    }
+
+    var data = $.map(data, function(element){
+      return ($.inArray(element.wordCol,list)>-1?element:null)
+    });
+
+    complete(data, list);
+
+    data.sort(function(a,b){ return a.yearCol - b.yearCol; });
+
+    var nest = d3.nest()
+      .key(function(d){ return d.wordCol; })
+      .entries(data);
+
+    var layers = stack(nest);
+
+    x.domain(d3.extent(data, function(d){ return d.yearCol; }));
+    y.domain([0, d3.max(data, function(d){ return d.y0 + d.y; })]);
+
+    var chartLayers = svg.selectAll(".layer")
+        .data(layers);
+
+    chartLayers
+      .enter().append("path")
+        .attr("class", "layer")
+        .attr("d", function(d) { return area(d.values); })
+        .style("fill", function(d, i) { return color(i); });
+
+    chartLayers
+        .transition()
+        .duration(200)
+        .attr("class", "layer")
+        .attr("d", function(d) { return area(d.values); })
+        .style("fill", function(d, i) { return color(i); });
+
+    chartLayers
+        .exit()
+        .transition()
+        .duration(200)
+        .remove();
+
+    svg.selectAll('.x.axis')
+        .transition()
+        .duration(200)
+        .call(xAxis);
+
+    svg.selectAll('.y.axis')
+        .transition()
+        .duration(200)
+        .call(yAxis);
+
+    svg.selectAll(".layer")
+      .attr("opacity", 1)
+      .on("mouseover", function(d, i) {
+        svg.selectAll(".layer").transition()
+        .duration(250)
+        .attr("opacity", function(d, j) {
+          return j != i ? 0.6 : 1;
+      })})
+      .on("mousemove", function(d, i) {
+        mousex = d3.mouse(this);
+        mousex = mousex[0];
+        var invertedx = x.invert(mousex);
+        console.log(invertedx);
+        //invertedx = invertedx.getMonth() + invertedx.getDate();
+        var selected = (d.values);
+        for (var k = 0; k < selected.length; k++) {
+          datearray[k] = selected[k].yearCol;
+        }
+
+        mousedate = datearray.indexOf(Math.round(invertedx));
+        pro = d.values[mousedate].countCol;
+        tip_year = d.values[mousedate].yearCol;
+
+        d3.select(this)
+        .classed("hover", true)
+        .attr("stroke", color[0])
+        .attr("stroke-width", "0.5px"), 
+        tooltip.html( "<p>" + d.key + " | " + tip_year + ": " + pro + "</p>" ).style("visibility", "visible");
+        
+      })
+      .on("mouseout", function(d, i) {
+       svg.selectAll(".layer")
+        .transition()
+        .duration(250)
+        .attr("opacity", "1");
+        d3.select(this)
+        .classed("hover", false)
+        .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "hidden");
+    });
+  });  
+}
+
+
+function complete(x, key){
+  for (i=0; i<key.length; i++){
+    tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
+    yearsPresent = []
+    years = [];
+
+    for (year=1955; year<2010; year++){
+      years.push(year)
+      for (row=0; row<tempdata.length; row++){
+        if (tempdata[row].yearCol === year){
+          yearsPresent.push(year);
+        }
+      }
+    }
+    
+    for (year=0; year<years.length; year++){
+      if (yearsPresent.indexOf(years[year]) < 0){
+        dict = {}
+        dict['countCol'] = 0;
+        dict['wordCol'] = tempdata[0].wordCol;
+        dict['yearCol'] = years[year];
+        data.push(dict);
+      }
+    }
+  }
   
+};
   
