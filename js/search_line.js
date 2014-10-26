@@ -3,7 +3,7 @@ var search_list = [];
 function updateData(frm){
   search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms.csv", function(error, data){
-
+    console.log(data);
     color.domain(d3.keys(
       data[0]).filter(function(key){ return key !== 'headline_year'; }
       )
