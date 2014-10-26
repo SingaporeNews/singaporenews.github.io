@@ -126,7 +126,9 @@ function chart(csvpath, color, width) {
         .call(yAxis.orient("left"));
 
     svg.selectAll(".layer")
-      .attr("opacity", 1)
+      .attr("opacity", 1);
+
+      /*
       .on("mouseover", function(d, i) {
         svg.selectAll(".layer").transition()
         .duration(250)
@@ -134,7 +136,7 @@ function chart(csvpath, color, width) {
           return j != i ? 0.6 : 1;
       })})
 
-      /*
+      
       .on("mousemove", function(d, i) {
         mousex = d3.mouse(this);
         mousex = mousex[0];
