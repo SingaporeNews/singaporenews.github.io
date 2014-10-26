@@ -77,7 +77,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   
 
-  data = complete(data.filter(function(d){ return d.wordCol == 'war'; }), data);
+  complete(data.filter(function(d){ return d.wordCol == 'war'; }), data);
 
   console.log(data);
 
