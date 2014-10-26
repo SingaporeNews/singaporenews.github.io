@@ -5,6 +5,13 @@ $(document).on('click', '.dropdown-menu li a', function () {
     updateStackedChart(parseFloat($(this).text()), 1955, 1965);
 });
 
+$(function(){
+    $(".dropdown-menu li a").click(function(){
+      $(".btn:first-child").text($(this).text());
+      $(".btn:first-child").val($(this).text());
+   });
+});
+
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
