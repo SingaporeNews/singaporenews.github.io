@@ -29,7 +29,9 @@ $(document).on('click', '#start_year li a', function () {
       var end_year = parseFloat(
         $('#end-group').text().substr($('#end-group').text().length - 4));
     }
-    updateStackedChart(terms_num, ($(this).text().substr($('#start-group').text().length - 4)), end_year);
+    var start_year = parseFloat(
+      ($(this).text().substr($('#start-group').text().length - 4)))
+    updateStackedChart(terms_num, start_year, end_year);
 });
 $(document).on('click', '#end_year li a', function () {
     if ($.trim($('#words-group').text()) == "# of top words"){
@@ -44,7 +46,9 @@ $(document).on('click', '#end_year li a', function () {
       var start_year = parseFloat(
         $('#start-group').text().substr($('#start-group').text().length - 4));
     }
-    updateStackedChart(terms_num, start_year, ($(this).text().substr($('#end-group').text().length - 4)));
+    var end_year = parseFloat(
+      ($(this).text().substr($('#end-group').text().length - 4)))
+    updateStackedChart(terms_num, start_year, end_year);
 });
 
 $(function(){
