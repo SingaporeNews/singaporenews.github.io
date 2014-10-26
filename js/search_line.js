@@ -26,9 +26,8 @@ function updateData(frm){
     used_data = $.map(headline_terms, function(element){
       return ($.inArray(element.term,search_list)>-1?element:null)
     });
-    oldused_data = headline_terms.filter(function(d){ return d.term == frm; });
-    console.log(oldused_data);
-    console.log(used_data);
+    //used_data = headline_terms.filter(function(d){ return d.term == frm; });
+
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom")
@@ -70,7 +69,7 @@ function updateData(frm){
         .duration(400)
         .attr('class', 'line')
         .attr('d', function(d){ return line(d.values); })
-        .style('stroke', function(d){ color(d.term); });
+        .style('stroke', function(d){ return color(d.term); });
 
     termsLines.exit().transition().duration(400).remove();
 
@@ -79,7 +78,7 @@ function updateData(frm){
       .duration(400)
       .attr('class', 'line')
       .attr('d', function(d){ return line(d.values); })
-      .style('stroke', function(d){ color(d.term); });
+      .style('stroke', function(d){ return color(d.term); });
 
   });
 };
