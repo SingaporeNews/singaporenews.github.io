@@ -17,8 +17,7 @@ var xAxis = d3.svg.axis()
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("left")
-    .tickFormat(formatPercent);
+    .orient("left");
 
 var area = d3.svg.area()
     .x(function(d) { return x(d.yearCol); })
