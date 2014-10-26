@@ -76,12 +76,10 @@ function chart(csvpath, color, width) {
     });
 
     var list = ['war', 'blast', 'bomb'];
-    function inList(element, list){
-      if (element in list){
-        return element;
-      }
-    }
-    data.filter(function(d){ if (d.wordCol in list){ return d.wordCol; }  });
+
+    data = $.map(data, function(element){
+      return ($.inArray(element.wordCol,list)>-1?element:null)
+    });
     console.log(data);
 
     var layers = stack(nest.entries(data));
