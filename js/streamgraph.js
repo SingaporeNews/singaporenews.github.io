@@ -48,8 +48,6 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   console.log(data);
 
-  
-
   function complete(x){
     counter = 0;
     yearsPresent = []
@@ -76,6 +74,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   };
 
   for (i=0; i<list.length; i++){
+    console.log(list[i]);
     complete(data.filter(function(d){ return d.wordCol == list[i]; }));
   }  
 
