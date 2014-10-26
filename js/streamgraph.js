@@ -72,6 +72,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
           data.push(dict);
         }
       }
+      console.log(x);
     }
     
   };
