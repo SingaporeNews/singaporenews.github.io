@@ -1,4 +1,7 @@
+var search_list = [];
+
 function updateData(frm){
+  search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms.csv", function(error, data){
 
     color.domain(d3.keys(
@@ -15,7 +18,18 @@ function updateData(frm){
       };
     });
 
-    used_data = headline_terms.filter(function(d){ return d.term == frm; });
+    if (search_list.length > 5){
+      length = search_list.length;
+      search_list = search_list.slice(-5);
+    };
+
+    function search_filter(x){
+      if (search_list.indexOf(x) < 0){
+        return x;
+    };
+
+    used_data = headline_terms.filter(function(d){ return search_filter(d.term); });
+    //used_data = headline_terms.filter(function(d){ return d.term == frm; });
 
     var xAxis = d3.svg.axis()
       .scale(x)
@@ -71,6 +85,7 @@ function updateData(frm){
 };
 
 function createChart(frm){
+  search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms.csv", function(error, data){
 
     color.domain(d3.keys(
