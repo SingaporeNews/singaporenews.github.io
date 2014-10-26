@@ -36,6 +36,7 @@ var svg = d3.select("body").append("svg")
 d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   var list = ['war', 'bomb', 'blast'];
+  color.domain(list);
 
   var data = $.map(data, function(element){
     return ($.inArray(element.wordCol,list)>-1?element:null)
@@ -46,13 +47,9 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
     d.yearCol = +d.yearCol;
   });
 
-  console.log(data);
-
   function complete(x, key){
     for (i=0; i<key.length; i++){
-      console.log(key[i]);
       tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
-      console.log(tempdata);
       yearsPresent = []
       years = [];
 
@@ -78,28 +75,51 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
     
   };
   complete(data, list);
+
+  var words = stack(color.domain().map(function(name) {
+    return {
+      name: name,
+      values: data.map(function(d) {
+        return {yearCol: d.yearCol, y: d.countCol };
+      })
+    };
+  }));
+
+  x.domain(d3.extent(data, function(d){ return d.yearCol; }));
+
+  var word = svg.selectAll('.word')
+      .data(words)
+    .enter().append('g')
+      .attr('class', 'word');
+
+  word.append('path')
+      .attr('class', 'area')
+      .attr('d', function(d){ return area(d.values); })
+      .style('fill', function(d){ return color(d.name); });
+
+  word.append('text')
+    .datum(function(d){ return {name: d.name, value: d.values[d.values.length - 1]}; })
+    .attr('transform', function(d){ return "translate(" + x(d.value.yearCol) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
+    .attr('x', -6)
+    .attr('dy', '.35em')
+    .text(function(d){ return d.name; });
+
+  svg.append('g')
+    .attr('class', 'x axis')
+    .attr('transform', 'translate(0,' + height + ')')
+    .call(xAxis);
+
+  svg.append('g')
+    .attr('class', 'y axis')
+    .call(yAxis);
   /*
-  for (i=0; i<list.length; i++){
-    complete(data, list[i]);
-  }; 
-  
-  complete(data, "war");
-  complete(data, "blast");
-  complete(data, "bomb"); 
-  */
-
-  console.log(data);
-
-  /*
-  
-
   data = d3.nest()
             .key(function(d){ return d.wordCol; })
             .entries(data);
   */
 
 
-})  
+});  
 
   
   
