@@ -26,8 +26,9 @@ function updateData(frm){
     used_data = $.map(headline_terms, function(element){
       return ($.inArray(element.term,search_list)>-1?element:null)
     });
-    //used_data = headline_terms.filter(function(d){ return d.term == frm; });
-    console.log(color(used_data[0].term));
+    oldused_data = headline_terms.filter(function(d){ return d.term == frm; });
+    console.log(oldused_data);
+    console.log(used_data);
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom")
