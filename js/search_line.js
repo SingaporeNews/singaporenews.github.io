@@ -31,7 +31,7 @@ function updateData(frm){
 
     used_data = headline_terms.filter(function(d){ return search_filter(d.term); });
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
-
+    console.log(used_data);
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom")
