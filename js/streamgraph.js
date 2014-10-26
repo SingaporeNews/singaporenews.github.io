@@ -2,15 +2,18 @@
 drawStackedChart(10);
 
 $(document).on('click', '.dropdown-menu li a', function () {
+    $(document.get)
     updateStackedChart(parseFloat($(this).text()), 1955, 1965);
 });
 
 $(function(){
-    $(".dropdown-menu li a").click(function(){
+    $("#top_num li a").click(function(){
       $(".btn:first-child").text("# of top words: " + $(this).text());
       $(".btn:first-child").val($(this).text());
    });
 });
+
+
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
@@ -137,7 +140,7 @@ function drawStackedChart(word_num){
       .attr("opacity", 1)
       .on("mouseover", function(d, i) {
         svg.selectAll(".layer").transition()
-        .duration(250)
+        .duration(550)
         .attr("opacity", function(d, j) {
           return j != i ? 1 : 1;
       })})
