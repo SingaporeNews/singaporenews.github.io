@@ -50,6 +50,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   function complete(x, key){
     console.log(key);
+    console.log(x);
     x = x.filter(function(d){ return x.wordCol == key; });
     console.log(x);
     yearsPresent = []
