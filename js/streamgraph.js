@@ -7,8 +7,8 @@ $(document).on('click', '.dropdown-menu li a', function () {
 
 $(function(){
     $(".dropdown-menu li a").click(function(){
-      $(".btn:first-child").text($(this).text());
-      $(".btn:first-child").val("# of top words" + $(this).text());
+      $(".btn:first-child").text("# of top words" + $(this).text());
+      $(".btn:first-child").val($(this).text());
    });
 });
 
