@@ -8,7 +8,13 @@ $(document).on('click', '#top_num li a', function () {
       var start_year = parseFloat(
         $('#start-group').text().substr($('#start-group').text().length - 4));
     }
-    updateStackedChart(($(this).text()), start_year, 1965);
+    if ($('#end-group').text() == "End year"){
+      var end_year = 2010;
+    } else {
+      var end_year = parseFloat(
+        $('#end-group').text().substr($('#end-group').text().length - 4));
+    }
+    updateStackedChart(($(this).text()), start_year, end_year);
 });
 
 $(function(){
