@@ -2,8 +2,14 @@
 drawStackedChart(10);
 
 $(document).on('click', '#top_num li a', function () {
-    
-    updateStackedChart(parseFloat($(this).text()), 1955, 1965);
+    if ($('#start-group').text() == "Start year"){
+      var start_year = 1955;
+    } else {
+      var start_year = parseFloat(
+        $('#start-group').text().substr($('#start-group').text().length - 4);
+        )
+    }
+    updateStackedChart(($(this).text()), start_year, 1965);
 });
 
 $(function(){
