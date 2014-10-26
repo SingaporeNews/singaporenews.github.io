@@ -16,6 +16,8 @@ $(document).on('click', '#top_num li a', function () {
     }
     updateStackedChart(($(this).text()), start_year, end_year);
 });
+
+/*
 $(document).on('click', '#start_year li a', function () {
     if ($.trim($('#words-group').text()) == "# of top words"){
       var terms_num = 10;
@@ -50,6 +52,7 @@ $(document).on('click', '#end_year li a', function () {
         $('#end-group').text().substr($('#end-group').text().length - 4));
     updateStackedChart(terms_num, start_year, end_year);
 });
+*/
 
 $(function(){
     $("#top_num li a").click(function(){
