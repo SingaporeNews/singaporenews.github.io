@@ -145,9 +145,10 @@ function stacked_chart(word_num){
         .style("fill", function(d, i) { return color(i); });
 
     chartLayers
+        .exit()
         .transition()
         .duration(200)
-        .exit().remove();
+        .remove();
 
     svg.selectAll('.x.axis')
         .transition()
