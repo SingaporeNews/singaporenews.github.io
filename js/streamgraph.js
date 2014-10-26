@@ -125,6 +125,23 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
       .attr("class", "y axis")
       .call(yAxis);
 
+  svg.selectAll(".layer")
+    .attr("opacity", 1)
+    .on("mouseover", function(d, i) {
+      svg.selectAll(".layer").transition()
+      .duration(250)
+      .attr("opacity", function(d, j) {
+        return j != i ? 0.6 : 1;
+    })})
+    .on("mouseout", function(d, i) {
+     svg.selectAll(".layer")
+      .transition()
+      .duration(250)
+      .attr("opacity", "1");
+      d3.select(this)
+      .classed("hover", false)
+      .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "hidden");
+  });
 
 });  
 
