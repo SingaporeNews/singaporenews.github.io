@@ -1,5 +1,5 @@
 
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
+var margin = {top: 20, right: 20, bottom: 30, left: 20},
     width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -27,7 +27,7 @@ var stack = d3.layout.stack()
 
 
 var area = d3.svg.area()
-    .interpolate('cardinal')
+    .interpolate('basis')
     .x(function(d) { return x(d.yearCol); })
     .y0(function(d) { return y(d.y0); })
     .y1(function(d) { return y(d.y0 + d.y); });
