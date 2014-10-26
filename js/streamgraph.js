@@ -29,7 +29,7 @@ $(document).on('click', '#start_year li a', function () {
       var end_year = parseFloat(
         $('#end-group').text().substr($('#end-group').text().length - 4));
     }
-    updateStackedChart(terms_num, ($(this).text().substr($('#start-group').text().length - 4))), end_year);
+    updateStackedChart(terms_num, ($(this).text().substr($('#start-group').text().length - 4)), end_year);
 });
 $(document).on('click', '#end_year li a', function () {
     if ($('#words-group').text() == "# of top words"){
