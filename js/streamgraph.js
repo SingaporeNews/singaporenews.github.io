@@ -5,58 +5,58 @@ $(document).on('click', '.dropdown-menu li a', function () {
     stacked_chart(parseFloat($(this).text()));
 });
 
-function stacked_chart(word_num){
-
-  var margin = {top: 20, right: 20, bottom: 30, left: 50},
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-  var tooltip = d3.select("div#chart")
-      .append("div")
-      .attr("class", "remove")
-      .style("position", "absolute")
-      .style("z-index", "20")
-      .style("visibility", "hidden")
-      .style("top", "30px")
-      .style("left", "225px");
+var tooltip = d3.select("div#chart")
+    .append("div")
+    .attr("class", "remove")
+    .style("position", "absolute")
+    .style("z-index", "20")
+    .style("visibility", "hidden")
+    .style("top", "30px")
+    .style("left", "225px");
 
-  var datearray = [];
+var datearray = [];
 
-  var x = d3.scale.linear()
-      .range([0, width]);
+var x = d3.scale.linear()
+    .range([0, width]);
 
-  var y = d3.scale.linear()
-      .range([height, 0]);
+var y = d3.scale.linear()
+    .range([height, 0]);
 
-  var color = d3.scale.category20();
+var color = d3.scale.category20();
 
-  var xAxis = d3.svg.axis()
-      .scale(x)
-      .tickFormat(d3.format('d'))
-      .orient("bottom");
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .tickFormat(d3.format('d'))
+    .orient("bottom");
 
-  var yAxis = d3.svg.axis()
-      .scale(y)
-      .orient("left");
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
 
-  var stack = d3.layout.stack()
-    .offset('zero')
-    .values(function(d){ return d.values; })
-    .x(function(d){ return d.yearCol; })
-    .y(function(d){ return d.countCol; });
+var stack = d3.layout.stack()
+  .offset('zero')
+  .values(function(d){ return d.values; })
+  .x(function(d){ return d.yearCol; })
+  .y(function(d){ return d.countCol; });
 
 
-  var area = d3.svg.area()
-      .interpolate('basis')
-      .x(function(d) { return x(d.yearCol); })
-      .y0(function(d) { return y(d.y0); })
-      .y1(function(d) { return y(d.y0 + d.y); });
+var area = d3.svg.area()
+    .interpolate('basis')
+    .x(function(d) { return x(d.yearCol); })
+    .y0(function(d) { return y(d.y0); })
+    .y1(function(d) { return y(d.y0 + d.y); });
 
-  var svg = d3.select("div#chart").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var svg = d3.select("div#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+function stacked_chart(word_num){
 
   d3.csv('Words_allyears_26oct.csv', function(error, data){
 
