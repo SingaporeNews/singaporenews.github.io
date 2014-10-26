@@ -230,6 +230,9 @@ function drawStackedChart(word_num){
 }
 
 function updateStackedChart(word_num, start, end){
+  console.log(word_num);
+  console.log(start);
+  console.log(end);
   d3.csv('Words_allyears_26oct.csv', function(error, data){
 
     data.forEach(function(d){
