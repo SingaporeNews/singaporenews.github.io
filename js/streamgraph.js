@@ -37,7 +37,6 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   var list = ['war', 'bomb', 'blast'];
   color.domain(list);
-  console.log(color);
 
   var data = $.map(data, function(element){
     return ($.inArray(element.wordCol,list)>-1?element:null)
@@ -85,6 +84,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
       })
     };
   }));
+  console.log(words);
 
   x.domain(d3.extent(data, function(d){ return d.yearCol; }));
 
