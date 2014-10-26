@@ -29,7 +29,12 @@ $(function(){
       $("#start-group:first-child").val($(this).text());
    });
 });
-
+$(function(){
+    $("#end_year li a").click(function(){
+      $("#end-group:first-child").text("End year: " + $(this).text());
+      $("#end-group:first-child").val($(this).text());
+   });
+});
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
