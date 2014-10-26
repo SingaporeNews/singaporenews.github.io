@@ -72,16 +72,30 @@ function chart(csvpath, color, width) {
       d.countCol = +d.countCol;
     });
 
-    var list = ['war', 'blast', 'bomb'];
+    var list = ['war'];
 
     data = $.map(data, function(element){
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
     console.log(data);
+    for (i=1955)
     var nest = d3.nest()
       .key(function(d) { return d.wordCol; })
       .entries(data);
-    console.log(nest);
+    
+    /*
+    for (key in nest){
+      for (i=0; i<55; i++){
+        for (j=1955; j<2010; j++){
+          if (nest[key][i]['yearCol'] == j){
+            continue;
+          } else {
+            nest[key][i]['countCol'] = 
+          }
+        }
+      }
+    }
+    */
 
     var layers = stack(nest);
 
