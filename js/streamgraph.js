@@ -2,7 +2,7 @@
 drawStackedChart(10);
 
 $(document).on('click', '#top_num li a', function () {
-    $(document.get)
+    
     updateStackedChart(parseFloat($(this).text()), 1955, 1965);
 });
 
