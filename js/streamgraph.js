@@ -50,7 +50,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   
 
-  function complete(x){
+  function complete(x, data){
     counter = 0;
     yearsPresent = []
     years = [];
@@ -72,11 +72,12 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
         data.push(dict);
       }
     }
+    return data;
   };
 
   
 
-  complete(data.filter(function(d){ return d.wordCol == 'war'; }));
+  complete(data.filter(function(d){ return d.wordCol == 'war'; }), data);
 
   console.log(data);
 
