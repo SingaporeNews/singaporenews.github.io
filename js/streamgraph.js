@@ -63,6 +63,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
           }
         }
       }
+      /*
       for (i=0; i<years.length; i++){
         if (yearsPresent.indexOf(years[i]) < 0){
           dict = {}
@@ -72,6 +73,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
           data.push(dict);
         }
       }
+      */
       console.log(x);
     }
     
