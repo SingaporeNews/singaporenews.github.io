@@ -41,7 +41,6 @@ var svg = d3.select("div#chart").append("svg")
 d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   var list = ['war', 'bomb', 'blast'];
-  color.domain(list);
 
   var data = $.map(data, function(element){
     return ($.inArray(element.wordCol,list)>-1?element:null)
@@ -49,7 +48,6 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
 
   data.forEach(function(d){
     d.countCol = +d.countCol;
-    d.yearCol = d.yearCol;
   });
 
   function complete(x, key){
