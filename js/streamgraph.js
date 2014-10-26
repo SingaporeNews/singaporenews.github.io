@@ -51,14 +51,12 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   
 
   function complete(x, data){
-    console.log(x);
     counter = 0;
     yearsPresent = []
     years = [];
     for (i=1955; i<2010; i++){
       years.push(i)
       for (j=0; j<x.length; j++){
-        console.log(x[j]['yearCol']);
         if (x[j].yearCol === i){
           counter += 1;
           yearsPresent.push(i);
@@ -67,11 +65,10 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
     }
     for (i=0; i<years.length; i++){
       if (yearsPresent.indexOf(years[i]) < 0){
-        console.log(years[i]);
         dict = {}
         dict['countCol'] = 0;
         dict['wordCol'] = x[0].wordCol;
-        dict['yearCol'] = i;
+        dict['yearCol'] = years[i];
         data.push(dict);
       }
     }
