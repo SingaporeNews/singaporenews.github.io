@@ -23,13 +23,9 @@ function updateData(frm){
       search_list = search_list.slice(-5);
     };
 
-    function search_filter(x){
-      if (search_list.indexOf(x) > 0){
-        return x;
-      }
-    };
-
-    used_data = headline_terms.filter(function(d){ return search_filter(d.term); });
+    used_data = $.map(headline_terms, function(element){
+      return ($.inArray(element.term,search_list)>-1?element:null)
+    });
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
     console.log(used_data);
     var xAxis = d3.svg.axis()
