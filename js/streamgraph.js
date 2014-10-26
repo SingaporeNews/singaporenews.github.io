@@ -58,6 +58,7 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   console.log(summed_data);
 
   //var list = ['war', 'bomb', 'blast'];
+  var list = [];
   for (i=0; i<20; i++){
     list.push(summed_data[i].key);
   }
