@@ -55,27 +55,25 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
       console.log(tempdata);
       yearsPresent = []
       years = [];
-      /*
-      for (i=1955; i<2010; i++){
-        years.push(i)
-        for (j=0; j<tempdata.length; j++){
-          if (tempdata[j].yearCol === i){
-            yearsPresent.push(i);
+
+      for (year=1955; year<2010; year++){
+        years.push(year)
+        for (row=0; row<tempdata.length; row++){
+          if (tempdata[row].yearCol === year){
+            yearsPresent.push(year);
           }
         }
       }
       
-      for (i=0; i<years.length; i++){
-        if (yearsPresent.indexOf(years[i]) < 0){
+      for (year=0; year<years.length; year++){
+        if (yearsPresent.indexOf(years[year]) < 0){
           dict = {}
           dict['countCol'] = 0;
           dict['wordCol'] = tempdata[0].wordCol;
-          dict['yearCol'] = years[i];
+          dict['yearCol'] = years[year];
           data.push(dict);
         }
       }
-      */
-      console.log(x);
     }
     
   };
