@@ -1,10 +1,9 @@
-chart("Words_allyears_26oct.csv", "blue");
 
 var datearray = [];
 var colorrange = [];
 
 
-function chart(csvpath, color) {
+function chart(csvpath, color, width) {
 
   if (color == "blue") {
     colorrange = ["#045A8D", "#2B8CBE", "#74A9CF", "#A6BDDB", "#D0D1E6", "#F1EEF6"];
@@ -18,7 +17,7 @@ function chart(csvpath, color) {
   strokecolor = colorrange[0];
 
   var margin = {top: 20, right: 40, bottom: 30, left: 30};
-  var width = document.body.clientWidth - margin.left - margin.right;
+  var width = width - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
 
   var tooltip = d3.select("body")
