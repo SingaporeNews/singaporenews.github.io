@@ -27,7 +27,7 @@ var area = d3.svg.area()
 var stack = d3.layout.stack()
     .values(function(d) { return d.values; });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("div#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
