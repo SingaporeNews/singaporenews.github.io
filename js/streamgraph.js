@@ -3,7 +3,7 @@ var datearray = [];
 var colorrange = [];
 
 
-function chart(csvpath, color, width) {
+function chart(csvpath, color) {
 
   if (color == "blue") {
     colorrange = ["#045A8D", "#2B8CBE", "#74A9CF", "#A6BDDB", "#D0D1E6", "#F1EEF6"];
@@ -17,7 +17,7 @@ function chart(csvpath, color, width) {
   strokecolor = colorrange[0];
 
   var margin = {top: 20, right: 40, bottom: 30, left: 30};
-  var width = width - margin.left - margin.right;
+  var width = 900 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
 
   var tooltip = d3.select("body")
