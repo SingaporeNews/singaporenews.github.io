@@ -132,7 +132,7 @@ function drawStackedChart(word_num){
         svg.selectAll(".layer").transition()
         .duration(250)
         .attr("opacity", function(d, j) {
-          return j != i ? 0.6 : 1;
+          return j != i ? 1 : 1;
       })})
       .on("mousemove", function(d, i) {
         mousex = d3.mouse(this);
@@ -240,12 +240,14 @@ function updateStackedChart(word_num){
 
     svg.selectAll(".layer")
       .attr("opacity", 1)
+      /*
       .on("mouseover", function(d, i) {
         svg.selectAll(".layer").transition()
         .duration(250)
         .attr("opacity", function(d, j) {
           return j != i ? 0.6 : 1;
       })})
+      */
       .on("mousemove", function(d, i) {
         mousex = d3.mouse(this);
         mousex = mousex[0];
