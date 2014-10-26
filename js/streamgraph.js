@@ -3,6 +3,15 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
+var tooltip = d3.select("div#chart")
+    .append("div")
+    .attr("class", "remove")
+    .style("position", "absolute")
+    .style("z-index", "20")
+    .style("visibility", "hidden")
+    .style("top", "30px")
+    .style("left", "55px");
+
 var x = d3.scale.linear()
     .range([0, width]);
 
@@ -133,6 +142,27 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
       .attr("opacity", function(d, j) {
         return j != i ? 0.6 : 1;
     })})
+    .on("mousemove", function(d, i) {
+      mousex = d3.mouse(this);
+      mousex = mousex[0];
+      var invertedx = x.invert(mousex);
+      console.log(invertedx);
+      //invertedx = invertedx.getMonth() + invertedx.getDate();
+      var selected = (d.values);
+      for (var k = 0; k < selected.length; k++) {
+        datearray[k] = selected[k].yearCol;
+      }
+
+      mousedate = datearray.indexOf(invertedx);
+      pro = d.values[mousedate].countCol;
+
+      d3.select(this)
+      .classed("hover", true)
+      .attr("stroke", strokecolor)
+      .attr("stroke-width", "0.5px"), 
+      tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "visible");
+      
+    })
     .on("mouseout", function(d, i) {
      svg.selectAll(".layer")
       .transition()
