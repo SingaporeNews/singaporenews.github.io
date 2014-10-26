@@ -3,7 +3,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
+var x = d3.scale.linear()
     .range([0, width]);
 
 var y = d3.scale.linear()
@@ -19,13 +19,20 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
+var stack = d3.layout.stack()
+  .offset('zero')
+  .values(function(d){ return d.values; })
+  .x(function(d){ return d.yearCol; })
+  .y(function(d){ return d.countCol; });
+
+var nest = d3.nest()
+  .key(function(d){ retur d.wordCol; });
+
 var area = d3.svg.area()
+    .interpolate('cardinal')
     .x(function(d) { return x(d.yearCol); })
     .y0(function(d) { return y(d.y0); })
     .y1(function(d) { return y(d.y0 + d.y); });
-
-var stack = d3.layout.stack()
-    .values(function(d) { return d.values; });
 
 var svg = d3.select("div#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -76,48 +83,26 @@ d3.csv('Words_allyears_26oct.csv', function(error, data){
   };
   complete(data, list);
 
-  var words = stack(color.domain().map(function(name) {
-    return {
-      name: name,
-      values: data.map(function(d) {
-        return {yearCol: d.yearCol, y: d.countCol };
-      })
-    };
-  }));
-  console.log(words);
+  var layers = stack(nest.entries(data));
 
   x.domain(d3.extent(data, function(d){ return d.yearCol; }));
+  y.domain([0, d3.max(data, function(d){ return d.y0 + d.y; })]);
 
-  var word = svg.selectAll('.word')
-      .data(words)
-    .enter().append('g')
-      .attr('class', 'word');
+  svg.selectAll(".layer")
+      .data(layers)
+    .enter().append("path")
+      .attr("class", "layer")
+      .attr("d", function(d) { return area(d.values); })
+      .style("fill", function(d, i) { return color(i); });
 
-  word.append('path')
-      .attr('class', 'area')
-      .attr('d', function(d){ return area(d.values); })
-      .style('fill', function(d){ return color(d.name); });
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-  word.append('text')
-    .datum(function(d){ return {name: d.name, value: d.values[d.values.length - 1]}; })
-    .attr('transform', function(d){ return "translate(" + x(d.value.yearCol) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
-    .attr('x', -6)
-    .attr('dy', '.35em')
-    .text(function(d){ return d.name; });
-
-  svg.append('g')
-    .attr('class', 'x axis')
-    .attr('transform', 'translate(0,' + height + ')')
-    .call(xAxis);
-
-  svg.append('g')
-    .attr('class', 'y axis')
-    .call(yAxis);
-  /*
-  data = d3.nest()
-            .key(function(d){ return d.wordCol; })
-            .entries(data);
-  */
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
 
 
 });  
