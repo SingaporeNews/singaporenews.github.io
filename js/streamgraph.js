@@ -71,7 +71,7 @@ function chart(csvpath, color, width) {
 
   var graph = d3.csv(csvpath, function(data) {
     data.forEach(function(d) {
-      d.yearCol = d.yearCol;
+      d.yearCol = +d.yearCol;
       d.countCol = +d.countCol;
     });
 
