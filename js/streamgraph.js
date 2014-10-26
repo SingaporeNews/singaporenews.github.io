@@ -111,6 +111,19 @@ function drawStackedChart(word_num){
         .attr("d", function(d) { return area(d.values); })
         .style("fill", function(d, i) { return color(i); });
 
+    chartLayers
+        .transition()
+        .duration(550)
+        .attr("class", "layer")
+        .attr("d", function(d) { return area(d.values); })
+        .style("fill", function(d, i) { return color(i); });
+
+    chartLayers
+        .exit()
+        .transition()
+        .duration(550)
+        .remove();
+
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
