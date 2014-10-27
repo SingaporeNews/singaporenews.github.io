@@ -249,7 +249,7 @@ function createChart(frm){
     termsLines
       .attr('d', function(d){ return line(d.values); })
       .style('stroke', function(d){ return line_color(d.term); });
-  })
-
   });
+
+
 }
