@@ -10,6 +10,11 @@
   shape-rendering: crispEdges;
 }
 
+.line {
+      fill: none;
+      stroke-width: 1.5px;
+    }
+
 .scrollable-menu {
     height: auto;
     max-height: 200px;
