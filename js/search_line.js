@@ -68,7 +68,7 @@ function updateData(frm){
         .duration(750)
         .style('fill', function(d){ return color(d.term); })
         .text(function(d){ return d.term; });
-      */
+      
     term_label
         .transition()
         .duration(750)
