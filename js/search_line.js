@@ -38,7 +38,7 @@ function showHeadlines(){
       .attr('class', 'headline')
       .style("text-anchor", "middle")
       .style("font-size", "16px")
-      .style('opacity', '.8')
+      .style('opacity', '.5')
       .style("fill", "#000")
       .text(headline_year + ": " + headline);
 
