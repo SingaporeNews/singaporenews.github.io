@@ -124,13 +124,13 @@ function createChart(frm){
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
     console.log(data);
     line_color.domain(d3.keys(
-      data[0]).filter(function(key){ return key !== 'headline_year'; }
+      data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
       )
     );
 
     var headline_terms = line_color.domain().map(function(term){
       return {
-        term: term,
+        term: term.toLowerCase(),
         values: data.map(function(d){
           return {year: d.headline_year, count: +d[term]};
         })
