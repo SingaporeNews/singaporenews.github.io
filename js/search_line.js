@@ -15,12 +15,14 @@ var tooltip = d3.select("div#line_chart")
 function showHeadlines(){
   d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv", function(error, data){
     list = [];
-    for (i=0; i<d3.selectAll('.term_label')[0].length; i++){
+    theLength = d3.selectAll('.term_label')[0].length;
+    for (i=0; i<theLength; i++){
       list.push(d3.selectAll('.term_label')[0][i].innerHTML);
     }
     data = $.map(data, function(element){
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
+    console.log(data);
 
     var headline = line_svg.selectAll('headline')
         .data(data[0])
