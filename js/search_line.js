@@ -19,8 +19,8 @@ function showHeadlines(){
     });
     */
     headline = data[Math.floor((Math.random()*data.length) + 1)].headlineCol;
-
-    console.log(data[0]);
+    console.log(Math.floor((Math.random()*data.length) + 1));
+    console.log(headline);
 
     line_svg.selectAll('.headline')
       .transition()
