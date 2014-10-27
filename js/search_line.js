@@ -242,7 +242,7 @@ function createChart(frm){
         .classed("hover", true)
         .attr("stroke", "#000")
         .attr("stroke-width", "0.5px"), 
-        tooltip.html( "<p>" + d.term + "|" + tip._year + pro + "</p>" ).style("visibility", "visible");
+        tooltip.html( "<p>" + d.term + "|" + tip_year + pro + "</p>" ).style("visibility", "visible");
         
       })
       .on("mouseout", function(d, i) {
@@ -252,7 +252,7 @@ function createChart(frm){
         .attr("opacity", "1");
         d3.select(this)
         .classed("hover", false)
-        .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.term + "|" + tip._year + pro + "</p>" ).style("visibility", "hidden");
+        .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.term + "|" + tip_year + pro + "</p>" ).style("visibility", "hidden");
   })
 
   });
