@@ -51,19 +51,12 @@ function updateData(frm){
 
     line_y.domain([minY, maxY]);
 
-    line_svg.select('.term_label')
-      .transition()
-      .duration(400)
-      .text(frm);
-
-    var term_label = line_svg.selectAll('term_label')
+    var term_label = line_svg.selectAll('.term_label')
         .data(used_data);
 
     term_label
         .enter()
       .append('text');
-
-      /*
         .transition()
         .duration(750)
         .attr('class', 'term_label')
