@@ -21,31 +21,23 @@ function showHeadlines(){
 
     console.log(data[0]);
 
-    var headline = line_svg.selectAll('.headline')
-        .data(data);
+    line_svg.selectAll('.headline')
+      .transition()
+      .duration(400)
+      .remove();
 
-    headline
-        .enter()
-      .append('text')
-        .attr('class', 'headline')
-        .attr("x", width/2)
-        .attr("y", 50)
-        .style("text-anchor", "middle")
-        .style("font-size", "16px")
-        .style("fill", "#000")
-        .transition()
-        .duration(500)
-        .text(data[0].headlineCol);
-
-    headline
+    line_svg.append('text')
       .transition()
       .duration(500)
       .attr("x", width/2)
       .attr("y", 50)
+      .attr('class', 'headline')
       .style("text-anchor", "middle")
       .style("font-size", "16px")
       .style("fill", "#000")
       .text(data[0].headlineCol);
+
+    
 
   })
 }
