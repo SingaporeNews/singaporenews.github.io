@@ -160,7 +160,7 @@ function createChart(frm){
       .append('text')
         .attr('class', 'term_label')
         .attr("x", -60)
-        .attr("y", function(d,i){ return i+20; })
+        .attr("y", function(d,i){ return i+"em"; })
         .style("text-anchor", "middle")
         .style("font-size", "16px")
         .style("fill", "#53565A")
