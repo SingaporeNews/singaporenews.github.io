@@ -1,26 +1,3 @@
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-  width = 760 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
-
-var x = d3.scale.ordinal()
-          .rangeRoundBands([0, width]);
-
-var y = d3.scale.linear()
-          .range([height, 0]);
-
-var line = d3.svg.line()
-      .x(function(d){ return x(d.year); })
-      .y(function(d){ return y(d.count); });
-
-var color = d3.scale.category20();
-
-var line_svg = d3.select('div#line_chart').append('svg')
-            .attr("width", width + margin.left + margin.right + margin.right)
-            .attr("height", height + margin.top + margin.bottom*2)
-            .attr('class', 'line_svg')
-          .append('g')
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
 var search_list = [];
 
@@ -50,6 +27,7 @@ function updateData(frm){
     used_data = $.map(headline_terms, function(element){
       return ($.inArray(element.term,search_list)>-1?element:null)
     });
+    console.log(used_data);
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
 
     var xAxis = d3.svg.axis()
