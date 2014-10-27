@@ -137,7 +137,7 @@ function createChart(frm){
       };
     });
 
-    used_data = headline_terms.filter(function(d){ return d.term == frm; });
+    used_data = headline_terms.filter(function(d){ return d.term == frm.toLowerCase(); });
     console.log(used_data);
 
     var xAxis = d3.svg.axis()
