@@ -47,9 +47,9 @@ function updateData(frm){
                   return v.count; });
                 });
 
-    x.domain(used_data[0].values.map(function(d){ return d.year; }));
+    line_x.domain(used_data[0].values.map(function(d){ return d.year; }));
 
-    y.domain([minY, maxY]);
+    line_y.domain([minY, maxY]);
 
     line_svg.select('.term_label')
       .transition()
@@ -62,6 +62,8 @@ function updateData(frm){
     term_label
         .enter()
       .append('text')
+        .transition()
+        .duration(750)
         .attr('class', 'term_label')
         .attr("x", -60)
         .attr("y", function(d,i){ return i+"em"; })
@@ -84,7 +86,7 @@ function updateData(frm){
         .style('fill', function(d){ return color(d.term); })
         .text(function(d){ return d.term; });
 
-    line_svg.selectAll('.y.axis')
+    line_svg.selectAll('.line_y.axis')
       .transition()
       .duration(400)
       .call(yAxis);
@@ -170,7 +172,7 @@ function createChart(frm){
         .text(function(d){ return d.term; });
 
     line_svg.append('g')
-        .attr('class', 'x axis')
+        .attr('class', 'line_x axis')
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis)
         .selectAll('text')
@@ -182,7 +184,7 @@ function createChart(frm){
             });
 
     line_svg.append('g')
-        .attr('class', 'y axis')
+        .attr('class', 'line_y axis')
         .call(yAxis)
       .append('text')
         .attr('transform', 'rotate(-90)')
