@@ -21,13 +21,13 @@ function showHeadlines(){
 
     console.log(data[0]);
 
-    var headline = line_svg.selectAll('headline')
+    var headline = line_svg.selectAll('.headline')
         .data(data);
 
     headline
         .enter()
       .append('text')
-        .attr('class', 'term_label')
+        .attr('class', 'headline')
         .attr("x", width/2)
         .attr("y", 50)
         .style("text-anchor", "middle")
@@ -35,7 +35,7 @@ function showHeadlines(){
         .style("fill", "#000")
         .transition()
         .duration(500)
-        .text(function(d){ return d.yearCol + ": " + d.headlineCol; });
+        .text(data[0].headlineCol);
 
     headline
       .transition()
@@ -45,7 +45,7 @@ function showHeadlines(){
       .style("text-anchor", "middle")
       .style("font-size", "16px")
       .style("fill", "#000")
-      .text(function(d){ return d.yearCol + ": " + d.headlineCol; });
+      .text(data[0].headlineCol);
 
   })
 }
