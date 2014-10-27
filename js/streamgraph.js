@@ -84,7 +84,8 @@ var tooltip = d3.select("div#chart")
     .style("z-index", "20")
     .style("visibility", "hidden")
     .style("top", "500px")
-    .style("left", "500px");
+    .style("left", "500px")
+    .style("font-size", "16px");
 
 var datearray = [];
 
