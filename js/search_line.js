@@ -5,12 +5,12 @@ function updateData(frm){
   search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms.csv", function(error, data){
     console.log(frm);
-    color.domain(d3.keys(
+    line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key !== 'headline_year'; }
       )
     );
 
-    var headline_terms = color.domain().map(function(term){
+    var headline_terms = line_color.domain().map(function(term){
       return {
         term: term,
         values: data.map(function(d){
@@ -82,7 +82,7 @@ function updateData(frm){
         .style("font-size", "16px")
         .transition()
         .duration(750)
-        .style('fill', function(d){ return color(d.term); })
+        .style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d.term; });
 
     term_label.exit().transition().duration(750).remove();
@@ -102,7 +102,7 @@ function updateData(frm){
         .duration(750)
         .attr('class', 'line')
         .attr('d', function(d){ return line(d.values); })
-        .style('stroke', function(d){ return color(d.term); });
+        .style('stroke', function(d){ return line_color(d.term); });
 
     termsLines.exit().transition().duration(750).remove();
 
@@ -111,7 +111,7 @@ function updateData(frm){
       .duration(750)
       .attr('class', 'line')
       .attr('d', function(d){ return line(d.values); })
-      .style('stroke', function(d){ return color(d.term); });
+      .style('stroke', function(d){ return line_color(d.term); });
 
   });
 };
@@ -120,12 +120,12 @@ function createChart(frm){
   search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms.csv", function(error, data){
 
-    color.domain(d3.keys(
+    line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key !== 'headline_year'; }
       )
     );
 
-    var headline_terms = color.domain().map(function(term){
+    var headline_terms = line_color.domain().map(function(term){
       return {
         term: term,
         values: data.map(function(d){
@@ -169,7 +169,7 @@ function createChart(frm){
         .style("fill", "#53565A")
         .transition()
         .duration(750)
-        .style('fill', function(d){ return color(d.term); })
+        .style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d.term; });
 
     line_svg.append('g')
@@ -207,7 +207,7 @@ function createChart(frm){
 
     termsLines
       .attr('d', function(d){ return line(d.values); })
-      .style('stroke', function(d){ return color(d.term); });
+      .style('stroke', function(d){ return line_color(d.term); });
 
   });
 }
