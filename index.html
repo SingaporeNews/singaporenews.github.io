@@ -269,8 +269,8 @@
                 .range([height, 0]);
 
       var line = d3.svg.line()
-            .x(function(d){ return x(d.year); })
-            .y(function(d){ return y(d.count); });
+            .x(function(d){ return line_x(d.year); })
+            .y(function(d){ return line_y(d.count); });
 
       var color = d3.scale.category20();
 
