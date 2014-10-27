@@ -39,7 +39,7 @@ function showHeadlines(){
       .style("font-size", "16px")
       .style('opacity', '.5')
       .style("fill", "#000")
-      .style('font-style', "Lucida Sans Typewriter")
+      .style('font', "Lucida Sans Typewriter")
       .text(headline_year + ": " + headline);
 
     
