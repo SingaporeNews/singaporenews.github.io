@@ -64,24 +64,24 @@ function updateData(frm){
       .append('text')
         .attr('class', 'term_label')
         .attr("x", -20)
-        .attr("y", function(d,i){ return i+10; })
+        .attr("y", function(d,i){ return i+20; })
         .style("text-anchor", "middle")
         .style("font-size", "16px")
         .transition()
         .duration(750)
-        .style('font', function(d){ return color(d.term); })
+        .style('fill', function(d){ return color(d.term); })
         .text(function(d){ return d.term; });
 
     term_label
         .transition()
         .duration(750)
         .attr("x", -20)
-        .attr("y", function(d,i){ return i+10; })
+        .attr("y", function(d,i){ return i+20; })
         .style("text-anchor", "middle")
         .style("font-size", "16px")
         .transition()
         .duration(750)
-        .style('font', function(d){ return color(d.term); })
+        .style('fill', function(d){ return color(d.term); })
         .text(function(d){ return d.term; });
 
     line_svg.selectAll('.y.axis')
@@ -160,13 +160,13 @@ function createChart(frm){
       .append('text')
         .attr('class', 'term_label')
         .attr("x", -20)
-        .attr("y", function(d,i){ return i+10; })
+        .attr("y", function(d,i){ return i+20; })
         .style("text-anchor", "middle")
         .style("font-size", "16px")
         .style("fill", "#53565A")
         .transition()
         .duration(750)
-        .style('font', function(d){ return color(d.term); })
+        .style('fill', function(d){ return color(d.term); })
         .text(function(d){ return d.term; });
 
     line_svg.append('g')
