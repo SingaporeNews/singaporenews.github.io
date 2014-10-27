@@ -14,7 +14,7 @@ var line = d3.svg.line()
 
 var color = d3.scale.category20();
 
-var svg = d3.select('div#line_chart').append('svg')
+var line_svg = d3.select('div#line_chart').append('svg')
             .attr("width", width + margin.left + margin.right + margin.right)
             .attr("height", height + margin.top + margin.bottom*2)
             .attr('class', 'line_svg')
@@ -75,17 +75,17 @@ function updateData(frm){
 
     y.domain([minY, maxY]);
 
-    svg.select('.term_label')
+    line_svg.select('.term_label')
       .transition()
       .duration(400)
       .text(frm);
 
-    svg.selectAll('.y.axis')
+    line_svg.selectAll('.y.axis')
       .transition()
       .duration(400)
       .call(yAxis);
 
-    var terms = svg.selectAll('.terms');
+    var terms = line_svg.selectAll('.terms');
 
     var termsLines = terms.selectAll('.line')
         .data(used_data);
@@ -150,7 +150,7 @@ function createChart(frm){
 
     y.domain([minY, maxY]);
 
-    var term_label = svg.selectAll('term_label')
+    var term_label = line_svg.selectAll('term_label')
         .data(used_data)
         .enter()
       .append('text')
@@ -164,7 +164,7 @@ function createChart(frm){
         .duration(750)
         .text(function(d){ return d.term; });
 
-    svg.append('g')
+    line_svg.append('g')
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis)
@@ -176,7 +176,7 @@ function createChart(frm){
               return 'rotate(-65)'
             });
 
-    svg.append('g')
+    line_svg.append('g')
         .attr('class', 'y axis')
         .call(yAxis)
       .append('text')
@@ -186,7 +186,7 @@ function createChart(frm){
         .style('text-anchor', 'end')
         .text('Count');
 
-    var terms = svg.append('g')
+    var terms = line_svg.append('g')
               .attr('class', 'terms');
 
     var termsLines = terms.selectAll('.line')
