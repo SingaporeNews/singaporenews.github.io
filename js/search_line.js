@@ -86,7 +86,7 @@ function updateData(frm){
 
     line_svg.selectAll('.line_y.axis')
       .transition()
-      .duration(400)
+      .duration(750)
       .call(yAxis);
 
     var terms = line_svg.selectAll('.terms');
@@ -96,16 +96,16 @@ function updateData(frm){
 
     termsLines.enter().append('path')
         .transition()
-        .duration(400)
+        .duration(750)
         .attr('class', 'line')
         .attr('d', function(d){ return line(d.values); })
         .style('stroke', function(d){ return color(d.term); });
 
-    termsLines.exit().transition().duration(400).remove();
+    termsLines.exit().transition().duration(750).remove();
 
     termsLines
       .transition()
-      .duration(400)
+      .duration(750)
       .attr('class', 'line')
       .attr('d', function(d){ return line(d.values); })
       .style('stroke', function(d){ return color(d.term); });
