@@ -5,6 +5,10 @@ var datearray = [];
 
 function showHeadlines(){
 
+  line_svg.selectAll('.headline')
+      .transition()
+      .remove();
+
   //if tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
   d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv", function(error, data){
     list = [];
@@ -23,11 +27,6 @@ function showHeadlines(){
     headline_year = data[random_number].yearCol;
     console.log(Math.floor((Math.random()*data.length) + 1));
     console.log(headline);
-
-    
-    line_svg.selectAll('.headline')
-      .transition()
-      .remove();
     
 
     line_svg.append('text')
