@@ -22,8 +22,6 @@ var line_svg = d3.select('div#line_chart').append('svg')
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-
-
 var search_list = [];
 
 function updateData(frm){
