@@ -18,7 +18,9 @@ function showHeadlines(){
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
     */
-    headline = data[Math.floor((Math.random()*data.length) + 1)].headlineCol;
+    random_number = Math.floor((Math.random()*data.length) + 1)
+    headline = data[random_number].headlineCol;
+    headline_year = data[random_number].yearCol;
     console.log(Math.floor((Math.random()*data.length) + 1));
     console.log(headline);
 
@@ -36,7 +38,7 @@ function showHeadlines(){
       .style("text-anchor", "middle")
       .style("font-size", "16px")
       .style("fill", "#000")
-      .text(headline);
+      .text(headline_year + ": " + headline);
 
     
 
