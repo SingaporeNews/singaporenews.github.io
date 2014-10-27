@@ -84,7 +84,7 @@ function updateData(frm){
     term_label
         .transition()
         .duration(750)
-        .attr("x", -60)
+        .attr("x", -70)
         .attr("y", function(d,i){ return i+"em"; })
         .style("text-anchor", "middle")
         .style("font-size", "16px")
@@ -170,7 +170,7 @@ function createChart(frm){
         .enter()
       .append('text')
         .attr('class', 'term_label')
-        .attr("x", -60)
+        .attr("x", -70)
         .attr("y", function(d,i){ return i+"em"; })
         .style("text-anchor", "middle")
         .style("font-size", "16px")
