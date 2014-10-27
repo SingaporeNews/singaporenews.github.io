@@ -18,24 +18,25 @@ function showHeadlines(){
       return ($.inArray(element.wordCol,list)>-1?element:null)
     });
     */
+    headline = data[Math.floor((Math.random()*data.length) + 1)].headlineCol;
 
     console.log(data[0]);
 
     line_svg.selectAll('.headline')
       .transition()
-      .duration(400)
+      .duration(1000)
       .remove();
 
     line_svg.append('text')
       .transition()
-      .duration(500)
+      .duration(1000)
       .attr("x", width/2)
       .attr("y", 50)
       .attr('class', 'headline')
       .style("text-anchor", "middle")
       .style("font-size", "16px")
       .style("fill", "#000")
-      .text(data[0].headlineCol);
+      .text(headline);
 
     
 
