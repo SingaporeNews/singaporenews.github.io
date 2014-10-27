@@ -19,7 +19,7 @@ function showHeadlines(){
     });
     */
 
-    console.log(data);
+    console.log(data[0]);
 
     var headline = line_svg.selectAll('headline')
         .data(data[0]);
@@ -32,7 +32,7 @@ function showHeadlines(){
         .attr("y", 0)
         .style("text-anchor", "middle")
         .style("font-size", "16px")
-        .style("fill", "#53565A")
+        .style("fill", "#000")
         .transition()
         .duration(500)
         .text(function(d){ return d.yearCol + ": " + d.headlineCol; });
@@ -44,7 +44,7 @@ function showHeadlines(){
       .attr("y", 0)
       .style("text-anchor", "middle")
       .style("font-size", "16px")
-      .style("fill", "#53565A")
+      .style("fill", "#000")
       .text(function(d){ return d.yearCol + ": " + d.headlineCol; });
 
   })
