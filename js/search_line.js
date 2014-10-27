@@ -211,7 +211,8 @@ function createChart(frm){
 
     termsLines
       .attr('d', function(d){ return line(d.values); })
-      .style('stroke', function(d){ return line_color(d.term); });
+      .style('stroke', function(d){ return line_color(d.term); })
+      .on('mouseover', function(d){ console.log(d.term, d.values); });
 
   });
 }
