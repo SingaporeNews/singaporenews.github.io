@@ -31,12 +31,12 @@ function updateData(frm){
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
 
     var xAxis = d3.svg.axis()
-      .scale(x)
+      .scale(line_x)
       .orient("bottom")
       .ticks(used_data[0].values.map(function(d){ return d.year; }));
 
     var yAxis = d3.svg.axis()
-      .scale(y)
+      .scale(line_y)
       .orient('left');
 
     var minY = d3.min(used_data, function(c){ return d3.min(c.values, function(v){
@@ -106,12 +106,12 @@ function createChart(frm){
     used_data = headline_terms.filter(function(d){ return d.term == frm; });
 
     var xAxis = d3.svg.axis()
-      .scale(x)
+      .scale(line_x)
       .orient("bottom")
       .ticks(used_data[0].values.map(function(d){ return d.year; }));
 
     var yAxis = d3.svg.axis()
-      .scale(y)
+      .scale(line_y)
       .orient('left');
 
     var minY = d3.min(used_data, function(c){ return d3.min(c.values, function(v){
@@ -122,9 +122,9 @@ function createChart(frm){
                   return v.count; });
                 });
 
-    x.domain(used_data[0].values.map(function(d){ return d.year; }));
+    line_x.domain(used_data[0].values.map(function(d){ return d.year; }));
 
-    y.domain([minY, maxY]);
+    line_y.domain([minY, maxY]);
 
     var term_label = line_svg.selectAll('term_label')
         .data(used_data)
