@@ -56,7 +56,7 @@ function updateData(frm){
 
     term_label
         .enter()
-      .append('text');
+      .append('text')
         .transition()
         .duration(750)
         .attr('class', 'term_label')
