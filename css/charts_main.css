@@ -21,6 +21,10 @@
     overflow-x: hidden;
 }
 
+.headline {
+  font: "Lucida Sans Typewriter";
+}
+
 /* Links */
 a,
 a:focus,
