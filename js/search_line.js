@@ -13,11 +13,14 @@ function updateData(frm){
       return ($.inArray(element.key,search_list)>-1?element:null)
     });
     console.log(test_data);
-
+    /*
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key !== 'headline_year'; }
       )
     );
+    */
+
+    line_color.domain(search_list);
 
     var headline_terms = line_color.domain().map(function(term){
       return {
@@ -37,6 +40,7 @@ function updateData(frm){
     used_data = $.map(headline_terms, function(element){
       return ($.inArray(element.term,search_list)>-1?element:null)
     });
+
     
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
 
