@@ -22,7 +22,7 @@ function showHeadlines(){
     console.log(data[0]);
 
     var headline = line_svg.selectAll('headline')
-        .data(data[0]);
+        .data(data);
 
     headline
         .enter()
