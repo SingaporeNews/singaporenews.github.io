@@ -126,7 +126,7 @@ var svg = d3.select("div#chart").append("svg")
 
 function drawStackedChart(word_num){
 
-  d3.csv('Words_allyears_26oct.csv', function(error, data){
+  d3.csv('Words_allyears_27oct.csv', function(error, data){
 
     data.forEach(function(d){
       d.countCol = +d.countCol;
