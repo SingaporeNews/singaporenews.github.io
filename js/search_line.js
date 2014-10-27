@@ -86,6 +86,8 @@ function updateData(frm){
         .style('fill', function(d){ return color(d.term); })
         .text(function(d){ return d.term; });
 
+    term_label.exit.transition().duration(750).remove();
+
     line_svg.selectAll('.line_y.axis')
       .transition()
       .duration(400)
