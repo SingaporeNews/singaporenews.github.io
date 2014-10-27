@@ -58,6 +58,9 @@ function updateData(frm){
     term_label
         .enter()
       .append('text')
+        .attr('class', 'term_label');
+
+        /*
         .transition()
         .duration(750)
         .attr('class', 'term_label')
@@ -69,7 +72,7 @@ function updateData(frm){
         .duration(750)
         .style('fill', function(d){ return color(d.term); })
         .text(function(d){ return d.term; });
-      
+      */
     term_label
         .transition()
         .duration(750)
