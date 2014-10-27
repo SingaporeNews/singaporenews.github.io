@@ -138,7 +138,7 @@ function createChart(frm){
     });
 
     used_data = headline_terms.filter(function(d){ return d.term == frm.toLowerCase(); });
-    console.log(used_data);
+    console.log(frm.toLowerCase());
 
     var xAxis = d3.svg.axis()
       .scale(line_x)
