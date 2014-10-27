@@ -22,7 +22,9 @@ function showHeadlines(){
     console.log(data);
 
     var headline = line_svg.selectAll('headline')
-        .data(data[0])
+        .data(data[0]);
+
+    headline
         .enter()
       .append('text')
         .attr('class', 'term_label')
@@ -32,9 +34,18 @@ function showHeadlines(){
         .style("font-size", "16px")
         .style("fill", "#53565A")
         .transition()
-        .duration(1000)
+        .duration(500)
         .text(function(d){ return d.yearCol + ": " + d.headlineCol; });
 
+    headline
+      .transition()
+      .duration(500)
+      .attr("x", (width/3)*2)
+      .attr("y", 0)
+      .style("text-anchor", "middle")
+      .style("font-size", "16px")
+      .style("fill", "#53565A")
+      .text(function(d){ return d.yearCol + ": " + d.headlineCol; });
 
   })
 }
