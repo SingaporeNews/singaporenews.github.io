@@ -24,12 +24,15 @@ function showHeadlines(){
     console.log(Math.floor((Math.random()*data.length) + 1));
     console.log(headline);
 
+    /*
     line_svg.selectAll('.headline')
       .transition()
       .duration(1000)
       .remove();
+      */
 
-    line_svg.append('text')
+    line_svg.selectAll('.headline')
+      .append('text')
       .transition()
       .duration(1000)
       .attr("x", width/2)
@@ -37,6 +40,7 @@ function showHeadlines(){
       .attr('class', 'headline')
       .style("text-anchor", "middle")
       .style("font-size", "16px")
+      .style('opacity', '.8')
       .style("fill", "#000")
       .text(headline_year + ": " + headline);
 
