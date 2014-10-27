@@ -230,8 +230,7 @@ function createChart(frm){
         //invertedx = invertedx.getMonth() + invertedx.getDate();
         var selected = (d.values);
         for (var k = 0; k < selected.length; k++) {
-          datearray[k] = selected[k].date
-          datearray[k] = datearray[k].getMonth() + datearray[k].getDate();
+          datearray[k] = selected[k].year;
         }
 
         mousedate = datearray.indexOf(Math.round(invertedx));
