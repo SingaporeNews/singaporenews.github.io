@@ -33,7 +33,7 @@ function showHeadlines(word){
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline = data[random_number].headlineCol;
     headline_year = data[random_number].yearCol;
-    
+    console.log(typeof headline);
     return headline;
 
     /*
@@ -337,7 +337,7 @@ function createChart(frm){
     wordCircle
         .on('mouseover', function(d,i,j){
           the_headline = showHeadlines(used_data[j].term);
-          console.log(the_headline);
+          console.log(typeof the_headline);
             div.transition()
               .duration(200)
               .style('opacity', .9);
