@@ -28,7 +28,7 @@
     overflow-x: hidden;
 }
 
-div.tooltip {   
+.tooltip {   
   position: absolute;           
   text-align: center;           
   width: 180px;                  
