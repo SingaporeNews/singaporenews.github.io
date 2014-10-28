@@ -82,6 +82,10 @@ function updateData(frm){
 
     line_color.domain(search_list);
 
+    var div = d3.select('div#line_chart').append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
+
     
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
 
