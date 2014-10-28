@@ -17,7 +17,7 @@
       fill: none;
       stroke-width: 1.5px;
     }
-.axis text {
+.tick text {
   color: #7C7C77;
 }
 .scrollable-menu {
