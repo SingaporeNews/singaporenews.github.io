@@ -280,13 +280,12 @@ function createChart(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          console.log(d3.event.pageX)
             div.transition()
               .duration(200)
               .style('opacity', .9);
-            div.html('text')
-              .style('left', (d3.event.pageX) - 300 + "px")
-              .style('top', (d3.event.pageY) - 400 + "px")
+            div.html(used_data[j].term)
+              .style('left', (d3.event.pageX) + 10 + "px")
+              .style('top', (d3.event.pageY) - 30 + "px")
               .style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
