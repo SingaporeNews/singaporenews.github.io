@@ -198,8 +198,8 @@ function updateData(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          the_headline = showHeadlines(used_data[j].term);
-          console.log(typeof the_headline);
+          var the_headline = showHeadlines(used_data[j].term);
+          console.log(the_headline);
             div.transition()
               .duration(200)
               .style('opacity', .9);
