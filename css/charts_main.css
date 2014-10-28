@@ -28,15 +28,14 @@
     overflow-x: hidden;
 }
 
-.tooltip {   
+div.tooltip {   
   position: absolute;           
   text-align: center;           
-  width: 180px;                  
-  height: 45px;                 
+  width: 380px;                  
+  height: 100px;                 
   padding: 2px;             
-  font: 12px sans-serif;
-  color: #FF7F0E;        
-  background: #53565A;   
+  font: 24px serif;       
+  /*background: #53565A;*/   
   border: 0px;      
   border-radius: 8px;           
   pointer-events: none;         

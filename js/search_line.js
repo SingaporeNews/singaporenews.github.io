@@ -166,11 +166,13 @@ function updateData(frm){
         .on('mouseover', function(d,i,j){
           var the_headline = showHeadlines(headlinesData, used_data[j].term, d.year);
             div.transition()
-              .duration(200)
+              .duration(500)
               .style('opacity', .9);
             div.html(the_headline)
-              .style('left', (d3.event.pageX) + 10 + "px")
-              .style('top', (d3.event.pageY) + 2 + "px")
+              .style('left', '400px')
+              .style('top', '200px')
+              //.style('left', (d3.event.pageX) + 10 + "px")
+              //.style('top', (d3.event.pageY) + 2 + "px")
               .style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
@@ -304,7 +306,7 @@ function createChart(frm){
           the_headline = showHeadlines(used_data[j].term);
           console.log(typeof the_headline);
             div.transition()
-              .duration(200)
+              .duration(500)
               .style('opacity', .9);
             div.html(the_headline)
               .style('left', (d3.event.pageX) + 10 + "px")
