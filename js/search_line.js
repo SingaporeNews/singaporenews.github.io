@@ -198,7 +198,7 @@ function updateData(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          var the_headline = showHeadlines(used_data[j].term);
+          //var the_headline = showHeadlines(used_data[j].term);
           console.log(myheadline(used_data[j].term));
             div.transition()
               .duration(200)
