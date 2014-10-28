@@ -15,7 +15,7 @@ function showHeadlines(word){
   //if tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
   */
   d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv", function(error, data){
-    
+    console.log(data);
     list = [];
     theLength = d3.selectAll('.term_label')[0].length;
     for (i=0; i<theLength; i++){
@@ -23,7 +23,7 @@ function showHeadlines(word){
     }
 
     data.filter(function(d){ return d.wordCol == word; });
-
+    console.log(data);
     /* 
     data = $.map(data, function(element){
       return ($.inArray(element.wordCol,list)>-1?element:null)
@@ -32,6 +32,7 @@ function showHeadlines(word){
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline = data[random_number].headlineCol;
     headline_year = data[random_number].yearCol;
+    console.log(headline);
     return headline;
 
     /*
