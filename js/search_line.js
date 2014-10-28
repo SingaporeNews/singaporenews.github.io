@@ -278,10 +278,11 @@ function createChart(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
+          console.log(used_data[j].term)
             div.transition()
               .duration(200)
               .style('opacity', .9);
-              div.html(used_data[j].term)
+            div.html(used_data[j].term)
               .style('left', (d3.event.pageX) - 300 + "px")
               .style('top', (d3.event.pageY) - 400 + "px")
               .style('color', line_color(used_data[j].term));
