@@ -2,7 +2,7 @@
 var search_list = [];
 var datearray = [];
 
-var div = d3.select('#line_chart').append('div')
+var div = d3.select('div#line_chart').append('div')
             .attr('class', 'tooltip')
             .style('opacity', 0);
 
