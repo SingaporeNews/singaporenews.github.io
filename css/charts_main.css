@@ -33,8 +33,9 @@ div.tooltip {
   text-align: center;           
   width: 380px;                  
   height: 100px;                 
-  padding: 2px;             
-  font: 84px serif;       
+  padding: 2px;
+  font-family: "Courier New",Courier,"Lucida Sans Typewriter","Lucida Typewriter",monospace;             
+  font: 84px;       
   /*background: #53565A;*/   
   border: 0px;      
   border-radius: 8px;           
