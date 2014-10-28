@@ -6,7 +6,6 @@ function showHeadlines(data, word, year){
 
     var data = data.filter(function(d){ return d.wordCol == word; });
     data = data.filter(function(d){ return d.yearCol == year; });
-    console.log(data);
     
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline_year = data[random_number].yearCol;
@@ -153,18 +152,20 @@ function updateData(frm){
         .attr('cx', function(d){ return line_x(d.year)})
         .attr('cy', function(d){ return line_y(d.count)})
         .attr('r', 3)
-        .style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+        .style('fill', 'none');
+        //.style('fill', function(d, i, j){ return line_color(used_data[j].term); });
 
     wordCircle.enter().append('circle')
         .attr('class', 'wordcircle')
         .attr('cx', function(d){ return line_x(d.year)})
         .attr('cy', function(d){ return line_y(d.count)})
         .attr('r', 3)
-        .style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+        .style('fill', 'none');
+        //.style('fill', function(d, i, j){ return line_color(used_data[j].term); });
 
     wordCircle
         .on('mouseover', function(d,i,j){
-            d3.select(this).transition().duration(400).attr('r', 6);
+            d3.select(this).transition().duration(600).attr('r', 8);
           var the_headline = showHeadlines(headlinesData, used_data[j].term, d.year);
             div.transition()
               .duration(500)
@@ -177,7 +178,7 @@ function updateData(frm){
               //.style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
-            d3.select(this).transition().duration(400).attr('r', 3);
+            d3.select(this).transition().duration(600).attr('r', 3);
             div.transition()
               .duration(500)
               .style('opacity', 0);
