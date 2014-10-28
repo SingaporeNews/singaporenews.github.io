@@ -167,10 +167,11 @@ function updateData(frm){
           var the_headline = showHeadlines(headlinesData, used_data[j].term, d.year);
             div.transition()
               .duration(500)
-              .style('opacity', .9);
+              .style('opacity', .6);
             div.html(the_headline)
               .style('left', '400px')
-              .style('top', '200px');
+              .style('top', '200px')
+              .style('cursor', 'pointer');
               //.style('left', (d3.event.pageX) + 10 + "px")
               //.style('top', (d3.event.pageY) + 2 + "px")
               //.style('color', line_color(used_data[j].term));
