@@ -9,7 +9,8 @@
   stroke-width: 2px;
   shape-rendering: crispEdges;
 }
-.y.axis path {
+.y.axis,
+.line_y.axis path {
   stroke: none;
 }
 
@@ -19,6 +20,7 @@
     }
 .tick text {
   fill: #7C7C77;
+  text-shadow: none;
 }
 .scrollable-menu {
     height: auto;

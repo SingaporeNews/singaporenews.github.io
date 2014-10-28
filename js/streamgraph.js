@@ -317,7 +317,6 @@ function updateStackedChart(word_num, start, end){
     svg.selectAll('.y.axis')
         .transition()
         .duration(550)
-        .style('stroke', 'null')
         .call(yAxis);
 
     svg.selectAll(".layer")
