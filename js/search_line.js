@@ -286,12 +286,13 @@ function createChart(frm){
     wordCircle
         .on('mouseover', function(d,i,j){
           the_headline = showHeadlines(used_data[j].term)
+          console.log(the_headline);
             div.transition()
               .duration(200)
               .style('opacity', .9);
             div.html(the_headline)
               .style('left', (d3.event.pageX) + 10 + "px")
-              .style('top', (d3.event.pageY) - 30 + "px")
+              .style('top', (d3.event.pageY) - 10 + "px")
               .style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
