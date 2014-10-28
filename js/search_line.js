@@ -2,13 +2,6 @@
 var search_list = [];
 var datearray = [];
 
-var selectedHeadline = null
-d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv",
-  function(error, data){
-
-  })
-
-function getHeadlinesData
 function showHeadlines(data, word){
 
     var data = data.filter(function(d){ return d.wordCol == word; });
