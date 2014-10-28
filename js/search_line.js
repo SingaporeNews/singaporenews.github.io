@@ -5,7 +5,7 @@ var datearray = [];
 
 
 
-function showHeadlines(word){
+var myheadline = function showHeadlines(word){
 
   /*
   line_svg.selectAll('.headline')
@@ -22,7 +22,7 @@ function showHeadlines(word){
       list.push(d3.selectAll('.term_label')[0][i].innerHTML);
     }
 
-    data = data.filter(function(d){ return d.wordCol == word; });
+    var data = data.filter(function(d){ return d.wordCol == word; });
     
     /* 
     data = $.map(data, function(element){
@@ -199,7 +199,7 @@ function updateData(frm){
     wordCircle
         .on('mouseover', function(d,i,j){
           var the_headline = showHeadlines(used_data[j].term);
-          console.log(the_headline);
+          console.log(myheadline(used_data[j].term));
             div.transition()
               .duration(200)
               .style('opacity', .9);
