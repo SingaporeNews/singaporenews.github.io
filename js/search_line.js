@@ -304,7 +304,8 @@ function createChart(frm){
         .attr('cx', function(d){ return line_x(d.year)})
         .attr('cy', function(d){ return line_y(d.count)})
         .attr('r', 3)
-        .style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+        .style('fill', function(d, i, j){ return line_color(used_data[j].term); })
+        .style('opacity', 0);
 
     wordCircle
         .on('mouseover', function(d,i,j){
