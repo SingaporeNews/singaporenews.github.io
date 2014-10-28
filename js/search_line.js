@@ -2,9 +2,7 @@
 var search_list = [];
 var datearray = [];
 
-var div = d3.select('div#line_chart').append('div')
-            .attr('class', 'tooltip')
-            .style('opacity', 0);
+
 
 
 function showHeadlines(){
@@ -185,6 +183,10 @@ function createChart(frm){
     });
 
     used_data = headline_terms.filter(function(d){ return d.term == frm.toLowerCase(); });
+
+    var div = d3.select('div#line_chart').append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
 
     var xAxis = d3.svg.axis()
       .scale(line_x)
