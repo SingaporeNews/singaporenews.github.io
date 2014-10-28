@@ -285,10 +285,11 @@ function createChart(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
+          the_headline = showHeadlines(used_data[j].term)
             div.transition()
               .duration(200)
               .style('opacity', .9);
-            div.html(showHeadlines(used_data[j].term))
+            div.html(the_headline)
               .style('left', (d3.event.pageX) + 10 + "px")
               .style('top', (d3.event.pageY) - 30 + "px")
               .style('color', line_color(used_data[j].term));
