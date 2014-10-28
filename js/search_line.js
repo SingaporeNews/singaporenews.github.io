@@ -2,13 +2,15 @@
 var search_list = [];
 var datearray = [];
 
-function showHeadlines(data, word){
+function showHeadlines(data, word, year){
 
     var data = data.filter(function(d){ return d.wordCol == word; });
+    data = data.filter(function(d){ return d.yearCol == year; });
+    console.log(data);
     
     random_number = Math.floor((Math.random()*data.length) + 1)
-    var headline = data[random_number].headlineCol;
     headline_year = data[random_number].yearCol;
+    var headline = data[random_number].headlineCol;
 
     return headline;
 }
@@ -162,7 +164,7 @@ function updateData(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          var the_headline = showHeadlines(headlinesData, used_data[j].term);
+          var the_headline = showHeadlines(headlinesData, used_data[j].term, d.year);
             div.transition()
               .duration(200)
               .style('opacity', .9);
