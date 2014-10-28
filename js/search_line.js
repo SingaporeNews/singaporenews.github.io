@@ -278,7 +278,7 @@ function createChart(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          console.log(used_data[j].term)
+          console.log(d3.event.pageX)
             div.transition()
               .duration(200)
               .style('opacity', .9);
