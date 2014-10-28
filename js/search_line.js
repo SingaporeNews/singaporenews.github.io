@@ -170,10 +170,10 @@ function updateData(frm){
               .style('opacity', .9);
             div.html(the_headline)
               .style('left', '400px')
-              .style('top', '200px')
+              .style('top', '200px');
               //.style('left', (d3.event.pageX) + 10 + "px")
               //.style('top', (d3.event.pageY) + 2 + "px")
-              .style('color', line_color(used_data[j].term));
+              //.style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
             div.transition()
