@@ -9,7 +9,7 @@
   stroke-width: 2px;
   shape-rendering: crispEdges;
 }
-.y.axis,
+.y.axis path,
 .line_y.axis path {
   stroke: none;
 }
