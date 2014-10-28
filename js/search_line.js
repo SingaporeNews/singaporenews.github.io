@@ -270,7 +270,7 @@ function createChart(frm){
       .append('text')
         .attr('transform', 'rotate(-90)')
         .attr('y', 6)
-        .attr('dy', '.71em')
+        .attr('dy', '.50em')
         .style('text-anchor', 'end')
         .text('Count');
 
