@@ -18,7 +18,7 @@
       stroke-width: 1.5px;
     }
 .tick text {
-  color: #7C7C77;
+  fill: #7C7C77;
 }
 .scrollable-menu {
     height: auto;
