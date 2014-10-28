@@ -173,7 +173,7 @@ function updateData(frm){
               .style('opacity', .6);
             div.html(the_headline)
               .style('left', '300px')
-              .style('top', '75px');
+              .style('top', '10px');
               //.style('left', (d3.event.pageX) + 10 + "px")
               //.style('top', (d3.event.pageY) + 2 + "px")
               //.style('color', line_color(used_data[j].term));
@@ -308,17 +308,19 @@ function createChart(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          the_headline = showHeadlines(used_data[j].term);
-          console.log(typeof the_headline);
+            d3.select(this).transition().duration(600)
+              .attr('r', 8).style('opacity', 1);
+          var the_headline = showHeadlines(headlinesData, used_data[j].term, d.year);
             div.transition()
               .duration(500)
-              .style('opacity', .9);
+              .style('opacity', .6);
             div.html(the_headline)
-              .style('left', (d3.event.pageX) + 10 + "px")
-              .style('top', (d3.event.pageY) + 2 + "px")
-              .style('color', line_color(used_data[j].term));
+              .style('left', '300px')
+              .style('top', '75px');
         })
         .on('mouseout', function(d){
+            d3.select(this).transition().duration(600)
+              .attr('r', 3).style('opacity', 0);
             div.transition()
               .duration(500)
               .style('opacity', 0);
