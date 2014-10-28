@@ -11,8 +11,6 @@ function showHeadlines(data, word){
     headline_year = data[random_number].yearCol;
 
     return headline;
-
-  });
 }
 
 function updateData(frm){
