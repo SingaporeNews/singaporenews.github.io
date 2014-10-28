@@ -28,10 +28,14 @@
     overflow-x: hidden;
 }
 
+.wordcircle:hover {
+  cursor: pointer;
+}
+
 div.tooltip {   
   position: absolute;           
   text-align: center;           
-  width: 380px;                  
+  width: 680px;                  
   height: 100px;                 
   padding: 2px;
   font-family: "Rockwell Extra Bold","Rockwell Bold",monospace;            
