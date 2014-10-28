@@ -282,10 +282,10 @@ function createChart(frm){
             div.transition()
               .duration(200)
               .style('opacity', .9)
+              .html(used_data[j].term)
               .style('left', (d3.event.pageX) - 300 + "px")
               .style('top', (d3.event.pageY) - 400 + "px")
-              .style('color', line_color(used_data[j].term))
-              .html(used_data[j].term);
+              .style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
             div.transition()
