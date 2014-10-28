@@ -167,6 +167,13 @@ function updateData(frm){
       .attr('d', function(d){ return line(d.values); })
       .style('stroke', function(d){ return line_color(d.term); });
 
+    var wordsCircles = line_svg.selectAll('.circles')
+        .data(used_data);
+
+    wordsCircles.enter().append('g').attr('class', 'circles');
+
+    wordsCircles.exit().remove();
+
     var wordCircle = wordsCircles.selectAll('.wordcircle')
         .data(function(d){ return d.values; });
 
