@@ -21,10 +21,6 @@
     overflow-x: hidden;
 }
 
-.headline {
-  font-family: "Lucida Sans Unicode";
-}
-
 /* Links */
 a,
 a:focus,
@@ -101,21 +97,21 @@ body {
   padding-left: 0;
   font-size: 16px;
   font-weight: bold;
-  color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.75);
+  /*color: #fff; /* IE8 proofing */
+  color: rgba(204,204,204,.75);
   border-bottom: 2px solid transparent;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
-  border-bottom-color: #a9a9a9;
-  border-bottom-color: rgba(255,255,255,.25);
+  border-bottom-color: #666666;
+  border-bottom-color: rgba(102,102,102,.25);
 }
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
-  color: #fff;
-  border-bottom-color: #fff;
+  color: #000;
+  border-bottom-color: #000;
 }
 
 @media (min-width: 768px) {
