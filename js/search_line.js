@@ -5,19 +5,23 @@ var datearray = [];
 
 
 
-function showHeadlines(){
+function showHeadlines(word){
 
+  /*
   line_svg.selectAll('.headline')
       .transition()
       .remove();
 
   //if tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
+  */
   d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv", function(error, data){
     list = [];
     theLength = d3.selectAll('.term_label')[0].length;
     for (i=0; i<theLength; i++){
       list.push(d3.selectAll('.term_label')[0][i].innerHTML);
     }
+
+    data.filter(function(d){ return d.wordCol == word; });
 
     /* 
     data = $.map(data, function(element){
@@ -27,8 +31,9 @@ function showHeadlines(){
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline = data[random_number].headlineCol;
     headline_year = data[random_number].yearCol;
-    
+    return headline;
 
+    /*
     line_svg.append('text')
       .transition()
       .duration(1000)
@@ -41,7 +46,7 @@ function showHeadlines(){
       .style("fill", "#000")
       .style('font', "Lucida Sans Typewriter")
       .text(headline_year + ": " + headline);
-    
+    */
 
   })
 }
@@ -283,7 +288,7 @@ function createChart(frm){
             div.transition()
               .duration(200)
               .style('opacity', .9);
-            div.html(used_data[j].term)
+            div.html(showHeadlines(used_data[j].term))
               .style('left', (d3.event.pageX) + 10 + "px")
               .style('top', (d3.event.pageY) - 30 + "px")
               .style('color', line_color(used_data[j].term));
