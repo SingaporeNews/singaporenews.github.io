@@ -9,6 +9,9 @@
   stroke-width: 2px;
   shape-rendering: crispEdges;
 }
+.y.axis path {
+  stroke: none;
+}
 
 .line {
       fill: none;
