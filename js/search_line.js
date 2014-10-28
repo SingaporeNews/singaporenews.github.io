@@ -152,33 +152,35 @@ function updateData(frm){
         .attr('cx', function(d){ return line_x(d.year)})
         .attr('cy', function(d){ return line_y(d.count)})
         .attr('r', 3)
-        .style('fill', 'none');
-        //.style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+        .style('fill', function(d, i, j){ return line_color(used_data[j].term); })
+        .style('opacity', 0);
 
     wordCircle.enter().append('circle')
         .attr('class', 'wordcircle')
         .attr('cx', function(d){ return line_x(d.year)})
         .attr('cy', function(d){ return line_y(d.count)})
         .attr('r', 3)
-        .style('fill', 'none');
-        //.style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+        .style('fill', function(d, i, j){ return line_color(used_data[j].term); })
+        .style('opacity', 0);
 
     wordCircle
         .on('mouseover', function(d,i,j){
-            d3.select(this).transition().duration(600).attr('r', 8);
+            d3.select(this).transition().duration(600)
+              .attr('r', 8).style('opacity', 1);
           var the_headline = showHeadlines(headlinesData, used_data[j].term, d.year);
             div.transition()
               .duration(500)
               .style('opacity', .6);
             div.html(the_headline)
-              .style('left', '250px')
+              .style('left', '300px')
               .style('top', '75px');
               //.style('left', (d3.event.pageX) + 10 + "px")
               //.style('top', (d3.event.pageY) + 2 + "px")
               //.style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
-            d3.select(this).transition().duration(600).attr('r', 3);
+            d3.select(this).transition().duration(600)
+              .attr('r', 3).style('opacity', 0);
             div.transition()
               .duration(500)
               .style('opacity', 0);
