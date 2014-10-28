@@ -15,6 +15,7 @@ function showHeadlines(word){
   //if tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
   */
   d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv", function(error, data){
+    
     list = [];
     theLength = d3.selectAll('.term_label')[0].length;
     for (i=0; i<theLength; i++){
@@ -166,6 +167,43 @@ function updateData(frm){
       .attr('d', function(d){ return line(d.values); })
       .style('stroke', function(d){ return line_color(d.term); });
 
+    var wordCircle = wordsCircles.selectAll('.wordcircle')
+        .data(function(d){ return d.values; });
+
+    wordCircle.transition().duration(750)
+        .attr('class', 'wordcircle')
+        .attr('cx', function(d){ return line_x(d.year)})
+        .attr('cy', function(d){ return line_y(d.count)})
+        .attr('r', 3)
+        .style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+
+    wordCircle.enter().append('circle')
+        .attr('class', 'wordcircle')
+        .attr('cx', function(d){ return line_x(d.year)})
+        .attr('cy', function(d){ return line_y(d.count)})
+        .attr('r', 3)
+        .style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+
+    wordCircle
+        .on('mouseover', function(d,i,j){
+          the_headline = showHeadlines(used_data[j].term);
+          console.log(the_headline);
+            div.transition()
+              .duration(200)
+              .style('opacity', .9);
+            div.html(the_headline)
+              .style('left', (d3.event.pageX) + 10 + "px")
+              .style('top', (d3.event.pageY) + 2 + "px")
+              .style('color', line_color(used_data[j].term));
+        })
+        .on('mouseout', function(d){
+            div.transition()
+              .duration(500)
+              .style('opacity', 0);
+        });
+
+        wordCircle.exit().remove();
+
   });
 };
 
@@ -285,14 +323,14 @@ function createChart(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          the_headline = showHeadlines(used_data[j].term)
+          the_headline = showHeadlines(used_data[j].term);
           console.log(the_headline);
             div.transition()
               .duration(200)
               .style('opacity', .9);
             div.html(the_headline)
               .style('left', (d3.event.pageX) + 10 + "px")
-              .style('top', (d3.event.pageY) - 10 + "px")
+              .style('top', (d3.event.pageY) + 2 + "px")
               .style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
@@ -300,6 +338,8 @@ function createChart(frm){
               .duration(500)
               .style('opacity', 0);
         });
+
+        wordCircle.exit().remove();
   });
 
 
