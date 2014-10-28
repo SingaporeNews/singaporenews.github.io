@@ -169,8 +169,8 @@ function updateData(frm){
               .duration(500)
               .style('opacity', .6);
             div.html(the_headline)
-              .style('left', '400px')
-              .style('top', '200px')
+              .style('left', '450px')
+              .style('top', '100px')
               .style('cursor', 'pointer');
               //.style('left', (d3.event.pageX) + 10 + "px")
               //.style('top', (d3.event.pageY) + 2 + "px")
