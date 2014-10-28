@@ -2,6 +2,10 @@
 var search_list = [];
 var datearray = [];
 
+var div = d3.select('#line_chart').append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
+
 
 function showHeadlines(){
 
@@ -25,8 +29,6 @@ function showHeadlines(){
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline = data[random_number].headlineCol;
     headline_year = data[random_number].yearCol;
-    console.log(Math.floor((Math.random()*data.length) + 1));
-    console.log(headline);
     
 
     line_svg.append('text')
@@ -41,7 +43,6 @@ function showHeadlines(){
       .style("fill", "#000")
       .style('font', "Lucida Sans Typewriter")
       .text(headline_year + ": " + headline);
-
     
 
   })
@@ -257,6 +258,39 @@ function createChart(frm){
     termsLines
       .attr('d', function(d){ return line(d.values); })
       .style('stroke', function(d){ return line_color(d.term); });
+
+    var wordsCircles = line_svg.selectAll('.circles')
+        .data(used_data);
+
+    wordsCircles.enter().append('g').attr('class', 'circles');
+
+    wordsCircles.exit().remove();
+
+    var wordCircle = wordsCircles.selectAll('.wordcircle')
+        .data(function(d){ return d.values; });
+
+    wordCircle.enter().append('circle')
+        .attr('class', 'wordcircle')
+        .attr('cx', function(d){ return line_x(d.year)})
+        .attr('cy', function(d){ return line_y(d.count)})
+        .attr('r', 3)
+        .style('fill', function(d, i, j){ return line_color(used_data[j].term); });
+
+    wordCircle
+        .on('mouseover', function(d,i,j){
+            div.transition()
+              .duration(200)
+              .style('opacity', .9);
+              div.html(used_data[j].term)
+              .style('left', (d3.event.pageX) - 300 + "px")
+              .style('top', (d3.event.pageY) - 400 + "px")
+              .style('color', line_color(used_data[j].term));
+        })
+        .on('mouseout', function(d){
+            div.transition()
+              .duration(500)
+              .style('opacity', 0);
+        });
   });
 
 
