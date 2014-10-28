@@ -6,7 +6,6 @@ var datearray = [];
 
 
 function showHeadlines(word){
-  console.log(word);
 
   /*
   line_svg.selectAll('.headline')
@@ -33,7 +32,7 @@ function showHeadlines(word){
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline = data[random_number].headlineCol;
     headline_year = data[random_number].yearCol;
-    console.log(typeof headline);
+    //console.log(typeof headline);
     return headline;
 
     /*
