@@ -2,53 +2,22 @@
 var search_list = [];
 var datearray = [];
 
+var selectedHeadline = null
+d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv",
+  function(error, data){
 
+  })
 
-
-var myheadline = function showHeadlines(word){
-
-  /*
-  line_svg.selectAll('.headline')
-      .transition()
-      .remove();
-
-  //if tempdata = x.filter(function(d){ return d.wordCol == key[i]; });
-  */
-  d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv", function(error, data){
-    
-    list = [];
-    theLength = d3.selectAll('.term_label')[0].length;
-    for (i=0; i<theLength; i++){
-      list.push(d3.selectAll('.term_label')[0][i].innerHTML);
-    }
+function getHeadlinesData
+function showHeadlines(data, word){
 
     var data = data.filter(function(d){ return d.wordCol == word; });
     
-    /* 
-    data = $.map(data, function(element){
-      return ($.inArray(element.wordCol,list)>-1?element:null)
-    });
-    */
     random_number = Math.floor((Math.random()*data.length) + 1)
     var headline = data[random_number].headlineCol;
     headline_year = data[random_number].yearCol;
-    //console.log(typeof headline);
-    return headline;
 
-    /*
-    line_svg.append('text')
-      .transition()
-      .duration(1000)
-      .attr("x", width/2)
-      .attr("y", 50)
-      .attr('class', 'headline')
-      .style("text-anchor", "middle")
-      .style("font-size", "16px")
-      .style('opacity', '.5')
-      .style("fill", "#000")
-      .style('font', "Lucida Sans Typewriter")
-      .text(headline_year + ": " + headline);
-    */
+    return headline;
 
   });
 }
@@ -56,6 +25,10 @@ var myheadline = function showHeadlines(word){
 function updateData(frm){
   search_list.push(frm.toLowerCase());
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
+    d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv",
+      function(error, headlinesData){
+
+        var headlinesData = headlinesData;
     
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
@@ -198,8 +171,7 @@ function updateData(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
-          //var the_headline = showHeadlines(used_data[j].term);
-          console.log(myheadline(used_data[j].term));
+          var the_headline = showHeadlines(headlinesData, used_data[j].term);
             div.transition()
               .duration(200)
               .style('opacity', .9);
@@ -216,6 +188,7 @@ function updateData(frm){
 
         wordCircle.exit().remove();
 
+    });
   });
 };
 
