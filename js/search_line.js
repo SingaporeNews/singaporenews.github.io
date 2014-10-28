@@ -164,19 +164,20 @@ function updateData(frm){
 
     wordCircle
         .on('mouseover', function(d,i,j){
+            d3.select(this).transition().duration(400).attr('r', 6);
           var the_headline = showHeadlines(headlinesData, used_data[j].term, d.year);
             div.transition()
               .duration(500)
               .style('opacity', .6);
             div.html(the_headline)
               .style('left', '250px')
-              .style('top', '75px')
-              .style('cursor', 'pointer');
+              .style('top', '75px');
               //.style('left', (d3.event.pageX) + 10 + "px")
               //.style('top', (d3.event.pageY) + 2 + "px")
               //.style('color', line_color(used_data[j].term));
         })
         .on('mouseout', function(d){
+            d3.select(this).transition().duration(400).attr('r', 3);
             div.transition()
               .duration(500)
               .style('opacity', 0);
