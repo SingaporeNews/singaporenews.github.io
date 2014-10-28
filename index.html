@@ -23,6 +23,12 @@
     <![endif]-->
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="http://singaporenews.github.io/js/search_line.js"></script>
+    <script>
+      function revealExplore(){
+        $('#learn').hide();
+        $('#explore').hide();
+      }
+    </script>
 
   </head>
 
@@ -39,7 +45,7 @@
               <h3 class="masthead-brand">The Singapore News Story</h3>
               <ul class="nav masthead-nav">
                 <li class="active"><a href="#">Learn</a></li>
-                <li><a href="#">Explore</a></li>
+                <li><a href="#" onclick="revealExplore();">Explore</a></li>
                 <li><a href="#">Contact</a></li>
               </ul>
             </div>
