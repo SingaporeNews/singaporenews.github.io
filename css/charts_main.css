@@ -42,6 +42,15 @@ div.tooltip {
   pointer-events: none;         
 }
 
+div.chart_div {
+  position: absolute;
+  text-align: center;
+  width: 400px;
+  height: 540px;
+  padding: 2px;
+  font: 12px;
+}
+
 /* Links */
 a,
 a:focus,
