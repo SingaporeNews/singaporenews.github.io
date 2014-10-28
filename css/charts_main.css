@@ -14,7 +14,9 @@
       fill: none;
       stroke-width: 1.5px;
     }
-
+.axis text {
+  color: rgba(94,95,89,.75);
+}
 .scrollable-menu {
     height: auto;
     max-height: 200px;
