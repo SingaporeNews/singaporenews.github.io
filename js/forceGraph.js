@@ -6,7 +6,7 @@ var color = d3.scale.category20();
 var force = d3.layout.force()
     .charge(-120)
     .linkDistance(250)
-    .friction(0.5)
+    .friction(0.9)
     .size([width, height]);
 
 var forceSvg = d3.select("div#chord_chart").append("svg")
@@ -28,7 +28,7 @@ var node_drag = d3.behavior.drag()
     }
     function dragend(d, i) {
         d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
-        force.friction(0.5).resume();
+        force.friction(0.9).resume();
     }
     function releasenode(d) {
         d.fixed = false; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
