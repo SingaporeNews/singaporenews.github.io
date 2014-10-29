@@ -6,6 +6,7 @@ var color = d3.scale.category20();
 var force = d3.layout.force()
     .charge(-120)
     .linkDistance(250)
+    .friction(0.5)
     .size([width, height]);
 
 var forceSvg = d3.select("div#chord_chart").append("svg")
