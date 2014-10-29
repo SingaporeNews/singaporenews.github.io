@@ -56,6 +56,7 @@ function updateData(frm){
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
+        console.log(headlinesData);
     
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
