@@ -36,6 +36,14 @@
         $('#li_learn').toggleClass();
         $('#li_explore').toggleClass();
       }
+      function revealContext(){
+        $('#context').show();
+        $('#explore').hide();
+        $('#learn').hide();
+        $('#li_context').toggleClass('active');
+        $('#li_learn').toggleClass();
+        $('#li_explore').toggleClass();
+      }
     </script>
 
   </head>
@@ -262,6 +270,14 @@
             </div>
 
           </div>
+
+          <div id="context" style="display:none">
+            <div class="row">
+              <div class="col-md-12" id="chord_chart"></div>
+              
+            </div>
+
+          </div>
           <!--</div>-->
 
           <!--
@@ -274,7 +290,7 @@
               <ul class="nav masthead-nav">
                 <li class="active" id="li_learn"><a href="#" onclick="revealLearn();">Learn</a></li>
                 <li id="li_explore"><a href="#" onclick="revealExplore();">Explore</a></li>
-                <li><a href="#">Contact</a></li>
+                <li id="li_context"><a href="#" onclick="revealContext();">Context</a></li>
               </ul>
             </div>
           </div>
@@ -295,28 +311,8 @@
         frm.term.value = ""
       };
 
-      var margin = {top: 20, right: 20, bottom: 30, left: 140},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+      
 
-      var line_x = d3.scale.ordinal()
-                .rangeRoundBands([0, width]);
-
-      var line_y = d3.scale.linear()
-                .range([height, 0]);
-
-      var line = d3.svg.line()
-            .x(function(d){ return line_x(d.year); })
-            .y(function(d){ return line_y(d.count); });
-
-      var line_color = d3.scale.category10();
-
-      var line_svg = d3.select('div#line_chart').append('svg')
-                  .attr("width", width + margin.left + margin.right + margin.right)
-                  .attr("height", height + margin.top + margin.bottom*2)
-                  .attr('class', 'line_svg')
-                .append('g')
-                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       createChart('singapore');
       //setInterval('showHeadlines()', 5000);
