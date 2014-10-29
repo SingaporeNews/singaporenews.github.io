@@ -39,7 +39,7 @@ d3.json("newsGraph.json", function(error, graph) {
   console.log(new_graph);
   drawGraph(graph, selectedData1, selectedData3);
 
-  function drawGraph(graph, nodes){
+  function drawGraph(graph, nodes, links){
     console.log(nodes);
     force
       .nodes(graph.nodes)
