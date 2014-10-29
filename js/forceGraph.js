@@ -43,6 +43,16 @@ var node_drag = d3.behavior.drag()
     };
 
 d3.csv("cooccurrenceMatrixData.csv", function(data){
+
+  totallist = [];
+  for (i=0; i<data.length; i++){
+    if ($.inArray(data[i].word1, totallist) < 0){
+      totallist.push(data[i].word1);
+    }
+    if ($.inArray(data[i].word2, totallist) < 0){
+      totallist.push(data[i].word2);
+    }
+  }
   
   selectedList = ['pm','school','mandarin','up','chinese','strike','new',
   'bomb','blast','attack','die'];
@@ -81,11 +91,11 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
 
   };
   var term_label = forceListSvg.selectAll('.force_item')
-        .data(entrylist)
+        .data(totallist)
         .enter()
       .append('text')
         .attr('class', 'force_item')
-        .attr("x", 10)
+        .attr("x", 50)
         .attr("y", function(d,i){ return i+1+"em"; })
         .style("text-anchor", "middle")
         .style("font-size", "15px")
