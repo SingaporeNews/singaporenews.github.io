@@ -54,7 +54,7 @@ d3.json("newsGraph.json", function(error, graph) {
         .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
 
     var link = forceSvg.selectAll(".link")
-        .data(links)
+        .data(graph.links)
       .enter().append("line")
         .attr("class", "link")
         .style('stroke-width', 1)
@@ -62,7 +62,7 @@ d3.json("newsGraph.json", function(error, graph) {
         //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
     var node = forceSvg.selectAll(".node")
-        .data(nodes)
+        .data(graph.nodes)
       .enter().append("circle")
         .attr("class", "node")
         .attr("r", 5)
