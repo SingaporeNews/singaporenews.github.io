@@ -43,7 +43,7 @@ function showHeadlines(data, word, year){
   console.log(year);
 
     var data = data.filter(function(d){ return d.wordCol == word; });
-    data = data.filter(function(d){ return d.yearCol == year; });
+    data = data.filter(function(d){ return d.yearCol === year; });
     
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline_year = data[random_number].yearCol;
