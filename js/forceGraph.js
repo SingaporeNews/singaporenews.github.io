@@ -67,7 +67,8 @@ d3.json("newsGraph.json", function(error, graph) {
         .attr("class", "node")
         .attr("r", 5)
         .style("fill", function(d) { return color(d.group); })
-        .call(force.drag);
+        .call(force.drag)
+        .on('dblclick', connectedNodes);
 
     node.append("title")
         .text(function(d) { return d.name; });
@@ -82,6 +83,31 @@ d3.json("newsGraph.json", function(error, graph) {
           .attr("cy", function(d) { return d.y; });
     });
   }
+
+  function connectedNodes() {
+
+    if (toggle == 0) {
+        //Reduce the opacity of all but the neighbouring nodes
+        d = d3.select(this).node().__data__;
+        node.style("opacity", function (o) {
+            return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+        });
+        
+        link.style("opacity", function (o) {
+            return d.index==o.source.index | d.index==o.target.index ? 1 : 0.1;
+        });
+        
+        //Reduce the op
+        
+        toggle = 1;
+    } else {
+        //Put them back to opacity=1
+        node.style("opacity", 1);
+        link.style("opacity", 1);
+        toggle = 0;
+    }
+
+}
 
 });
     
