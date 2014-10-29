@@ -52,7 +52,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
   data.forEach(function(d) {
     d.word1 = word(d.word1);
     d.word2 = word(d.word2);
-    d.word2.size = d.size;
+    //d.word2.size = d.size;
     d.valueOf = value; // convert object to number implicitly
   });
 
@@ -86,8 +86,8 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
         .data(layout.chords)
       .enter().append("svg:path")
         .attr("class", "chord")
-        .style("fill", function(d) { return fill(d.source.value.size); })
-        .style("stroke", function(d) { return d3.rgb(fill(d.source.value.size)).darker(); })
+        .style("fill", function(d) { return 'blue' })
+        .style("stroke", function(d) { return '#000'; })
         .attr("d", chord)
       .append("svg:title")
         .text(function(d) { return d.source.value.word2.name + " owes " + d.source.value.word1.name + " $" + d.source.value + "B."; });
@@ -100,7 +100,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
     // Add the group arc.
     g.append("svg:path")
-        .style("fill", function(d) { return fill(array[d.index].size); })
+        .style("fill", function(d) { return 'blue'; })
         .attr("id", function(d, i) { return "group" + d.index + "-" + j; })
         .attr("d", arc)
       .append("svg:title")
@@ -127,6 +127,6 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
   // Converts a debit object to its primitive numeric value.
   function value() {
-    return +this.amount;
+    return +this.size;
   }
 });
