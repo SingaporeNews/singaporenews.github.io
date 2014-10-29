@@ -39,6 +39,7 @@ var node_drag = d3.behavior.drag()
     };
 
 d3.csv("cooccurrenceMatrixData.csv", function(data){
+  /*
   selectedList = ['pm','school','mandarin','character','chinese','language','new'];
   data1 = $.map(data, function(element){
     return ($.inArray(element.word1,selectedList)>-1?element:null);
@@ -46,6 +47,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
   data = $.map(data1, function(element){
     return ($.inArray(element.word2,selectedList)>-1?element:null);
   });
+  */
 
   graphDict = {};
   graphDict['nodes'] = [];
