@@ -49,7 +49,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
   selectedData = [];
 
   $.map(data, function(element){
-      selectedData.push(return ($.inArray(element.word1,list)>-1?element:null));
+      selectedData.push(($.inArray(element.word1,list)>-1?element:null));
     });
   $.map(data, function(element){
       selectedData.push(($.inArray(element.word2,list)>-1?element:null));
