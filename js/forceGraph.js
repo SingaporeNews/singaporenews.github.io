@@ -163,8 +163,6 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         .attr("class", "node")
         .attr("r", 5)
         .style("fill", function(d) { return color(d.group); })
-        .on('dblclick', releasenode)
-        .on('click', connectedNodes)
         .call(node_drag);
 
       node.exit().remove();
