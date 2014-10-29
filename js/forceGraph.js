@@ -22,6 +22,7 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData2 = $.map(testGraph.links, function(element){
       return ($.inArray(element.source,selectedList)>-1?element:null);
     });
+  console.log(selectedData2);
 
   selectedData3 = $.map(selectedData2, function(element){
       return ($.inArray(element.target,selectedList)>-1?element:null);
