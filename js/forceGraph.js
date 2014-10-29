@@ -105,7 +105,7 @@ function drawGraph(selectedList){
           .append('text')
             .attr('class', 'force_item')
             .attr("x", 50)
-            .attr("y", function(d,i){ return i+ 10; })
+            .attr("y", function(d,i){ return i+50; })
             .style("text-anchor", "middle")
             .style("font-size", "15px")
             .style("fill", "#53565A")
