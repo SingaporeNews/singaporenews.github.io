@@ -22,7 +22,7 @@ d3.json("newsGraph.json", function(error, graph) {
       .data(graph.links)
     .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return d.value; });
+      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
   var node = forceSvg.selectAll(".node")
       .data(graph.nodes)
