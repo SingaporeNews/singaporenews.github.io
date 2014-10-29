@@ -92,7 +92,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
       graphDict['links'].push(dict);
     };
     return graphDict;
-  }
+  };
   
 
   var term_label = forceListSvg.selectAll('.force_item')
@@ -207,15 +207,12 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
       node.attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; });
     });
+  
 
-/*
-    var k = 0;
-    while ((force.alpha() > 1e-2) && (k < 150)) {
-        force.tick(),
-        k = k + 1;
-    }
-*/
-    //Toggle stores whether the highlighting is on
+});
+
+
+  //Toggle stores whether the highlighting is on
   var toggle = 0;
 
   //Create an array logging what is connected to what
@@ -254,11 +251,22 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         link.style("opacity", 1);
         toggle = 0;
     }
-
-  }
   }
 
-});
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 d3.json("newsGraph.json", function(error, graph) {
