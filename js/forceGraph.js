@@ -154,6 +154,8 @@ function drawGraph(selectedList){
             .style('stroke', function(d){ return fill(d.value); });
             //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
+        link.exit().remove();
+
         var node = forceSvg.selectAll(".node")
             .data(graph.nodes);
 
@@ -190,6 +192,8 @@ function drawGraph(selectedList){
             });
         node.append("title")
             .text(function(d) { return d.name; });
+
+        node.exit().remove();
 
         force.on("tick", function() {
           link.attr("x1", function(d) { return d.source.x; })
