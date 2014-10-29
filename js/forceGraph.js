@@ -118,7 +118,7 @@ function drawGraph(selectedList){
             if ($.inArray(d, selectedList) < 0){
               selectedList.push(d);
               drawGraph(selectedList);
-              d3.select(this).style('fill', '#00441b') 
+              d3.select(this).style('fill', 'rgb(31, 119, 180)') 
             }
             else {
               selectedList = selectedList.filter(function(e){ return e != d; });
