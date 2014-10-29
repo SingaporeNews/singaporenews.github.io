@@ -111,7 +111,7 @@ function drawGraph(selectedList){
             .duration(750)
             //.style('fill', function(d){ return line_color(d.term); })
             .text(function(d){ return d; })
-            .on('click', function(d){ console.log(d)});
+            .on('click', function(d){ return console.log(d); });
 
       //data = prepData(selectedList);
     
