@@ -53,43 +53,48 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
       totallist.push(data[i].word2);
     }
   }
-  
   selectedList = ['pm','school','mandarin','up','chinese','strike','new',
-  'bomb','blast','attack','die'];
-  data1 = $.map(data, function(element){
-    return ($.inArray(element.word1,selectedList)>-1?element:null);
-  });
-  data = $.map(data1, function(element){
-    return ($.inArray(element.word2,selectedList)>-1?element:null);
-  });
+    'bomb','blast','attack','die'];
+
+  function prepData(selectedList){
+
+    data1 = $.map(data, function(element){
+      return ($.inArray(element.word1,selectedList)>-1?element:null);
+    });
+    data = $.map(data1, function(element){
+      return ($.inArray(element.word2,selectedList)>-1?element:null);
+    });
 
 
-  graphDict = {};
-  graphDict['nodes'] = [];
-  graphDict['links'] = [];
-  entrylist = [];
-  for (i=0; i<data.length; i++){
-    if ($.inArray(data[i].word1, entrylist) < 0){
+    graphDict = {};
+    graphDict['nodes'] = [];
+    graphDict['links'] = [];
+    entrylist = [];
+    for (i=0; i<data.length; i++){
+      if ($.inArray(data[i].word1, entrylist) < 0){
+        dict = {};
+        dict['name'] = data[i].word1
+        dict['group'] = 0
+        graphDict['nodes'].push(dict)
+        entrylist.push(data[i].word1);
+      };
+      if ($.inArray(data[i].word2, entrylist) < 0){
+        dict = {};
+        dict['name'] = data[i].word2
+        dict['group'] = 0
+        graphDict['nodes'].push(dict)
+        entrylist.push(data[i].word2);
+      };
       dict = {};
-      dict['name'] = data[i].word1
-      dict['group'] = 0
-      graphDict['nodes'].push(dict)
-      entrylist.push(data[i].word1);
+      dict['source'] = entrylist.indexOf(data[i].word1);
+      dict['target'] = entrylist.indexOf(data[i].word2);
+      dict['value'] = +data[i].size
+      graphDict['links'].push(dict);
     };
-    if ($.inArray(data[i].word2, entrylist) < 0){
-      dict = {};
-      dict['name'] = data[i].word2
-      dict['group'] = 0
-      graphDict['nodes'].push(dict)
-      entrylist.push(data[i].word2);
-    };
-    dict = {};
-    dict['source'] = entrylist.indexOf(data[i].word1);
-    dict['target'] = entrylist.indexOf(data[i].word2);
-    dict['value'] = +data[i].size
-    graphDict['links'].push(dict);
+    return graphDict;
+  }
+  
 
-  };
   var term_label = forceListSvg.selectAll('.force_item')
         .data(totallist)
         .enter()
@@ -105,7 +110,10 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         //.style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d; });
 
-  drawGraph(graphDict);
+  term_label
+        .on('click', )
+
+  drawGraph(prepData(selectedList));
 
   function drawGraph(graph){
     force
@@ -126,15 +134,26 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
             .style('opacity', 0);
 
     var link = forceSvg.selectAll(".link")
-        .data(graph.links)
+        .data(graph.links);
+
+    link
       .enter().append("line")
         .attr("class", "link")
         .style('stroke-width', 1)
         .style('stroke', function(d){ return fill(d.value); });
         //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
+    link
+      .transition()
+      .duration(400)
+      .attr("class", "link")
+      .style('stroke-width', 1)
+      .style('stroke', function(d){ return fill(d.value); });
+
     var node = forceSvg.selectAll(".node")
-        .data(graph.nodes)
+        .data(graph.nodes);
+
+    node
       .enter().append("circle")
         .attr("class", "node")
         .attr("r", 5)
@@ -143,6 +162,16 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         .on('click', connectedNodes)
         .call(node_drag);
         //.call(force.drag);
+
+    node
+      .transition()
+      .duration(400)
+      .attr("class", "node")
+      .attr("r", 5)
+      .style("fill", function(d) { return color(d.group); })
+      .on('dblclick', releasenode)
+      .on('click', connectedNodes)
+      .call(node_drag);
 
     node
         .on('mouseover', function(d,i,j){
