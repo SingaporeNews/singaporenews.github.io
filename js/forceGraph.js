@@ -18,7 +18,7 @@ var forceListSvg = d3.select('div#force_list').append('svg')
     .attr('width', 200)
     .attr('height', 500)
     .append('g')
-      .attr("transform", "translate(," + margin.top + ")");;
+      .attr("transform", "translate(" + 0 + "," + margin.top + ")");;
 
 var node_drag = d3.behavior.drag()
     .on("dragstart", dragstart)
@@ -85,7 +85,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         .enter()
       .append('text')
         .attr('class', 'force_item')
-        .attr("x", 100)
+        .attr("x", 10)
         .attr("y", function(d,i){ return i+1+"em"; })
         .style("text-anchor", "middle")
         .style("font-size", "15px")
