@@ -16,23 +16,23 @@ d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
   console.log(testGraph);
 
-  selectedList = [0,3,4,50,60,75,18,28,29,40,41,42,43];
+  selectedList = ['strike','police','china','labor','union'];
   selectedData1 = $.map(testGraph.nodes, function(element){
-      return ($.inArray(element.id,selectedList)>-1?element:null);
+      return ($.inArray(element.name,selectedList)>-1?element:null);
     });
   
   selectedData2 = $.map(testGraph.links, function(element){
-      return ($.inArray(element.source,selectedList)>-1?element:null);
+      return ($.inArray(element.name1,selectedList)>-1?element:null);
     });
   console.log(selectedData2);
 
   selectedData3 = $.map(selectedData2, function(element){
-      return ($.inArray(element.target,selectedList)>-1?element:null);
+      return ($.inArray(element.name2,selectedList)>-1?element:null);
     });
   selectedData3 = selectedData3.filter(function(d){ return d.source != null; });
   console.log(selectedData2[3].source);
   new_graph = {};
-  new_graph['nodes'] = graph.nodes;
+  new_graph['nodes'] = selectedData1;
   new_graph['links'] = selectedData3;
   
   
