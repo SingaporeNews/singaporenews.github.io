@@ -5,8 +5,8 @@ var margin = {top: 20, right: 20, bottom: 30, left: 140},
 var color = d3.scale.category20();
 
 var force = d3.layout.force()
-    .charge(-80)
-    .linkDistance(200)
+    .charge(-120)
+    .linkDistance(250)
     .friction(0.9)
     .size([width, height]);
 
