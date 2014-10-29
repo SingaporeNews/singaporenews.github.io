@@ -46,7 +46,35 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
   data = $.map(data1, function(element){
     return ($.inArray(element.word2,selectedList)>-1?element:null);
   });
-  console.log(data);
+
+  graphDict = {};
+  graphDict['nodes'] = [];
+  graphDict['links'] = [];
+  entrylist = [];
+  for (i=0; i<data.length; i++){
+    if ($.inArray(data[i].word1, entrylist) < 0){
+      dict = {};
+      dict['name'] = data[i].word1
+      dict['group'] = 0
+      graphDict['nodes'].append(dict)
+      entrylist.append(data[i].word1);
+    };
+    if ($.inArray(data[i].word2, entrylist) < 0){
+      dict = {};
+      dict['name'] = data[i].word2
+      dict['group'] = 0
+      graphDict['nodes'].append(dict)
+      entrylist.append(data[i].word2);
+    };
+    dict = {};
+    dict['source'] = entrylist.indexOf(data[i].word1);
+    dict['target'] = entrylist.indexOf(data[i].word2);
+    dict['value'] = +data[i].size
+    graphDict['links'].append(dict);
+
+  };
+
+  consoel.log(graphDict);
 
 });
 
