@@ -18,7 +18,7 @@ var forceListSvg = d3.select('div#force_list').append('svg')
     .attr('width', 200)
     .attr('height', 500)
     .append('g')
-      .attr("transform", "translate(" + 0 + "," + margin.top + ")");;
+      .attr("transform", "translate(" + margin.right + "," + margin.top + ")");;
 
 var node_drag = d3.behavior.drag()
     .on("dragstart", dragstart)
