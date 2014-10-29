@@ -105,7 +105,7 @@ function drawGraph(selectedList){
           .append('text')
             .attr('class', 'force_item')
             .attr("x", 50)
-            .attr("y", function(d,i){ return i+"9.5px"; })
+            .attr("y", function(d,i){ return i+"10px"; })
             .style("text-anchor", "middle")
             .style("font-size", "15px")
             .style("fill", "#53565A")
@@ -114,7 +114,9 @@ function drawGraph(selectedList){
             //.style('fill', function(d){ return line_color(d.term); })
             .text(function(d){ return d; });
 
-    term_label.on('click', function(d){ return console.log(d); });
+    term_label.on('click', function(d){
+            selectedList.push(d);
+            drawGraph(selectedList); });
 
       //data = prepData(selectedList);
     
