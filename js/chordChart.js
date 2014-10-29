@@ -47,7 +47,7 @@ var chordSvg = d3.select("div#chord_chart").selectAll("div")
 // Load our data file…
 d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
-  selectedList = ['strike','workers','red','reds','talks','talk','jobs']
+  selectedList = ['strike','workers','worker','red','reds','talks','talk','jobs','air']
 
   selectedData1 = $.map(data, function(element){
       return ($.inArray(element.word1,selectedList)>-1?element:null);
