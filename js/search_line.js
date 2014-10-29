@@ -38,6 +38,8 @@ createChart('singapore', search_list);
 var datearray = [];
 
 function showHeadlines(data, word, year){
+  console.log(word);
+  console.log(year);
 
     var data = data.filter(function(d){ return d.wordCol == word; });
     data = data.filter(function(d){ return d.yearCol == year; });
