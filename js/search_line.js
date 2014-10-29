@@ -229,7 +229,7 @@ function updateData(frm){
 
 function createChart(frm, search_list){
   search_list.push(frm);
-  d3.csv("http://singaporenews.github.io/Words_all_headlines_29oct.csv", function(error, data){
+  d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
 
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
