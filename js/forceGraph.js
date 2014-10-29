@@ -83,6 +83,22 @@ d3.json("newsGraph.json", function(error, graph) {
           .attr("cy", function(d) { return d.y; });
     });
   }
+  //Toggle stores whether the highlighting is on
+  var toggle = 0;
+
+  //Create an array logging what is connected to what
+  var linkedByIndex = {};
+  for (i = 0; i < graph.nodes.length; i++) {
+      linkedByIndex[i + "," + i] = 1;
+  };
+  graph.links.forEach(function (d) {
+      linkedByIndex[d.source.index + "," + d.target.index] = 1;
+  });
+
+  //This function looks up whether a pair are neighbours  
+  function neighboring(a, b) {
+      return linkedByIndex[a.index + "," + b.index];
+  }
 
   function connectedNodes() {
 
