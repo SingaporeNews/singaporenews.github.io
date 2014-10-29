@@ -92,8 +92,8 @@ d3.json("newsGraph.json", function(error, graph) {
         .attr("class", "node")
         .attr("r", 5)
         .style("fill", function(d) { return color(d.group); })
-        .on('click', releasenode)
-        .on('dblclick', connectedNodes)
+        .on('dblclick', releasenode)
+        .on('click', connectedNodes)
         .call(node_drag);
         //.call(force.drag);
 
