@@ -32,19 +32,19 @@ d3.json("newsGraph.json", function(error, graph) {
   graph = new_graph;
 
   force
-      .nodes(graph.nodes)
-      .links(graph.links)
+      .nodes(new_graph.nodes)
+      .links(new_graph.links)
       .start();
 
-  var graphMin = d3.min(graph.links, function(d){ return d.size; });
-  var graphMax = d3.max(graph.links, function(d){ return d.size; });
+  var graphMin = d3.min(new_graph.links, function(d){ return d.size; });
+  var graphMax = d3.max(new_graph.links, function(d){ return d.size; });
 
   var fill = d3.scale.ordinal()
       .domain([graphMin, graphMax])
       .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
 
   var link = forceSvg.selectAll(".link")
-      .data(selectedData3)
+      .data(new_graph.links)
     .enter().append("line")
       .attr("class", "link")
       .style('stroke-width', 1)
@@ -52,7 +52,7 @@ d3.json("newsGraph.json", function(error, graph) {
       //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
   var node = forceSvg.selectAll(".node")
-      .data(selectedData1)
+      .data(new_graph.nodes)
     .enter().append("circle")
       .attr("class", "node")
       .attr("r", 5)
