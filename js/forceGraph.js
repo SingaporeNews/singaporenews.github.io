@@ -42,8 +42,7 @@ var node_drag = d3.behavior.drag()
         //force.resume();
     };
 
-var selectedList = ['pm','school','mandarin','up','chinese','strike','new',
-      'bomb','blast','attack','die'];
+var selectedList = [];
 
 drawGraph(selectedList);
 
