@@ -16,10 +16,10 @@ d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
 
   selectedList = [0,10,2,3,4,50,60,75,18];
-  selectedData1 = $.map(graph.nodes, function(element){
+  selectedData1 = $.map(testGraph.nodes, function(element){
       return ($.inArray(element.id,selectedList)>-1?element:null);
     });
-  selectedData2 = $.map(graph.links, function(element){
+  selectedData2 = $.map(testGraph.links, function(element){
       return ($.inArray(element.source,selectedList)>-1?element:null);
     });
 
