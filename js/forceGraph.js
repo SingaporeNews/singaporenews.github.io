@@ -31,12 +31,13 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData3 = $.map(selectedData2, function(element){
       return ($.inArray(element.target,selectedList)>-1?element:null);
     });
+  selectedData3 = selectedData3.filter(function(d){ return typeof d.source != undefined });
   console.log(selectedData3);
   new_graph = {};
   new_graph['nodes'] = selectedData1;
   new_graph['links'] = selectedData3;
   
-  new_graph = new_graph['links'].filter(function(d){ return typeof d.source != undefined });
+  
   console.log(new_graph);
   drawGraph(new_graph);
 
