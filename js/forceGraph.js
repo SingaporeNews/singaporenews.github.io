@@ -96,7 +96,8 @@ d3.json("newsGraph.json", function(error, graph) {
 
     var fill = d3.scale.ordinal()
         .domain([graphMin, graphMax])
-        .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
+        .range(["#f7fcfd","#e5f5f9","#ccece6","#99d8c9","#66c2a4",
+          "#41ae76","#238b45","#006d2c","#00441b"]);
 
     var div = d3.select('div#chord_chart').append('div')
             .attr('class', 'tooltip')
