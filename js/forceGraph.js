@@ -32,7 +32,7 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData3 = selectedData3.filter(function(d){ return d.source != null; });
   console.log(selectedData2[3].source);
   new_graph = {};
-  new_graph['nodes'] = selectedData1;
+  new_graph['nodes'] = graph.nodes;
   new_graph['links'] = selectedData3;
   
   
