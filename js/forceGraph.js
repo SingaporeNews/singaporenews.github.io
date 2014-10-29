@@ -8,9 +8,6 @@ var force = d3.layout.force()
     .linkDistance(200)
     .size([width, height]);
 
-var fill = d3.scale.ordinal()
-    .domain([min])
-
 var forceSvg = d3.select("div#chord_chart").append("svg")
     .attr("width", width)
     .attr("height", height);
