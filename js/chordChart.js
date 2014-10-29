@@ -47,7 +47,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
   //selectedList = ['strike','workers','red','reds','talks','talk','jobs',''
 
-  data = data.filter(function(d){ return d.size > 50; });
+  data = data.filter(function(d){ return d.size > 300; });
   var words = {},
       array = [],
       n = 0;
@@ -57,6 +57,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
     d.word1 = word(d.word1);
     d.word2 = word(d.word2);
     //d.word2.size = d.size;
+    d.size = 
     d.valueOf = value; // convert object to number implicitly
   });
 
