@@ -5,8 +5,11 @@ var color = d3.scale.category20();
 
 var force = d3.layout.force()
     .charge(-120)
-    .linkDistance(100)
+    .linkDistance(200)
     .size([width, height]);
+
+var fill = d3.scale.ordinal()
+    .domain([min])
 
 var forceSvg = d3.select("div#chord_chart").append("svg")
     .attr("width", width)
@@ -18,11 +21,20 @@ d3.json("newsGraph.json", function(error, graph) {
       .links(graph.links)
       .start();
 
+  var graphMin = d3.min(graph.links, function(d){ return d.size; });
+  var graphMax = d3.max(graph.links, function(d){ return d.size; });
+
+  var fill = d3.scale.ordinal()
+      .domain([graphMin, graphMax])
+      .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
+
   var link = forceSvg.selectAll(".link")
       .data(graph.links)
     .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .style('stroke-width', 1)
+      .style('stroke', function(d){ return fill(d.value); })
+      //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
   var node = forceSvg.selectAll(".node")
       .data(graph.nodes)
