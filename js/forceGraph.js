@@ -98,7 +98,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         .attr("x", 50)
         .attr("y", function(d,i){ return i+"15px"; })
         .style("text-anchor", "middle")
-        .style("font-size", "15px")
+        .style("font-size", "5px")
         .style("fill", "#53565A")
         .transition()
         .duration(750)
