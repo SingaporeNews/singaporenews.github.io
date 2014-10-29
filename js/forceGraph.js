@@ -96,7 +96,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
       .append('text')
         .attr('class', 'force_item')
         .attr("x", 50)
-        .attr("y", function(d,i){ return i+2+"em"; })
+        .attr("y", function(d,i){ return i+"5px"; })
         .style("text-anchor", "middle")
         .style("font-size", "15px")
         .style("fill", "#53565A")
