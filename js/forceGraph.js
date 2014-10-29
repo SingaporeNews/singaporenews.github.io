@@ -81,7 +81,7 @@ d3.json("newsGraph.json", function(error, graph) {
 
       node.attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; });
-
+    });
 
     //Toggle stores whether the highlighting is on
   var toggle = 0;
@@ -124,7 +124,6 @@ d3.json("newsGraph.json", function(error, graph) {
     }
 
 }
-    });
   }
 
 
