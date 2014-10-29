@@ -2,8 +2,7 @@
 var w = 480,
     h = 500,
     r1 = Math.min(w, h) / 2 - 4,
-    r0 = r1 - 20,
-    format = d3.format(",.3r");
+    r0 = r1 - 20;
 
 // Square matrices, asynchronously loaded; words1 is the transpose of words2.
 var words2 = [],
@@ -91,7 +90,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
         .style("stroke", function(d) { return d3.rgb(fill(d.source.value.size)).darker(); })
         .attr("d", chord)
       .append("svg:title")
-        .text(function(d) { return d.source.value.word2.name + " owes " + d.source.value.word1.name + " $" + format(d.source.value) + "B."; });
+        .text(function(d) { return d.source.value.word2.name + " owes " + d.source.value.word1.name + " $" + d.source.value + "B."; });
 
     // Add groups.
     var g = chordSvg.selectAll("g.group")
@@ -105,7 +104,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
         .attr("id", function(d, i) { return "group" + d.index + "-" + j; })
         .attr("d", arc)
       .append("svg:title")
-        .text(function(d) { return array[d.index].name + " " + (j ? "owes" : "is owed") + " $" + format(d.value) + "B."; });
+        .text(function(d) { return array[d.index].name + " " + (j ? "owes" : "is owed") + " $" + d.value + "B."; });
 
     // Add the group label (but only for large groups, where it will fit).
     // An alternative labeling mechanism would be nice for the small groups.
