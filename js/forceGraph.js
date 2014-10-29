@@ -105,7 +105,7 @@ function drawGraph(selectedList){
           .append('text')
             .attr('class', 'force_item')
             .attr("x", 50)
-            .attr("y", function(d,i){ return i+"10px"; })
+            .attr("y", function(d,i){ return i+ 10; })
             .style("text-anchor", "middle")
             .style("font-size", "15px")
             .style("fill", "#53565A")
@@ -115,8 +115,15 @@ function drawGraph(selectedList){
             .text(function(d){ return d; });
 
     term_label.on('click', function(d){
-            selectedList.push(d);
-            drawGraph(selectedList); });
+            if ($.inArray(d, selectedList) < 0){
+              selectedList.push(d);
+              drawGraph(selectedList); 
+            }
+            else {
+              selectedList = selectedList.filter(function(e){ return e != d; });
+              drawGraph(selectedList);
+            }
+          });
 
       //data = prepData(selectedList);
     
