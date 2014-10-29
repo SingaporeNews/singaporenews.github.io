@@ -39,15 +39,15 @@ var node_drag = d3.behavior.drag()
     };
 
 d3.csv("cooccurrenceMatrixData.csv", function(data){
-  /*
-  selectedList = ['pm','school','mandarin','character','chinese','language','new'];
+  
+  selectedList = ['pm','school','mandarin','up','chinese','strike','new'];
   data1 = $.map(data, function(element){
     return ($.inArray(element.word1,selectedList)>-1?element:null);
   });
   data = $.map(data1, function(element){
     return ($.inArray(element.word2,selectedList)>-1?element:null);
   });
-  */
+
 
   graphDict = {};
   graphDict['nodes'] = [];
@@ -73,38 +73,11 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
     dict['target'] = entrylist.indexOf(data[i].word2);
     dict['value'] = +data[i].size
     graphDict['links'].push(dict);
+    drawGraph(graph);
 
   };
 
-  console.log(graphDict);
-
-});
-
-/*
-d3.json("newsGraph.json", function(error, graph) {
-  testGraph = JSON.parse(JSON.stringify(graph))
-
-  selectedList = ['up','police','china','labor','union'];
-  selectedData1 = $.map(testGraph.nodes, function(element){
-      return ($.inArray(element.name,selectedList)>-1?element:null);
-    });
-  
-  selectedData2 = $.map(testGraph.links, function(element){
-      return ($.inArray(element['name1'],selectedList)>-1?element:null);
-    });
-
-  selectedData3 = $.map(selectedData2, function(element){
-      return ($.inArray(element.name2,selectedList)>-1?element:null);
-    });
-  
-  new_graph = {};
-  new_graph['nodes'] = graph.nodes;
-  new_graph['links'] = selectedData3;
-  
-
-  drawGraph(graph, selectedData1, selectedData3);
-
-  function drawGraph(graph, nodes, links){
+  function drawGraph(graph){
     force
       .nodes(graph.nodes)
       .links(graph.links)
@@ -222,8 +195,37 @@ d3.json("newsGraph.json", function(error, graph) {
         toggle = 0;
     }
 
-}
   }
+  }
+
+});
+
+/*
+d3.json("newsGraph.json", function(error, graph) {
+  testGraph = JSON.parse(JSON.stringify(graph))
+
+  selectedList = ['up','police','china','labor','union'];
+  selectedData1 = $.map(testGraph.nodes, function(element){
+      return ($.inArray(element.name,selectedList)>-1?element:null);
+    });
+  
+  selectedData2 = $.map(testGraph.links, function(element){
+      return ($.inArray(element['name1'],selectedList)>-1?element:null);
+    });
+
+  selectedData3 = $.map(selectedData2, function(element){
+      return ($.inArray(element.name2,selectedList)>-1?element:null);
+    });
+  
+  new_graph = {};
+  new_graph['nodes'] = graph.nodes;
+  new_graph['links'] = selectedData3;
+  
+  
+  //drawGraph(graph, selectedData1, selectedData3);
+  drawGraph(graph);
+
+  
 
 
 });
