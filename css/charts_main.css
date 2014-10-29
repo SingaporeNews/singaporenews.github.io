@@ -50,6 +50,11 @@ path.chord {
     max-height: 200px;
     overflow-x: hidden;
 }
+#force_list {
+    height: auto;
+    max-height: 500px;
+    overflow-y: scroll;
+}
 
 .wordcircle:hover {
   cursor: pointer;
