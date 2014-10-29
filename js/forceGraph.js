@@ -103,14 +103,15 @@ function drawGraph(selectedList){
           .append('text')
             .attr('class', 'force_item')
             .attr("x", 50)
-            .attr("y", function(d,i){ return i+"9px"; })
+            .attr("y", function(d,i){ return i+"9.5px"; })
             .style("text-anchor", "middle")
             .style("font-size", "15px")
             .style("fill", "#53565A")
             .transition()
             .duration(750)
             //.style('fill', function(d){ return line_color(d.term); })
-            .text(function(d){ return d; });
+            .text(function(d){ return d; })
+            .on('click', function(d){ console.log(d)});
 
       //data = prepData(selectedList);
     
