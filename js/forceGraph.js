@@ -29,8 +29,6 @@ var node_drag = d3.behavior.drag()
     function dragend(d, i) {
         d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
         force.resume();
-        for (var i = 0; i < 20; ++i) force.tick();
-        force.stop();
 
     }
     function releasenode(d) {
