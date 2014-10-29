@@ -14,7 +14,7 @@ var forceSvg = d3.select("div#chord_chart").append("svg")
 
 d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
-  console.log(graph);
+
   selectedList = [0,10,2,3,4,50,60,75,18];
   selectedData1 = $.map(graph.nodes, function(element){
       return ($.inArray(element.id,selectedList)>-1?element:null);
@@ -30,13 +30,15 @@ d3.json("newsGraph.json", function(error, graph) {
   new_graph['nodes'] = selectedData1;
   new_graph['links'] = selectedData3;
   console.log(new_graph);
-  console.log(testGraph);
 
-  force
+  drawGraph(new_graph);
+
+  function drawGraph(graph){
+    force
       .nodes(graph.nodes)
       .links(graph.links)
       .start();
-  console.log(graph);
+
   var graphMin = d3.min(graph.links, function(d){ return d.size; });
   var graphMax = d3.max(graph.links, function(d){ return d.size; });
 
@@ -71,5 +73,8 @@ d3.json("newsGraph.json", function(error, graph) {
 
     node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
+  }
+
+  
   });
 });
