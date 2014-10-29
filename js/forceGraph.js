@@ -29,7 +29,6 @@ var node_drag = d3.behavior.drag()
     function dragend(d, i) {
         d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
         force.resume();
-
     }
     function releasenode(d) {
         d.fixed = false; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
@@ -147,12 +146,13 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
           .attr("cy", function(d) { return d.y; });
     });
 
+/*
     var k = 0;
     while ((force.alpha() > 1e-2) && (k < 150)) {
         force.tick(),
         k = k + 1;
     }
-
+*/
     //Toggle stores whether the highlighting is on
   var toggle = 0;
 
