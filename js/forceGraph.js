@@ -54,7 +54,7 @@ d3.json("newsGraph.json", function(error, graph) {
         .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
 
     var link = forceSvg.selectAll(".link")
-        .data(graph.links)
+        .data(links)
       .enter().append("line")
         .attr("class", "link")
         .style('stroke-width', 1)
