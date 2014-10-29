@@ -1,8 +1,14 @@
-createChart('singapore');
+function showAndClearField(frm){
+        if (frm.term.value == "")
+          alert("You forgot to enter a term!")
+        else
+          updateData(frm.term.value);
+        frm.term.value = ""
+      };
 
 var margin = {top: 20, right: 20, bottom: 30, left: 140},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+  width = 960 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
 
 var line_x = d3.scale.ordinal()
           .rangeRoundBands([0, width]);
@@ -23,6 +29,9 @@ var line_svg = d3.select('div#line_chart').append('svg')
           .append('g')
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+
+createChart('singapore');
 
 
 var search_list = [];
