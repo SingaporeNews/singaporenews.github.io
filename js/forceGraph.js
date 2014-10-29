@@ -28,7 +28,8 @@ var node_drag = d3.behavior.drag()
     }
     function dragend(d, i) {
         d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
-        force.friction(0.9).resume();
+        force.resume();
+        force.stop();
     }
     function releasenode(d) {
         d.fixed = false; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
