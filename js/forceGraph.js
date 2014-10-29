@@ -39,42 +39,42 @@ d3.json("newsGraph.json", function(error, graph) {
       .links(graph.links)
       .start();
 
-  var graphMin = d3.min(graph.links, function(d){ return d.size; });
-  var graphMax = d3.max(graph.links, function(d){ return d.size; });
+    var graphMin = d3.min(graph.links, function(d){ return d.size; });
+    var graphMax = d3.max(graph.links, function(d){ return d.size; });
 
-  var fill = d3.scale.ordinal()
-      .domain([graphMin, graphMax])
-      .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
+    var fill = d3.scale.ordinal()
+        .domain([graphMin, graphMax])
+        .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
 
-  var link = forceSvg.selectAll(".link")
-      .data(graph.links)
-    .enter().append("line")
-      .attr("class", "link")
-      .style('stroke-width', 1)
-      .style('stroke', function(d){ return fill(d.value); })
-      //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
+    var link = forceSvg.selectAll(".link")
+        .data(graph.links)
+      .enter().append("line")
+        .attr("class", "link")
+        .style('stroke-width', 1)
+        .style('stroke', function(d){ return fill(d.value); })
+        //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-  var node = forceSvg.selectAll(".node")
-      .data(graph.nodes)
-    .enter().append("circle")
-      .attr("class", "node")
-      .attr("r", 5)
-      .style("fill", function(d) { return color(d.group); })
-      .call(force.drag);
+    var node = forceSvg.selectAll(".node")
+        .data(graph.nodes)
+      .enter().append("circle")
+        .attr("class", "node")
+        .attr("r", 5)
+        .style("fill", function(d) { return color(d.group); })
+        .call(force.drag);
 
-  node.append("title")
-      .text(function(d) { return d.name; });
+    node.append("title")
+        .text(function(d) { return d.name; });
 
-  force.on("tick", function() {
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+    force.on("tick", function() {
+      link.attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
 
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-  }
+      node.attr("cx", function(d) { return d.x; })
+          .attr("cy", function(d) { return d.y; });
+    }
 
   
-  });
+  };
 });
