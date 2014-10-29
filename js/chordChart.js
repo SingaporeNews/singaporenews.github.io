@@ -44,6 +44,8 @@ var chordSvg = d3.select("div#chord_chart").selectAll("div")
 
 // Load our data file…
 d3.csv("cooccurrenceMatrixData.csv", function(data) {
+
+  data = data.filter(function(d){ return d.word1 == 'up'; });
   var words = {},
       array = [],
       n = 0;
