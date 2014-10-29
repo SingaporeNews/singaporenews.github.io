@@ -26,6 +26,7 @@
     <script>
       function revealExplore(){
         $('#learn').hide();
+        $('#context').hide();
         $('#explore').show();
         if($('#li_learn').hasClass('active')==true){
           $('#li_learn').toggleClass();
@@ -38,6 +39,7 @@
       function revealLearn(){
         $('#learn').show();
         $('#explore').hide();
+        $('#context').hide();
         $('#li_learn').toggleClass();
         if($('#li_explore').hasClass('active')==true){
           $('#li_explore').toggleClass();
@@ -51,8 +53,12 @@
         $('#explore').hide();
         $('#learn').hide();
         $('#li_context').toggleClass('active');
-        $('#li_learn').toggleClass();
-        $('#li_explore').toggleClass();
+        if($('#li_explore').hasClass('active')==true){
+          $('#li_explore').toggleClass();
+        }
+        if($('#li_explore').hasClass('active')==true){
+          $('#li_explore').toggleClass();
+        }
       }
     </script>
 
