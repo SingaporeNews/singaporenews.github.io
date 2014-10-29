@@ -110,9 +110,10 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         //.style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d; });
 
-  
+  data = prepData(selectedList);
+  console.log(data);
 
-  drawGraph(prepData(selectedList));
+  drawGraph(data);
 
   function drawGraph(graph){
     force
