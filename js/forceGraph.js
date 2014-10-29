@@ -23,6 +23,28 @@ var forceSvg = d3.select("div#chord_chart").append("svg")
     .attr("width", width)
     .attr("height", height);
 
+var node_drag = d3.behavior.drag()
+        .on("dragstart", dragstart)
+        .on("drag", dragmove)
+        .on("dragend", dragend);
+    function dragstart(d, i) {
+        force.stop() // stops the force auto positioning before you start dragging
+    }
+    function dragmove(d, i) {
+        d.px += d3.event.dx;
+        d.py += d3.event.dy;
+        d.x += d3.event.dx;
+        d.y += d3.event.dy;
+    }
+    function dragend(d, i) {
+        d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+        force.resume();
+    }
+    function releasenode(d) {
+        d.fixed = false; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+        //force.resume();
+    }
+
 d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
   console.log(graph);
@@ -82,8 +104,10 @@ d3.json("newsGraph.json", function(error, graph) {
         .attr("class", "node")
         .attr("r", 5)
         .style("fill", function(d) { return color(d.group); })
-        .call(force.drag)
-        .on('dblclick', connectedNodes);
+        .on('click', releasenode)
+        .on('dblclick', connectedNodes)
+        .cal(node_drag);
+        //.call(force.drag);
 
     node
         .on('mouseover', function(d,i,j){
