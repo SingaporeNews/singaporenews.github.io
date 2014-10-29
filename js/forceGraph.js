@@ -1,5 +1,6 @@
-var width = 760,
-    height = 500;
+var margin = {top: 20, right: 20, bottom: 30, left: 140},
+  width = 760 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
 
 var color = d3.scale.category20();
 
@@ -15,7 +16,9 @@ var forceSvg = d3.select("div#chord_chart").append("svg")
 
 var forceListSvg = d3.select('div#force_list').append('svg')
     .attr('width', 200)
-    .attr('height', 500);
+    .attr('height', 500)
+    .append('g')
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");;
 
 var node_drag = d3.behavior.drag()
     .on("dragstart", dragstart)
