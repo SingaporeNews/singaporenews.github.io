@@ -45,6 +45,8 @@ var node_drag = d3.behavior.drag()
 var selectedList = ['pm','school','mandarin','up','chinese','strike','new',
       'bomb','blast','attack','die'];
 
+drawGraph(selectedList);
+
 function drawGraph(selectedList){
 
   d3.csv("cooccurrenceMatrixData.csv", function(data){
@@ -93,6 +95,8 @@ function drawGraph(selectedList){
           graphDict['links'].push(dict);
         };
 
+    graph = graphDict;
+
     var term_label = forceListSvg.selectAll('.force_item')
             .data(totallist)
             .enter()
@@ -109,8 +113,6 @@ function drawGraph(selectedList){
             .text(function(d){ return d; });
 
       //data = prepData(selectedList);
-      drawGraph(graphDict);
-      
     
         force
           .nodes(graph.nodes)
