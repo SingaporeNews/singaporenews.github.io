@@ -38,6 +38,11 @@ var node_drag = d3.behavior.drag()
         //force.resume();
     };
 
+d3.csv("cooccurrenceMatrixData.csv", function(data){
+  console.log(data);
+});
+
+/*
 d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
 
@@ -58,8 +63,7 @@ d3.json("newsGraph.json", function(error, graph) {
   new_graph['nodes'] = graph.nodes;
   new_graph['links'] = selectedData3;
   
-  
-  console.log(new_graph);
+
   drawGraph(graph, selectedData1, selectedData3);
 
   function drawGraph(graph, nodes, links){
@@ -185,6 +189,7 @@ d3.json("newsGraph.json", function(error, graph) {
 
 
 });
+*/
     
 
 
