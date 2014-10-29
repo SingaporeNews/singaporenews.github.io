@@ -117,11 +117,13 @@ function drawGraph(selectedList){
     term_label.on('click', function(d){
             if ($.inArray(d, selectedList) < 0){
               selectedList.push(d);
-              drawGraph(selectedList); 
+              drawGraph(selectedList);
+              d3.select(this).style('fill', '#00441b') 
             }
             else {
               selectedList = selectedList.filter(function(e){ return e != d; });
               drawGraph(selectedList);
+              d3.select(this).style('fill', 'rgb(83, 86, 90)')
             }
           });
 
