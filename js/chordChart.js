@@ -15,6 +15,8 @@ var layout = d3.layout.chord()
     .sortChords(d3.descending)
     .padding(.04);
 
+var chordColor = d3.scale.category20();
+
 // The color scale, for different categories of "worrisome" size.
 var fill = d3.scale.ordinal()
     .domain([0, 1, 2])
@@ -98,7 +100,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
         .data(layout.chords)
       .enter().append("svg:path")
         .attr("class", "chord")
-        .style("fill", function(d) { return 'blue' })
+        .style("fill", function(d) { return chordColor(d.source.value.word1.name) })
         .style("stroke", function(d) { return '#000'; })
         .attr("d", chord)
       .append("svg:title")
@@ -112,7 +114,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
     // Add the group arc.
     g.append("svg:path")
-        .style("fill", function(d) { return 'blue'; })
+        .style("fill", function(d) { return chordColor(d.source.value.word1.name); })
         .attr("id", function(d, i) { return "group" + d.index + "-" + j; })
         .attr("d", arc)
       .append("svg:title")
