@@ -8,6 +8,17 @@ var force = d3.layout.force()
     .linkDistance(250)
     .size([width, height]);
 
+safety = 0;
+while(force.alpha() > 0.05) {
+  force.tick();
+  if(safety++ > 500){
+    break;
+  }
+}
+if(safety < 500){
+  console.log('success');
+}
+
 var forceSvg = d3.select("div#chord_chart").append("svg")
     .attr("width", width)
     .attr("height", height);
