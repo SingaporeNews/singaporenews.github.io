@@ -57,10 +57,10 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
       'bomb','blast','attack','die'];
 
   data1 = $.map(data, function(element){
-        return ($.inArray(element.word1,list)>-1?element:null);
+        return ($.inArray(element.word1,selectedList)>-1?element:null);
       });
       data = $.map(data1, function(element){
-        return ($.inArray(element.word2,list)>-1?element:null);
+        return ($.inArray(element.word2,selectedList)>-1?element:null);
       });
 
 
