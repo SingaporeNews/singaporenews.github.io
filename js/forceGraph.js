@@ -98,7 +98,9 @@ function drawGraph(selectedList){
     graph = graphDict;
 
     var term_label = forceListSvg.selectAll('.force_item')
-            .data(totallist)
+            .data(totallist);
+
+    term_label
             .enter()
           .append('text')
             .attr('class', 'force_item')
