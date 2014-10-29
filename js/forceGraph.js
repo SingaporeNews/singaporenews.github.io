@@ -1,4 +1,4 @@
-var width = 960,
+var width = 760,
     height = 500;
 
 var color = d3.scale.category20();
@@ -12,6 +12,10 @@ var force = d3.layout.force()
 var forceSvg = d3.select("div#chord_chart").append("svg")
     .attr("width", width)
     .attr("height", height);
+
+var forceListSvg = d3.select('div#force_list').append('svg')
+    .attr('width', 200)
+    .attr('height', 500);
 
 var node_drag = d3.behavior.drag()
     .on("dragstart", dragstart)
@@ -73,6 +77,21 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
     graphDict['links'].push(dict);
 
   };
+  var term_label = forceListSvg.selectAll('.force_item')
+        .data(entrylist)
+        .enter()
+      .append('text')
+        .attr('class', 'force_item')
+        .attr("x", 0)
+        .attr("y", function(d,i){ return i+"em"; })
+        .style("text-anchor", "middle")
+        .style("font-size", "12px")
+        .style("fill", "#53565A")
+        .transition()
+        .duration(750)
+        //.style('fill', function(d){ return line_color(d.term); })
+        .text(function(d){ return d; });
+
   drawGraph(graphDict);
 
   function drawGraph(graph){
