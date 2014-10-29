@@ -53,7 +53,7 @@ d3.json("newsGraph.json", function(error, graph) {
         .domain([graphMin, graphMax])
         .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
 
-    var div = d3.select('div#line_chart').append('div')
+    var div = d3.select('div#chord_chart').append('div')
             .attr('class', 'tooltip')
             .style('opacity', 0);
 
