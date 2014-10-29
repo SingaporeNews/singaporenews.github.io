@@ -1,3 +1,27 @@
+var margin = {top: 20, right: 20, bottom: 30, left: 140},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+var line_x = d3.scale.ordinal()
+          .rangeRoundBands([0, width]);
+
+var line_y = d3.scale.linear()
+          .range([height, 0]);
+
+var line = d3.svg.line()
+      .x(function(d){ return line_x(d.year); })
+      .y(function(d){ return line_y(d.count); });
+
+var line_color = d3.scale.category10();
+
+var line_svg = d3.select('div#line_chart').append('svg')
+            .attr("width", width + margin.left + margin.right + margin.right)
+            .attr("height", height + margin.top + margin.bottom*2)
+            .attr('class', 'line_svg')
+          .append('g')
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
 
 var search_list = [];
 var datearray = [];
@@ -195,7 +219,7 @@ function updateData(frm){
 function createChart(frm){
   search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
-    console.log(data);
+
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
       )
