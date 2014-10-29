@@ -28,23 +28,23 @@ d3.json("newsGraph.json", function(error, graph) {
   new_graph = {};
   new_graph['nodes'] = selectedData1;
   new_graph['links'] = selectedData3;
-  console.log(new_graph);
+
   graph = new_graph;
-  console.log(graph);
+
   force
-      .nodes(selectedData1)
-      .links(selectedData2)
+      .nodes(graph.nodes)
+      .links(graph.links)
       .start();
 
-  var graphMin = d3.min(selectedData2, function(d){ return d.size; });
-  var graphMax = d3.max(selectedData2, function(d){ return d.size; });
+  var graphMin = d3.min(graph.links, function(d){ return d.size; });
+  var graphMax = d3.max(graph.links, function(d){ return d.size; });
 
   var fill = d3.scale.ordinal()
       .domain([graphMin, graphMax])
       .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
 
   var link = forceSvg.selectAll(".link")
-      .data(selectedData2)
+      .data(selectedData3)
     .enter().append("line")
       .attr("class", "link")
       .style('stroke-width', 1)
