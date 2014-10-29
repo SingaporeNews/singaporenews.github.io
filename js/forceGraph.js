@@ -37,7 +37,8 @@ var node_drag = d3.behavior.drag()
 
 d3.csv("cooccurrenceMatrixData.csv", function(data){
   
-  selectedList = ['pm','school','mandarin','up','chinese','strike','new'];
+  selectedList = ['pm','school','mandarin','up','chinese','strike','new',
+  'bomb','blast','attack','die'];
   data1 = $.map(data, function(element){
     return ($.inArray(element.word1,selectedList)>-1?element:null);
   });
