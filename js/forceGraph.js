@@ -53,6 +53,10 @@ d3.json("newsGraph.json", function(error, graph) {
         .domain([graphMin, graphMax])
         .range(["#DB704D", "#D2D0C6", "#ECD08D", "#F8EDD3"]);
 
+    var div = d3.select('div#line_chart').append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
+
     var link = forceSvg.selectAll(".link")
         .data(graph.links)
       .enter().append("line")
@@ -69,6 +73,28 @@ d3.json("newsGraph.json", function(error, graph) {
         .style("fill", function(d) { return color(d.group); })
         .call(force.drag)
         .on('dblclick', connectedNodes);
+
+    node
+        .on('mouseover', function(d,i,j){
+            d3.select(this).transition().duration(600)
+              .attr('r', 8).style('opacity', 1);
+            div.transition()
+              .duration(500)
+              .style('opacity', .6);
+            div.html(d.name)
+              .style('left', '300px')
+              .style('top', '10px');
+              //.style('left', (d3.event.pageX) + 10 + "px")
+              //.style('top', (d3.event.pageY) + 2 + "px")
+              //.style('color', line_color(used_data[j].term));
+        })
+        .on('mouseout', function(d){
+            d3.select(this).transition().duration(600)
+              .attr('r', 3).style('opacity', 0);
+            div.transition()
+              .duration(500)
+              .style('opacity', 0);
+        });
 
     node.append("title")
         .text(function(d) { return d.name; });
