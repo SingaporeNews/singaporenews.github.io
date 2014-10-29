@@ -29,7 +29,9 @@ var node_drag = d3.behavior.drag()
     function dragend(d, i) {
         d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
         force.resume();
-        
+        for (var i = 0; i < 20; ++i) force.tick();
+        force.stop();
+
     }
     function releasenode(d) {
         d.fixed = false; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
@@ -47,7 +49,6 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData2 = $.map(testGraph.links, function(element){
       return ($.inArray(element['name1'],selectedList)>-1?element:null);
     });
-  console.log(selectedData2);
 
   selectedData3 = $.map(selectedData2, function(element){
       return ($.inArray(element.name2,selectedList)>-1?element:null);
@@ -62,7 +63,6 @@ d3.json("newsGraph.json", function(error, graph) {
   drawGraph(graph, selectedData1, selectedData3);
 
   function drawGraph(graph, nodes, links){
-    console.log(nodes);
     force
       .nodes(graph.nodes)
       .links(graph.links)
