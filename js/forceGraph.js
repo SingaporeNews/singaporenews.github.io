@@ -37,12 +37,12 @@ d3.json("newsGraph.json", function(error, graph) {
   
   
   console.log(new_graph);
-  drawGraph(new_graph, selectedData1);
+  drawGraph(graph, selectedData1, selectedData3);
 
   function drawGraph(graph, nodes){
     console.log(nodes);
     force
-      .nodes(nodes)
+      .nodes(graph.nodes)
       .links(graph.links)
       .start();
 
