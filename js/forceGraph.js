@@ -13,6 +13,7 @@ var forceSvg = d3.select("div#chord_chart").append("svg")
     .attr("height", height);
 
 d3.json("newsGraph.json", function(error, graph) {
+  console.log(graph);
   force
       .nodes(graph.nodes)
       .links(graph.links)
