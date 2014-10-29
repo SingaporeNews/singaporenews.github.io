@@ -8,12 +8,6 @@ var force = d3.layout.force()
     .linkDistance(250)
     .size([width, height]);
 
-var k = 0;
-while ((force.alpha() > 1e-2) && (k < 150)) {
-    force.tick(),
-    k = k + 1;
-}
-
 var forceSvg = d3.select("div#chord_chart").append("svg")
     .attr("width", width)
     .attr("height", height);
@@ -42,8 +36,6 @@ var node_drag = d3.behavior.drag()
 
 d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
-  console.log(graph);
-  console.log(testGraph);
 
   selectedList = ['up','police','china','labor','union'];
   selectedData1 = $.map(testGraph.nodes, function(element){
@@ -139,6 +131,12 @@ d3.json("newsGraph.json", function(error, graph) {
       node.attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; });
     });
+
+    var k = 0;
+    while ((force.alpha() > 1e-2) && (k < 150)) {
+        force.tick(),
+        k = k + 1;
+    }
 
     //Toggle stores whether the highlighting is on
   var toggle = 0;
