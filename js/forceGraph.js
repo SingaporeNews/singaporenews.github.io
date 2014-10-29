@@ -137,6 +137,14 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
           .style('stroke', function(d){ return fill(d.value); });
           //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
+      link
+        .transition().duration(400)
+        .attr("class", "link")
+        .style('stroke-width', 1)
+        .style('stroke', function(d){ return fill(d.value); });
+
+      link.exit().remove();
+
       var node = forceSvg.selectAll(".node")
           .data(graph.nodes);
 
@@ -149,6 +157,17 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
           .on('click', connectedNodes)
           .call(node_drag);
           //.call(force.drag);
+
+      node
+        .transition().duration(400)
+        .attr("class", "node")
+        .attr("r", 5)
+        .style("fill", function(d) { return color(d.group); })
+        .on('dblclick', releasenode)
+        .on('click', connectedNodes)
+        .call(node_drag);
+
+      node.exit().remove();
 
       node
           .on('mouseover', function(d,i,j){
