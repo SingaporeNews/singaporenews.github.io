@@ -34,7 +34,7 @@ var line_svg = d3.select('div#line_chart').append('svg')
 createChart('singapore', search_list);
 
 
-var search_list = [];
+
 var datearray = [];
 
 function showHeadlines(data, word, year){
