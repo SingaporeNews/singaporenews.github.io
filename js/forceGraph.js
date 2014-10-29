@@ -8,12 +8,10 @@ var force = d3.layout.force()
     .linkDistance(250)
     .size([width, height]);
 
-safety = 0;
-while(force.alpha() > 0.05) {
-  force.tick();
-  if(safety++ > 500){
-    break;
-  }
+var k = 0;
+while ((force.alpha() > 1e-2) && (k < 150)) {
+    force.tick(),
+    k = k + 1;
 }
 
 var forceSvg = d3.select("div#chord_chart").append("svg")
