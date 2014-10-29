@@ -41,7 +41,7 @@ d3.json("newsGraph.json", function(error, graph) {
 
   function drawGraph(graph, nodes){
     force
-      .nodes(graph.nodes)
+      .nodes(nodes)
       .links(graph.links)
       .start();
 
