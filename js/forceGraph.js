@@ -22,7 +22,7 @@ d3.json("newsGraph.json", function(error, graph) {
     });
   
   selectedData2 = $.map(testGraph.links, function(element){
-      return ($.inArray(element.name1,selectedList)>-1?element:null);
+      return ($.inArray(element['name1'],selectedList)>-1?element:null);
     });
   console.log(selectedData2);
 
@@ -32,7 +32,7 @@ d3.json("newsGraph.json", function(error, graph) {
   
   new_graph = {};
   new_graph['nodes'] = selectedData1;
-  new_graph['links'] = selectedData3;
+  new_graph['links'] = selectedData2;
   
   
   console.log(new_graph);
