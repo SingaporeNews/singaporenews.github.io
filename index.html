@@ -27,14 +27,24 @@
       function revealExplore(){
         $('#learn').hide();
         $('#explore').show();
-        $('#li_learn').toggleClass();
+        if($('#li_learn').hasClass('active')==true){
+          $('#li_learn').toggleClass();
+        }
+        if($('#li_context').hasClass('active')==true){
+          $('#li_context').toggleClass();
+        }
         $('#li_explore').toggleClass('active');
       }
       function revealLearn(){
         $('#learn').show();
         $('#explore').hide();
         $('#li_learn').toggleClass();
-        $('#li_explore').toggleClass();
+        if($('#li_explore').hasClass('active')==true){
+          $('#li_explore').toggleClass();
+        }
+        if($('#li_context').hasClass('active')==true){
+          $('#li_context').toggleClass();
+        }
       }
       function revealContext(){
         $('#context').show();
@@ -314,7 +324,7 @@
       
 
 
-      createChart('singapore');
+      //createChart('singapore');
       //setInterval('showHeadlines()', 5000);
       
     </script>
