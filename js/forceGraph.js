@@ -17,7 +17,7 @@ d3.json("newsGraph.json", function(error, graph) {
   console.log(graph);
   console.log(testGraph);
 
-  selectedList = ['strike','police','china','labor','union'];
+  selectedList = ['up','police','china','labor','union'];
   selectedData1 = $.map(testGraph.nodes, function(element){
       return ($.inArray(element.name,selectedList)>-1?element:null);
     });
