@@ -31,7 +31,7 @@ var line_svg = d3.select('div#line_chart').append('svg')
 
 
 
-createChart('singapore');
+createChart('singapore', search_list);
 
 
 var search_list = [];
@@ -227,7 +227,7 @@ function updateData(frm){
   });
 };
 
-function createChart(frm){
+function createChart(frm, search_list){
   search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
 
