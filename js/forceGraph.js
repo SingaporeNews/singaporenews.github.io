@@ -110,8 +110,9 @@ function drawGraph(selectedList){
             .transition()
             .duration(750)
             //.style('fill', function(d){ return line_color(d.term); })
-            .text(function(d){ return d; })
-            .on('click', function(d){ return console.log(d); });
+            .text(function(d){ return d; });
+
+    term_label.on('click', function(d){ return console.log(d); });
 
       //data = prepData(selectedList);
     
