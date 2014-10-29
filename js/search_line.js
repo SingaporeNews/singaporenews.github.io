@@ -52,7 +52,7 @@ function showHeadlines(data, word, year){
 function updateData(frm){
   search_list.push(frm.toLowerCase());
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
-    d3.csv("http://singaporenews.github.io/Words_story_headlines_27oct.csv",
+    d3.csv("http://singaporenews.github.io/Words_all_headlines_29oct.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
@@ -229,7 +229,7 @@ function updateData(frm){
 
 function createChart(frm, search_list){
   search_list.push(frm);
-  d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
+  d3.csv("http://singaporenews.github.io/Words_all_headlines_29oct.csv", function(error, data){
 
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
