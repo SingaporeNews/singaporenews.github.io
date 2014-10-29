@@ -91,7 +91,7 @@ d3.json("newsGraph.json", function(error, graph) {
               .attr('r', 8).style('opacity', 1);
             div.transition()
               .duration(500)
-              .style('opacity', .6);
+              .style('opacity', 1);
             div.html(d.name)
               .style('left', '300px')
               .style('top', '10px');
@@ -101,7 +101,7 @@ d3.json("newsGraph.json", function(error, graph) {
         })
         .on('mouseout', function(d){
             d3.select(this).transition().duration(600)
-              .attr('r', 3).style('opacity', 0);
+              .attr('r', 5).style('opacity', 1);
             div.transition()
               .duration(500)
               .style('opacity', 0);
