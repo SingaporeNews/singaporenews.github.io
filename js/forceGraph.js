@@ -81,9 +81,9 @@ d3.json("newsGraph.json", function(error, graph) {
 
       node.attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; });
-    });
-  }
-  //Toggle stores whether the highlighting is on
+
+
+    //Toggle stores whether the highlighting is on
   var toggle = 0;
 
   //Create an array logging what is connected to what
@@ -124,6 +124,9 @@ d3.json("newsGraph.json", function(error, graph) {
     }
 
 }
+    });
+  }
+
 
 });
     
