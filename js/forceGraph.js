@@ -74,7 +74,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
 
   };
 
-  consoel.log(graphDict);
+  console.log(graphDict);
 
 });
 
