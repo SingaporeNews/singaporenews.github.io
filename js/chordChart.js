@@ -53,9 +53,9 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
   selectedData2 = $.map(data, function(element){
       return ($.inArray(element.word2,selectedList)>-1?element:null);
     });
-  selectedData = selectedData1.concat(selectedData2)
+  data = selectedData1.concat(selectedData2)
   //data = data.filter(function(d){ return d.size > 300; });
-  console.log(selectedData);
+
   var words = {},
       array = [],
       n = 0;
