@@ -5,7 +5,7 @@ var color = d3.scale.category20();
 
 var force = d3.layout.force()
     .charge(-120)
-    .linkDistance(30)
+    .linkDistance(60)
     .size([width, height]);
 
 var forceSvg = d3.select("div#chord_chart").append("svg")
@@ -22,7 +22,7 @@ d3.json("newsGraph.json", function(error, graph) {
       .data(graph.links)
     .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .style("stroke-width", function(d) { return d.value; });
 
   var node = forceSvg.selectAll(".node")
       .data(graph.nodes)

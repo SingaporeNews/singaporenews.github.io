@@ -3,6 +3,29 @@
  */
 
 /* Charts */
+.group text {
+  font: 11px sans-serif;
+  pointer-events: none;
+}
+
+.group path {
+  stroke: #000;
+}
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+path.chord {
+  stroke-width: .75;
+  fill-opacity: .75;
+}
+
 .axis path, .axis line {
   fill: none;
   stroke: #000;
