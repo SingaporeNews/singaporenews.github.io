@@ -37,9 +37,9 @@ d3.json("newsGraph.json", function(error, graph) {
   
   
   console.log(new_graph);
-  drawGraph(new_graph);
+  drawGraph(new_graph, selectedData1);
 
-  function drawGraph(graph){
+  function drawGraph(graph, nodes){
     force
       .nodes(graph.nodes)
       .links(graph.links)
@@ -61,7 +61,7 @@ d3.json("newsGraph.json", function(error, graph) {
         //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
     var node = forceSvg.selectAll(".node")
-        .data(graph.nodes)
+        .data(nodes)
       .enter().append("circle")
         .attr("class", "node")
         .attr("r", 5)
