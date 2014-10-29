@@ -47,7 +47,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
   //selectedList = ['strike','workers','red','reds','talks','talk','jobs',''
 
-  data = data.filter(function(d){ return d.size > 200; });
+  data = data.filter(function(d){ return d.size > 300; });
   console.log(data);
   var words = {},
       array = [],
