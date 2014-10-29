@@ -47,10 +47,10 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
   selectedList = ['strike','workers','red','reds','talks','talk','jobs']
 
-  data = $.map(data, function(element){
+  selectedData1 = $.map(data, function(element){
       return ($.inArray(element.word1,selectedList)>-1?element:null);
     });
-  selectedData2 = $.map(data, function(element){
+  data = $.map(selectedData1, function(element){
       return ($.inArray(element.word2,selectedList)>-1?element:null);
     });
   //data = selectedData1.concat(selectedData2)
