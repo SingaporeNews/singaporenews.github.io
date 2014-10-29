@@ -16,7 +16,7 @@ d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
   console.log(testGraph);
 
-  selectedList = [0,3,4,50,60,75,18,28,29,40];
+  selectedList = [0,3,4,50,60,75,18,28,29,40,41,42,43];
   selectedData1 = $.map(testGraph.nodes, function(element){
       return ($.inArray(element.id,selectedList)>-1?element:null);
     });
