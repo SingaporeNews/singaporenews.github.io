@@ -73,9 +73,9 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
     dict['target'] = entrylist.indexOf(data[i].word2);
     dict['value'] = +data[i].size
     graphDict['links'].push(dict);
-    drawGraph(graph);
 
   };
+  drawGraph(graphDict);
 
   function drawGraph(graph){
     force
