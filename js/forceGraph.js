@@ -31,7 +31,7 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData3 = $.map(selectedData2, function(element){
       return ($.inArray(element.target,selectedList)>-1?element:null);
     });
-  selectedData3 = selectedData3.filter(function(d){ return d.source == null; });
+  selectedData3 = selectedData3.filter(function(d){ return d.source != null; });
   console.log(selectedData3);
   new_graph = {};
   new_graph['nodes'] = selectedData1;
