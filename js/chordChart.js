@@ -114,7 +114,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data) {
 
     // Add the group arc.
     g.append("svg:path")
-        .style("fill", function(d) { return chordColor(d.source.value.word1.name); })
+        .style("fill", function(d) { return chordColor(array[d.index].name); })
         .attr("id", function(d, i) { return "group" + d.index + "-" + j; })
         .attr("d", arc)
       .append("svg:title")
