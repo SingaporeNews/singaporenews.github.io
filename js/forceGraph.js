@@ -82,7 +82,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
         .enter()
       .append('text')
         .attr('class', 'force_item')
-        .attr("x", 0)
+        .attr("x", 100)
         .attr("y", function(d,i){ return i+"em"; })
         .style("text-anchor", "middle")
         .style("font-size", "12px")
