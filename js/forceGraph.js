@@ -40,6 +40,7 @@ d3.json("newsGraph.json", function(error, graph) {
   drawGraph(new_graph, selectedData1);
 
   function drawGraph(graph, nodes){
+    console.log(nodes);
     force
       .nodes(nodes)
       .links(graph.links)
