@@ -14,6 +14,7 @@ var forceSvg = d3.select("div#chord_chart").append("svg")
 
 d3.json("newsGraph.json", function(error, graph) {
   testGraph = JSON.parse(JSON.stringify(graph))
+  console.log(testGraph);
 
   selectedList = [0,10,2,3,4,50,60,75,18];
   selectedData1 = $.map(testGraph.nodes, function(element){
