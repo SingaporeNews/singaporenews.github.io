@@ -56,21 +56,21 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
       dict = {};
       dict['name'] = data[i].word1
       dict['group'] = 0
-      graphDict['nodes'].append(dict)
-      entrylist.append(data[i].word1);
+      graphDict['nodes'].push(dict)
+      entrylist.push(data[i].word1);
     };
     if ($.inArray(data[i].word2, entrylist) < 0){
       dict = {};
       dict['name'] = data[i].word2
       dict['group'] = 0
-      graphDict['nodes'].append(dict)
-      entrylist.append(data[i].word2);
+      graphDict['nodes'].push(dict)
+      entrylist.push(data[i].word2);
     };
     dict = {};
     dict['source'] = entrylist.indexOf(data[i].word1);
     dict['target'] = entrylist.indexOf(data[i].word2);
     dict['value'] = +data[i].size
-    graphDict['links'].append(dict);
+    graphDict['links'].push(dict);
 
   };
 
