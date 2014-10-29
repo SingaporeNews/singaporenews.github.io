@@ -16,7 +16,7 @@ var forceSvg = d3.select("div#chord_chart").append("svg")
 
 var forceListSvg = d3.select('div#force_list').append('svg')
     .attr('width', 200)
-    .attr('height', 500)
+    .attr('height', 1000)
     .append('g')
       .attr("transform", "translate(" + margin.right + "," + margin.top + ")");;
 
