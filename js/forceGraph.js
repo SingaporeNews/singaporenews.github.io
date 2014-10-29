@@ -16,7 +16,7 @@ var forceSvg = d3.select("div#chord_chart").append("svg")
 
 var forceListSvg = d3.select('div#force_list').append('svg')
     .attr('width', 200)
-    .attr('height', 1000)
+    .attr('height', 2000)
     .append('g')
       .attr("transform", "translate(" + margin.right + "," + margin.top + ")");;
 
@@ -96,7 +96,7 @@ d3.csv("cooccurrenceMatrixData.csv", function(data){
       .append('text')
         .attr('class', 'force_item')
         .attr("x", 50)
-        .attr("y", function(d,i){ return i+"5px"; })
+        .attr("y", function(d,i){ return i+"15px"; })
         .style("text-anchor", "middle")
         .style("font-size", "15px")
         .style("fill", "#53565A")
