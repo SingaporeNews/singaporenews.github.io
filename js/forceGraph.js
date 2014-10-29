@@ -17,7 +17,10 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData1 = $.map(graph.nodes, function(element){
       return ($.inArray(element.id,selectedList)>-1?element:null);
     });
-  console.log(selectedData1);
+  selectedData2 = $.map(graph.nodes, function(element){
+      return ($.inArray(element.id,selectedList)>-1?element:null);
+    });
+  console.log(graph);
   force
       .nodes(graph.nodes)
       .links(graph.links)
