@@ -252,7 +252,7 @@ function drawStackedChart(word_num){
         .attr("stroke-width", "0.5px"), 
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
-          .style('fill', function(d){ return color(i); });
+          .style('fill', function(d){ return color(d.key); });
         
       })
       .on("mouseout", function(d, i) {
@@ -381,7 +381,7 @@ function updateStackedChart(word_num, start, end){
         .attr("stroke-width", "0.5px"), 
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
-          .style('fill', function(d){ return color(i); });
+          .style('fill', function(d){ return color(d.key); });
         
       })
       .on("mouseout", function(d, i) {
