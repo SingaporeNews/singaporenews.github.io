@@ -171,7 +171,7 @@ function drawGraph(selectedList){
         node
           .enter().append("circle")
             .attr("class", "node")
-            .attr("r", 7)
+            .attr("r", 10)
             //.style("fill", function(d) { return color(d.group); })
             .on('dblclick', releasenode)
             .on('click', connectedNodes)
@@ -181,7 +181,7 @@ function drawGraph(selectedList){
         node
             .on('mouseover', function(d,i,j){
                 d3.select(this).transition().duration(600)
-                  .attr('r', 10).style('opacity', 1);
+                  .attr('r', 15).style('opacity', 1);
                 div.transition()
                   .duration(500)
                   .style('opacity', 1);
@@ -194,7 +194,7 @@ function drawGraph(selectedList){
             })
             .on('mouseout', function(d){
                 d3.select(this).transition().duration(600)
-                  .attr('r', 7).style('opacity', 1);
+                  .attr('r', 10).style('opacity', 1);
                 div.transition()
                   .duration(500)
                   .style('opacity', 0);
