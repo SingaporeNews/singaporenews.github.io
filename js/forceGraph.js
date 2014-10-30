@@ -103,7 +103,7 @@ function drawGraph(selectedList){
 
     graph = graphDict;
 
-    forceListSvg.enter().append('text')
+    forceListSvg.append('text')
         .attr('x', 50)
         .attr('y', -1 + "em")
         .style('text-anchor', 'middle')
