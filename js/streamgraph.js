@@ -79,6 +79,10 @@ var w = window,
     g = d.getElementsByTagName('body')[0],
     width = w.innerWidth || e.clientWidth || g.clientWidth,
     height = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = width - margin.left - margin.right,
+    height = height - margin.top - margin.bottom;
 /*
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
