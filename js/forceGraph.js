@@ -103,6 +103,14 @@ function drawGraph(selectedList){
 
     graph = graphDict;
 
+    forceListSvg.enter().append('text')
+        .attr('x', 50)
+        .attr('y', -1 + "em")
+        .style('text-anchor', 'middle')
+        .style('font-size', '18px')
+        .style('fill', '#47996E')
+        .text('Select a word to add/remove from graph:')
+
     var term_label = forceListSvg.selectAll('.force_item')
             .data(totallist);
 
