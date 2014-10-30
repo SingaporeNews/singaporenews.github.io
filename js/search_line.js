@@ -49,7 +49,7 @@ function showHeadlines(data, word, year){
   console.log(word);
   console.log(year);
 
-    var data = data.filter(function(d){ return d.wordCol == word; });
+    var data = data.filter(function(d){ return d.wordCol.toLowerCase() == word; });
     data = data.filter(function(d){ return d.yearCol === year; });
     
     random_number = Math.floor((Math.random()*data.length) + 1)
