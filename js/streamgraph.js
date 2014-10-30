@@ -20,6 +20,18 @@ $(document).on('click', '#top_num li a', function () {
 function capitaliseFirstLetter(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+function selectiveReplacement(string){
+  dict = {'pm':'PM'; 'us':'US'};
+  for (key in dict){
+    if (string === key){
+      string = dict[key];
+      return capitaliseFirstLetter(string);
+    }
+    else {
+      return capitaliseFirstLetter(string);
+    }
+  }
+}
 
 /*
 $(document).on('click', '#start_year li a', function () {
@@ -237,7 +249,7 @@ function drawStackedChart(word_num){
         .classed("hover", true)
         .attr("stroke", color[0])
         .attr("stroke-width", "0.5px"), 
-        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + " | " + tip_year + ": " + pro + "</p>" )
+        tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
           .style('fill', function(d){ return color(i); });
         
@@ -250,7 +262,7 @@ function drawStackedChart(word_num){
         d3.select(this)
         .classed("hover", false)
         .attr("stroke-width", "0px"), 
-        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + "<br>" + pro + "</p>" )
+        tooltip.html( "<p>" + selectiveReplacement(d.key) + "<br>" + pro + "</p>" )
           .style("visibility", "hidden")
           .style('fill', 'rgb(83, 86, 90)');
     });
@@ -366,7 +378,7 @@ function updateStackedChart(word_num, start, end){
         .classed("hover", true)
         .attr("stroke", color[0])
         .attr("stroke-width", "0.5px"), 
-        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + " | " + tip_year + ": " + pro + "</p>" )
+        tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
           .style('fill', function(d){ return color(i); });
         
@@ -379,7 +391,7 @@ function updateStackedChart(word_num, start, end){
         d3.select(this)
         .classed("hover", false)
         .attr("stroke-width", "0px"), 
-        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + "<br>" + pro + "</p>" )
+        tooltip.html( "<p>" + selectiveReplacement(d.key) + "<br>" + pro + "</p>" )
           .style("visibility", "hidden")
           .style('fill', 'rgb(83, 86, 90)');
     });
