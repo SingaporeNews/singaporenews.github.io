@@ -158,6 +158,11 @@ function updateData(frm, option){
         .style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d.term; });
 
+    term_label
+      .on('click', function(d){
+        updateData(d.term, 'remove');
+      });
+
     term_label.exit().transition().duration(750).remove();
 
     line_svg.selectAll('.line_y.axis')
