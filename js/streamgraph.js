@@ -73,9 +73,17 @@ $(function(){
    });
 });
 
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    width = w.innerWidth || e.clientWidth || g.clientWidth,
+    height = w.innerHeight|| e.clientHeight|| g.clientHeight;
+/*
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
+*/
 
 var tooltip = d3.select("div#chart")
     .append("div")
