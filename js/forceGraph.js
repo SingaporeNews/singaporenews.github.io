@@ -109,7 +109,7 @@ function drawGraph(selectedList){
         .style('text-anchor', 'middle')
         .style('font-size', '18px')
         .style('fill', '#47996E')
-        .text('Select a word to add');
+        .text('Select a word to');
 
     forceListSvg.append('text')
         .attr('x', 50)
@@ -117,7 +117,7 @@ function drawGraph(selectedList){
         .style('text-anchor', 'middle')
         .style('font-size', '18px')
         .style('fill', '#47996E')
-        .text('or remove it from');
+        .text('add or remove it');
 
     forceListSvg.append('text')
         .attr('x', 50)
@@ -125,7 +125,7 @@ function drawGraph(selectedList){
         .style('text-anchor', 'middle')
         .style('font-size', '18px')
         .style('fill', '#47996E')
-        .text('the graph');
+        .text('from the graph:');
 
     var term_label = forceListSvg.selectAll('.force_item')
             .data(totallist);
@@ -135,7 +135,7 @@ function drawGraph(selectedList){
           .append('text')
             .attr('class', 'force_item')
             .attr("x", 50)
-            .attr("y", function(d,i){ return i + 3 + "em"; })
+            .attr("y", function(d,i){ return i + 4 + "em"; })
             .style("text-anchor", "middle")
             .style("font-size", "16px")
             .style("fill", "#53565A")
