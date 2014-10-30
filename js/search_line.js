@@ -227,7 +227,7 @@ function updateData(frm, option){
               .style('opacity', .6);
             div.html(the_headline)
               .style('left', '300px')
-              .style('top', '10px');
+              .style('top', '5px');
               //.style('left', (d3.event.pageX) + 10 + "px")
               //.style('top', (d3.event.pageY) + 2 + "px")
               //.style('color', line_color(used_data[j].term));
@@ -376,7 +376,7 @@ function createChart(frm, search_list){
               .style('opacity', .6);
             div.html(the_headline)
               .style('left', '300px')
-              .style('top', '75px');
+              .style('top', '5px');
         })
         .on('mouseout', function(d){
             d3.select(this).transition().duration(600)
