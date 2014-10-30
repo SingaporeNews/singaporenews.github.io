@@ -21,7 +21,7 @@ function capitaliseFirstLetter(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 function selectiveReplacement(string){
-  dict = {'pm':'PM'; 'us':'US'};
+  dict = {'pm':'PM', 'us':'US'};
   for (key in dict){
     if (string === key){
       string = dict[key];
