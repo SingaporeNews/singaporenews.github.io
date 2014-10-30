@@ -249,6 +249,10 @@ function updateData(frm, option){
 function createChart(frm, search_list){
   search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
+    d3.csv("http://singaporenews.github.io/Words_all_headlines_30oct.csv",
+      function(error, headlinesData){
+
+        var headlinesData = headlinesData;
 
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
@@ -305,6 +309,7 @@ function createChart(frm, search_list){
         .duration(750)
         .style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d.term; });
+
 
     line_svg.append('g')
         .attr('class', 'line_x axis')
@@ -382,7 +387,10 @@ function createChart(frm, search_list){
         });
 
         wordCircle.exit().remove();
+
+    });
   });
+
 
 
 }
