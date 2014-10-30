@@ -113,7 +113,7 @@ var tooltip = d3.select("div#stream_label")
     .style("visibility", "hidden")
     .style("top", "0px")
     .style("left", "0px")
-    .style("font-size", "20px");
+    .style("font-size", "25px");
 
 var datearray = [];
 
