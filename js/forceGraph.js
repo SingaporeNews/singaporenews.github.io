@@ -104,6 +104,7 @@ function drawGraph(selectedList){
     graph = graphDict;
 
     forceListSvg.append('text')
+        .attr('class', 'listTitle')
         .attr('x', 50)
         .attr('y', 0 + "em")
         .style('text-anchor', 'middle')
@@ -112,6 +113,7 @@ function drawGraph(selectedList){
         .text('Select a word to');
 
     forceListSvg.append('text')
+        .attr('class', 'listTitle')
         .attr('x', 50)
         .attr('y', 1 + "em")
         .style('text-anchor', 'middle')
@@ -120,6 +122,7 @@ function drawGraph(selectedList){
         .text('add or remove it');
 
     forceListSvg.append('text')
+        .attr('class', 'listTitle')
         .attr('x', 50)
         .attr('y', 2 + "em")
         .style('text-anchor', 'middle')
@@ -147,11 +150,13 @@ function drawGraph(selectedList){
     term_label.on('click', function(d){
             if ($.inArray(d, selectedList) < 0){
               selectedList.push(d);
+              d3.selectAll('.listTitle').remove();
               drawGraph(selectedList);
               d3.select(this).style('fill', 'rgb(31, 119, 180)') 
             }
             else {
               selectedList = selectedList.filter(function(e){ return e != d; });
+              d3.selectAll('.listTitle').remove();
               drawGraph(selectedList);
               d3.select(this).style('fill', 'rgb(83, 86, 90)')
             }
