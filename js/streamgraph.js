@@ -376,8 +376,8 @@ function updateStackedChart(word_num, start, end){
 
         d3.select(this)
         .classed("hover", true)
-        .attr("stroke", color[0])
-        .attr("stroke-width", "0.5px"), 
+        .attr("stroke", 'black')
+        .attr("stroke-width", "1.5px"), 
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
           .style('fill', function(d){ return color(d.key); });
