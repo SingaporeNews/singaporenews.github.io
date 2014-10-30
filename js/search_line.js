@@ -9,7 +9,7 @@ function showAndClearField(frm){
 var w = window,
     d = document,
     e = d.documentElement,
-    g = d.getElementById('line_chart'),
+    g = d.getElementById('chart'),
     width = g.clientWidth/1.1, //w.innerWidth || e.clientWidth || g.clientWidth,
     height = e.clientHeight/1.45;//w.innerHeight|| e.clientHeight|| g.clientHeight;
 
