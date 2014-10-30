@@ -172,7 +172,8 @@ function drawGraph(selectedList){
           .enter().append("circle")
             .attr("class", "node")
             .attr("r", 5)
-            .style("fill", function(d) { return color(d.group); })
+            .style('fill', '#8c510a')
+            //.style("fill", function(d) { return color(d.group); })
             .on('dblclick', releasenode)
             .on('click', connectedNodes)
             .call(node_drag);
