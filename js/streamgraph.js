@@ -17,6 +17,10 @@ $(document).on('click', '#top_num li a', function () {
     updateStackedChart(($(this).text()), start_year, end_year);
 });
 
+function capitaliseFirstLetter(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 /*
 $(document).on('click', '#start_year li a', function () {
     if ($.trim($('#words-group').text()) == "# of top words"){
@@ -233,7 +237,7 @@ function drawStackedChart(word_num){
         .classed("hover", true)
         .attr("stroke", color[0])
         .attr("stroke-width", "0.5px"), 
-        tooltip.html( "<p>" + d.key + " | " + tip_year + ": " + pro + "</p>" )
+        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
           .style('fill', function(d){ return color(i); });
         
@@ -246,7 +250,7 @@ function drawStackedChart(word_num){
         d3.select(this)
         .classed("hover", false)
         .attr("stroke-width", "0px"), 
-        tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" )
+        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + "<br>" + pro + "</p>" )
           .style("visibility", "hidden")
           .style('fill', 'rgb(83, 86, 90)');
     });
@@ -362,7 +366,7 @@ function updateStackedChart(word_num, start, end){
         .classed("hover", true)
         .attr("stroke", color[0])
         .attr("stroke-width", "0.5px"), 
-        tooltip.html( "<p>" + d.key + " | " + tip_year + ": " + pro + "</p>" )
+        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
           .style('fill', function(d){ return color(i); });
         
@@ -375,7 +379,7 @@ function updateStackedChart(word_num, start, end){
         d3.select(this)
         .classed("hover", false)
         .attr("stroke-width", "0px"), 
-        tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" )
+        tooltip.html( "<p>" + capitaliseFirstLetter(d.key) + "<br>" + pro + "</p>" )
           .style("visibility", "hidden")
           .style('fill', 'rgb(83, 86, 90)');
     });
