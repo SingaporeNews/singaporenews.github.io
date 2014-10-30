@@ -62,7 +62,7 @@ function showHeadlines(data, word, year){
 function updateData(frm){
   search_list.push(frm.toLowerCase());
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
-    d3.csv("http://singaporenews.github.io/Words_all_headlines_29oct.csv",
+    d3.csv("http://singaporenews.github.io/Words_all_headlines_30oct.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
