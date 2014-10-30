@@ -87,6 +87,9 @@ div.chart_div {
   padding: 2px;
   font: 12px;
 }
+.term_label {
+  cursor:pointer;
+}
 
 /* Links */
 a,
