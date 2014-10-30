@@ -78,7 +78,7 @@ var w = window,
     e = d.documentElement,
     g = d.getElementById('chart'),
     width = g.clientWidth/1.1, //w.innerWidth || e.clientWidth || g.clientWidth,
-    height = g.clientHeight/1.3;//w.innerHeight|| e.clientHeight|| g.clientHeight;
+    height = e.clientHeight;//w.innerHeight|| e.clientHeight|| g.clientHeight;
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = width - margin.left - margin.right,
