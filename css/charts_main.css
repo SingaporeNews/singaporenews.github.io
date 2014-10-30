@@ -54,7 +54,7 @@ path.chord {
 }
 #force_list {
     height: auto;
-    max-height: 500px;
+    max-height: 450px;
     overflow-y: scroll;
 }
 .force_item {
