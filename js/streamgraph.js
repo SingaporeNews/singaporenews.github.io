@@ -247,7 +247,7 @@ function drawStackedChart(word_num){
 
         d3.select(this)
         .classed("hover", true)
-        .attr("stroke", color[i])
+        .attr("stroke", color[i-1])
         .attr("stroke-width", "0.5px"), 
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
