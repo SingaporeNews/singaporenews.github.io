@@ -251,7 +251,7 @@ function drawStackedChart(word_num){
         .attr("stroke-width", "0.5px"), 
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
-          .style('fill', function(d){ return color(d.key); });
+          .style('fill', function(d){ return color[0]; });
         
       })
       .on("mouseout", function(d, i) {
