@@ -248,10 +248,10 @@ function drawStackedChart(word_num){
         d3.select(this)
         .classed("hover", true)
         .attr("stroke", 'black')
-        .attr("stroke-width", "1px"), 
+        .attr("stroke-width", "1.5px"), 
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
-          .style('fill', function(d){ return color[0]; });
+          .style('fill', function(d){ return color[i]; });
         
       })
       .on("mouseout", function(d, i) {
