@@ -25,7 +25,34 @@ var forceListSvg = d3.select('div#force_list').append('svg')
     .attr('width', 200)
     .attr('height', 2000)
     .append('g')
-      .attr("transform", "translate(" + margin.right + "," + margin.top + ")");;
+      .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
+
+forceListSvg.append('text')
+    .attr('class', 'listTitle')
+    .attr('x', 50)
+    .attr('y', 0 + "em")
+    .style('text-anchor', 'middle')
+    .style('font-size', '18px')
+    .style('fill', '#47996E')
+    .text('Select a word to');
+
+forceListSvg.append('text')
+    .attr('class', 'listTitle')
+    .attr('x', 50)
+    .attr('y', 1 + "em")
+    .style('text-anchor', 'middle')
+    .style('font-size', '18px')
+    .style('fill', '#47996E')
+    .text('add or remove it');
+
+forceListSvg.append('text')
+    .attr('class', 'listTitle')
+    .attr('x', 50)
+    .attr('y', 2 + "em")
+    .style('text-anchor', 'middle')
+    .style('font-size', '18px')
+    .style('fill', '#47996E')
+    .text('from the graph:');
 
 var node_drag = d3.behavior.drag()
     .on("dragstart", dragstart)
@@ -103,33 +130,6 @@ function drawGraph(selectedList){
 
     graph = graphDict;
 
-    forceListSvg.append('text')
-        .attr('class', 'listTitle')
-        .attr('x', 50)
-        .attr('y', 0 + "em")
-        .style('text-anchor', 'middle')
-        .style('font-size', '18px')
-        .style('fill', '#47996E')
-        .text('Select a word to');
-
-    forceListSvg.append('text')
-        .attr('class', 'listTitle')
-        .attr('x', 50)
-        .attr('y', 1 + "em")
-        .style('text-anchor', 'middle')
-        .style('font-size', '18px')
-        .style('fill', '#47996E')
-        .text('add or remove it');
-
-    forceListSvg.append('text')
-        .attr('class', 'listTitle')
-        .attr('x', 50)
-        .attr('y', 2 + "em")
-        .style('text-anchor', 'middle')
-        .style('font-size', '18px')
-        .style('fill', '#47996E')
-        .text('from the graph:');
-
     var term_label = forceListSvg.selectAll('.force_item')
             .data(totallist);
 
@@ -150,13 +150,11 @@ function drawGraph(selectedList){
     term_label.on('click', function(d){
             if ($.inArray(d, selectedList) < 0){
               selectedList.push(d);
-              d3.selectAll('.listTitle').remove();
               drawGraph(selectedList);
               d3.select(this).style('fill', 'rgb(31, 119, 180)') 
             }
             else {
               selectedList = selectedList.filter(function(e){ return e != d; });
-              d3.selectAll('.listTitle').remove();
               drawGraph(selectedList);
               d3.select(this).style('fill', 'rgb(83, 86, 90)')
             }
