@@ -151,9 +151,9 @@ function drawGraph(selectedList){
         link
           .enter().append("line")
             .attr("class", "link")
-            .style('stroke-width', 1)
-            .style('stroke', function(d){ return fill(d.value); });
-            //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
+            //.style('stroke-width', 1)
+            //.style('stroke', function(d){ return fill(d.value); });
+            .style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
         link.exit().remove();
 
