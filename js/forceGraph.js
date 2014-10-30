@@ -105,7 +105,7 @@ function drawGraph(selectedList){
 
     forceListSvg.append('text')
         .attr('x', 50)
-        .attr('y', -1 + "em")
+        .attr('y', 0 + "em")
         .style('text-anchor', 'middle')
         .style('font-size', '18px')
         .style('fill', '#47996E')
@@ -119,7 +119,7 @@ function drawGraph(selectedList){
           .append('text')
             .attr('class', 'force_item')
             .attr("x", 50)
-            .attr("y", function(d,i){ return i + "em"; })
+            .attr("y", function(d,i){ return i + 1 + "em"; })
             .style("text-anchor", "middle")
             .style("font-size", "16px")
             .style("fill", "#53565A")
