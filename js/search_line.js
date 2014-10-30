@@ -2,7 +2,7 @@ function showAndClearField(frm){
         if (frm.term.value == "")
           alert("You forgot to enter a term!")
         else
-          updateData(frm.term.value);
+          updateData(frm.term.value, 'add');
         frm.term.value = ""
       };
 
@@ -45,9 +45,6 @@ createChart('singapore', search_list);
 var datearray = [];
 
 function showHeadlines(data, word, year){
-  console.log(data);
-  console.log(word);
-  console.log(year);
 
     var data = data.filter(function(d){ return d.wordCol.toLowerCase() == word; });
     data = data.filter(function(d){ return d.yearCol === year; });
@@ -59,14 +56,20 @@ function showHeadlines(data, word, year){
     return headline;
 }
 
-function updateData(frm){
-  search_list.push(frm.toLowerCase());
+function updateData(frm, option){
+  if (option === 'add'){
+    search_list.push(frm.toLowerCase());
+  }
+  if (option === 'remove'){
+    search_list = search_list.filter(
+      function(d){ return d !== frm.toLowerCase(); });
+  }
+  
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
     d3.csv("http://singaporenews.github.io/Words_all_headlines_30oct.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
-        console.log(headlinesData);
     
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
@@ -83,9 +86,9 @@ function updateData(frm){
     });
 
     
-    if (search_list.length > 5){
+    if (search_list.length > 20){
       length = search_list.length;
-      search_list = search_list.slice(-5);
+      search_list = search_list.slice(-20);
     };
     
     used_data = $.map(headline_terms, function(element){
