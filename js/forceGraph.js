@@ -1,6 +1,13 @@
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementById('chart'),
+    width = g.clientWidth/1.1, //w.innerWidth || e.clientWidth || g.clientWidth,
+    height = e.clientHeight/1.45;//w.innerHeight|| e.clientHeight|| g.clientHeight;
+
 var margin = {top: 20, right: 20, bottom: 30, left: 140},
-  width = 760 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+  width = width - margin.left - margin.right,
+  height = height - margin.top - margin.bottom;
 
 var color = d3.scale.category20();
 
@@ -152,7 +159,8 @@ function drawGraph(selectedList){
           .enter().append("line")
             .attr("class", "link")
             //.style('stroke-width', 1)
-            .style('stroke', function(d){ return fill(d.value); })
+            //.style('stroke', function(d){ return fill(d.value); })
+            .style('stroke', '#47996E')
             .style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
         link.exit().remove();
