@@ -6,9 +6,16 @@ function showAndClearField(frm){
         frm.term.value = ""
       };
 
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementById('line_chart'),
+    width = g.clientWidth/1.1, //w.innerWidth || e.clientWidth || g.clientWidth,
+    height = e.clientHeight/1.45;//w.innerHeight|| e.clientHeight|| g.clientHeight;
+
 var margin = {top: 20, right: 20, bottom: 30, left: 140},
-  width = 960 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+  width = width - margin.left - margin.right,
+  height = height - margin.top - margin.bottom;
 
 var line_x = d3.scale.ordinal()
           .rangeRoundBands([0, width]);
