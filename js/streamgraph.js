@@ -245,7 +245,8 @@ function drawStackedChart(word_num){
         .attr("opacity", "1");
         d3.select(this)
         .classed("hover", false)
-        .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" )
+        .attr("stroke-width", "0px"), 
+        tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" )
           .style("visibility", "hidden")
           .style('fill', 'rgb(83, 86, 90)');
     });
@@ -361,7 +362,9 @@ function updateStackedChart(word_num, start, end){
         .classed("hover", true)
         .attr("stroke", color[0])
         .attr("stroke-width", "0.5px"), 
-        tooltip.html( "<p>" + d.key + " | " + tip_year + ": " + pro + "</p>" ).style("visibility", "visible");
+        tooltip.html( "<p>" + d.key + " | " + tip_year + ": " + pro + "</p>" )
+          .style("visibility", "visible")
+          .style('fill', function(d){ return color(i); });
         
       })
       .on("mouseout", function(d, i) {
@@ -371,7 +374,10 @@ function updateStackedChart(word_num, start, end){
         .attr("opacity", "1");
         d3.select(this)
         .classed("hover", false)
-        .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "hidden");
+        .attr("stroke-width", "0px"), 
+        tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" )
+          .style("visibility", "hidden")
+          .style('fill', 'rgb(83, 86, 90)');
     });
   });  
 }
