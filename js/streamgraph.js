@@ -89,14 +89,14 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     height = 500 - margin.top - margin.bottom;
 */
 
-var tooltip = d3.select("div#chart")
+var tooltip = d3.select("div#stream_label")
     .append("div")
     .attr("class", "remove")
     .style("position", "absolute")
     .style("z-index", "20")
     .style("visibility", "hidden")
-    .style("top", "500px")
-    .style("left", "500px")
+    .style("top", "50px")
+    .style("left", "50px")
     .style("font-size", "16px");
 
 var datearray = [];
@@ -250,9 +250,7 @@ function drawStackedChart(word_num){
 }
 
 function updateStackedChart(word_num, start, end){
-  console.log(word_num);
-  console.log(start);
-  console.log(end);
+
   d3.csv('Words_allyears_27oct.csv', function(error, data){
 
     data.forEach(function(d){
