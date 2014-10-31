@@ -301,7 +301,9 @@ function createChart(search_list){
     line_y.domain([minY, maxY]);
 
     var term_label = line_svg.selectAll('term_label')
-        .data(used_data)
+        .data(used_data);
+
+    term_label
         .enter()
       .append('text')
         .attr('class', 'term_label')
@@ -309,9 +311,6 @@ function createChart(search_list){
         .attr("y", function(d,i){ return i+"em"; })
         .style("text-anchor", "middle")
         .style("font-size", "16px")
-        .style("fill", "#53565A")
-        .transition()
-        .duration(750)
         .style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d.term; });
 
