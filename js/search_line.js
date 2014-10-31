@@ -27,7 +27,7 @@ var line = d3.svg.line()
       .x(function(d){ return line_x(d.year); })
       .y(function(d){ return line_y(d.count); });
 
-var line_color = d3.scale.category10();
+var line_color = d3.scale.category20();
 
 var line_svg = d3.select('div#line_chart').append('svg')
             .attr("width", width + margin.left + margin.right + margin.right)
@@ -276,6 +276,8 @@ function createChart(search_list){
     var div = d3.select('div#line_chart').append('div')
             .attr('class', 'tooltip')
             .style('opacity', 0);
+
+    line_color.domain(search_list);
 
     var xAxis = d3.svg.axis()
       .scale(line_x)
