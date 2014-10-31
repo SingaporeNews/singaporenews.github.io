@@ -38,7 +38,7 @@ var line_svg = d3.select('div#line_chart').append('svg')
 
 
 
-createChart('singapore', search_list);
+createChart(search_list);
 
 
 
@@ -246,8 +246,8 @@ function updateData(frm, option){
   });
 };
 
-function createChart(frm, search_list){
-  search_list.push(frm);
+function createChart(search_list){
+  //search_list.push(frm);
   d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
     d3.csv("http://singaporenews.github.io/Words_all_headlines_30oct.csv",
       function(error, headlinesData){
@@ -268,7 +268,10 @@ function createChart(frm, search_list){
       };
     });
 
-    used_data = headline_terms.filter(function(d){ return d.term == frm.toLowerCase(); });
+    //used_data = headline_terms.filter(function(d){ return d.term == frm.toLowerCase(); });
+    used_data = $.map(headline_terms, function(element){
+      return ($.inArray(element.term,search_list)>-1?element:null)
+    });
 
     var div = d3.select('div#line_chart').append('div')
             .attr('class', 'tooltip')
