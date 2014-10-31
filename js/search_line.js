@@ -315,6 +315,11 @@ function createChart(search_list){
         .style('fill', function(d){ return line_color(d.term); })
         .text(function(d){ return d.term; });
 
+    term_label
+      .on('click', function(d){
+        updateData(d.term, 'remove');
+      });
+
 
     line_svg.append('g')
         .attr('class', 'line_x axis')
