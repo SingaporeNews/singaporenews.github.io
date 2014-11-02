@@ -82,7 +82,7 @@ drawGraph(selectedList);
 
 function drawGraph(selectedList){
 
-  d3.csv("cooccurrenceMatrixData.csv", function(data){
+  d3.csv("http://singaporenews.github.io/data/cooccurrenceMatrixData.csv", function(data){
 
     totallist = [];
       for (i=0; i<data.length; i++){

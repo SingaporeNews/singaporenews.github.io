@@ -65,8 +65,8 @@ function updateData(frm, option){
       function(d){ return d !== frm.toLowerCase(); });
   }
   
-  d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
-    d3.csv("http://singaporenews.github.io/Words_all_headlines_30oct.csv",
+  d3.csv("http://singaporenews.github.io/data/transposed_terms_27oct.csv", function(error, data){
+    d3.csv("http://singaporenews.github.io/data/Words_all_headlines_30oct.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
@@ -248,8 +248,8 @@ function updateData(frm, option){
 
 function createChart(search_list){
   //search_list.push(frm);
-  d3.csv("http://singaporenews.github.io/transposed_terms_27oct.csv", function(error, data){
-    d3.csv("http://singaporenews.github.io/Words_all_headlines_30oct.csv",
+  d3.csv("http://singaporenews.github.io/data/transposed_terms_27oct.csv", function(error, data){
+    d3.csv("http://singaporenews.github.io/data/Words_all_headlines_30oct.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
