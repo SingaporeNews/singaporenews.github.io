@@ -1,5 +1,4 @@
-## The Singapore News Story 
-### (A Data Visualization Project)
+The Singapore News Story 
 =======================
 
 This repository is an entry for the [Data In The City Visualization Challenge](https://ideas.ecitizen.gov.sg/a/pages/visualisationchallenge-home) organized by the Info-communications Development Authority (IDA) of Singapore.
