@@ -1,4 +1,4 @@
-The Singapore News Story 
+## The Singapore News Story 
 ### (A Data Visualization Project)
 =======================
 
