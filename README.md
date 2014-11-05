@@ -6,11 +6,13 @@ This repository is an entry for the [Data In The City Visualization Challenge](h
 > "The "Data in the City" Data Visualisation Challenge invites the public to celebrate the 50th anniversary (SG50) 
 by telling the Singapore Story using data and visualise how we live, work and play in Singapore. It is an excellent opportunity to commemorate the country's amazing progress and celebrate the best that is yet to come."
 
-The Singapore News Story presents data visualizations of over 50 years of news headlines from Singapore's most prominent daily newspaper The Straits Times. You can see the site at [singaporenews.github.io](singaporenews.github.io). All of the code that collected the data, analyzed and visualized it (in addition to the code for the site itself) is available in this repository. The project is meant to be entirely reproducible and extensible. If you have any questions or if you'd like to contribute, please email Paul (meinshap@gmail.com) or Hanif (hanif.samad.sg@gmail.com). 
+The Singapore News Story presents data visualizations of over 50 years of news headlines from Singapore's most prominent English daily, The Straits Times. You can see the site at [singaporenews.github.io](singaporenews.github.io). All of the code used in the collection, analysis and visualization of the data (in addition to the code for the site itself) is available in this repository. The project is meant to be entirely reproducible and extensible. If you have any questions or if you'd like to contribute, please email Paul (meinshap@gmail.com) or Hanif (hanif.samad.sg@gmail.com). 
 
 ### Data
+We used the digitised newspaper archive [NewpaperSG](http://eresources.nlb.gov.sg/newspapers/) maintained by the National Library Board as our primary source of data. The focus of our project was on Page 1 headlines from the Straits Times, which we extracted by identifying the appropriate html tags in the source page (it should be mentioned that the portal archives many other newspapers including community language newspapers and rare out-of-print dailies, which could be interesting sources of further analysis). [Here](http://eresources.nlb.gov.sg/newspapers/Digitised/Issue/straitstimes19550101-1.aspx) is an example of a digitised Straits Times record, taken from the January 1st 1955 issue. 
 
-### Analysis
+The code for scraping the headlines, agnostic to year, is called [date_nlb.py](https://github.com/SingaporeNews/singaporenews.github.io/blob/master/data/date_nlb.py). Replace 'ZZ' in the code with any year of interest. This makes it possible to run multiple years in parallel covering any time period between 1845 and 2009. A log file 'Headlines_(year).log' is produced that records integrity checks on the process, making sure that there is a one-to-one correspondence between page tag and headline.
+Non-informative headlines (e.g. 'Latest', Miscellaneous') are removed at this step.
 
 ### Visualizations
 
