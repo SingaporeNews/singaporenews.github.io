@@ -8,16 +8,16 @@ import logging
 import nltk
 import csv
 import re
-import pandas
+#import pandas
 import pickle
 import codecs
 import random
 import json
-from gensim import corpora, models, similarities
-from nltk.util import ngrams 
+#from gensim import corpora, models, similarities
+#from nltk.util import ngrams 
 from datetime import timedelta
 from time import strftime
-from sklearn.feature_extraction.text import CountVectorizer 
+#from sklearn.feature_extraction.text import CountVectorizer 
 
 ################################################################################################
 #Script to:
@@ -78,7 +78,7 @@ for year in range(1955,2010):
 		alltagged.append(tagged)
 		allcurrent.append(current)
 		allhead.append(head)
-		logging.info('Done!', year)
+		logging.info('Year %d Done!', year)
 
 		#Counter for timer
 		if count % 10 == 0:
@@ -166,12 +166,12 @@ for year in range(1955,2010):
 		cur_bag = list(icur_bag)
 		logging.info('Removing unique words..')
 		tokens_once = set(word for word in set(cur_bag) if cur_bag.count(word) == 1)
-		goodcur_bag = [word for word in cur_bag if word not in tokens_once]	
+		goodcur_bag = [word for word in cur_bag]	
 
 		#Count 50 most common words
 		logging.info('Extracting 100 most common words for %d..', year)
 		counter = collections.Counter(goodcur_bag)
-		freq = counter.most_common(50)
+		freq = counter.most_common()
 		lfreq = [list(y) for y in freq]
 		allfreq.append(lfreq)
 		logging.info('Done!')
@@ -193,7 +193,7 @@ n = 1955
 for freq in allfreq:
 	for word in freq:
 		word.append(str(n))
-		with open('Top_words_allyears_15oct.txt','a') as h:
+		with open('Wordsall_allyears_26oct.txt','a') as h:
 			writer = csv.writer(h, delimiter='\t')
 			writer.writerows([word])
 	n +=1
@@ -257,7 +257,7 @@ for year,head in zip(range(1955,2010),allhead):
 			links.append((word[0],int(word[1])))
 			ind = random.sample(range(0,len(hlist)-1),10)
 			for i in ind:
-				#word, headline
+				#word,headline
 				links.append((word[0],hlist[i]))
 		elif len(hlist) > 0:
 			links.append((word[3],int(year)))
@@ -334,4 +334,13 @@ e['children'] = [e50s,e60s,e70s,e80s,e90s,e00s]
 with open('Words_events_decade_15oct.json', 'wb') as g:
 	json.dump(e,g,indent=5)
 
+
+n = 1955
+for tagged in newtagged:
+	for pair in tagged:
+		pair.append(str(n))
+		with open('Wordsall_allyears_11nov.txt','a') as h:
+			writer = csv.writer(h, delimiter='\t')
+			writer.writerows([pair])
+	n +=1
 	
