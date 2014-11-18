@@ -11,7 +11,9 @@ headt <- data.table(head)
 month <- headt[,list(mean(Wordcount),count=.N),
                by=list(Decade,Month)]
 year <- headt[,list(mean(Wordcount),count=.N),
-              by=list(Year)]
+              by=list(Decade,Year)]
+decade <- headt[,list(mean(Wordcount),avcount=.N/10),
+                by=Decade]
 monthlist <- factor(month$Month, labels=c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'))
 
 library(ggplot2)
