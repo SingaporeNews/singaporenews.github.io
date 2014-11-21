@@ -5,8 +5,34 @@ head$Month <- strftime(head$Date, '%m')
 head$Year <- strftime(head$Date, '%Y')
 head$Decade <- as.factor(paste(substr(head$Year,1,3),'0s',sep=''))
 
+words <- read.csv('Word_tag_frequency.csv', header=F)
+names(words) <- c('Year','Word','Tag','freq')
+sortyear <- c()
+for (year in 1955:2009){
+  stryear <- as.character(year)
+  temp <- words[words$Year==year,]
+  sorted <- cbind(data.frame(year),
+                  c(1:nrow(temp)),
+                  temp[order(-temp$freq),]$freq)
+  cuml <- vector()
+  for (i in 1:nrow(sorted)){ 
+    if(i==1)
+      cuml[i] <- (sorted[i,3]/sum(sorted[,3]))*100
+    else {
+      k = i-1
+      cuml[i] <- (sorted[i,3]/sum(sorted[,3]))*100 + cuml[k]
+    }
+  }
+  sorted$cuml <- cuml
+  sortyear[[year]] <- sorted
+}
+sortyear <- data.frame(do.call('rbind',sortyear))
+names(sortyear) <- c('year','index','freq','cuml')
+sortyear$decade <- paste(substr(sortyear$year,1,3),'0s',sep='')
+
 library(data.table)
 
+#Wordcount within headlines
 headt <- data.table(head)
 month <- headt[,list(mean(Wordcount),count=.N),
                by=list(Decade,Month)]
@@ -15,6 +41,17 @@ year <- headt[,list(mean(Wordcount),count=.N),
 decade <- headt[,list(mean(Wordcount),avcount=.N/10),
                 by=Decade]
 monthlist <- factor(month$Month, labels=c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'))
+
+#Tagcount across headlines
+wordsdt <- data.table(words)
+wordsdt$Tagg <- substr(wordsdt$Tag,1,2)
+tagyear <- wordsdt[,list(Tagcount=.N),
+                   by=list(Year,Tagg)]
+#remove uninformative tags
+goodtag <- c('NN','JJ','VB','PR','IN','CD','RB','MD','DT','WR','LS','CC','TO','WP','RP','EX','PD','WD')
+goodtagyear <- tagyear[tagyear$Tagg %in% goodtag,]
+actag <- c('noun','adjective','verb','pronoun','preposition','numeral','adverb','modal auxillary','determiner','')
+
 
 library(ggplot2)
 library(RColorBrewer)
@@ -91,3 +128,13 @@ ee3 <- ee2 + xlab('Month') + ylab('Frequency') + ggtitle('Total no. of headlines
 
 #Plot all charts
 grid.arrange(aa3,bb3,cc3,dd3,ee3, ncol=2)
+
+#Words, sorted by frequency
+
+ff <- ggplot(sortyear,aes(group=factor(year)))
+ff1 <- ff + geom_line(aes(x=index,y=cuml,colour=factor(decade)), size=0.7, alpha=0.6)
+ff2 <- ff1 + theme_mine() + theme(legend.position=c(0.8,0.5)) + scale_colour_manual(values=pal)
+ff3 <- ff2 + geom_hline(yintercept=90, linetype=2) + scale_y_continuous(breaks=c(0,25,50,75,90,100))
+ff4 <- ff3 + xlab('word index') + ylab('cumulative %') + ggtitle('Number of top words covering 90% of wordcount in headlines ')
+
+#Tags, 
