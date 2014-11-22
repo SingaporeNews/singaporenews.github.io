@@ -37,7 +37,7 @@ library(data.table)
 #Wordcount across headlines
 headt <- data.table(head)
 month <- headt[,list(mean(Wordcount),count=.N),
-               by=list(Decade,Month)]
+               by=list(Decade,Year,Month)]
 year <- headt[,list(mean(Wordcount),count=.N),
               by=list(Decade,Year)]
 decade <- headt[,list(mean(Wordcount),avcount=.N/10),
@@ -139,25 +139,26 @@ theme_mine <- function(base_size = 10, base_family = "Helvetica") {
 aa <- ggplot(head)
 aa1 <- aa + geom_bar(aes(x=Wordcount), fill='grey', stat='bin')
 aa2 <- aa1 + theme_mine() + scale_x_continuous(expand=c(0,0)) + scale_y_continuous(expand=c(0,0))
-aa3 <- aa2 + ggtitle('Histogram of wordcount, all headlines') + ylab('Frequency') + xlab('Wordcount')
+aa3 <- aa2 + ggtitle('Histogram of wordcount per headline, all years') + ylab('Frequency') + xlab('Wordcount')
 
 #Average no. of words by year
 bb <- ggplot(year)
 bb1 <- bb + geom_bar(aes(x=Year,y=V1), fill='#0000CC', stat='identity')
 bb2 <- bb1 + theme_mine() + scale_x_discrete(breaks=c(seq(1955,2009,5),2009)) + scale_y_continuous(expand=c(0,0))
-bb3 <- bb2 + ylab('Average length') + ggtitle('Average no. of words in headlines, by year')
+bb3 <- bb2 + ylab('Average wordcount') + ggtitle('Average wordcount per headline, by year')
 
-#Total no. of words by year
+#Total no. of headlines, by year
 cc1 <- bb + geom_bar(aes(x=Year,y=count), fill='#990000', stat='identity')
 cc2 <- cc1 + theme_mine() + scale_x_discrete(breaks=c(seq(1955,2009,5),2009)) + scale_y_continuous(expand=c(0,0))
 cc3 <- cc2 + ylab('Frequency') + ggtitle('Total no. of headlines, by year')
 
-#Average no. of words by month and decade
+#Average no. of words by month and year
 month$Decade <- as.factor(month$Decade)
-dd <- ggplot(month,aes(group=Decade))
-dd1 <- dd + geom_line(aes(x=monthlist,y=V1,colour=Decade), size=0.8)
-dd2 <- dd1 + theme_mine() + theme(legend.position=c(0.8,0.3)) + scale_y_continuous(expand=c(0,0), limits=c(0,6.5)) + scale_colour_manual(values=pal)
-dd3 <- dd2 + xlab('Month') + ylab('Average length') + ggtitle('Average no. of headlines, by month and decade')
+month$Month <- as.factor(month$Month)
+dd <- ggplot(month,aes(group=Year))
+dd1 <- dd + geom_line(aes(x=monthlist,y=V1,colour=Decade), size=0.8, stat='smooth')
+dd2 <- dd1 + theme_mine() + theme(legend.position='bottom') + scale_y_continuous(expand=c(0,0), limits=c(0,8)) + scale_colour_manual(values=pal)
+dd3 <- dd2 + xlab('Month') + ylab('Average wordcount') + ggtitle('Average wordcount per headline, by month and year')
 
 #Total no.of words by month and decade
 ee <- ggplot(month,aes(group=Decade))
