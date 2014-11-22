@@ -1,3 +1,4 @@
+#Wordcount across headlines
 head <- read.table('Headlines_1955_2009_wordcount.txt', header=F, sep='\t')
 names(head) <- c('Date','Headline','Wordcount')
 head$Date <- strptime(head$Date, '%Y%m%d')
@@ -5,6 +6,7 @@ head$Month <- strftime(head$Date, '%m')
 head$Year <- strftime(head$Date, '%Y')
 head$Decade <- as.factor(paste(substr(head$Year,1,3),'0s',sep=''))
 
+#Frequency of words and tags
 words <- read.csv('Word_tag_frequency.csv', header=F)
 names(words) <- c('Year','Word','Tag','freq')
 sortyear <- c()
@@ -32,7 +34,7 @@ sortyear$decade <- paste(substr(sortyear$year,1,3),'0s',sep='')
 
 library(data.table)
 
-#Wordcount within headlines
+#Wordcount across headlines
 headt <- data.table(head)
 month <- headt[,list(mean(Wordcount),count=.N),
                by=list(Decade,Month)]
@@ -45,14 +47,51 @@ monthlist <- factor(month$Month, labels=c('Jan','Feb','Mar','Apr','May','Jun','J
 #Tagcount across headlines
 wordsdt <- data.table(words)
 wordsdt$Tagg <- substr(wordsdt$Tag,1,2)
-tagyear <- wordsdt[,list(Tagcount=.N),
+tagyear <- wordsdt[,list(Tagcount=sum(freq),),
                    by=list(Year,Tagg)]
-#remove uninformative tags
-goodtag <- c('NN','JJ','VB','PR','IN','CD','RB','MD','DT','WR','LS','CC','TO','WP','RP','EX','PD','WD')
-goodtagyear <- tagyear[tagyear$Tagg %in% goodtag,]
-actag <- c('noun','adjective','verb','pronoun','preposition','numeral','adverb','modal auxillary','determiner','')
+tagyear <- data.frame(tagyear)
+tagyear$Decade <- paste(substr(tagyear$Year,1,3),'0s',sep='')
 
+#merge 'what-how' tags
+wh <- c('WR','WP','WD','WH')
+newtag <- c()
+for (year in 1955:2009){
+  decade <- paste(substr(as.character(year),1,3),'0s',sep='')
+  aa <- tagyear[tagyear$Tagg %in% wh & tagyear$Year==year,]
+  aa <- c(year,'WH',sum(aa[,3]),decade)
+  newtag[[year]] <- rbind(tagyear[!(tagyear$Tagg %in% wh) & tagyear$Year==year,],aa)
+}
+newtag <- data.frame(do.call('rbind',newtag))
 
+# remove uninformative tags
+goodtag <- c('NN','JJ','VB','PR','IN','RB','MD','DT','CC','TO','RP','WH')
+goodtagyear <- newtag[newtag$Tagg %in% goodtag,]
+actag <- c('noun','adjective','verb','pronoun','preposition','adverb','modal auxillary','determiner',
+           'conjunction','to','particle','what-how')
+goodtagyear$AcTag <- 0
+for (i in 1:length(goodtag)){
+  goodtagyear[goodtagyear$Tagg==goodtag[i],]$AcTag <- actag[i]
+}
+
+#Calculate percentages, order tags consistently
+ordertag <- c()
+goodtagyear$Tagcount <- as.numeric(goodtagyear$Tagcount)
+ordertag <- c('noun','verb','adjective','preposition','adverb','determiner','to','pronoun','modal auxillary',
+              'conjunction','particle','what-how')
+finaltag <- c()
+for (year in 1955:2009){
+  temp <- goodtagyear[goodtagyear$Year==year,]
+  temp$Percent <- temp$Tagcount/sum(temp$Tagcount)*100
+  temp$TagOrder <- 0
+  for (i in 1:length(ordertag)){
+    temp[temp$AcTag==ordertag[i],'TagOrder'] <- i
+    temp <- temp[order(temp$TagOrder),]
+    finaltag[[year]] <- temp 
+  }
+}
+finaltag <- data.frame(do.call('rbind',finaltag))
+
+#Plots
 library(ggplot2)
 library(RColorBrewer)
 library(gridExtra)
@@ -129,7 +168,7 @@ ee3 <- ee2 + xlab('Month') + ylab('Frequency') + ggtitle('Total no. of headlines
 #Plot all charts
 grid.arrange(aa3,bb3,cc3,dd3,ee3, ncol=2)
 
-#Words, sorted by frequency
+#Word index, sorted by frequency and plotted against cumulative %
 
 ff <- ggplot(sortyear,aes(group=factor(year)))
 ff1 <- ff + geom_line(aes(x=index,y=cuml,colour=factor(decade)), size=0.7, alpha=0.6)
@@ -137,4 +176,12 @@ ff2 <- ff1 + theme_mine() + theme(legend.position=c(0.8,0.5)) + scale_colour_man
 ff3 <- ff2 + geom_hline(yintercept=90, linetype=2) + scale_y_continuous(breaks=c(0,25,50,75,90,100))
 ff4 <- ff3 + xlab('word index') + ylab('cumulative %') + ggtitle('Number of top words covering 90% of wordcount in headlines ')
 
-#Tags, 
+#Tags, by year
+gg <- ggplot(finaltag,aes(group=factor(TagOrder)))
+gg1 <- gg + geom_area(aes(x=Year,y=Percent,fill=factor(TagOrder, labels=ordertag)), position='stack', stat='identity')
+gg2 <- gg1 + theme_mine() + theme(axis.text.x=element_text(angle=60),
+                                  legend.position='right') 
+gg3 <- gg2 + scale_fill_manual(values=brewer.pal(12,'Paired')) + scale_y_continuous(expand=c(0,0))
+gg3 + ggtitle('Percentage breakdown of Part-of-Speech elements in headline words, by year')
+
+
