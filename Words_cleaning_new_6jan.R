@@ -30,6 +30,6 @@ write.csv(w3, 'transposed_terms_6jan15.csv', row.names=F)
 
 #Remove dross from headlines
 w1 <- w1[!(w1$wordCol %in% dross),]
-write.csv(w1, 'transposed_terms_6jan15.csv', row.names=F)
+write.csv(w1, 'Words_all_headlines_6jan15.csv', row.names=F)
 
 
