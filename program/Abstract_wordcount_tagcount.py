@@ -39,12 +39,12 @@ tic = timeit.default_timer()
 #Obtain frequency for tag and word in the current year
 #######################################################################
 
-with open('Abstracts_count.csv', 'w') as k:
-	writer = csv.writer(k, delimiter=',')
-	writer.writerows([['Year','DayCount','ArticleCount']])
+#with open('Abstracts_count.csv', 'w') as k:
+#	writer = csv.writer(k, delimiter=',')
+#	writer.writerows([['Year','DayCount','ArticleCount']])
 
 count = 1
-for year in range(1845,2010):
+for year in range(1910,2010):
 	#unvectorized abstracts for current year, decoded, for tagging
 	homestring = []
 	#unvectorized abstracts for current year
@@ -62,9 +62,9 @@ for year in range(1845,2010):
 			x = re.sub(r'([()?:!,\'])', r'', x)
 			#remove non-informative abstracts
 			x = x.strip('\r\n').split('\t')
-			para = x[2]
 			dater.append(x[0])
 			if x[1]!='909090' and x[1]!='808080':
+				para = x[2]
 				datermark.append(1)
 				if re.search(r'\b(UP|UPI|REUTER|AP|AFP|AGENCE|NYT|NEW YORK TIMES|BLOOMBERG|BERNAMA|ASSOCIATED PRESS)\b', x[1]) is None:
 					homestring.append(para.decode('utf-8'))
