@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://thematicmapping.org/playground/d3/d3.slider/d3.slider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="http://d3js.org/d3.v3.js"></script>
+  <script src="http://singaporenews.github.io/js/search_line.js"></script>
+  <script src="http://singaporenews.github.io/js/topYear_bar.js"></script>
+  <script src="http://thematicmapping.org/playground/d3/d3.slider/d3.slider.js"></script>
+
+  <style>
+
+    body {
+      padding-top: 10px;
+      font: 10px sans-serif;
+      background-image:url("http://singaporenews.github.io/static/noisy-texture.png");
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .line {
+      fill: none;
+      stroke-width: 1.5px;
+    }
+    .bar rect {
+      fill: #FA0020;
+    }
+
+    .bar text.value {
+      fill: white;
+    }
+    .node {
+      border: solid 1px white;
+      font: 10px sans-serif;
+      line-height: 12px;
+      overflow: hidden;
+      position: absolute;
+      text-indent: 2px;
+    }
+
+    .col-md-4 {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    }
+
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <!--
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#FA0020">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img style="height:30px;" src="static/SingaporeFlag.png">
+      </a>
+    </div>
+    <h3 style="color:#fff;">The Singapore News Data Visualization Project</h3>
+  </nav>
+  -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8"></div>
+      <div class="col-md-4">
+        <h2>The Singapore Story</h2>
+        <h4 style="float:right; margin-top:0px;">As told by headline news</h4>
+      </div>
+    </div>
+
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#Summary" role="tab" data-toggle="tab" style="background-image:url('http://singaporenews.github.io/static/noisy-texture.png'); font-size: 14px;">Summary &amp; Vision</a></li>
+      <li><a href="#visualization" role="tab" data-toggle="tab" style="background-image:url('http://singaporenews.github.io/static/noisy-texture.png'); font-size: 14px;">Visualizations</a></li>
+    </ul>
+
+
+  <div class="tab-content">
+    <div class="tab-pane active" style="font-size: 14px;" id="Summary">
+      <br>
+      <br>
+      <p>News represents a vital repository of historical records in a society. Headline news, in particular, takes a snapshot of contemporary events and concerns and is hence a powerful medium to capture the state of society at that moment in history. By analysing the frequency of words or phrases in the headlines and displaying them in a compact form such as a treemap, it is possible to distill a sense of historical contingency and mood. More interestingly, by organising such displays according to time period (such as year or decade), one can demonstrate how the state of society changes from one period to the next, with the aid of effective transitions. Our visualisation will hence represent a literal Singapore Story unfolding and changing through the decades, as told by the news.</p>
+
+      <h4>Ongoing work</h4>
+
+      <p>Here we have collected a corpus of headlines from 1955 to 2009 of The Straits Times, the premier English-language daily of Singapore, through the digitized news archive NewspaperSG maintained by the <a href="http://eresources.nlb.gov.sg/newspapers/Default.aspx">National Library Board</a>. To filter out non-informative word forms such as pronouns and prepositions (‘of’,’the,’them’), we employed Part-of-Speech (PoS) tagging to the corpus and retained only nouns, verbs and adjectives. The top 50 most common words for each year’s group of headlines is then computed. Analysing the kind of words that tend to appear, we are in the process of curating this set into the themes ‘Politics and Personalities’ and ‘Episodes and Emergencies’. ‘Politics and Personalities’ captures country names, person names and other politically-related nouns such as ‘Reds’ and ‘opposition’. ‘Episodes and Emergencies’ covers much of the verbs that remain and tends to capture newsworthy events of the time, such as major accidents or a public health crisis. A sample of headlines is associated to each word to reveal the context in which the word is used.</p>
+
+      <h4>A story and a tool</h4>
+      <p>In this website we will use data from over fifty years of headlines from The Straits Times to tell a few stories about Singapore's history. We have just completed the process of scraping the data and cleaning it. We are just beginning the process of using text-mining and Natural Language Processing (NLP) methods to identify patterns in the data. We will use those patterns to tell some important stories from Singapore's history. However, our goal is also to provide a data visualization tool that anyone can use to discover and visualize the stories and patterns from Singapore's history that matter to them.</p>
+    </div>
+
+    <div class="tab-pane" id="visualization">
+      <div class="row">
+        <div class="col-md-8" style="margin-top:25px;">
+          <div id="barChart"></div>
+          <div id="slider">
+            <p>
+              <label for="nYear" style="display: inline-block; width: 200px; text-align: right">
+                <span id="nYear-value"></span>
+              </label>
+              <input type="range" min="0" max="54" id="nYear">
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div style="vertical-align:middle;">
+          <br>
+          <br>
+          <p style="font-size: 14px; vertical-align:middle;">This chart displays the top terms from the headlines for the given year. The slider at the bottom of the chart allows you to browse through history and see the words and themes that dominated the news in each year.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="margin-top:50px;">
+          <form name="test">
+            <p>Enter a term from the headlines and press the button. <input type="text" name="term">
+            <input type="button" value="Search" onClick="showAndClearField(this.form)">
+            </p>
+          </form>
+        </div>
+        <div class="col-md-8" id="chart" style="margin-top:25px;"></div>
+        <div class="col-md-4" id="chart_text" style="margin-top:25px;">
+          <br>
+          <br>
+          <p style="font-size: 14px;">This chart displays the frequency of a specified term over the years. Search for a word like "tengku", or "china", or "terror", or "police" and see how its use has risen and fallen over the years.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8" id="treeParent" style="margin-top:25px;"></div>
+        <div class="col-md-4" id="treeLegend"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+<script>
+
+
+function showAndClearField(frm){
+  if (frm.term.value == "")
+    alert("You forgot to enter a term!")
+  else
+    updateData(frm.term.value);
+  frm.term.value = ""
+};
+
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+  width = 760 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+          .rangeRoundBands([0, width]);
+
+var y = d3.scale.linear()
+          .range([height, 0]);
+
+var line = d3.svg.line()
+      .x(function(d){ return x(d.year); })
+      .y(function(d){ return y(d.count); });
+
+var color = d3.scale.category20();
+
+var line_svg = d3.select('div#chart').append('svg')
+                  .attr("width", width + margin.left + margin.right + margin.right)
+                  .attr("height", height + margin.top + margin.bottom*2)
+                  .attr('class', 'line_svg')
+                .append('g')
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+createChart('bomb');
+
+
+//****************Bar Chart*********************//
+
+function convertNumbers(row){
+  var r = {};
+  for (var k in row){
+    r[k] = +row[k];
+  }
+  return r;
+};
+
+
+var bar_x = d3.scale.linear().range([0, width]),
+    bar_y = d3.scale.ordinal().rangeRoundBands([0, height], .1);
+
+var bar_xAxis = d3.svg.axis().scale(bar_x).orient('top').tickSize(-height),
+    bar_yAxis = d3.svg.axis().scale(bar_y).orient('left').tickSize(0);
+
+var bar_svg = d3.select('div#barChart').append('svg')
+                      .attr("width", width + margin.left + margin.right + margin.right)
+                      .attr("height", height + margin.top + margin.bottom)
+                      .attr('class', 'bar_svg')
+                    .append('g')
+                      .attr("transform", "translate(" + margin.left + "," + margin.top*2 + ")");
+
+createBarChart(25);
+
+d3.select('#nYear').on('input', function(){
+  updateBarChart(this.value);
+});
+
+
+
+//****************Tree Map*********************//
+var tree_margin = {top: 40, right: 10, bottom: 10, left: 10},
+    tree_width = 760 - tree_margin.left - tree_margin.right,
+    tree_height = 600 - tree_margin.top - tree_margin.bottom;
+
+var tree_color = d3.scale.category20c();
+
+var treemap = d3.layout.treemap()
+    .size([tree_width, tree_height])
+    .sticky(true)
+    .value(function(d) { return +d.size; });
+
+var div = d3.select("div#treeParent").append("div")
+    .style("position", "relative")
+    .style("width", (tree_width + tree_margin.left + tree_margin.right) + "px")
+    .style("height", (tree_height + tree_margin.top + tree_margin.bottom) + "px")
+    .style("left", tree_margin.left + "px")
+    .style("top", tree_margin.top + "px");
+
+var file = "http://singaporenews.github.io/Words_politics_1950s.json";
+
+d3.json(file, function(error, root) {
+  console.log(root)
+  var node = div.datum(root).selectAll(".node")
+      .data(treemap.nodes)
+    .enter().append("div")
+      .attr("class", "node")
+      .call(position)
+      .style("background", function(d) { return d.children ? tree_color(d.name) : null; })
+      .text(function(d) { return d.children ? null : d.parent.name + "-" + d.name; });
+
+  d3.selectAll('.legend_title')
+    .data(treemap.nodes)
+    .enter()
+    .append('text')
+    .attr('x', tree_width / 2)
+    .attr('y', -10);
+
+  node.on('click', function(d){ d3.select('div#treeLegend').append('text').text(function(d){ return d.parent.name }); });
+});
+
+function position() {
+  this.style("left", function(d) { return d.x + "px"; })
+      .style("top", function(d) { return d.y + "px"; })
+      .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
+      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
+}
+
+
+
+
+</script>
+
+
+</body>
