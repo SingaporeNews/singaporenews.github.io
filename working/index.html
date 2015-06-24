@@ -47,36 +47,36 @@
           </div>
 
           <div class="inner cover">
+          <script>
+
+            d3.json("Topwords_200_abstract.json", function(data){
+              data.forEach(function(d){
+                d.value = +d.value;
+              });
+
+              var visualization = d3plus.viz()
+                .container(".inner")
+                .data(data)
+                .type("tree_map")
+                .id(["year","name"])
+                .size("value")
+                .draw();
+
+
+
+            });
+
+            function type(d){
+              d.value = +d.value;
+              return d;
+            }
+
+          </script>
 
           </div>
 
           <div class="mastfoot">
             <div class="inner">
-              <script>
-
-                d3.json("Topwords_200_abstract.json", function(data){
-                  data.forEach(function(d){
-                    d.value = +d.value;
-                  });
-
-                  var visualization = d3plus.viz()
-                    .container(".inner")
-                    .data(data)
-                    .type("tree_map")
-                    .id(["year","name"])
-                    .size("value")
-                    .draw();
-
-
-
-                });
-
-                function type(d){
-                  d.value = +d.value;
-                  return d;
-                }
-
-              </script>
 
             </div>
           </div>
