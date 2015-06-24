@@ -52,14 +52,14 @@
             <div class="inner">
               <script>
 
-                d3.json("Topwords_200_abstract.json", type, function(data){
+                d3.json("Topwords_200_abstract.json", function(data){
                   console.log(data);
                 });
 
                 function type(d){
                   d.value = +d.value;
                   return d;
-                };
+                }
 
               </script>
 
