@@ -53,9 +53,9 @@
               <script>
 
                 d3.json("Topwords_200_abstract.json", function(data){
-                  data.forEach(d){
+                  data.forEach(function(d){
                     d.value = +d.value;
-                  };
+                  });
 
                   console.log(data);
                 });
