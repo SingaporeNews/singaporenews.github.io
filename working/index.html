@@ -22,7 +22,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="http://d3js.org/d3.v3.js"></script>
-    <script type='text/javascript' src="http://bost.ocks.org/mike/fisheye/fisheye.js?0.0.3"> </script>
+    <script type='text/javascript' src="http://bost.ocks.org/mike/fisheye/fisheye.js?0.0.3"></script>
+    <script src="http://www.d3plus.org/js/d3.js"></script>
+    <script src="http://www.d3plus.org/js/d3plus.js"></script>
 
     <script>
 
@@ -57,7 +59,16 @@
                     d.value = +d.value;
                   });
 
-                  console.log(data);
+                  var visualization = d3plus.viz()
+                    .container("#inner")
+                    .data(data)
+                    .type("tree_map")
+                    .id(["year","name"])
+                    .size("value")
+                    .draw();
+
+
+
                 });
 
                 function type(d){
