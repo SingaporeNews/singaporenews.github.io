@@ -55,8 +55,10 @@
               });
 
               var fdata = data.filter(function(el){
-                console.log(typeof el.name);
-                return (el.name == 'Daily');
+                return (typeof el.name == String);
+              });
+              var fdata = fdata.filter(function(el){
+                return (el.name.length > 2);
               });
 
               console.log(fdata);
