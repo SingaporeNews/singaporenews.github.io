@@ -55,7 +55,8 @@
               });
 
               var fdata = data.filter(function(el){
-                return (el.name.length == 4);
+                console.log(typeof el.name);
+                return (el.name == 'Daily');
               });
 
               console.log(fdata);
