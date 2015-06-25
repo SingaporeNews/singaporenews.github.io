@@ -54,7 +54,11 @@
                 d.value = +d.value;
               });
 
-              console.log(data[0].name.length);
+              var fdata = data.filter(function(el){
+                return (el.name.length > 2);
+              });
+
+              console.log(fdata);
 
               var visualization = d3plus.viz()
                 .container(".inner.cover")
