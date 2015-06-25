@@ -54,6 +54,15 @@
                 d.value = +d.value;
               });
 
+              function filterWords(obj){
+                if (obj['name'].length > 3){
+                  return obj;
+                }
+              }
+
+              var filteredData = data.filter(filterWords);
+              console.log(filteredData);
+
               var visualization = d3plus.viz()
                 .container(".inner.cover")
                 .data(data)
