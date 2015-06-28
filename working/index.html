@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/charts_main.css" rel="stylesheet">
+    <link href="/css/starter-template.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,71 +35,31 @@
 
   <body>
 
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">The Singapore News Story</h3>
-            </div>
-          </div>
-
-          <div class="inner cover">
-          <script>
-
-            d3.json("Topwords_200_abstract.json", function(data){
-              data.forEach(function(d){
-                d.value = +d.value;
-              });
-
-              var fdata = data.filter(function(el){
-                return (typeof el.name == 'string');
-              });
-              var fdata = fdata.filter(function(el){
-                return (el.name.length > 2);
-              });
-
-              console.log(fdata);
-
-              var visualization = d3plus.viz()
-                .container(".inner.cover")
-                .data(fdata)
-                .type("tree_map")
-                .id(["year","name"])
-                .size("value")
-                .draw();
-
-
-
-            });
-
-            function type(d){
-              d.value = +d.value;
-              return d;
-            }
-
-          </script>
-
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-
-            </div>
-          </div>
-
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
       </div>
 
-    </div>
-
-    <script>
-
-    </script>
+    </div><!-- /.container -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -112,4 +73,38 @@
 
     </script>
   </body>
+  <script>
+
+    d3.json("Topwords_200_abstract.json", function(data){
+      data.forEach(function(d){
+        d.value = +d.value;
+      });
+
+      var fdata = data.filter(function(el){
+        return (typeof el.name == 'string');
+      });
+      var fdata = fdata.filter(function(el){
+        return (el.name.length > 2);
+      });
+
+      console.log(fdata);
+
+      var visualization = d3plus.viz()
+        .container(".inner.cover")
+        .data(fdata)
+        .type("tree_map")
+        .id(["year","name"])
+        .size("value")
+        .draw();
+
+
+
+    });
+
+    function type(d){
+      d.value = +d.value;
+      return d;
+    }
+
+  </script>
 </html>
