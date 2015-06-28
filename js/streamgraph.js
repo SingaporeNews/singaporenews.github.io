@@ -155,7 +155,7 @@ var svg = d3.select("div#chart").append("svg")
 
 function drawStackedChart(word_num){
 
-  d3.csv('http://singaporenews.github.io/data/Words_allyears_27oct.csv', function(error, data){
+  d3.csv('http://singaporenews.github.io/data/Headline_dataset/word_year_frequency/Words_year_frequency_6jan15.csv', function(error, data){
 
     data.forEach(function(d){
       d.countCol = +d.countCol;
@@ -164,7 +164,7 @@ function drawStackedChart(word_num){
 
     var summed_data = d3.nest()
                         .key(function(d){ return d.wordCol; })
-                        .rollup(function(leaves){ 
+                        .rollup(function(leaves){
                             return {"total": d3.sum(
                               leaves, function(d){ return d.countCol; })}})
                         .entries(data);
@@ -248,11 +248,11 @@ function drawStackedChart(word_num){
         d3.select(this)
         .classed("hover", true)
         .attr("stroke", 'black')
-        .attr("stroke-width", "1.5px"), 
+        .attr("stroke-width", "1.5px"),
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
           .style('fill', function(d){ return color[i]; });
-        
+
       })
       .on("mouseout", function(d, i) {
        svg.selectAll(".layer")
@@ -261,18 +261,18 @@ function drawStackedChart(word_num){
         .attr("opacity", "1");
         d3.select(this)
         .classed("hover", false)
-        .attr("stroke-width", "0px"), 
+        .attr("stroke-width", "0px"),
         tooltip.html( "<p>" + selectiveReplacement(d.key) + "<br>" + pro + "</p>" )
           .style("visibility", "hidden")
           .style('fill', 'rgb(83, 86, 90)');
     });
 
-  });  
+  });
 }
 
 function updateStackedChart(word_num, start, end){
 
-  d3.csv('http://singaporenews.github.io/data/Words_allyears_27oct.csv', function(error, data){
+  d3.csv('http://singaporenews.github.io/data/Headline_dataset/word_year_frequency/Words_year_frequency_6jan15.csv', function(error, data){
 
     data.forEach(function(d){
       d.countCol = +d.countCol;
@@ -281,7 +281,7 @@ function updateStackedChart(word_num, start, end){
 
     var summed_data = d3.nest()
                         .key(function(d){ return d.wordCol; })
-                        .rollup(function(leaves){ 
+                        .rollup(function(leaves){
                             return {"total": d3.sum(
                               leaves, function(d){ return d.countCol; })}})
                         .entries(data);
@@ -377,11 +377,11 @@ function updateStackedChart(word_num, start, end){
         d3.select(this)
         .classed("hover", true)
         .attr("stroke", 'black')
-        .attr("stroke-width", "1.5px"), 
+        .attr("stroke-width", "1.5px"),
         tooltip.html( "<p>" + selectiveReplacement(d.key) + " | " + tip_year + ": " + pro + "</p>" )
           .style("visibility", "visible")
           .style('fill', function(d){ return color(d.key); });
-        
+
       })
       .on("mouseout", function(d, i) {
        svg.selectAll(".layer")
@@ -390,12 +390,12 @@ function updateStackedChart(word_num, start, end){
         .attr("opacity", "1");
         d3.select(this)
         .classed("hover", false)
-        .attr("stroke-width", "0px"), 
+        .attr("stroke-width", "0px"),
         tooltip.html( "<p>" + selectiveReplacement(d.key) + "<br>" + pro + "</p>" )
           .style("visibility", "hidden")
           .style('fill', 'rgb(83, 86, 90)');
     });
-  });  
+  });
 }
 
 
@@ -413,7 +413,7 @@ function complete(x, key, data){
         }
       }
     }
-    
+
     for (year=0; year<years.length; year++){
       if (yearsPresent.indexOf(years[year]) < 0){
         dict = {}
@@ -424,6 +424,5 @@ function complete(x, key, data){
       }
     }
   }
-  
+
 };
-  

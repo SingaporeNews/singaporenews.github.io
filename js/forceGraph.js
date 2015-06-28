@@ -82,7 +82,7 @@ drawGraph(selectedList);
 
 function drawGraph(selectedList){
 
-  d3.csv("http://singaporenews.github.io/data/cooccurrenceMatrixData.csv", function(data){
+  d3.csv("http://singaporenews.github.io/data/Headline_dataset/cooccurrence_matrix/cooccurrenceMatrixData.csv", function(data){
 
     totallist = [];
       for (i=0; i<data.length; i++){
@@ -151,7 +151,7 @@ function drawGraph(selectedList){
             if ($.inArray(d, selectedList) < 0){
               selectedList.push(d);
               drawGraph(selectedList);
-              d3.select(this).style('fill', 'rgb(31, 119, 180)') 
+              d3.select(this).style('fill', 'rgb(31, 119, 180)')
             }
             else {
               selectedList = selectedList.filter(function(e){ return e != d; });
@@ -161,7 +161,7 @@ function drawGraph(selectedList){
           });
 
       //data = prepData(selectedList);
-    
+
         force
           .nodes(graph.nodes)
           .links(graph.links)
@@ -253,7 +253,7 @@ function drawGraph(selectedList){
             linkedByIndex[d.source.index + "," + d.target.index] = 1;
         });
 
-        //This function looks up whether a pair are neighbours  
+        //This function looks up whether a pair are neighbours
         function neighboring(a, b) {
             return linkedByIndex[a.index + "," + b.index];
         }
@@ -266,13 +266,13 @@ function drawGraph(selectedList){
               node.style("opacity", function (o) {
                   return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
               });
-              
+
               link.style("opacity", function (o) {
                   return d.index==o.source.index | d.index==o.target.index ? 1 : 0.1;
               });
-              
+
               //Reduce the op
-              
+
               toggle = 1;
           } else {
               //Put them back to opacity=1
@@ -325,14 +325,14 @@ function prepData(data, list){
     };
 
 
-  
 
 
 
-  
 
 
-  
+
+
+
 
 
 
@@ -355,7 +355,7 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData1 = $.map(testGraph.nodes, function(element){
       return ($.inArray(element.name,selectedList)>-1?element:null);
     });
-  
+
   selectedData2 = $.map(testGraph.links, function(element){
       return ($.inArray(element['name1'],selectedList)>-1?element:null);
     });
@@ -363,21 +363,17 @@ d3.json("newsGraph.json", function(error, graph) {
   selectedData3 = $.map(selectedData2, function(element){
       return ($.inArray(element.name2,selectedList)>-1?element:null);
     });
-  
+
   new_graph = {};
   new_graph['nodes'] = graph.nodes;
   new_graph['links'] = selectedData3;
-  
-  
+
+
   //drawGraph(graph, selectedData1, selectedData3);
   drawGraph(graph);
 
-  
+
 
 
 });
 */
-    
-
-
-
