@@ -248,8 +248,8 @@ function updateData(frm, option){
 
 function createChart(search_list){
   //search_list.push(frm);
-  d3.csv("http://singaporenews.github.io/data/Headline_dataset/term_by_year_matrix/transposed_terms_6jan15.csv", function(error, data){
-    d3.csv("http://singaporenews.github.io/data/Headline_dataset/word_year_headlines/Word_year_headlines_6jan15.csv",
+  d3.csv("http://singaporenews.github.io/data/Headline_dataset/term_by_year_matrix/transposed_terms_27oct.csv", function(error, data){
+    d3.csv("http://singaporenews.github.io/data/Headline_dataset/word_year_headlines/Word_year_headlines_30oct.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
