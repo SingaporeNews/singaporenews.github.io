@@ -155,7 +155,7 @@ var svg = d3.select("div#chart").append("svg")
 
 function drawStackedChart(word_num){
 
-  d3.csv('http://singaporenews.github.io/data/Headline_dataset/word_year_frequency/Word_year_frequency_27oct.csv', function(error, data){
+  d3.csv('http://singaporenews.github.io/data/Headline_dataset/word_year_frequency/Word_year_frequency_6jan15.csv', function(error, data){
 
     data.forEach(function(d){
       d.countCol = +d.countCol;
@@ -272,7 +272,7 @@ function drawStackedChart(word_num){
 
 function updateStackedChart(word_num, start, end){
 
-  d3.csv('http://singaporenews.github.io/data/Headline_dataset/word_year_frequency/Word_year_frequency_27oct.csv', function(error, data){
+  d3.csv('http://singaporenews.github.io/data/Headline_dataset/word_year_frequency/Word_year_frequency_6jan15.csv', function(error, data){
 
     data.forEach(function(d){
       d.countCol = +d.countCol;
