@@ -15,12 +15,14 @@ body {
 .navbar {
   min-height: 150px;
   vertical-align: middle;
+  line-height: 100px;
 }
 
 .navbar-inverse {
   background-color: #3D85C6;
   border-color: #3D85C6;
   vertical-align: middle;
+  line-height: 100px;
 }
 
 .navbar-collapse {
