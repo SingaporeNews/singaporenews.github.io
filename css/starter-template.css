@@ -28,11 +28,13 @@ body {
 .navbar-collapse {
   text-align:center;
   vertical-align: middle;
+  line-height: 100px;
 }
 .navbar-nav {
     display:inline-block;
     float:none;
     vertical-align: middle;
+    line-height: 100px;
 }
 
 h1 {
