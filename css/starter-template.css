@@ -17,6 +17,7 @@ body {
 
 .navbar-collapse {
   text-align:center;
+  vertical-align: middle;
 }
 .navbar-nav {
     display:inline-block;
