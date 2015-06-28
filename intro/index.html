@@ -80,7 +80,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              
+
             </div>
           </div>
 
@@ -109,9 +109,9 @@
             {
               currentChar=1;
               d3.select('#first').transition().remove();
-              embedsvg('.box1', 'static/ST_microfilm_1956.png', 'canvas1');
-              embedsvg('.box2', 'static/ST_microfilm_1965.png', 'canvas2');
-              embedsvg('.box3', 'static/ST_microfilm_1975.png', 'canvas3');
+              embedsvg('.box1', '/static/ST_microfilm_1956.png', 'canvas1');
+              embedsvg('.box2', '/static/ST_microfilm_1965.png', 'canvas2');
+              embedsvg('.box3', '/static/ST_microfilm_1975.png', 'canvas3');
               setTimeout("d3.select('#canvas1').remove()", 5000);
               setTimeout("d3.select('#canvas2').remove()", 5000);
               setTimeout("d3.select('#canvas3').remove()", 5000);
@@ -176,7 +176,7 @@
           context.drawImage(imageObj, 0, 0);
   //      var imageData = canvas.toDataURL("image/png");
           var imageData = document.getElementById(imgcanvas).toDataURL("image/png")
-          
+
           //Add as HTML img element
             d3.select(div).append("img").datum(imageData).attr("src", function(d) {return d})
 
@@ -184,7 +184,7 @@
             console.log(d3.select("img").node().__data__)
 
           };
-      
+
       }
 
       startTyping(text, 50, "singHist");
@@ -204,9 +204,9 @@
           }
         })
       }
-      
+
       //setTimeout("massive_words()", 12000);
-      
+
     </script>
 
     <!-- Bootstrap core JavaScript
