@@ -15,6 +15,11 @@ body {
   border-color: #3D85C6;
 }
 
-.h1 {
+.nav {
+  position:absolute;
+  text-align:center;
+}
+
+h1 {
   color: #fff;
 }
