@@ -15,9 +15,12 @@ body {
   border-color: #3D85C6;
 }
 
-.nav {
-  position:absolute;
+.navbar-collapse {
   text-align:center;
+}
+.navbar-nav {
+    display:inline-block;
+    float:none;
 }
 
 h1 {
