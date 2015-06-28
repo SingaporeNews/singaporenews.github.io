@@ -65,18 +65,18 @@ path.chord {
   cursor: pointer;
 }
 
-div.tooltip {   
-  position: absolute;           
-  text-align: center;           
-  width: 600px;                  
-  height: 150px;                 
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 600px;
+  height: 150px;
   padding: 2px;
-  font-family: "Rockwell Extra Bold","Rockwell Bold",monospace;            
-  font-size: 64px;       
-  /*background: #53565A;*/   
-  border: 0px;      
-  border-radius: 8px;           
-  pointer-events: none;         
+  font-family: "Rockwell Extra Bold","Rockwell Bold",monospace;
+  font-size: 64px;
+  /*background: #53565A;*/
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
 }
 
 div.chart_div {
@@ -116,7 +116,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-image:url("http://singaporenews.github.io/static/noisy-texture.png");
+  /*background-image:url("http://singaporenews.github.io/static/noisy-texture.png");*/
 }
 body {
   color: #000;
@@ -168,7 +168,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   /*color: #fff; /* IE8 proofing */
-  color: rgba(94,95,89,.75); 
+  color: rgba(94,95,89,.75);
   border-bottom: 2px solid transparent;
 }
 .masthead-nav > li > a:hover,
