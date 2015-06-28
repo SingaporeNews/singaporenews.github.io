@@ -48,7 +48,7 @@ function showHeadlines(data, word, year){
 
     var data = data.filter(function(d){ return d.wordCol.toLowerCase() == word; });
     data = data.filter(function(d){ return d.yearCol === year; });
-    
+
     random_number = Math.floor((Math.random()*data.length) + 1)
     headline_year = data[random_number].yearCol;
     var headline = data[random_number].headlineCol;
@@ -64,13 +64,13 @@ function updateData(frm, option){
     search_list = search_list.filter(
       function(d){ return d !== frm.toLowerCase(); });
   }
-  
-  d3.csv("http://singaporenews.github.io/data/transposed_terms_27oct.csv", function(error, data){
-    d3.csv("http://singaporenews.github.io/data/Words_all_headlines_30oct.csv",
+
+  d3.csv("http://singaporenews.github.io/data/Headline_dataset/term_by_year_matrix/transposed_terms_6jan15.csv", function(error, data){
+    d3.csv("http://singaporenews.github.io/data/Headline_dataset/word-year-headlines/Word_year_headlines_6jan15.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
-    
+
     line_color.domain(d3.keys(
       data[0]).filter(function(key){ return key.toLowerCase() !== 'headline_year'; }
       )
@@ -85,12 +85,12 @@ function updateData(frm, option){
       };
     });
 
-    
+
     if (search_list.length > 20){
       length = search_list.length;
       search_list = search_list.slice(-20);
     };
-    
+
     used_data = $.map(headline_terms, function(element){
       return ($.inArray(element.term,search_list)>-1?element:null)
     });
@@ -101,7 +101,7 @@ function updateData(frm, option){
             .attr('class', 'tooltip')
             .style('opacity', 0);
 
-    
+
     //used_data = headline_terms.filter(function(d){ return d.term == frm; });
 
     var xAxis = d3.svg.axis()
@@ -248,8 +248,8 @@ function updateData(frm, option){
 
 function createChart(search_list){
   //search_list.push(frm);
-  d3.csv("http://singaporenews.github.io/data/transposed_terms_27oct.csv", function(error, data){
-    d3.csv("http://singaporenews.github.io/data/Words_all_headlines_30oct.csv",
+  d3.csv("http://singaporenews.github.io/data/Headline_dataset/term_by_year_matrix/transposed_terms_6jan15.csv", function(error, data){
+    d3.csv("http://singaporenews.github.io/data/Headline_dataset/word-year-headlines/Word_year_headlines_6jan15.csv",
       function(error, headlinesData){
 
         var headlinesData = headlinesData;
