@@ -40,7 +40,6 @@ body {
 h1 {
   color: #fff;
   @font-face {
-    font-family: "DIN-Regular";
-    src: url(http://singaporenews.github.io/static/DIN-Regular);
-}
+    font-family: "SilaneHeadAtwenty";
+    src: url(http://singaporenews.github.io/static/SilaneHeadAtwenty.otf);
 }
