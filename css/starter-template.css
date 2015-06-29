@@ -39,7 +39,10 @@ body {
 
 h1 {
   color: #fff;
-  @font-face {
-    font-family: "SilaneHeadAtwenty";
-    src: url(http://singaporenews.github.io/static/SilaneHeadAtwenty.otf);
+  font-family: SilaneHead;
+}
+
+@font-face {
+  font-family: "SilaneHead";
+  src: url(http://singaporenews.github.io/static/SilaneHeadAtwenty.otf);
 }
