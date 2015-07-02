@@ -1,5 +1,6 @@
 body {
   padding-top: 50px;
+  font-family: Dinn;
 }
 
 .container {
@@ -53,6 +54,7 @@ h3 {
   color: #fff;
   font-family: SilaneHead;
 }
+
 
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
