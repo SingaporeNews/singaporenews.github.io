@@ -38,6 +38,10 @@ body {
     line-height: 100px;
 }
 
+.btn-lg, .btn-group-lg>.btn {
+  font-size: 28px;
+}
+
 h1 {
   color: #fff;
   font-family: SilaneHead;
