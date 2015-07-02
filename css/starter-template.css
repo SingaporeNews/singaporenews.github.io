@@ -40,6 +40,7 @@ body {
 
 .btn-lg, .btn-group-lg>.btn {
   font-size: 28px;
+  font-family: Dinn;
 }
 
 h1 {
@@ -64,6 +65,11 @@ h3 {
 @font-face {
   font-family: "SilaneHead";
   src: url(http://singaporenews.github.io/static/SilaneHeadAtwenty.otf);
+}
+
+@font-face {
+  font-family: "Dinn";
+  src: url(http://singaporenews.github.io/static/DIN.ttf);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
