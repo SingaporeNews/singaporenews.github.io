@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Singapore News Story" content="">
+    <meta name="Paul Meinshausen" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Singapore News</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!--  <link href="/css/charts_main.css" rel="stylesheet"> -->
+    <link href="/css/starter-template.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script type='text/javascript' src="http://bost.ocks.org/mike/fisheye/fisheye.js?0.0.3"></script>
+    <script src="http://www.d3plus.org/js/d3.js"></script>
+    <script src="http://www.d3plus.org/js/d3plus.js"></script>
+
+    <script>
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+
+            <div id="navbar" class="collapse navbar-collapse">
+              <div class="nav navbar-nav">
+                <h1>The Singapore Story</h1>
+                <h3>as told by the Straits Times</h3>
+              </div>
+            </div><!--/.nav-collapse -->
+
+          </nav>
+
+          <div class="container">
+
+            <div class="inner cover vertical-center text-center center-block">
+
+            <script>
+
+              d3.json("Topwords_abstract_bypage_v4.json", function(data){
+                data.forEach(function(d){
+                  d.value = +d.value;
+                });
+
+                /*
+
+                var fdata = data.filter(function(el){
+                  return (typeof el.name == 'string');
+                });
+                var fdata = fdata.filter(function(el){
+                  return (el.name.length > 2);
+                });
+
+                console.log(fdata);
+                */
+                var visualization = d3plus.viz()
+                  .container(".inner.cover")
+                  .data(data)
+                  .type("tree_map")
+                  .id(["year","pagegroup","word"])
+                  .size("value")
+                  .draw();
+
+
+
+              });
+
+              function type(d){
+                d.value = +d.value;
+                return d;
+              }
+
+            </script>
+
+
+
+            </div>
+
+          </div><!-- /.container -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://github.com/SingaporeNews/singaporenews.github.io/blob/master/js/docs.min.js"></script>
+
+
+    <script>
+
+    </script>
+  </body>
+
+
+</html>
