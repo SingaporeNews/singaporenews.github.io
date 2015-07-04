@@ -49,6 +49,7 @@
             d3.json("Topwords_abstract_bypage_v4.json", function(data){
               data.forEach(function(d){
                 d.value = +d.value;
+                d.year = +d.year;
               });
               console.log(data);
 
