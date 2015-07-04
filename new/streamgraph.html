@@ -57,14 +57,14 @@
               .container(".cover-streamgraph")
               .data(data)
               .type("stacked")
-              .id("word")
+              .id(["pagegroup","word"])
               .text("word")
               .y("value")
               .x("year")
               .time({"value":"year", "solo": 1845})
               .draw()
 
-              
+
               setTimeout(function(){
 
                 visualization
