@@ -139,7 +139,9 @@ body {
     color: #fff;
     font-family: SilaneHead;
 }
-.navbar-brand {float:none;}
+.navbar-brand {
+  float:none;
+}
 
 /*
  * Affix and center
