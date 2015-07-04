@@ -13,7 +13,7 @@ a:hover {
 .btn-default,
 .btn-default:hover,
 .btn-default:focus {
-  color: #333;
+  color: #fff;
   text-shadow: none; /* Prevent inheritence from `body` */
   background-color: #3D85C6;
   border: 1px solid #3D85C6;
@@ -126,8 +126,8 @@ body {
  */
 
 .mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
+  color: #333; /* IE8 proofing */
+  color: #333;
 }
 
 .navbar-header {
