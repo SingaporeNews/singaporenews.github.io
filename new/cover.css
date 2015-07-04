@@ -136,12 +136,17 @@ body {
  * Affix and center
  */
 
+ @media (min-width: 100%) {
+   /* Pull out the header and footer */
+   .masthead {
+     position: fixed;
+     top: 0;
+     width: 100%;
+   }
+ }
+
 @media (min-width: 768px) {
   /* Pull out the header and footer */
-  .masthead {
-    position: fixed;
-    top: 0;
-  }
   .mastfoot {
     position: fixed;
     bottom: 0;
@@ -161,6 +166,7 @@ body {
 @media (min-width: 992px) {
   .masthead {
     width: 100%;
+    background-color: #3D85C6;
   }
 }
 
