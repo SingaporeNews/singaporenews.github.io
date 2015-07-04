@@ -164,6 +164,12 @@ body {
   width: 120%;
   height: 90%;
 }
+.cover-streamgraph {
+  position: relative;
+  margin-top: 100px;
+  width: 120%;
+  height: 90%;
+}
 
 /*
  * Affix and center
@@ -190,6 +196,9 @@ body {
   .cover-chart {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+  .cover-streamgraph {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
 }
 
 @media (min-width: 992px) {
@@ -202,6 +211,9 @@ body {
   }
   .cover-chart {
     width: 1000px;
+  }
+  .cover-streamgraph {
+    width: 1400px;
   }
 }
 
