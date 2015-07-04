@@ -141,6 +141,8 @@ body {
 }
 .navbar-brand {
   float:none;
+  color: #fff;
+  font-family: SilaneHead;
 }
 
 /*
