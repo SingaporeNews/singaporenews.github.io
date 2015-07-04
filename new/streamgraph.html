@@ -54,15 +54,25 @@
             });
 
             var visualization = d3plus.viz()
-              .container(".cover-streamgraph")  
+              .container(".cover-streamgraph")
               .data(data)
               .type("stacked")
-              .id("word")
+              .id(["pagegroup","word"])
               .text("word")
               .y("value")
-              .x("year")
+              .x({"value": "year", solo="1845"})
               .time("year")
               .draw()
+
+              /*
+              setTimeout(function(){
+
+                visualization
+                  .y({"scale": "share"})
+                  .draw()
+
+              },2000)
+              */
 
             });
 
