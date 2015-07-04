@@ -44,7 +44,7 @@
 
       <div class="site-wrapper-inner">
 
-        <div class="inner cover">
+        <div class="cover-container">
           <script>
             d3.json("Topwords_abstract_bypage_v4.json", function(data){
               data.forEach(function(d){
@@ -65,7 +65,7 @@
               console.log(fdata);
               */
               var visualization = d3plus.viz()
-                .container(".inner.cover")
+                .container(".cover-container")
                 .data(data)
                 .type("tree_map")
                 .id(["pagegroup","word"])
