@@ -131,7 +131,13 @@ body {
   color: rgba(255,255,255,.5);
 }
 
-
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {float:none;}
 
 /*
  * Affix and center
