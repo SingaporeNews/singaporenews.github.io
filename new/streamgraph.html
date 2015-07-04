@@ -125,6 +125,7 @@
                   d.year = format.parse(d.year);
                   d.value = +d.value;
                 });
+                console.log(nest.entries(data));
 
                 var layers = stack(nest.entries(data));
 
