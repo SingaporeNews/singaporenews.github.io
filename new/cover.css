@@ -131,6 +131,10 @@ body {
   color: rgba(255,255,255,.5);
 }
 
+.masthead.clearfix {
+  width: 100%;
+}
+
 
 /*
  * Affix and center
