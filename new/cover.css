@@ -27,12 +27,11 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  background-color: #fff;
 }
 body {
-  color: #fff;
+  color: #000;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -136,6 +135,9 @@ body {
     padding: 15px;
     text-align: center;
     width: 100%;
+    background-color: #3D85C6;
+    color: #fff;
+    font-family: SilaneHead;
 }
 .navbar-brand {float:none;}
 
@@ -173,4 +175,14 @@ body {
   .cover-container {
     width: 700px;
   }
+}
+
+@font-face {
+  font-family: "SilaneHead";
+  src: url(http://singaporenews.github.io/static/SilaneHeadAtwenty.otf);
+}
+
+@font-face {
+  font-family: "Dinn";
+  src: url(http://singaporenews.github.io/static/DIN.ttf);
 }
