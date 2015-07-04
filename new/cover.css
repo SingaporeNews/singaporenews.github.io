@@ -183,6 +183,9 @@ body {
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+  .cover-chart {
+    width: 100%;
+  }
 }
 
 @media (min-width: 992px) {
@@ -192,6 +195,9 @@ body {
   .mastfoot,
   .cover-container {
     width: 800px;
+  }
+  .cover-chart {
+    width: 1000px;
   }
 }
 
