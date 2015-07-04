@@ -131,9 +131,6 @@ body {
   color: rgba(255,255,255,.5);
 }
 
-.masthead.clearfix {
-  width: 100%;
-}
 
 
 /*
@@ -163,7 +160,9 @@ body {
 }
 
 @media (min-width: 992px) {
-  .masthead,
+  .masthead {
+    width: 100%;
+  }
   .mastfoot,
   .cover-container {
     width: 700px;
