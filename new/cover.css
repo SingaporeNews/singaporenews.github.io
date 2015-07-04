@@ -186,7 +186,8 @@ body {
   /* Handle the widths */
   .masthead,
   .mastfoot,
-  .cover-container {
+  .cover-container,
+  .cover-chart {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
 }
@@ -198,6 +199,9 @@ body {
   .mastfoot,
   .cover-container {
     width: 800px;
+  }
+  .cover-chart {
+    width: 900px;
   }
 }
 
