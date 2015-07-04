@@ -159,8 +159,9 @@ body {
   font-size: 22px;
 }
 .cover-chart {
+  position: fixed;
   width: 120%;
-  height: 100%;
+  height: 90%;
 }
 
 /*
