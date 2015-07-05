@@ -172,7 +172,7 @@
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
         .append("g")
-          .attr("transform", "translate(" + margin.right*3 + "," + margin.top + ")");
+          .attr("transform", "translate(" + margin.right*4 + "," + margin.top + ")");
 
       d3.json("Topwords_abstract_bypage_v4.json", function(data){
         data.forEach(function(d){
