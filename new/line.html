@@ -171,6 +171,10 @@
             })})
           .entries(sampledata);
 
+        words_data.forEach(function(d) {
+          d.key = parseDate(d.key);
+        });
+
         console.log(words_data);
 
         x.domain(d3.extent(sampledata, function(d) { return d.year; }));
