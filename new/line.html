@@ -54,7 +54,7 @@
           .key(function(d){ return d.word; })
           .rollup(function(leaves) { return {
             'count': d3.sum(leaves, function(d){ return d.value;
-            })}})
+            })}}).sortKeys(d3.descending)
           .entries(data);
 
         console.log(nested_data);
