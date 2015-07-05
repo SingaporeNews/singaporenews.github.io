@@ -50,7 +50,7 @@
 
     #word_list {
         height: auto;
-        max-height: 410px;
+        max-height: 510px;
         overflow-y: scroll;
     }
 
@@ -118,7 +118,7 @@
 
           </div>
 
-          <div class="col-md-8" id="chart">
+          <div class="col-md-9" id="chart">
 
           </div>
         </div>
@@ -171,7 +171,7 @@
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
         .append("g")
-          .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
+          .attr("transform", "translate(" + margin.right*2 + "," + margin.top + ")");
 
       d3.json("Topwords_abstract_bypage_v4.json", function(data){
         data.forEach(function(d){
