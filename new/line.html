@@ -282,6 +282,7 @@
           });
 
           path = svg.append("path")
+              .attr('class', word)
               .attr("d", line(words[0].values))
               .attr("stroke", "red")
               .attr("stroke-width", "4")
@@ -296,6 +297,14 @@
               .duration(4000)
               .ease("linear")
               .attr("stroke-dashoffset", 0);
+
+          d3.select('#'+word).on("click", function(){
+            path
+              .transition()
+              .duration(2000)
+              .ease("linear")
+              .attr("stroke-dashoffset", totalLength);
+          })
 
         }
 
