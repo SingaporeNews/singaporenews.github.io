@@ -29,6 +29,24 @@
     <script src="http://d3js.org/d3.v3.js"></script>
   </head>
   <style>
+
+    axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+    
     #word_list {
         height: auto;
         max-height: 410px;
