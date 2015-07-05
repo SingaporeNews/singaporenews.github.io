@@ -164,7 +164,15 @@
         var sampledata = data.filter(function(el){
           return (el.word == 'London');
         });
-        console.log(sampledata);
+
+        var words_data = d3.nest()
+          .key(function(d){ return d.year; })
+          .key(function(d){ return d.word; })
+          .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
+            })})
+          .entries(sampledata);
+
+        console.log(words_data);
 
         x.domain(d3.extent(sampledata, function(d) { return d.year; }));
         /*
