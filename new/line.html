@@ -37,6 +37,7 @@
       shape-rendering: crispEdges;
     }
 
+    .y.axis path,
     .x.axis path {
       display: none;
     }
@@ -170,7 +171,7 @@
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
         .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
 
       d3.json("Topwords_abstract_bypage_v4.json", function(data){
         data.forEach(function(d){
