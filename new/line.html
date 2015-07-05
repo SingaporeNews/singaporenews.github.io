@@ -273,15 +273,15 @@
           .transition()
             .duration(4000)
             .ease("linear")
-            .attr("stroke-dashoffset", 50);
+            .attr("stroke-dashoffset", 0);
 
         path2
           .attr("stroke-dasharray", totalLength2 + " " + totalLength2)
-          .attr("stroke-dashoffset", totalLength2)
+          .attr("stroke-dashoffset", totalLength2-50)
           .transition()
             .duration(4000)
             .ease("linear")
-            .attr("stroke-dashoffset", 50);
+            .attr("stroke-dashoffset", 0);
 
         svg.on("click", function(){
           path
