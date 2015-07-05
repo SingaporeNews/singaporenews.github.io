@@ -269,7 +269,7 @@
 
         path
           .attr("stroke-dasharray", totalLength + " " + totalLength)
-          .attr("stroke-dashoffset", totalLength)
+          .attr("stroke-dashoffset", totalLength-100)
           .transition()
             .duration(4000)
             .ease("linear")
@@ -277,7 +277,7 @@
 
         path2
           .attr("stroke-dasharray", totalLength2 + " " + totalLength2)
-          .attr("stroke-dashoffset", totalLength2)
+          .attr("stroke-dashoffset", totalLength2-100)
           .transition()
             .duration(4000)
             .ease("linear")
