@@ -251,7 +251,7 @@
 
         svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(10," + height + ")")
+            .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
 
         svg.append("g")
@@ -277,7 +277,7 @@
 
         path2
           .attr("stroke-dasharray", totalLength2 + " " + totalLength2)
-          .attr("stroke-dashoffset", totalLength2-50)
+          .attr("stroke-dashoffset", totalLength2)
           .transition()
             .duration(4000)
             .ease("linear")
