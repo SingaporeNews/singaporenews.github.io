@@ -145,8 +145,8 @@
 
       var line = d3.svg.line()
           .interpolate("basis")
-          .x(function(d) { return x(d.year); })
-          .y(function(d) { return y(d.value); });
+          .x(function(d) { return x(d.key); })
+          .y(function(d) { return y(d.values); });
 
       var svg = d3.select("chart").append("svg")
           .attr("width", width + margin.left + margin.right)
