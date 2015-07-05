@@ -389,8 +389,16 @@
                 .text(function(d){ return d.key; });
 
           term_label.on('click', function(d){
+            var el = d3.select('.'+d.key);
+            if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
+              removePath(d.key);
+              d3.select('.'+d.key).attr('id', null);
+            } else {
+              d3.select('.'+d.key).attr('id', d.key + 'ha');
               drawPath(d.key);
-            });
+            }
+
+          });
 
         /*
 
