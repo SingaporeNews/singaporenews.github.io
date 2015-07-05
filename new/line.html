@@ -393,16 +393,16 @@
               if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
                 removePath(d.key);
                 d3.select('.'+d.key).attr('id', null);
-                d3.select('.item'+d.key).style('color', rgb(83, 86, 90));
+                d3.select('.item'+d.key).style("fill", "#53565A");
               } else {
                 drawPath(d.key);
                 d3.select('.'+d.key).attr('id', d.key + 'ha');
-                d3.select('.item'+d.key).style('color', 'red');
+                d3.select('.item'+d.key).style('fill', 'red');
               }
             } else {
               drawPath(d.key);
               d3.select('.'+d.key).attr('id', d.key + 'ha');
-              d3.select('.item'+d.key).style('color', 'red');
+              d3.select('.item'+d.key).style('fill', 'red');
             }
           });
 
