@@ -231,6 +231,7 @@
         //console.log(words);
 
         x.domain(d3.extent(words_data2, function(d) { return d.key; }));
+        console.log(x.domain);
 
         y.domain([
           d3.min(words_data2, function(c) { return c.values; }),
