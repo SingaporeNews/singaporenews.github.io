@@ -184,9 +184,6 @@
         var sampledata = data.filter(function(el){
           return (el.word == 'London');
         });
-        var sampledata2 = data.filter(function(el){
-          return (el.word == 'British');
-        });
 
         var words_data = d3.nest()
           .key(function(d){ return d.year; })
@@ -194,35 +191,14 @@
             })})
           .entries(sampledata);
 
-        var words_data2 = d3.nest()
-          .key(function(d){ return d.year; })
-          .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
-            })})
-          .entries(sampledata2);
-
         words_data.forEach(function(d) {
           d.key = parseDate(d.key);
         });
-        words_data2.forEach(function(d) {
-          d.key = parseDate(d.key);
-        });
-
-        color.domain(['London']);
-        color2.domain(['British']);
-        console.log(color.domain());
 
         var words = color.domain().map(function(name) {
           return {
             name: name,
             values: words_data.map(function(d) {
-              return {date: d.key, value: d.values};
-            })
-          };
-        });
-        var words2 = color2.domain().map(function(name) {
-          return {
-            name: name,
-            values: words_data2.map(function(d) {
               return {date: d.key, value: d.values};
             })
           };
@@ -243,12 +219,6 @@
             .attr("stroke-width", "4")
             .attr("fill", "none");
 
-        var path2 = svg.append("path")
-            .attr("d", line(words2[0].values))
-            .attr("stroke", "red")
-            .attr("stroke-width", "4")
-            .attr("fill", "none");
-
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
@@ -266,19 +236,10 @@
             .text("Count");
 
         var totalLength = path.node().getTotalLength();
-        var totalLength2 = path2.node().getTotalLength();
 
         path
           .attr("stroke-dasharray", totalLength + " " + totalLength)
           .attr("stroke-dashoffset", totalLength-100)
-          .transition()
-            .duration(4000)
-            .ease("linear")
-            .attr("stroke-dashoffset", 0);
-
-        path2
-          .attr("stroke-dasharray", totalLength2 + " " + totalLength2)
-          .attr("stroke-dashoffset", totalLength2-100)
           .transition()
             .duration(4000)
             .ease("linear")
@@ -291,6 +252,50 @@
             .ease("linear")
             .attr("stroke-dashoffset", totalLength);
         })
+
+        drawPath('Chinese');
+
+        function drawPath(word){
+          var sampledata = data.filter(function(el){
+            return (el.word == word);
+          });
+
+          var words_data = d3.nest()
+            .key(function(d){ return d.year; })
+            .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
+              })})
+            .entries(sampledata);
+
+          words_data.forEach(function(d) {
+            d.key = parseDate(d.key);
+          });
+
+          var words = color.domain().map(function(name) {
+            return {
+              name: name,
+              values: words_data.map(function(d) {
+                return {date: d.key, value: d.values};
+              })
+            };
+          });
+
+          var path = svg.append("path")
+              .attr("d", line(words[0].values))
+              .attr("stroke", "steelblue")
+              .attr("stroke-width", "4")
+              .attr("fill", "none");
+
+          var totalLength = path.node().getTotalLength();
+
+          path
+            .attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", totalLength-100)
+            .transition()
+              .duration(4000)
+              .ease("linear")
+              .attr("stroke-dashoffset", 0);
+
+        }
 
 
         /*
