@@ -397,6 +397,9 @@
                 drawPath(d.key);
                 d3.select('.'+d.key).attr('id', d.key + 'ha');
               }
+            } else {
+              drawPath(d.key);
+              d3.select('.'+d.key).attr('id', d.key + 'ha');
             }
           });
 
