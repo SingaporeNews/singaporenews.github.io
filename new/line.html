@@ -303,8 +303,8 @@
               .ease("linear")
               .attr("stroke-dashoffset", 0);
 
-          d3.select('.'+word).on("click", function(){
-            d3.select('.'+word)
+          svg.on("click", function(){
+            path
               .transition()
               .duration(2000)
               .ease("linear")
