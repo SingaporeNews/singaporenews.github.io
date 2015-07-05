@@ -194,8 +194,8 @@
           d.key = parseDate(d.key);
         });
 
-        color.domain(d3.keys(words_data[0].values));
-        console.log(words_data[0].values);
+        color.domain(['London', 'British']);
+        console.log(d3.keys(words_data));
 
         var words = color.domain().map(function(name) {
           return {
