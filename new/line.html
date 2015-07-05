@@ -367,7 +367,7 @@
         term_label.enter().append('rect')
           .attr('class', function(d){ return 'item' + d.key });
 
-        var termLabel = term_label
+        term_label
                 .enter()
               .append('text')
                 //.attr('class', function(d){ return 'item' + d.key })
@@ -391,7 +391,7 @@
                 //.style('fill', function(d){ return line_color(d.term); })
                 .text(function(d){ return d.key; });
 
-          termLabel.on('click', function(d){
+          term_label.on('click', function(d){
             if (document.getElementsByClassName(d.key).length > 0) {
               if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
                 removePath(d.key);
