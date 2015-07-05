@@ -364,10 +364,13 @@
         var term_label = ListSvg.selectAll('.item')
                 .data(nested_data);
 
-        term_label
+        term_label.enter().append('rect')
+          .attr('class', function(d){ return 'item' + d.key });
+
+        var termLabel = term_label
                 .enter()
               .append('text')
-                .attr('class', function(d){ return 'item' + d.key })
+                //.attr('class', function(d){ return 'item' + d.key })
                 .attr("x", function(d,i){
                   if (i < 200){
                     return 30;}
@@ -388,7 +391,7 @@
                 //.style('fill', function(d){ return line_color(d.term); })
                 .text(function(d){ return d.key; });
 
-          term_label.on('click', function(d){
+          termLabel.on('click', function(d){
             if (document.getElementsByClassName(d.key).length > 0) {
               if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
                 removePath(d.key);
