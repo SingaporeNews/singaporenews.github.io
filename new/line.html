@@ -218,7 +218,7 @@
         ]);
 
         var path = svg.append("path")
-            .attr("d", line(words[0].values))
+            .attr("d", line(words, function(d){ return d.values; }))
             .attr("stroke", "steelblue")
             .attr("stroke-width", "4")
             .attr("fill", "none");
@@ -239,7 +239,6 @@
             .text("Count");
 
         var totalLength = path.node().getTotalLength();
-        console.log(path.node());
 
         path
           .attr("stroke-dasharray", totalLength + " " + totalLength)
@@ -293,8 +292,6 @@
           .entries(data);
 
         nested_data.sort(function(a, b){ return b.values - a.values; });
-
-        console.log(nested_data);
 
         var term_label = ListSvg.selectAll('.item')
                 .data(nested_data);
