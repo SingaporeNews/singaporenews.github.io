@@ -183,6 +183,7 @@
         var sampledata = data.filter(function(el){
           return (el.word == 'London' || el.word == "British");
         });
+        console.log(sampledata);
 
         var words_data = d3.nest()
           .key(function(d){ return d.year; })
@@ -199,7 +200,7 @@
 
         var words = color.domain().map(function(name) {
           return {
-            name: 'London',
+            name: name,
             values: words_data.map(function(d) {
               return {date: d.key, value: d.values};
             })
