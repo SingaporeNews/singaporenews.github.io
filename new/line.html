@@ -183,6 +183,7 @@
         var sampledata = data.filter(function(el){
           return (el.word == 'London' || el.word == "British");
         });
+        console.log(sampledata);
 
         var words_data = d3.nest()
           .key(function(d){ return d.word; })
