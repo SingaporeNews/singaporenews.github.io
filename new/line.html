@@ -167,7 +167,6 @@
 
         var words_data = d3.nest()
           .key(function(d){ return d.year; })
-          .key(function(d){ return d.word; })
           .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
             })})
           .entries(sampledata);
