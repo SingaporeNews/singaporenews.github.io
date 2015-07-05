@@ -204,11 +204,6 @@
           };
         });
         console.log(words[0].values);
-        var path = svg.append("path")
-            .attr("d", line(words[0].values))
-            .attr("stroke", "steelblue")
-            .attr("stroke-width", "2")
-            .attr("fill", "none");
 
         //console.log(words);
 
@@ -218,6 +213,12 @@
           d3.min(words_data, function(c) { return c.values; }),
           d3.max(words_data, function(c) { return c.values; })
         ]);
+
+        var path = svg.append("path")
+            .attr("d", line(words[0].values))
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", "2")
+            .attr("fill", "none");
 
         svg.append("g")
             .attr("class", "x axis")
