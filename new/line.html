@@ -262,7 +262,7 @@
 
         //drawPath('Chinese');
 
-        function drawPath(word){
+        function drawPath(word, lineColor){
           var sampledata = data.filter(function(el){
             return (el.word == word);
           });
@@ -289,7 +289,7 @@
           path = svg.append("path")
               .attr('class', word)
               .attr("d", line(words[0].values))
-              .attr("stroke", "red")
+              .attr("stroke", lineColor)
               .attr("stroke-width", "4")
               .attr("fill", "none");
 
@@ -388,6 +388,11 @@
                 //.style('fill', function(d){ return line_color(d.term); })
                 .text(function(d){ return d.key; });
 
+          labelColors = ['#a6cee3','#1f78b4','#b2df8a'
+                         '#33a02c','#fb9a99','#e31a1c',
+                         '#fdbf6f','#ff7f00','#cab2d6',
+                         '#6a3d9a','#ffff99','#b15928']
+
           term_label.on('click', function(d){
             if (document.getElementsByClassName(d.key).length > 0) {
               if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
@@ -395,14 +400,16 @@
                 d3.select('.'+d.key).attr('id', null);
                 d3.select('.item'+d.key).style("fill", "#53565A");
               } else {
-                drawPath(d.key);
+                var rand = labelColors[Math.floor(Math.random() * labelColors.length)];
+                drawPath(d.key, rand);
                 d3.select('.'+d.key).attr('id', d.key + 'ha');
-                d3.select('.item'+d.key).style('fill', 'red');
+                d3.select('.item'+d.key).style('fill', rand);
               }
             } else {
-              drawPath(d.key);
+              var rand = labelColors[Math.floor(Math.random() * labelColors.length)];
+              drawPath(d.key, rand);
               d3.select('.'+d.key).attr('id', d.key + 'ha');
-              d3.select('.item'+d.key).style('fill', 'red');
+              d3.select('.item'+d.key).style('fill', rand);
             }
           });
 
