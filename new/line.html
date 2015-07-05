@@ -52,9 +52,8 @@
 
         var nested_data = d3.nest()
           .key(function(d){ return d.word; })
-          .rollup(function(leaves) { return {
-            d3.sum(leaves, function(d){ return d.value;
-            })}})
+          .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
+            })})
           .entries(data);
 
         console.log(nested_data);
