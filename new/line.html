@@ -361,16 +361,16 @@
               .append('text')
                 .attr('class', function(d){ return 'item' + d.key })
                 .attr("x", function(d,i){
-                  if (i < 400){
+                  if (i < 600){
                     return 30;}
-                  else if (i > 400){
+                  else if (i > 600){
                     return 130;}
                   })
                 .attr("y", function(d,i){
-                  if (i < 400){
+                  if (i < 600){
                     return i + 1 + "em"; }
-                  else if (i > 400){
-                    return i - 400 + "em";}
+                  else if (i > 600){
+                    return i - 600 + "em";}
                   })
                 .style("text-anchor", "middle")
                 .style("font-size", "16px")
