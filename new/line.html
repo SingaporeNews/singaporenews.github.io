@@ -148,12 +148,18 @@
                 .enter()
               .append('text')
                 .attr('class', 'item')
-                .attr("x", function(d,i){ if (i < 50){
-                  return 50;} else if (i > 50 && i < 100){
-                    return 100;
-                  }
+                .attr("x", function(d,i){
+                  if (i < 50){
+                    return 50;}
+                  else if (i > 50 && i < 100){
+                    return 150;}
                   })
-                .attr("y", function(d,i){ return i + 4 + "em"; })
+                .attr("y", function(d,i){
+                  if (i < 50){
+                    return i + 4 + "em"; }
+                  else if (i > 50){
+                    return i + 4 - i*4 + "em":}
+                  })
                 .style("text-anchor", "middle")
                 .style("font-size", "16px")
                 .style("fill", "#53565A")
