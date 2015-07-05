@@ -203,14 +203,14 @@
             })
           };
         });
-
+        console.log(words[0].values);
         var path = svg.append("path")
             .attr("d", line(words[0].values))
             .attr("stroke", "steelblue")
             .attr("stroke-width", "2")
             .attr("fill", "none");
 
-        console.log(words);
+        //console.log(words);
 
         x.domain(d3.extent(words_data, function(d) { return d.key; }));
 
@@ -235,6 +235,7 @@
             .text("Count");
 
         var totalLength = path.node().getTotalLength();
+        console.log(totalLength);
 
         path
           .attr("stroke-dasharray", totalLength + " " + totalLength)
