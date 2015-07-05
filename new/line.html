@@ -46,7 +46,7 @@
       stroke: steelblue;
       stroke-width: 1.5px;
     }
-    
+
     #word_list {
         height: auto;
         max-height: 410px;
@@ -163,8 +163,8 @@
 
       var line = d3.svg.line()
           .interpolate("basis")
-          .x(function(d) { return x(d.key); })
-          .y(function(d) { return y(d.values); });
+          .x(function(d) { return x(d.date); })
+          .y(function(d) { return y(d.value); });
 
       var svg = d3.select("div#chart").append("svg")
           .attr("width", width + margin.left + margin.right)
@@ -193,7 +193,18 @@
           d.key = parseDate(d.key);
         });
 
-        console.log(words_data);
+        color.domain('London')
+
+        var words = color.domain().map(function(name) {
+          return {
+            name: 'London',
+            values: words_data.map(function(d) {
+              return {date: d.key, value: d.values};
+            })
+          };
+        });
+
+        console.log(words);
 
         x.domain(d3.extent(words_data, function(d) { return d.key; }));
 
@@ -218,13 +229,13 @@
             .text("Count");
 
         var city = svg.selectAll(".word")
-            .data(words_data)
+            .data(words)
           .enter().append("g")
             .attr("class", "word");
 
         city.append("path")
             .attr("class", "line")
-            .attr("d", function(d) { return line(d.values); });
+            .attr("d", function(d) { return line(d.value); });
             //.style("stroke", function(d) { return color(d.name); });
         /*
         city.append("text")
