@@ -131,7 +131,7 @@
           d = document,
           e = d.documentElement,
           g = d.getElementById('chart'),
-          width = g.clientWidth/1.1, //w.innerWidth || e.clientWidth || g.clientWidth,
+          width = g.clientWidth/1, //w.innerWidth || e.clientWidth || g.clientWidth,
           height = e.clientHeight/1.45;//w.innerHeight|| e.clientHeight|| g.clientHeight;
 
       var margin = {top: 10, right: 10, bottom: 30, left: 140},
@@ -171,7 +171,7 @@
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
         .append("g")
-          .attr("transform", "translate(" + margin.right*2 + "," + margin.top + ")");
+          .attr("transform", "translate(" + margin.right*3 + "," + margin.top + ")");
 
       d3.json("Topwords_abstract_bypage_v4.json", function(data){
         data.forEach(function(d){
@@ -181,7 +181,7 @@
 
 
         var sampledata = data.filter(function(el){
-          return (el.word == 'London');
+          return (el.word == 'London' || el.word == "British");
         });
 
         var words_data = d3.nest()
@@ -194,7 +194,8 @@
           d.key = parseDate(d.key);
         });
 
-        color.domain('London');
+        color.domain(d3.keys(words_data[0].values)
+        console.log(words_data[0].values);
 
         var words = color.domain().map(function(name) {
           return {
@@ -204,7 +205,7 @@
             })
           };
         });
-        console.log(words[0].values);
+        console.log(words);
 
         //console.log(words);
 
