@@ -215,11 +215,13 @@
           d3.max(words_data, function(c) { return c.values; })
         ]);
 
+        /*
         var path = svg.append("path")
             .attr("d", line(words[0].values))
             .attr("stroke", "steelblue")
             .attr("stroke-width", "4")
             .attr("fill", "none");
+        */
 
         svg.append("g")
             .attr("class", "x axis")
