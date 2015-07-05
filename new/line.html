@@ -125,11 +125,65 @@
           .append('g')
             .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
 
+      var parseDate = d3.time.format("%Y").parse;
+
+      var x = d3.time.scale()
+          .range([0, width]);
+
+      var y = d3.scale.linear()
+          .range([height, 0]);
+
+      var color = d3.scale.category10();
+
+      var xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("bottom");
+
+      var yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left");
+
+      var line = d3.svg.line()
+          .interpolate("basis")
+          .x(function(d) { return x(d.year); })
+          .y(function(d) { return y(d.value); });
+
+      var svg = d3.select("chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
       d3.json("Topwords_abstract_bypage_v4.json", function(data){
         data.forEach(function(d){
           d.value = +d.value;
           d.year = +d.year;
         });
+
+
+        var sampledata = data.filter(function(el){
+          return (el.word == 'London');
+        });
+        console.log(sampledata);
+
+        x.domain(d3.extent(sampledata, function(d) { return d.year; }));
+        /*
+        y.domain([
+          d3.min(sampledata, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+          d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+        ]);
+        */
+
+
+
+
+
+
+
+
+
+
+        //*********************************CREATE LIST********************************//
 
         var nested_data = d3.nest()
           .key(function(d){ return d.word; })
