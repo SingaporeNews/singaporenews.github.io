@@ -389,7 +389,7 @@
                 .text(function(d){ return d.key; });
 
           term_label.on('click', function(d){
-            var el = d3.select("."+d.key);
+            var el = document.getElementsByClassName(d.key);
             if (el.classList.contains("clicked")) {
               removePath(d.key);
               el.classList.remove('clicked');
