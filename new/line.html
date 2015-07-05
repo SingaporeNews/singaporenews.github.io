@@ -279,13 +279,13 @@
             };
           });
 
-          var path = svg.append("path")
+          path = svg.append("path")
               .attr("d", line(words[0].values))
               .attr("stroke", "steelblue")
               .attr("stroke-width", "4")
               .attr("fill", "none");
 
-          var totalLength = path.node().getTotalLength();
+          totalLength = path.node().getTotalLength();
 
           path
             .attr("stroke-dasharray", totalLength + " " + totalLength)
