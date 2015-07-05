@@ -54,8 +54,9 @@
           .key(function(d){ return d.word; })
           .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
             })})
-          .sortValues(function(a,b) { return a.values < b.values; })
           .entries(data);
+
+        nested_data.sort(function(a, b){ return a.values < b.values; });
 
         console.log(nested_data);
 
