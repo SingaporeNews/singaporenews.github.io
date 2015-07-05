@@ -392,14 +392,14 @@
             if (document.getElementsByClassName(d.key).length > 0) {
               if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
                 removePath(d.key);
-                d3.select('.'+d.key).attr('id', null);
+                d3.select('.'+d.key).attr('id', null).style('background-color', null);
               } else {
                 drawPath(d.key);
-                d3.select('.'+d.key).attr('id', d.key + 'ha');
+                d3.select('.'+d.key).attr('id', d.key + 'ha').style('background-color', 'red');
               }
             } else {
               drawPath(d.key);
-              d3.select('.'+d.key).attr('id', d.key + 'ha');
+              d3.select('.'+d.key).attr('id', d.key + 'ha').style('background-color', 'red');
             }
           });
 
