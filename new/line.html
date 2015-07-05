@@ -31,7 +31,7 @@
   <style>
     #word_list {
         height: auto;
-        /*max-height: 410px;*/
+        max-height: 410px;
         overflow-y: scroll;
     }
 
@@ -148,7 +148,11 @@
                 .enter()
               .append('text')
                 .attr('class', 'item')
-                .attr("x", 50)
+                .attr("x", 50function(d,i){ if (i < 50){
+                  return 50;} elseif (i > 50 && i < 100){
+                    return 100;
+                  }
+                  })
                 .attr("y", function(d,i){ return i + 4 + "em"; })
                 .style("text-anchor", "middle")
                 .style("font-size", "16px")
