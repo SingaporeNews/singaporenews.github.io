@@ -177,16 +177,45 @@
 
         console.log(words_data);
 
-        x.domain(d3.extent(sampledata, function(d) { return d.year; }));
-        /*
+        x.domain(d3.extent(words_data, function(d) { return d.key; }));
+
         y.domain([
-          d3.min(sampledata, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
-          d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+          d3.min(words_data, function(c) { return c.values; }),
+          d3.max(words_data, function(c) { return c.values; })
         ]);
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Count");
+
+        var city = svg.selectAll(".word")
+            .data(words_data)
+          .enter().append("g")
+            .attr("class", "word");
+
+        city.append("path")
+            .attr("class", "line")
+            .attr("d", function(d) { return line(d.values); });
+            //.style("stroke", function(d) { return color(d.name); });
+        /*
+        city.append("text")
+            .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+            .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+            .attr("x", 3)
+            .attr("dy", ".35em")
+            .text(function(d) { return d.name; });
         */
-
-
-
 
 
 
