@@ -183,10 +183,10 @@
         var sampledata = data.filter(function(el){
           return (el.word == 'London' || el.word == "British");
         });
-        console.log(sampledata);
 
         var words_data = d3.nest()
           .key(function(d){ return d.year; })
+          .key(function(d){ return d.word; })
           .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
             })})
           .entries(sampledata);
@@ -194,10 +194,6 @@
         words_data.forEach(function(d) {
           d.key = parseDate(d.key);
         });
-
-        var keys = d3.nest()
-          .key(function(d){ return d.word; })
-          .entries(sampledata);
 
         color.domain(['London','British']);
         console.log(color.domain());
@@ -210,7 +206,7 @@
             })
           };
         });
-        console.log(words);
+        console.log(words_data);
 
         //console.log(words);
 
