@@ -304,6 +304,7 @@
               .attr("stroke-dashoffset", 0);
 
           d3.select('.'+word).on("click", function(){
+            d3.select('.'+word)
               .transition()
               .duration(2000)
               .ease("linear")
