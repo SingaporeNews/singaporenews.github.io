@@ -237,9 +237,11 @@
             .style("text-anchor", "end")
             .text("Count");
 
+        /*
         var totalLength = path.node().getTotalLength();
 
         path
+          .attr('class', 'London')
           .attr("stroke-dasharray", totalLength + " " + totalLength)
           .attr("stroke-dashoffset", totalLength-100)
           .transition()
@@ -254,8 +256,9 @@
             .ease("linear")
             .attr("stroke-dashoffset", totalLength);
         })
+        */
 
-        drawPath('Chinese');
+        //drawPath('Chinese');
 
         function drawPath(word){
           var sampledata = data.filter(function(el){
@@ -298,13 +301,14 @@
               .ease("linear")
               .attr("stroke-dashoffset", 0);
 
-          d3.select('#'+word).on("click", function(){
+          svg.on("click", function(){
             path
               .transition()
               .duration(2000)
               .ease("linear")
               .attr("stroke-dashoffset", totalLength);
           })
+
 
         }
 
