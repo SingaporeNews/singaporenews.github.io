@@ -218,7 +218,7 @@
         ]);
 
         var path = svg.append("path")
-            .attr("d", line(words, function(d){ return d.values; }))
+            .attr("d", line(words[1].values))
             .attr("stroke", "steelblue")
             .attr("stroke-width", "4")
             .attr("fill", "none");
