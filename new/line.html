@@ -314,6 +314,16 @@
 
         }
 
+        function removePath(word){
+          totalLength = d3.select('.'+word).node().getTotalLength();
+
+          d3.select('.'+word)
+            .transition()
+            .duration(2000)
+            .ease('linear')
+            .attr("stroke-dashoffset", totalLength);
+        }
+
 
         /*
         var city = svg.selectAll(".word")
@@ -378,7 +388,17 @@
                 //.style('fill', function(d){ return line_color(d.term); })
                 .text(function(d){ return d.key; });
 
-          term_label.on('click', function(d){ drawPath(d.key); });
+          term_label.on('click', function(d){
+            var el = d3.select("."+d.key);
+            if (el.classList.contains("clicked")) {
+              removePath(d.key);
+              el.classList.remove('clicked');
+            } else {
+              el.classList.add('clicked');
+              drawPath(d.key);
+            }
+
+          });
 
         /*
 
