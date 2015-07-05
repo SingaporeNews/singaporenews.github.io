@@ -140,7 +140,7 @@
 
       var ListSvg = d3.select('div#word_list').append('svg')
           .attr('width', 225)
-          .attr('height', 10000)
+          .attr('height', 12000)
           .append('g')
             .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
 
@@ -361,16 +361,16 @@
               .append('text')
                 .attr('class', function(d){ return 'item' + d.key })
                 .attr("x", function(d,i){
-                  if (i < 600){
+                  if (i < 800){
                     return 30;}
-                  else if (i > 600){
+                  else if (i > 800){
                     return 130;}
                   })
                 .attr("y", function(d,i){
-                  if (i < 600){
+                  if (i < 800){
                     return i + 1 + "em"; }
-                  else if (i > 600){
-                    return i - 600 + "em";}
+                  else if (i > 800){
+                    return i - 800 + "em";}
                   })
                 .style("text-anchor", "middle")
                 .style("font-size", "16px")
