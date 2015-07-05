@@ -44,6 +44,24 @@
     </div>
 
     <script>
+
+      var w = window,
+          d = document,
+          e = d.documentElement,
+          g = d.getElementById('chart'),
+          width = g.clientWidth/1.1, //w.innerWidth || e.clientWidth || g.clientWidth,
+          height = e.clientHeight/1.45;//w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+      var margin = {top: 20, right: 20, bottom: 30, left: 140},
+        width = width - margin.left - margin.right,
+        height = height - margin.top - margin.bottom;
+
+      var ListSvg = d3.select('div#word_list').append('svg')
+          .attr('width', 200)
+          .attr('height', 2000)
+          .append('g')
+            .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
+
       d3.json("Topwords_abstract_bypage_v4.json", function(data){
         data.forEach(function(d){
           d.value = +d.value;
@@ -59,6 +77,23 @@
         nested_data.sort(function(a, b){ return b.values - a.values; });
 
         console.log(nested_data);
+
+        var term_label = ListSvg.selectAll('.item')
+                .data(nested_data);
+
+        term_label
+                .enter()
+              .append('text')
+                .attr('class', 'item')
+                .attr("x", 50)
+                .attr("y", function(d,i){ return i + 4 + "em"; })
+                .style("text-anchor", "middle")
+                .style("font-size", "16px")
+                .style("fill", "#53565A")
+                .transition()
+                .duration(750)
+                //.style('fill', function(d){ return line_color(d.term); })
+                .text(function(d){ return d.key; });
 
         /*
 
