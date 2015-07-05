@@ -199,7 +199,8 @@
           .key(function(d){ return d.word; })
           .entries(sampledata);
 
-        color.domain(d3.keys(keys));
+        color.domain(['London','British']);
+        console.log(color.domain());
 
         var words = color.domain().map(function(name) {
           return {
@@ -209,8 +210,7 @@
             })
           };
         });
-        console.log(keys);
-        console.log(d3.keys(keys));
+        console.log(words);
 
         //console.log(words);
 
