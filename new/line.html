@@ -56,7 +56,7 @@
             })})
           .entries(data);
 
-        nested_data.sort(function(a, b){ return a.values < b.values; });
+        nested_data.sort(function(a, b){ return a.values - b.values; });
 
         console.log(nested_data);
 
