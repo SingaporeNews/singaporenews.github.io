@@ -217,7 +217,7 @@
         var path = svg.append("path")
             .attr("d", line(words[0].values))
             .attr("stroke", "steelblue")
-            .attr("stroke-width", "2")
+            .attr("stroke-width", "4")
             .attr("fill", "none");
 
         svg.append("g")
@@ -242,7 +242,7 @@
           .attr("stroke-dasharray", totalLength + " " + totalLength)
           .attr("stroke-dashoffset", totalLength)
           .transition()
-            .duration(2000)
+            .duration(4000)
             .ease("linear")
             .attr("stroke-dashoffset", 0);
 
