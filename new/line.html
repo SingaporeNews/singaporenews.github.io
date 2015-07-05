@@ -283,7 +283,7 @@
 
           path = svg.append("path")
               .attr("d", line(words[0].values))
-              .attr("stroke", "steelblue")
+              .attr("stroke", "red")
               .attr("stroke-width", "4")
               .attr("fill", "none");
 
@@ -362,6 +362,8 @@
                 .duration(750)
                 //.style('fill', function(d){ return line_color(d.term); })
                 .text(function(d){ return d.key; });
+
+          term_label.on('click', function(d){ drawPath(d.key); });
 
         /*
 
