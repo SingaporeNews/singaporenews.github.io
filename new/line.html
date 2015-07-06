@@ -388,6 +388,9 @@
           term_label.on('mouseover', function(d){
             d3.select('body').style('cursor', 'pointer');
           });
+          term_label.on("mouseout", function () {
+              d3.selectAll('body').style("cursor", "default");
+          });
 
           term_label.on('click', function(d){
             if (document.getElementsByClassName(d.key).length > 0) {
