@@ -68,6 +68,10 @@ body {
   padding: 30px;
 }
 
+.inner.cover {
+  margin-top: 100px;
+}
+
 
 /*
  * Header
