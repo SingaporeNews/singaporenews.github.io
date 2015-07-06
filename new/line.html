@@ -385,6 +385,10 @@
                          '#fdbf6f','#ff7f00','#cab2d6',
                          '#6a3d9a','#ffff99','#b15928']
 
+          term_label.on('hover', function(d){
+            d3.select('.item' + d.key).style('cursor', 'pointer');
+          });
+
           term_label.on('click', function(d){
             if (document.getElementsByClassName(d.key).length > 0) {
               if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
