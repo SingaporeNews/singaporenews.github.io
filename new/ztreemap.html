@@ -173,7 +173,7 @@
           return (el.year == '1960');
         });
 
-        root = df.nest()
+        root = d3.nest()
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
           .entries(fdata);
