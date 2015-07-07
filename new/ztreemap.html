@@ -173,7 +173,7 @@
           return (el.year == '1960');
         });
 
-        var root = {'name': 'News', 'children':
+        var root = {'key': 'News', 'values':
          d3.nest()
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
