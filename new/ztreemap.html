@@ -189,6 +189,7 @@
     			return d.values
     			? d.value = d.values.reduce(function(p, v) { return p + accumulate(v); }, 0)
     			: d.value;
+        }
 
         // Compute the treemap layout recursively such that each group of siblings
     		// uses the same size (1×1) rather than the dimensions of the parent cell.
