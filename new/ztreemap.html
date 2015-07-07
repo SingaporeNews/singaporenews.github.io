@@ -173,12 +173,12 @@
           return (el.year == '1960');
         });
 
-        var root = d3.nest()
+        var root = {'name': 'News', 'children':
+         d3.nest()
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
           .entries(data);
 
-        /*
         var troot = {'name': 'News', 'children':
           root.values.map(function(year){
             return {'name': year.key, 'children':
@@ -189,7 +189,7 @@
             };
           })
         };
-        */
+        
 
         console.log(root);
         //console.log(troot);
