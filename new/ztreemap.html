@@ -179,7 +179,7 @@
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
           .key(function(d){ return d.name; })
-          .entries(data)
+          .entries(data);
         };
 
         var troot = {'name': 'News', 'children':
@@ -187,8 +187,8 @@
             return {'name': year.key, 'children':
               year.values.map(function(pagegroup){
                 return {'name': pagegroup.key, 'children':
-                  pagegroup.values.map(function(word){
-                    return {'name': word.key, 'children': word.values };
+                  pagegroup.values.map(function(name){
+                    return {'name': name.key, 'children': name.values };
                   })
                 };
               })
