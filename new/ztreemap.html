@@ -134,7 +134,7 @@
     		.range([0, height]);
 
     	var treemap = d3.layout.treemap()
-    		.children(function(d, depth) { return depth ? null : d.values; })
+    		.children(function(d, depth) { return depth ? null : d.children; })
     		.sort(function(a, b) { return a.value - b.value; })
     		.ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
     		.round(false);
