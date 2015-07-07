@@ -176,11 +176,21 @@
         var root = d3.nest()
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
-          .entries(fdata);
+          .entries(data);
 
-
+        var troot = {'name': 'News', 'children':
+          root.values.map(function(year){
+            return {'name': year.key, 'children':
+              year.values.map(function(pagegroup){
+                return {'name': pagegroup.key, 'children':
+                  pagegroup.values };
+              })
+            };
+          })
+        };
 
         console.log(root);
+        console.log(troot);
 
         /*
 
