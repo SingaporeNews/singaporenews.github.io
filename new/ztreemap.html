@@ -30,7 +30,7 @@
     <script src="http://d3js.org/d3.v3.js"></script>
   </head>
   <style>
-        #chart {
+        #tree_map {
           width: 820px;
           height: 700px;
           background: #bbb;
@@ -122,6 +122,7 @@
       var margin = {top: 20, right: 0, bottom: 0, left: 0},
         width = width - margin.left - margin.right,
         height = height - margin.top - margin.bottom,
+        formatNumber = d3.format(",d"),
         transitioning;
 
         /* create x and y scales */
