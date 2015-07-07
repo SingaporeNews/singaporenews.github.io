@@ -1979,15 +1979,22 @@
     				   .attr("class", "child")
     				   .call(rect)
     				   .append("title")
-    				   .text(function(d) { return d.name + " " + d.value; });
+    				   .text(function(d) { return d.name + " " + formatNumber(d.size); });
 
 
     			/* write parent rectangle */
     			g.append("rect")
     				.attr("class", "parent")
     				.call(rect)
+    				/* open new window based on the json's URL value for leaf nodes */
+    				/* Chrome displays this on top */
+    				.on("click", function(d) {
+    					if(!d.children){
+    						window.open(d.url);
+    					}
+    				})
     				.append("title")
-    				.text(function(d) { return d.name + " " + d.value; }); /*should be d.value*/
+    				.text(function(d) { return d.name + " " + formatNumber(d.size); }); /*should be d.value*/
 
 
     			/* Adding a foreign object instead of a text object, allows for text wrapping */
@@ -1995,6 +2002,11 @@
     				.call(rect)
     				/* open new window based on the json's URL value for leaf nodes */
     				/* Firefox displays this on top */
+    				.on("click", function(d) {
+    					if(!d.children){
+    						window.open(d.url);
+    				}
+    			})
     				.attr("class","foreignobj")
     				.append("xhtml:div")
     				.attr("dy", ".75em")
