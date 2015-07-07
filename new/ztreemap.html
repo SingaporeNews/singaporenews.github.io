@@ -188,7 +188,7 @@
               year.values.map(function(pagegroup){
                 return {'name': pagegroup.key, 'children':
                   pagegroup.values.map(function(name){
-                    return {'name': name.key, 'children': name.values[0] };
+                    return {'name': name.key, 'children': name.values };
                   })
                 };
               })
@@ -206,7 +206,7 @@
     		accumulate(troot);
     		layout(troot);
     		display(troot);
-        
+
 
         function initialize(root) {
     			root.x = root.y = 0;
