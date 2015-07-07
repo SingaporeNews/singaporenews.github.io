@@ -112,58 +112,51 @@
 
     <script>
 
-      var w = window,
-          d = document,
-          e = d.documentElement,
-          g = d.getElementById('tree_map'),
-          width = g.clientWidth/1, //w.innerWidth || e.clientWidth || g.clientWidth,
-          height = e.clientHeight/1.2;//w.innerHeight|| e.clientHeight|| g.clientHeight;
+    var margin = {top: 20, right: 0, bottom: 0, left: 0},
+width = 820,
+height = 700 - margin.top - margin.bottom,
+formatNumber = d3.format(",d"),
+transitioning;
 
-      var margin = {top: 20, right: 0, bottom: 0, left: 0},
-        width = width - margin.left - margin.right,
-        height = height - margin.top - margin.bottom,
-        formatNumber = d3.format(",d"),
-        transitioning;
+/* create x and y scales */
+var x = d3.scale.linear()
+  .domain([0, width])
+  .range([0, width]);
 
-        /* create x and y scales */
-    	var x = d3.scale.linear()
-    		.domain([0, width])
-    		.range([0, width]);
+var y = d3.scale.linear()
+  .domain([0, height])
+  .range([0, height]);
 
-    	var y = d3.scale.linear()
-    		.domain([0, height])
-    		.range([0, height]);
+var treemap = d3.layout.treemap()
+  .children(function(d, depth) { return depth ? null : d.children; })
+  .sort(function(a, b) { return a.value - b.value; })
+  .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
+  .round(false);
 
-    	var treemap = d3.layout.treemap()
-    		.children(function(d, depth) { return depth ? null : d.children; })
-    		.sort(function(a, b) { return a.value - b.value; })
-    		.ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
-    		.round(false);
+/* create svg */
+var svg = d3.select("#chart").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.bottom + margin.top)
+  .style("margin-left", -margin.left + "px")
+  .style("margin.right", -margin.right + "px")
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  .style("shape-rendering", "crispEdges");
 
-        /* create svg */
-    	var svg = d3.select("#tree_map").append("svg")
-    		.attr("width", width + margin.left + margin.right)
-    		.attr("height", height + margin.bottom + margin.top)
-    		.style("margin-left", -margin.left + "px")
-    		.style("margin.right", -margin.right + "px")
-    		.append("g")
-    		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    		.style("shape-rendering", "crispEdges");
+var color = d3.scale.category20c();
 
-      var color = d3.scale.category20c();
+var grandparent = svg.append("g")
+  .attr("class", "grandparent");
 
-    	var grandparent = svg.append("g")
-    		.attr("class", "grandparent");
+grandparent.append("rect")
+  .attr("y", -margin.top)
+  .attr("width", width)
+  .attr("height", margin.top);
 
-    	grandparent.append("rect")
-    		.attr("y", -margin.top)
-    		.attr("width", width)
-    		.attr("height", margin.top);
-
-    	grandparent.append("text")
-    		.attr("x", 6)
-    		.attr("y", 6 - margin.top)
-    		.attr("dy", ".75em");
+grandparent.append("text")
+  .attr("x", 6)
+  .attr("y", 6 - margin.top)
+  .attr("dy", ".75em");
 
       d3.json("portaldata.json", function(root){
 
