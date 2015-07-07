@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="Paul Meinshausen" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Singapore News Story</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+    <link href="charts.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://d3js.org/d3.v3.js"></script>
+  </head>
+  <style>
+        #chart {
+          width: 820px;
+          height: 700px;
+          background: #bbb;
+          margin: 1px auto;
+          position: relative;
+          -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+              box-sizing: border-box;
+        }
+
+        text {
+          pointer-events: none;
+        }
+
+        .grandparent text { /* header text */
+          font-weight: bold;
+          font-size: medium;
+          font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+        rect {
+          fill: none;
+          stroke: #fff;
+        }
+
+        rect.parent,
+        .grandparent rect {
+          stroke-width: 2px;
+        }
+
+        .grandparent rect {
+          fill: #fff;
+        }
+
+        .children rect.parent,
+        .grandparent rect {
+          cursor: pointer;
+        }
+
+        rect.parent {
+          pointer-events: all;
+        }
+
+        .children:hover rect.child,
+        .grandparent:hover rect {
+          fill: #aaa;
+        }
+
+        .textdiv { /* text in the boxes */
+          font-size: x-small;
+          padding: 5px;
+          font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+
+  </style>
+
+  <body>
+    <div class="jumbotron vertical-center">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <!--<p class="navbar-title">The Singapore Story</p>-->
+          <div class="navbar-title">
+              <ul class="nav masthead-nav">
+                <li id="li_learn"><a href="http://singaporenews.github.io/new/treemap.html">Learn</a></li>
+                <li class="active" id="li_explore"><a href="http://singaporenews.github.io/new/line.html">Explore</a></li>
+                <li id="li_context"><a href="http://singaporenews.github.io/new/streamgraph.html">Compare</a></li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container" style="margin-top: 50px;">
+        <div class="row">
+          <div class="col-md-12" id="tree_map"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      var w = window,
+          d = document,
+          e = d.documentElement,
+          g = d.getElementById('chart'),
+          width = g.clientWidth/1, //w.innerWidth || e.clientWidth || g.clientWidth,
+          height = e.clientHeight/1.2;//w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+      var margin = {top: 20, right: 0, bottom: 0, left: 0},
+        width = width - margin.left - margin.right,
+        height = height - margin.top - margin.bottom,
+        transitioning;
+
+        /* create x and y scales */
+    	var x = d3.scale.linear()
+    		.domain([0, width])
+    		.range([0, width]);
+
+    	var y = d3.scale.linear()
+    		.domain([0, height])
+    		.range([0, height]);
+
+    	var treemap = d3.layout.treemap()
+    		.children(function(d, depth) { return depth ? null : d.values; })
+    		.sort(function(a, b) { return a.value - b.value; })
+    		.ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
+    		.round(false);
+
+        /* create svg */
+    	var svg = d3.select("#tree_map").append("svg")
+    		.attr("width", width + margin.left + margin.right)
+    		.attr("height", height + margin.bottom + margin.top)
+    		.style("margin-left", -margin.left + "px")
+    		.style("margin.right", -margin.right + "px")
+    		.append("g")
+    		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    		.style("shape-rendering", "crispEdges");
+
+      var color = d3.scale.category20c();
+
+    	var grandparent = svg.append("g")
+    		.attr("class", "grandparent");
+
+    	grandparent.append("rect")
+    		.attr("y", -margin.top)
+    		.attr("width", width)
+    		.attr("height", margin.top);
+
+    	grandparent.append("text")
+    		.attr("x", 6)
+    		.attr("y", 6 - margin.top)
+    		.attr("dy", ".75em");
+
+      d3.json("Topwords_abstract_bypage_v4.json", function(data){
+        data.forEach(function(d){
+          d.value = +d.value;
+        });
+
+        var fdata = data.filter(function(el){
+          return (el.year == '1960');
+        });
+
+        root = df.nest()
+          .key(function(d){ return d.year; })
+          .key(function(d){ return d.pagegroup; })
+          .entries(fdata);
+
+        initialize(root);
+    		accumulate(root);
+    		layout(root);
+    		display(root);
+
+        // Aggregate the values for internal nodes. This is normally done by the
+    		// treemap layout, but not here because of the custom implementation.
+    		function accumulate(d) {
+    			return d.values
+    			? d.value = d.values.reduce(function(p, v) { return p + accumulate(v); }, 0)
+    			: d.value;
+
+        // Compute the treemap layout recursively such that each group of siblings
+    		// uses the same size (1×1) rather than the dimensions of the parent cell.
+    		// This optimizes the layout for the current zoom state. Note that a wrapper
+    		// object is created for the parent node for each group of siblings so that
+    		// the parent’s dimensions are not discarded as we recurse. Since each group
+    		// of sibling was laid out in 1×1, we must rescale to fit using absolute
+    		// coordinates. This lets us use a viewport to zoom.
+    		function layout(d) {
+    			if (d.values) {
+      			treemap.nodes({values: d.values});
+      			d.values.forEach(function(c) {
+        			c.x = d.x + c.x * d.dx;
+        			c.y = d.y + c.y * d.dy;
+        			c.dx *= d.dx;
+        			c.dy *= d.dy;
+        			c.parent = d;
+        			layout(c);
+      			});
+    			}
+    		}
+
+        /* display shows the treemap and writes the embedded transition function */
+    		function display(d) {
+    			/* create grandparent bar at top */
+    			grandparent
+    				.datum(d.parent)
+    				.on("click", transition)
+    				.select("text")
+    				.text(name(d));
+
+    			var g1 = svg.insert("g", ".grandparent")
+    				.datum(d)
+    				.attr("class", "depth");
+
+    			/* add in data */
+    			var g = g1.selectAll("g")
+    				.data(d.values)
+    				.enter().append("g");
+
+
+
+    			/* transition on child click */
+    			g.filter(function(d) { return d.values; })
+    				.classed("children", true)
+    				.on("click", transition);
+
+    			/* write children rectangles */
+    			g.selectAll(".child")
+    				.data(function(d) { return d.values || [d]; })
+    				.enter().append("rect")
+    				   .attr("class", "child")
+    				   .call(rect)
+    				   .append("title")
+    				   .text(function(d) { return d.word + " " + formatNumber(d.value); });
+
+
+    			/* write parent rectangle */
+    			g.append("rect")
+    				.attr("class", "parent")
+    				.call(rect)
+    				.append("title")
+    				.text(function(d) { return d.word + " " + formatNumber(d.value); }); /*should be d.value*/
+
+
+    			/* Adding a foreign object instead of a text object, allows for text wrapping */
+    			g.append("foreignObject")
+    				.call(rect);
+    				/* open new window based on the json's URL value for leaf nodes */
+    				/* Firefox displays this on top */
+    			})
+    				.attr("class","foreignobj")
+    				.append("xhtml:div")
+    				.attr("dy", ".75em")
+    				.html(function(d) { return d.word;
+    				})
+    				.attr("class","textdiv"); //textdiv class allows us to style the text easily with CSS
+
+    			/* create transition function for transitions */
+    			function transition(d) {
+    				if (transitioning || !d) return;
+    				transitioning = true;
+
+    				var g2 = display(d),
+    				t1 = g1.transition().duration(750),
+    				t2 = g2.transition().duration(750);
+
+    				// Update the domain only after entering new elements.
+    				x.domain([d.x, d.x + d.dx]);
+    				y.domain([d.y, d.y + d.dy]);
+
+    				// Enable anti-aliasing during the transition.
+    				svg.style("shape-rendering", null);
+
+    				// Draw child nodes on top of parent nodes.
+    				svg.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
+
+    				// Fade-in entering text.
+    				g2.selectAll("text").style("fill-opacity", 0);
+    				g2.selectAll("foreignObject div").style("display", "none"); /*added*/
+
+    				// Transition to the new view.
+    				t1.selectAll("text").call(text).style("fill-opacity", 0);
+    				t2.selectAll("text").call(text).style("fill-opacity", 1);
+    				t1.selectAll("rect").call(rect);
+    				t2.selectAll("rect").call(rect);
+
+    				t1.selectAll(".textdiv").style("display", "none"); /* added */
+    				t1.selectAll(".foreignobj").call(foreign); /* added */
+    				t2.selectAll(".textdiv").style("display", "block"); /* added */
+    				t2.selectAll(".foreignobj").call(foreign); /* added */
+
+    				// Remove the old node when the transition is finished.
+    				t1.remove().each("end", function() {
+    				svg.style("shape-rendering", "crispEdges");
+    				transitioning = false;
+    				});
+
+    			}//endfunc transition
+
+    			return g;
+    		}//endfunc display
+
+        function rect(rect) {
+    			rect.attr("x", function(d) { return x(d.x); })
+    			.attr("y", function(d) { return y(d.y); })
+    			.attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
+    			.attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
+    			.style("background", function(d) { return d.parent ? color(d.word) : null; });
+    		}
+
+    		function foreign(foreign){ /* added */
+    			foreign.attr("x", function(d) { return x(d.x); })
+    			.attr("y", function(d) { return y(d.y); })
+    			.attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
+    			.attr("height", function(d) { return y(d.y + d.dy) - y(d.y); });
+    		}
+
+    		function name(d) {
+    			return d.parent
+    			? name(d.parent) + "." + d.word
+    			: d.word;
+    			}
+
+      });
+
+
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.rawgit.com/SingaporeNews/singaporenews.github.io/master/js/docs.min.js"></script>
+  </body>
+</html>
