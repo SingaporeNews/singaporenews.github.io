@@ -167,6 +167,7 @@
       d3.json("Topwords_abstract_bypage_v4.json", function(data){
         data.forEach(function(d){
           d.value = +d.value;
+          d.name = d.word;
         });
 
         var fdata = data.filter(function(el){
@@ -195,13 +196,13 @@
         console.log(root);
         console.log(troot);
 
-        /*
+
 
         initialize(root);
     		accumulate(root);
     		layout(root);
     		display(root);
-        */
+
         function initialize(root) {
     			root.x = root.y = 0;
     			root.dx = width;
@@ -212,8 +213,8 @@
         // Aggregate the values for internal nodes. This is normally done by the
     		// treemap layout, but not here because of the custom implementation.
     		function accumulate(d) {
-    			return d.values
-    			? d.value = d.values.reduce(function(p, v) { return p + accumulate(v); }, 0)
+    			return d.children
+    			? d.value = d.children.reduce(function(p, v) { return p + accumulate(v); }, 0)
     			: d.value;
         }
 
@@ -225,9 +226,9 @@
     		// of sibling was laid out in 1×1, we must rescale to fit using absolute
     		// coordinates. This lets us use a viewport to zoom.
     		function layout(d) {
-    			if (d.values) {
-      			treemap.nodes({values: d.values});
-      			d.values.forEach(function(c) {
+    			if (d.children) {
+      			treemap.nodes({children: d.children});
+      			d.children.forEach(function(c) {
         			c.x = d.x + c.x * d.dx;
         			c.y = d.y + c.y * d.dy;
         			c.dx *= d.dx;
@@ -270,7 +271,7 @@
     				   .attr("class", "child")
     				   .call(rect)
     				   .append("title")
-    				   .text(function(d) { return d.word + " " + formatNumber(d.value); });
+    				   .text(function(d) { return d.name + " " + formatNumber(d.value); });
 
 
     			/* write parent rectangle */
@@ -278,7 +279,7 @@
     				.attr("class", "parent")
     				.call(rect)
     				.append("title")
-    				.text(function(d) { return d.word + " " + formatNumber(d.value); }); /*should be d.value*/
+    				.text(function(d) { return d.name + " " + formatNumber(d.value); }); /*should be d.value*/
 
 
     			/* Adding a foreign object instead of a text object, allows for text wrapping */
@@ -289,7 +290,7 @@
     				.attr("class","foreignobj")
     				.append("xhtml:div")
     				.attr("dy", ".75em")
-    				.html(function(d) { return d.word;
+    				.html(function(d) { return d.name;
     				})
     				.attr("class","textdiv"); //textdiv class allows us to style the text easily with CSS
 
@@ -343,7 +344,7 @@
     			.attr("y", function(d) { return y(d.y); })
     			.attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
     			.attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-    			.style("background", function(d) { return d.parent ? color(d.word) : null; });
+    			.style("background", function(d) { return d.parent ? color(d.name) : null; });
     		}
 
     		function foreign(foreign){ /* added */
@@ -355,8 +356,8 @@
 
     		function name(d) {
     			return d.parent
-    			? name(d.parent) + "." + d.word
-    			: d.word;
+    			? name(d.parent) + "." + d.name
+    			: d.name;
     		}
 
       });
