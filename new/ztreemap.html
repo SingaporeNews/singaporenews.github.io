@@ -186,9 +186,7 @@
             return {'name': year.key, 'children':
               year.values.map(function(pagegroup){
                 return {'name': pagegroup.key, 'children':
-                  pagegroup.values.map(function(name){
-                    return {'name': name.key, 'children': name.values };
-                  })
+                  pagegroup.values
                 };
               })
             };
