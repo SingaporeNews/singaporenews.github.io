@@ -183,6 +183,13 @@
     		layout(root);
     		display(root);
 
+        function initialize(root) {
+    			root.x = root.y = 0;
+    			root.dx = width;
+    			root.dy = height;
+    			root.depth = 0;
+    		}
+
         // Aggregate the values for internal nodes. This is normally done by the
     		// treemap layout, but not here because of the custom implementation.
     		function accumulate(d) {
