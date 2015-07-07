@@ -173,20 +173,22 @@
           return (el.year == '1960');
         });
 
-        root = d3.nest()
+        var root = d3.nest()
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
           .entries(fdata);
 
-        
+
 
         console.log(root);
+
+        /*
 
         initialize(root);
     		accumulate(root);
     		layout(root);
     		display(root);
-
+        */
         function initialize(root) {
     			root.x = root.y = 0;
     			root.dx = width;
