@@ -271,7 +271,7 @@
     				   .attr("class", "child")
     				   .call(rect)
     				   .append("title")
-    				   .text(function(d) { return d.name + " " + formatNumber(d.value); });
+    				   .text(function(d) { return d.name + " " + d.value; });
 
 
     			/* write parent rectangle */
@@ -279,7 +279,7 @@
     				.attr("class", "parent")
     				.call(rect)
     				.append("title")
-    				.text(function(d) { return d.name + " " + formatNumber(d.value); }); /*should be d.value*/
+    				.text(function(d) { return d.name + " " + d.value; }); /*should be d.value*/
 
 
     			/* Adding a foreign object instead of a text object, allows for text wrapping */
