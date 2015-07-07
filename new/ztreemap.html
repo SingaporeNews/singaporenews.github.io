@@ -177,7 +177,8 @@
          d3.nest()
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
-          .entries(data);
+          .entries(data)
+        };
 
         var troot = {'name': 'News', 'children':
           root.values.map(function(year){
