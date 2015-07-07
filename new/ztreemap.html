@@ -178,6 +178,7 @@
          d3.nest()
           .key(function(d){ return d.year; })
           .key(function(d){ return d.pagegroup; })
+          .key(function(d){ return d.name; })
           .entries(data)
         };
 
@@ -186,7 +187,10 @@
             return {'name': year.key, 'children':
               year.values.map(function(pagegroup){
                 return {'name': pagegroup.key, 'children':
-                  pagegroup.values };
+                  pagegroup.values.map(function(word){
+                    return {'name': word.key, 'children': word.values };
+                  })
+                };
               })
             };
           })
