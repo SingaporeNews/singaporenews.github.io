@@ -178,6 +178,10 @@
           .key(function(d){ return d.pagegroup; })
           .entries(fdata);
 
+        
+
+        console.log(root);
+
         initialize(root);
     		accumulate(root);
     		layout(root);
@@ -234,19 +238,19 @@
 
     			/* add in data */
     			var g = g1.selectAll("g")
-    				.data(d.values)
+    				.data(d.children)
     				.enter().append("g");
 
 
 
     			/* transition on child click */
-    			g.filter(function(d) { return d.values; })
+    			g.filter(function(d) { return d.children; })
     				.classed("children", true)
     				.on("click", transition);
 
     			/* write children rectangles */
     			g.selectAll(".child")
-    				.data(function(d) { return d.values || [d]; })
+    				.data(function(d) { return d.children || [d]; })
     				.enter().append("rect")
     				   .attr("class", "child")
     				   .call(rect)
