@@ -177,7 +177,8 @@
           .attr("in2", "blurOut")
           .attr("mode", "normal");
 
-      d3.json("Topwords_abstract_bypage_v4.json", function(data){
+      d3.json("flare1.json", function(data){
+        /*
         data.forEach(function(d){
           d.value = +d.value;
           d.name = d.word;
@@ -208,8 +209,9 @@
           })
         }];
         console.log(troot);
+        */
 
-        node = root = troot;
+        node = root = data;
         console.log(node);
 
         var nodes = treemap.nodes(root);
