@@ -75,9 +75,9 @@
 
               var visualization = d3plus.viz()
                 .container(".cover-chart")
-                .data(fdata)
+                .data(data)
                 .type("tree_map")
-                .id(["time","category","word"])
+                .id(["year","category","word"])
                 .size("count")
                 //.time({"value": "year", "solo": [1961,1962,1963,1964]})
                 .draw()
