@@ -119,7 +119,7 @@
         .entries(data)
       };
 
-      var troot = {'name': 'News', 'children':
+      var troot = [{'name': 'News', 'children':
         tdata.values.map(function(category){
           return {'name': category.key, 'children':
             category.values.map(function(pagegroup){
@@ -131,7 +131,7 @@
             })
           };
         })
-      };
+      }];
       node = root = troot;
 
       var nodes = treemap.nodes(root)
