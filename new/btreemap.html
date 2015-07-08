@@ -121,10 +121,20 @@
       var tdata = {'key': 'News', 'values':
        d3.nest()
         .key(function(d){ return d.category; })
-        .key(function(d){ return d.pagegrpnew; })
+        .key(function(d){ return d.name; })
+        .rollup(function(leaves){ return {'size': d3.sum(leaves, function(d){ return d.size; })}})
         .entries(fdata)
       };
 
+      var troot = {'name': 'News', 'children':
+        tdata.values.map(function(category){
+          return {'name': category.key, 'children':
+            category.values
+          };
+        })
+      };
+
+      /*
       var troot = {'name': 'News', 'children':
         tdata.values.map(function(category){
           return {'name': category.key, 'children':
@@ -136,6 +146,7 @@
           };
         })
       };
+      */
       console.log(troot);
       node = root = troot;
 
