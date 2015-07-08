@@ -139,6 +139,7 @@
 
         var tdata = {'key': 'News', 'values':
          d3.nest()
+          .key(function(d){ return d.year; })
           .key(function(d){ return d.category; })
           .key(function(d){ return d.name; })
           .rollup(function(leaves){ return {'size': d3.sum(leaves, function(d){ return d.size; })}})
@@ -148,11 +149,15 @@
 
 
         var troot = {'name': 'News', 'children':
-          tdata.values.map(function(category){
-            return {'name': category.key, 'children':
-              category.values.map(function(pagegroup){
-                return {'name': pagegroup.key, 'size':
-                  pagegroup.values.size
+          tdata.values.map(function(year){
+            return {'name': year.key, 'children':
+              year.values.map(function(category){
+                return {'name': category.key, 'children':
+                  category.values.map(function(pagegroup){
+                    return {'name': pagegroup.key, 'size':
+                      pagegroup.values.size
+                    };
+                  })
                 };
               })
             };
@@ -168,7 +173,7 @@
         var cell = svg.selectAll("g")
             .data(nodes)
           .enter().append("svg:g")
-            .attr("class", "cell")
+            .attr("class", "cell");
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
             .on("click", function(d) { return zoom(node == d.parent ? root : d.parent); });
 
