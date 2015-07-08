@@ -228,6 +228,7 @@
       };
 
       d3.select("#nRadius").on("input", function() {
+        d3.select('.chart').transition().remove();
         update(+this.value);
       });
 
@@ -236,8 +237,6 @@
         // adjust the text on the range slider
         d3.select("#nRadius-value").text(nRadius);
         d3.select("#nRadius").property("value", nRadius);
-
-        d3.select('.chart').transition().remove();
 
         redraw(nRadius);
 
