@@ -86,9 +86,18 @@
                 .data(data)
                 .type("tree_map")
                 .id(["year","category","word"])
-                .attrs(attributes)
-                .color('hex')
                 .size("count")
+                .color(function(d){
+                  if(d.category == 'events'){
+                    return "#a6cee3";
+                  }else if(d.category == 'personplace'){
+                    return "#b2df8a";
+                  }else if (d.category == 'government'){
+                    return "#fb9a99";
+                  }else if (d.category == 'business'){
+                    return "#fdbf6f";
+                  }
+                })
                 //.time({"value": "year", "solo": [1961,1962,1963,1964]})
                 .draw()
 
