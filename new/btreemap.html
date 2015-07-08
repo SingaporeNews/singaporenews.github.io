@@ -125,6 +125,7 @@
         .rollup(function(leaves){ return {'size': d3.sum(leaves, function(d){ return d.size; })}})
         .entries(fdata)
       };
+      console.log(tdata);
 
       var troot = {'name': 'News', 'children':
         tdata.values.map(function(category){
