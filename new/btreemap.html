@@ -176,7 +176,7 @@
           .attr("in2", "blurOut")
           .attr("mode", "normal");
 
-      d3.json("portaldata.json", function(root){
+      d3.json("portaldata.json", function(data){
         data.forEach(function(d){
           d.size = +d.value;
           d.value = +d.value;
