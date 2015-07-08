@@ -83,7 +83,7 @@
                      style="display: inline-block; width: 240px; text-align: right">
                      radius = <span id="nRadius-value">…</span>
               </label>
-              <input type="range" min="1" max="150" id="nRadius">
+              <input type="range" min="1845" max="2009" id="nRadius">
             </p>
           </div>
         </div>
@@ -120,16 +120,6 @@
       .size([w, h])
       .sticky(true)
       .value(function(d) { return d.size; });
-
-    var svg = d3.select("#chart").append("div")
-      .attr("class", "chart")
-      .style("width", w + "px")
-      .style("height", h + "px")
-    .append("svg:svg")
-      .attr("width", w)
-      .attr("height", h)
-    .append("svg:g")
-      .attr("transform", "translate(.5,.5)");
 
     d3.json("Topwords_abstract_bycategory_v1.json", function(data) {
       data.forEach(function(d){
@@ -176,6 +166,16 @@
         })
       };
       */
+      var svg = d3.select("#chart").append("div")
+        .attr("class", "chart")
+        .style("width", w + "px")
+        .style("height", h + "px")
+      .append("svg:svg")
+        .attr("width", w)
+        .attr("height", h)
+      .append("svg:g")
+        .attr("transform", "translate(.5,.5)");
+        
       console.log(troot);
       node = root = troot;
 
@@ -208,6 +208,21 @@
         treemap.value(this.value == "size" ? size : count).nodes(root);
         zoom(node);
       });
+
+      d3.select("#nRadius").on("input", function() {
+        update(+this.value);
+      });
+
+      function update(nRadius) {
+
+        // adjust the text on the range slider
+        d3.select("#nRadius-value").text(nRadius);
+        d3.select("#nRadius").property("value", nRadius);
+
+
+      }
+
+
     });
 
     function size(d) {
@@ -241,21 +256,6 @@
     }
 
 
-      d3.select("#nRadius").on("input", function() {
-        update(+this.value);
-
-
-        function update(nRadius) {
-
-          // adjust the text on the range slider
-          d3.select("#nRadius-value").text(nRadius);
-          d3.select("#nRadius").property("value", nRadius);
-
-          
-        }
-
-
-      });
 
       $(".slider")
 
