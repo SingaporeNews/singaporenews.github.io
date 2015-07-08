@@ -122,7 +122,7 @@
     var treemap = d3.layout.treemap()
       .round(false)
       .size([w, h])
-      .sticky(true)
+      .sticky(false)
       .value(function(d) { return d.size; });
 
     d3.json("Topwords_abstract_bycategory_v1.json", function(data) {
