@@ -129,9 +129,6 @@
         d.size = +d.stfreq;
         d.name = d.word;
       });
-      redraw('1920');
-
-      function redraw(selectedyear){
 
         var fdata = data.filter(function(el){
           return (el.year == selectedyear);
@@ -143,7 +140,7 @@
           .key(function(d){ return d.category; })
           .key(function(d){ return d.name; })
           .rollup(function(leaves){ return {'size': d3.sum(leaves, function(d){ return d.size; })}})
-          .entries(fdata)
+          .entries(data)
         };
         console.log(tdata);
 
@@ -226,9 +223,6 @@
           node = d;
           d3.event.stopPropagation();
         }
-
-
-      };
 
       d3.select("#nRadius").on("input", function() {
         d3.select('.chart').transition().remove();
