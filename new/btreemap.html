@@ -95,6 +95,8 @@
 
     <script>
 
+
+
     var width = window,
         d = document,
         e = d.documentElement,
@@ -238,20 +240,37 @@
       d3.event.stopPropagation();
     }
 
-    $(".slider")
 
-      .slider({
-          min: 0,
-          max: 1000,
-          range: true,
-          values: [200, 800]
-      })
+      d3.select("#nRadius").on("input", function() {
+        update(+this.value);
 
-      .slider("float", {
-          rest: "label"
-      })
 
-      .slider("float");
+        function update(nRadius) {
+
+          // adjust the text on the range slider
+          d3.select("#nRadius-value").text(nRadius);
+          d3.select("#nRadius").property("value", nRadius);
+
+          
+        }
+
+
+      });
+
+      $(".slider")
+
+        .slider({
+            min: 0,
+            max: 1000,
+            range: true,
+            values: [200, 800]
+        })
+
+        .slider("pips", {
+            rest: "label"
+        })
+
+        .slider("float");
 
     </script>
 
