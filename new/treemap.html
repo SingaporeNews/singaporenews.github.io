@@ -53,9 +53,9 @@
 
         <div class="cover-chart center-block">
           <script>
-            d3.json("Topwords_abstract_bypage_v4.json", function(data){
+            d3.json("Topwords_abstract_bycategory_v1.json", function(data){
               data.forEach(function(d){
-                d.value = +d.value;
+                d.count = +d.stfreq;
                 d.year = +d.year;
               });
               console.log(data);
@@ -77,8 +77,8 @@
                 .container(".cover-chart")
                 .data(fdata)
                 .type("tree_map")
-                .id(["pagegroup","word"])
-                .size("value")
+                .id(["category","word"])
+                .size("count")
                 .time({"value": "year", "solo": [1961,1962,1963,1964]})
                 .draw()
 
