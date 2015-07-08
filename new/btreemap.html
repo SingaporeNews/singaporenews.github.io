@@ -73,13 +73,18 @@
     </div>
 
     <script>
-    var w = 1280 - 80,
-      h = 800 - 180,
-      x = d3.scale.linear().range([0, w]),
-      y = d3.scale.linear().range([0, h]),
-      color = d3.scale.category20c(),
-      root,
-      node;
+
+    var width = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementById('tree_map'),
+        w = g.clientWidth/1, //w.innerWidth || e.clientWidth || g.clientWidth,
+        h = e.clientHeight/1.2,//w.innerHeight|| e.clientHeight|| g.clientHeight;
+        x = d3.scale.linear().range([0, w]),
+        y = d3.scale.linear().range([0, h]),
+        color = d3.scale.category20c(),
+        root,
+        node;
 
     var treemap = d3.layout.treemap()
       .round(false)
