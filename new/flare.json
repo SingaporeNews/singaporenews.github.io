@@ -1,13 +1,13 @@
 {
  "name": "flare",
- "group": [
+ "children": [
   {
    "name": "analytics",
-   "group": [
+   "children": [
     {
      "name": "cluster",
-     "group": [
-      {"name": "Anti-immigatrion sentiment", "size": "123938a"},
+     "children": [
+      {"name": "AgglomerativeCluster", "size": 3938},
       {"name": "CommunityStructure", "size": 3812},
       {"name": "HierarchicalCluster", "size": 6714},
       {"name": "MergeEdge", "size": 743}
@@ -15,7 +15,7 @@
     },
     {
      "name": "graph",
-     "group": [
+     "children": [
       {"name": "BetweennessCentrality", "size": 3534},
       {"name": "LinkDistance", "size": 5731},
       {"name": "MaxFlowMinCut", "size": 7840},
@@ -25,7 +25,7 @@
     },
     {
      "name": "optimization",
-     "group": [
+     "children": [
       {"name": "AspectRatioBanker", "size": 7074}
      ]
     }
@@ -33,12 +33,12 @@
   },
   {
    "name": "animate",
-   "group": [
+   "children": [
     {"name": "Easing", "size": 17010},
     {"name": "FunctionSequence", "size": 5842},
     {
      "name": "interpolate",
-     "group": [
+     "children": [
       {"name": "ArrayInterpolator", "size": 1983},
       {"name": "ColorInterpolator", "size": 2047},
       {"name": "DateInterpolator", "size": 1375},
@@ -63,10 +63,10 @@
   },
   {
    "name": "data",
-   "group": [
+   "children": [
     {
      "name": "converters",
-     "group": [
+     "children": [
       {"name": "Converters", "size": 721},
       {"name": "DelimitedTextConverter", "size": 4294},
       {"name": "GraphMLConverter", "size": 9800},
@@ -84,7 +84,7 @@
   },
   {
    "name": "display",
-   "group": [
+   "children": [
     {"name": "DirtySprite", "size": 8833},
     {"name": "LineSprite", "size": 1732},
     {"name": "RectSprite", "size": 3623},
@@ -93,13 +93,13 @@
   },
   {
    "name": "flex",
-   "group": [
+   "children": [
     {"name": "FlareVis", "size": 4116}
    ]
   },
   {
    "name": "physics",
-   "group": [
+   "children": [
     {"name": "DragForce", "size": 1082},
     {"name": "GravityForce", "size": 1336},
     {"name": "IForce", "size": 319},
@@ -112,7 +112,7 @@
   },
   {
    "name": "query",
-   "group": [
+   "children": [
     {"name": "AggregateExpression", "size": 1616},
     {"name": "And", "size": 1027},
     {"name": "Arithmetic", "size": 3891},
@@ -133,7 +133,7 @@
     {"name": "Maximum", "size": 843},
     {
      "name": "methods",
-     "group": [
+     "children": [
       {"name": "add", "size": 593},
       {"name": "and", "size": 330},
       {"name": "average", "size": 287},
@@ -182,7 +182,7 @@
   },
   {
    "name": "scale",
-   "group": [
+   "children": [
     {"name": "IScaleMap", "size": 2105},
     {"name": "LinearScale", "size": 1316},
     {"name": "LogScale", "size": 3151},
@@ -197,7 +197,7 @@
   },
   {
    "name": "util",
-   "group": [
+   "children": [
     {"name": "Arrays", "size": 8258},
     {"name": "Colors", "size": 10001},
     {"name": "Dates", "size": 8217},
@@ -206,7 +206,7 @@
     {"name": "Geometry", "size": 10993},
     {
      "name": "heap",
-     "group": [
+     "children": [
       {"name": "FibonacciHeap", "size": 9354},
       {"name": "HeapNode", "size": 1233}
      ]
@@ -216,7 +216,7 @@
     {"name": "IValueProxy", "size": 874},
     {
      "name": "math",
-     "group": [
+     "children": [
       {"name": "DenseMatrix", "size": 3165},
       {"name": "IMatrix", "size": 2815},
       {"name": "SparseMatrix", "size": 3366}
@@ -226,7 +226,7 @@
     {"name": "Orientation", "size": 1486},
     {
      "name": "palette",
-     "group": [
+     "children": [
       {"name": "ColorPalette", "size": 6367},
       {"name": "Palette", "size": 1229},
       {"name": "ShapePalette", "size": 2059},
@@ -242,10 +242,10 @@
   },
   {
    "name": "vis",
-   "group": [
+   "children": [
     {
      "name": "axis",
-     "group": [
+     "children": [
       {"name": "Axes", "size": 1302},
       {"name": "Axis", "size": 24593},
       {"name": "AxisGridLine", "size": 652},
@@ -255,7 +255,7 @@
     },
     {
      "name": "controls",
-     "group": [
+     "children": [
       {"name": "AnchorControl", "size": 2138},
       {"name": "ClickControl", "size": 3824},
       {"name": "Control", "size": 1353},
@@ -271,7 +271,7 @@
     },
     {
      "name": "data",
-     "group": [
+     "children": [
       {"name": "Data", "size": 20544},
       {"name": "DataList", "size": 19788},
       {"name": "DataSprite", "size": 10349},
@@ -279,7 +279,7 @@
       {"name": "NodeSprite", "size": 19382},
       {
        "name": "render",
-       "group": [
+       "children": [
         {"name": "ArrowType", "size": 698},
         {"name": "EdgeRenderer", "size": 5569},
         {"name": "IRenderer", "size": 353},
@@ -293,7 +293,7 @@
     },
     {
      "name": "events",
-     "group": [
+     "children": [
       {"name": "DataEvent", "size": 2313},
       {"name": "SelectionEvent", "size": 1880},
       {"name": "TooltipEvent", "size": 1701},
@@ -302,7 +302,7 @@
     },
     {
      "name": "legend",
-     "group": [
+     "children": [
       {"name": "Legend", "size": 20859},
       {"name": "LegendItem", "size": 4614},
       {"name": "LegendRange", "size": 10530}
@@ -310,10 +310,10 @@
     },
     {
      "name": "operator",
-     "group": [
+     "children": [
       {
        "name": "distortion",
-       "group": [
+       "children": [
         {"name": "BifocalDistortion", "size": 4461},
         {"name": "Distortion", "size": 6314},
         {"name": "FisheyeDistortion", "size": 3444}
@@ -321,7 +321,7 @@
       },
       {
        "name": "encoder",
-       "group": [
+       "children": [
         {"name": "ColorEncoder", "size": 3179},
         {"name": "Encoder", "size": 4060},
         {"name": "PropertyEncoder", "size": 4138},
@@ -331,7 +331,7 @@
       },
       {
        "name": "filter",
-       "group": [
+       "children": [
         {"name": "FisheyeTreeFilter", "size": 5219},
         {"name": "GraphDistanceFilter", "size": 3165},
         {"name": "VisibilityFilter", "size": 3509}
@@ -340,7 +340,7 @@
       {"name": "IOperator", "size": 1286},
       {
        "name": "label",
-       "group": [
+       "children": [
         {"name": "Labeler", "size": 9956},
         {"name": "RadialLabeler", "size": 3899},
         {"name": "StackedAreaLabeler", "size": 3202}
@@ -348,7 +348,7 @@
       },
       {
        "name": "layout",
-       "group": [
+       "children": [
         {"name": "AxisLayout", "size": 6725},
         {"name": "BundledEdgeRouter", "size": 3727},
         {"name": "CircleLayout", "size": 9317},
