@@ -127,15 +127,18 @@
       };
       console.log(sdata);
 
-      /*
+
       var troot = {'name': 'News', 'children':
         tdata.values.map(function(category){
           return {'name': category.key, 'children':
-            category.values
-          };
+          category.values.map(function(pagegroup){
+            return {'name': pagegroup.key, 'children':
+              pagegroup.values.size
+            };
+          })
         })
       };
-      */
+
       /*
       var troot = {'name': 'News', 'children':
         tdata.values.map(function(category){
@@ -149,8 +152,8 @@
         })
       };
       */
-      //console.log(troot);
-      //node = root = troot;
+      console.log(troot);
+      node = root = troot;
 
       var nodes = treemap.nodes(root)
           .filter(function(d) { return !d.children; });
