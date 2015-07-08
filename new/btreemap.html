@@ -102,8 +102,37 @@
     .append("svg:g")
       .attr("transform", "translate(.5,.5)");
 
-    d3.json("flare.json", function(data) {
-      node = root = data;
+    d3.json("Topwords_abstract_bycategory_v1.json", function(data) {
+      data.forEach(function(d){
+        d.value = +d.value;
+        d.name = d.word;
+      });
+
+      var fdata = data.filter(function(el){
+        return (el.year == '1960');
+      });
+
+      var tdata = {'key': 'News', 'values':
+       d3.nest()
+        .key(function(d){ return d.category; })
+        .key(function(d){ return d.pagegrpnew; })
+        .entries(data)
+      };
+
+      var troot = {'name': 'News', 'children':
+        tdata.values.map(function(category){
+          return {'name': category.key, 'children':
+            category.values.map(function(pagegroup){
+              return {'name': pagegroup.key, 'children':
+                pagegroup.values.map(function(word){
+                  return {'name': word.name, 'size': word.value }
+                })
+              };
+            })
+          };
+        })
+      };
+      node = root = troot;
 
       var nodes = treemap.nodes(root)
           .filter(function(d) { return !d.children; });
