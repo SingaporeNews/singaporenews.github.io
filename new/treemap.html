@@ -73,11 +73,23 @@
 
               console.log(fdata);
 
+              .domain(["events", "personplace", "government", "business"])
+              .range(["#a6cee3", "#b2df8a" , "#fb9a99", "#fdbf6f"]);
+
+              var attributes = [
+                {"name": "events", "hex": "#a6cee3"},
+                {"name": "personplace", "hex": "#b2df8a"},
+                {"name": "government", "hex": "#fb9a99"},
+                {"name": "business", "hex": "#fdbf6f"}
+              ]
+
               var visualization = d3plus.viz()
                 .container(".cover-chart")
                 .data(data)
                 .type("tree_map")
                 .id(["year","category","word"])
+                .attrs(attributes)
+                .color('hex')
                 .size("count")
                 //.time({"value": "year", "solo": [1961,1962,1963,1964]})
                 .draw()
