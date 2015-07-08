@@ -119,19 +119,18 @@
         .entries(data)
       };
 
-      var troot = [{'name': 'News', 'children':
+      var troot = {'name': 'News', 'children':
         tdata.values.map(function(category){
           return {'name': category.key, 'children':
             category.values.map(function(pagegroup){
               return {'name': pagegroup.key, 'children':
-                pagegroup.values.map(function(word){
-                  return {'name': word.name, 'size': word.value }
-                })
+                return pagegroup.values;
               };
             })
           };
         })
-      }];
+      };
+      console.log(troot);
       node = root = troot;
 
       var nodes = treemap.nodes(root)
