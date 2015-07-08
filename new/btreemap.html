@@ -118,15 +118,16 @@
         return (el.year == '1982');
       });
 
-      var tdata = {'key': 'News', 'values':
+      var sdata = {'key': 'News', 'values':
        d3.nest()
         .key(function(d){ return d.category; })
         .key(function(d){ return d.name; })
         .rollup(function(leaves){ return {'size': d3.sum(leaves, function(d){ return d.size; })}})
         .entries(fdata)
       };
-      console.log(tdata);
+      console.log(sdata);
 
+      /*
       var troot = {'name': 'News', 'children':
         tdata.values.map(function(category){
           return {'name': category.key, 'children':
@@ -134,7 +135,7 @@
           };
         })
       };
-
+      */
       /*
       var troot = {'name': 'News', 'children':
         tdata.values.map(function(category){
@@ -148,8 +149,8 @@
         })
       };
       */
-      console.log(troot);
-      node = root = troot;
+      //console.log(troot);
+      //node = root = troot;
 
       var nodes = treemap.nodes(root)
           .filter(function(d) { return !d.children; });
