@@ -65,19 +65,21 @@
               var fdata = data.filter(function(el){
                 return (typeof el.name == 'string');
               });
+
+              */
               var fdata = fdata.filter(function(el){
-                return (el.name.length > 2);
+                return (el.year > 1960);
               });
 
               console.log(fdata);
-              */
+
               var visualization = d3plus.viz()
                 .container(".cover-chart")
                 .data(data)
                 .type("tree_map")
                 .id(["pagegroup","word"])
                 .size("value")
-                .time({"value": "year", "solo": [1960,1961,1962,1963,1964]})
+                .time({"value": "year", "solo": [1961,1962,1963,1964]})
                 .draw()
 
 
