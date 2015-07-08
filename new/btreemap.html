@@ -85,9 +85,12 @@
         root,
         node;
 
-    var color = ['#a6cee3','#1f78b4',
-    '#b2df8a','#33a02c','#fb9a99',
-    '#e31a1c','#fdbf6f']
+
+    var color = d3.scale.ordinal()
+      .domain(["events ", "personplace", "government", "business"])
+      .range(["#a6cee3", "#b2df8a" , "#fb9a99", '#fdbf6f']);
+
+
 
     var treemap = d3.layout.treemap()
       .round(false)
