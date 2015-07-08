@@ -104,6 +104,7 @@
 
     d3.json("Topwords_abstract_bycategory_v1.json", function(data) {
       data.forEach(function(d){
+        d.size = +d.value;
         d.value = +d.value;
         d.name = d.word;
       });
