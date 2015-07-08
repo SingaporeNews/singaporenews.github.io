@@ -104,7 +104,8 @@
         node;
 
 
-    var color = d3.scale.ordinal()
+    var color = d3.scale.category20c();
+    var ocolor = d3.scale.ordinal()
       .domain(["events", "personplace", "government", "business"])
       .range(["#a6cee3", "#b2df8a" , "#fb9a99", "#fdbf6f"]);
 
