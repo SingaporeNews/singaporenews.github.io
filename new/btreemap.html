@@ -194,7 +194,7 @@
           .entries(data)
         };
 
-        var troot = {'name': 'News', 'group':
+        var troot = [{'name': 'News', 'group':
           tdata.values.map(function(year){
             return {'name': year.key, 'group':
               year.values.map(function(pagegroup){
@@ -205,8 +205,9 @@
                 };
               })
             };
-          })
-        };
+          ]})
+        }];
+        console.log(troot);
 
         node = root = troot;
         console.log(node);
