@@ -108,7 +108,15 @@
       .domain(["events", "personplace", "government", "business"])
       .range(["#a6cee3", "#b2df8a" , "#fb9a99", "#fdbf6f"]);
 
-
+    var svg = d3.select("#chart").append("div")
+        .attr("class", "chart")
+        .style("width", w + "px")
+        .style("height", h + "px")
+      .append("svg:svg")
+        .attr("width", w)
+        .attr("height", h)
+      .append("svg:g")
+        .attr("transform", "translate(.5,.5)");
 
     var treemap = d3.layout.treemap()
       .round(false)
@@ -150,16 +158,6 @@
             };
           })
         };
-
-        var svg = d3.select("#chart").append("div")
-          .attr("class", "chart")
-          .style("width", w + "px")
-          .style("height", h + "px")
-        .append("svg:svg")
-          .attr("width", w)
-          .attr("height", h)
-        .append("svg:g")
-          .attr("transform", "translate(.5,.5)");
 
         console.log(troot);
         node = root = troot;
