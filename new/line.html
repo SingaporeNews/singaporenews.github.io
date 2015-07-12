@@ -228,7 +228,7 @@
           .key(function(d){ return d.year; })
           .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
             })})
-          .entries(sampledata);
+          .entries(filtered_data);
 
         words_data.forEach(function(d) {
           d.key = parseDate(d.key);
@@ -246,7 +246,7 @@
         });
 
 
-        console.log(d3.max(filtered_data, function(c) { return c.value; }));
+        console.log(d3.max(words_data, function(c) { return c.values; }));
 
         //x.domain(d3.extent(words_data, function(d) { return d.key; }));
         //x.domain(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
