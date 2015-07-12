@@ -68,7 +68,6 @@
               data.forEach(function(d){
                 d.count = +d.stfreq;
                 d.decade_s = d.year.substring(0,3) + '0s';
-                d.decade = +d.decade_s;
                 d.year = +d.year;
               });
               console.log(data);
@@ -79,12 +78,12 @@
                 return (typeof el.name == 'string');
               });
 
-              */
+
               var fdata = data.filter(function(el){
                 return (el.year > 1960);
               });
+              */
 
-              console.log(fdata);
 
 
               var attributes = [
