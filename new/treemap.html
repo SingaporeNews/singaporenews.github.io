@@ -56,7 +56,7 @@
             d3.json("Topwords_abstract_bycategory_v1.json", function(data){
               data.forEach(function(d){
                 d.count = +d.stfreq;
-                d.decade_s = d.year.substring(0,3) + '0';
+                d.decade_s = d.year.substring(0,3) + '0s';
                 d.decade = +d.decade_s;
                 d.year = +d.year;
               });
@@ -87,7 +87,7 @@
                 .container(".cover-chart")
                 .data(data)
                 .type("tree_map")
-                .id(["category","word"])
+                .id(["decade_s","year","category","word"])
                 .size("count")
                 .color(function(d){
                   if(d.category == 'events'){
@@ -98,9 +98,10 @@
                     return "#fb9a99";
                   }else if (d.category == 'business'){
                     return "#fdbf6f";
+                  }else if (d.category == '1960s'){
+                    return "#a6cee3";
                   }
                 })
-                .time({"value": "decade", "solo": [1960]})
                 .draw()
 
 
