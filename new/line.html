@@ -150,7 +150,7 @@
           width = g.clientWidth/1, //w.innerWidth || e.clientWidth || g.clientWidth,
           height = e.clientHeight/1.2;//w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-      var margin = {top: 10, right: 10, bottom: 30, left: 140},
+      var margin = {top: 10, right: 10, bottom: 30, left: 160},
         width = width - margin.left - margin.right,
         height = height - margin.top - margin.bottom;
 
@@ -267,12 +267,12 @@
 
         svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(10," + height + ")")
+            .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
 
         svg.append("g")
             .attr("class", "y axis")
-            .attr('transform', 'translate(-5,' + 0 + ')')
+            .attr('transform', 'translate(-10,' + 0 + ')')
             .call(yAxis)
           .append("text")
             .attr("transform", "rotate(-90)")
