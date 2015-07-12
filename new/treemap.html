@@ -56,6 +56,7 @@
             d3.json("Topwords_abstract_bycategory_v1.json", function(data){
               data.forEach(function(d){
                 d.count = +d.stfreq;
+                d.decade = d.year.substring(0,4);
                 d.year = +d.year;
               });
               console.log(data);
