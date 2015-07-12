@@ -201,11 +201,17 @@
           .key(function(d){ return d.year; })
           .entries(data);
 
-        var filtered_by_length = filter_words_by_length.filter(function(el){
+        var filtered_words_by_length = filter_words_by_length.filter(function(el){
           return (el.values.length > 4);
         });
 
+        var filtered_by_length = [];
+        filtered_words_by_length.forEach(function(d){
+          filtered_by_length.push(d.key);
+        });
+
         console.log(filtered_by_length);
+
 
 
 
