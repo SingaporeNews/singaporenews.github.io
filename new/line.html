@@ -425,6 +425,7 @@
 
         nested_data.sort(function(a, b){ return b.values - a.values; });
 
+        /*
         ListSvg.append('g')
             .attr('class', 'list_title')
           .append('text')
@@ -433,7 +434,7 @@
             .style('font-size', '18px')
             .style('text-decoration', 'underline')
             .text('Select here:');
-
+        */
         var term_label = ListSvg.selectAll('.item')
                 .data(nested_data);
 
