@@ -98,13 +98,46 @@
                     return "#fb9a99";
                   }else if (d.category == 'Business and Commerce'){
                     return "#fdbf6f";
+                  }else if (d.decade_s == '1840s'){
+                    return "#3182bd";
+                  }else if (d.decade_s == '1850s'){
+                    return "#6baed6";
+                  }else if (d.decade_s == '1860s'){
+                    return "#9ecae1";
+                  }else if (d.decade_s == '1870s'){
+                    return "#c6dbef";
+                  }else if (d.decade_s == '1880s'){
+                    return "#fd8d3c";
+                  }else if (d.decade_s == '1890s'){
+                    return "#fdae6b";
+                  }else if (d.decade_s == '1900s'){
+                    return "#fdd0a2";
+                  }else if (d.decade_s == '1910s'){
+                    return "#74c476";
+                  }else if (d.decade_s == '1920s'){
+                    return "#c7e9c0";
+                  }else if (d.decade_s == '1930s'){
+                    return "#756bb1";
+                  }else if (d.decade_s == '1940s'){
+                    return "#9e9ac8";
+                  }else if (d.decade_s == '1950s'){
+                    return "#bcbddc";
                   }else if (d.decade_s == '1960s'){
-                    return "#a6cee3";
+                    return "#dadaeb";
+                  }else if (d.decade_s == '1970s'){
+                    return "#de9ed6";
+                  }else if (d.decade_s == '1980s'){
+                    return "#ce6dbd";
+                  }else if (d.decade_s == '1990s'){
+                    return "#e7969c";
+                  }else if (d.decade_s == '2000s'){
+                    return "#d6616b";
                   }
+
                 })
                 .format({
                   "text": function(text, params) {
-                    
+
                     if (text === "count") {
                       return "Word Count";
                     }
