@@ -246,7 +246,7 @@
         });
 
 
-        console.log(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
+        console.log(d3.max(filtered_data, function(c) { return c.value; }));
 
         //x.domain(d3.extent(words_data, function(d) { return d.key; }));
         //x.domain(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
@@ -279,7 +279,7 @@
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Count");
+            .text("Word Count");
 
         /*
         var totalLength = path.node().getTotalLength();
