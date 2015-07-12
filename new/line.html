@@ -173,6 +173,7 @@
 
       var xAxis = d3.svg.axis()
           .scale(x)
+          .tickValues([d3.min(x.domain()), d3.max(x.domain())])
           .orient("bottom");
 
       var yAxis = d3.svg.axis()
@@ -249,7 +250,6 @@
 
         //x.domain(d3.extent(words_data, function(d) { return d.key; }));
         x.domain(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
-        x.tickValues(d3.range(1845,2010,5));
 
         y.domain([
           d3.min(words_data, function(c) { return c.values; }),
