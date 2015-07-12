@@ -181,6 +181,7 @@
           .orient("left");
 
       var line = d3.svg.line()
+          .interpolate("basis")
           .defined(function(d) { return d.y != null; })
           .x(function(d) { return x(d.date); })
           .y(function(d) { return y(d.value); });
@@ -429,7 +430,7 @@
             .attr('x', 50)
             .attr('y', 5)
             .style('font-size', '18px')
-            .style('text-decoration', 'bold')
+            .style('text-decoration', 'underline')
             .text('Select here:');
 
         var term_label = ListSvg.selectAll('.item')
