@@ -247,7 +247,8 @@
 
         //console.log(words);
 
-        x.domain(d3.extent(words_data, function(d) { return d.key; }));
+        //x.domain(d3.extent(words_data, function(d) { return d.key; }));
+        x.domain(['1845', '2011'])
 
         y.domain([
           d3.min(words_data, function(c) { return c.values; }),
