@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="Paul Meinshausen" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Singapore News Story</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://d3js.org/d3.v3.js"></script>
+  </head>
+  <style>
+
+    axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .y.axis path,
+    .x.axis path {
+      display: none;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+
+    #word_list {
+        height: auto;
+        max-height: 510px;
+        overflow-y: scroll;
+    }
+
+    .vcenter {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+      }
+
+  .jumbotron.vertical-center {
+    margin-bottom: 0; /* Remove the default bottom margin of .jumbotron */
+  }
+
+  .vertical-center {
+      min-height: 100%;  /* Fallback for vh unit */
+      min-height: 100vh; /* You might also want to use
+                            'height' property instead.
+
+                            Note that for percentage values of
+                            'height' or 'min-height' properties,
+                            the 'height' of the parent element
+                            should be specified explicitly.
+
+                            In this case the parent of '.vertical-center'
+                            is the <body> element */
+
+      /* Make it a flex container */
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
+      /* Align the bootstrap's container vertically */
+        -webkit-box-align : center;
+      -webkit-align-items : center;
+           -moz-box-align : center;
+           -ms-flex-align : center;
+              align-items : center;
+
+      /* In legacy web browsers such as Firefox 9
+         we need to specify the width of the flex container */
+      width: 100%;
+
+      /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+         hence the bootstrap's container won't be aligned to the center anymore.
+
+         Therefore, we should use the following declarations to get it centered again */
+             -webkit-box-pack : center;
+                -moz-box-pack : center;
+                -ms-flex-pack : center;
+      -webkit-justify-content : center;
+              justify-content : center;
+    }
+
+    .jumbotron {
+      background-color: #fff;
+    }
+    .bottomaligned {bottom:0;  margin-bottom:0px;}
+
+
+  </style>
+
+  <body>
+    <div class="jumbotron vertical-center">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <!--<p class="navbar-title">The Singapore Story</p>-->
+          <div class="navbar-title">
+              <ul class="nav masthead-nav">
+                <li id="li_learn"><a href="http://singaporenews.github.io/treemap.html">Learn</a></li>
+                <li class="active" id="li_explore"><a href="http://singaporenews.github.io/line.html">Explore</a></li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container" style="margin-top: 50px;">
+        <div class="row">
+          <div class="col-md-3">
+            <div id="word_list" style="margin-bottom:10px;"></div>
+            <a href="http://singaporenews.github.io/new/line.html" button type="button" class="bottomaligned btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
+            </button></a>
+          </div>
+          <div class="col-md-9" id="chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      var w = window,
+          d = document,
+          e = d.documentElement,
+          g = d.getElementById('chart'),
+          width = g.clientWidth/.95, //w.innerWidth || e.clientWidth || g.clientWidth,
+          height = e.clientHeight/1.2;//w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+      var margin = {top: 10, right: 10, bottom: 40, left: 160},
+        width = width - margin.left - margin.right,
+        height = height - margin.top - margin.bottom;
+
+      var ListSvg = d3.select('div#word_list').append('svg')
+          .attr('width', 210)
+          .attr('height', 5500)
+          .append('g')
+            .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
+
+      var parseDate = d3.time.format("%Y").parse;
+
+      var x = d3.time.scale()
+          .range([0, width]);
+
+      var y = d3.scale.linear()
+          .range([height, 0]);
+
+      var color = d3.scale.category10();
+      var color2 = d3.scale.category10();
+
+      var xAxis = d3.svg.axis()
+          .scale(x)
+          .ticks(d3.time.year, 15)
+          .orient("bottom");
+
+      var yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left");
+
+      var line = d3.svg.line()
+          .interpolate("basis")
+          .x(function(d) { return x(d.date); })
+          .y(function(d) { return y(d.value); });
+
+      var svg = d3.select("div#chart").append("svg")
+          .attr("width", width + margin.left*2 + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.right*4 + "," + margin.top + ")");
+
+      d3.json("Topwords_abstract_bycategory_v2.json", function(data){
+        data.forEach(function(d){
+          d.value = +d.stfreq;
+          d.year = +d.year;
+        });
+
+        var redraw_words = [];
+
+        var filter_words_by_length = d3.nest()
+          .key(function(d){ return d.word; })
+          .key(function(d){ return d.year; })
+          .entries(data);
+
+        var filtered_words_by_length = filter_words_by_length.filter(function(el){
+          return (el.values.length > 4);
+        });
+
+        var filtered_by_length = [];
+        filtered_words_by_length.forEach(function(d){
+          filtered_by_length.push(d.key);
+        });
+
+        function arrayContains(needle, arrhaystack){
+          return (arrhaystack.indexOf(needle) > -1);
+        }
+
+        var filtered_data = data.filter(function(el){
+          return (arrayContains(el.word, filtered_by_length));
+        });
+
+
+        var sampledata = data.filter(function(el){
+          return (el.word == 'London');
+        });
+
+        var words_data = d3.nest()
+          .key(function(d){ return d.year; })
+          .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
+            })})
+          .entries(filtered_data);
+
+        words_data.forEach(function(d) {
+          d.key = parseDate(d.key);
+        });
+
+        color.domain('London');
+
+        var words = color.domain().map(function(name) {
+          return {
+            name: name,
+            values: words_data.map(function(d) {
+              return {date: d.key, value: d.values};
+            })
+          };
+        });
+
+
+        console.log(d3.max(words_data, function(c) { return c.values; }));
+
+        //x.domain(d3.extent(words_data, function(d) { return d.key; }));
+        //x.domain(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
+        x.domain([parseDate('1845'), parseDate('2010')]);
+        y.domain([0, 250]);
+        /*
+        y.domain([
+          d3.min(filtered_data, function(c) { return c.values; }),
+          d3.max(filtered_data, function(c) { return c.values; })
+        ]);
+        */
+
+        /*
+        var path = svg.append("path")
+            .attr("d", line(words[0].values))
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", "4")
+            .attr("fill", "none");
+        */
+
+        svg.append('g')
+            .attr('class', 'title')
+          .append('text')
+            .attr('x', width/2)
+            .attr('y', 0)
+            .attr('dy', '.81em')
+            .style('text-anchor', 'middle')
+            .style('font-size', '18px')
+            .text('Select a word to graph its frequency; select it again to remove it');
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+          .append('text')
+            .attr('x', width/2)
+            .attr('y', 25)
+            .attr('dy', '.71em')
+            .style('text-anchor', 'middle')
+            .text('Year');
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .attr('transform', 'translate(-10,' + 0 + ')')
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Word Count");
+
+        /*
+        var totalLength = path.node().getTotalLength();
+
+        path
+          .attr('class', 'London')
+          .attr("stroke-dasharray", totalLength + " " + totalLength)
+          .attr("stroke-dashoffset", totalLength-100)
+          .transition()
+            .duration(4000)
+            .ease("linear")
+            .attr("stroke-dashoffset", 0);
+
+        svg.on("click", function(){
+          path
+            .transition()
+            .duration(2000)
+            .ease("linear")
+            .attr("stroke-dashoffset", totalLength);
+        })
+        */
+
+        //drawPath('Chinese');
+
+        function drawPath(word, lineColor){
+
+          var sampledata = data.filter(function(el){
+            return (el.word == word);
+          });
+
+          var words_data = d3.nest()
+            .key(function(d){ return d.year; })
+            .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
+              })})
+            .entries(sampledata);
+
+          words_data.forEach(function(d) {
+            d.key = parseDate(d.key);
+          });
+
+          var words = color.domain().map(function(name) {
+            return {
+              name: name,
+              values: words_data.map(function(d) {
+                return {date: d.key, value: d.values};
+              })
+            };
+          });
+
+
+          // ******************************** REDRAW AXIS ****************** //
+
+          //d3.select('.y.axis').transition().duration(750).call(yAxis);
+
+
+          // ******************************** END REDRAW AXIS ****************** //
+
+          path = svg.append("path")
+              .attr('class', word)
+              .attr("d", line(words[0].values))
+              .attr("stroke", lineColor)
+              .attr("stroke-width", "4")
+              .attr("fill", "none");
+
+          totalLength = path.node().getTotalLength();
+
+          path
+            .attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+              .duration(4000)
+              .ease("linear")
+              .attr("stroke-dashoffset", 0);
+
+
+        }
+
+        function removePath(word){
+          totalLength = d3.select('.'+word).node().getTotalLength();
+
+          d3.select('.'+word)
+            .transition()
+            .duration(2000)
+            .ease('linear')
+            .attr("stroke-dashoffset", totalLength);
+        }
+
+
+        /*
+        var city = svg.selectAll(".word")
+            .data(words)
+          .enter().append("g")
+            .attr("class", "word");
+
+        city.append("path")
+            .attr("class", "line")
+            .attr("d", function(d) { return line(d.values); });
+            //.style("stroke", function(d) { return color(d.name); });
+        */
+        /*
+        city.append("text")
+            .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+            .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+            .attr("x", 3)
+            .attr("dy", ".35em")
+            .text(function(d) { return d.name; });
+        */
+
+
+
+
+
+
+
+        //*********************************CREATE LIST********************************//
+
+        var nested_data = d3.nest()
+          .key(function(d){ return d.word; })
+          .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
+            })})
+          .entries(filtered_data);
+
+        nested_data.sort(function(a, b){ return b.values - a.values; });
+
+        /*
+        ListSvg.append('g')
+            .attr('class', 'list_title')
+          .append('text')
+            .attr('x', 30)
+            .attr('y', 5)
+            .style('font-size', '18px')
+            .style('text-decoration', 'underline')
+            .text('Select here:');
+        */
+        var term_label = ListSvg.selectAll('.item')
+                .data(nested_data);
+
+        term_label
+                .enter()
+              .append('text')
+                .attr('class', function(d){ return 'item' + d.key })
+                .attr("x", function(d,i){ return 98;
+                  })
+                .attr("y", function(d,i){
+                    return i + 1 + "em";
+                  })
+                .style("text-anchor", "middle")
+                .style("font-size", "18px")
+                .style("fill", "#53565A")
+                .transition()
+                .duration(750)
+                //.style('fill', function(d){ return line_color(d.term); })
+                .text(function(d){ return d.key; });
+
+          labelColors = ['#a6cee3','#1f78b4','#b2df8a',
+                         '#33a02c','#fb9a99','#e31a1c',
+                         '#fdbf6f','#ff7f00','#cab2d6',
+                         '#6a3d9a','#8dd3c7','#b15928',
+                         '#bc80bd','#80b1d3']
+
+          d3.select('.itemHitam').remove()
+
+          term_label.on('mouseover', function(d){
+            d3.select('body').style('cursor', 'pointer');
+          });
+          term_label.on("mouseout", function () {
+              d3.selectAll('body').style("cursor", "default");
+          });
+
+          term_label.on('click', function(d){
+            if (document.getElementsByClassName(d.key).length > 0) {
+              if (document.getElementsByClassName(d.key)[0].id == d.key + 'ha') {
+                removePath(d.key);
+                d3.select('.'+d.key).attr('id', null);
+                d3.select('.item'+d.key).style("fill", "#53565A").style('text-decoration', null);
+              } else {
+                var rand = labelColors[Math.floor(Math.random() * labelColors.length)];
+                drawPath(d.key, rand);
+                d3.select('.'+d.key).attr('id', d.key + 'ha');
+                d3.select('.item'+d.key).style('fill', rand).style('text-decoration','underline');
+              }
+            } else {
+              var rand = labelColors[Math.floor(Math.random() * labelColors.length)];
+              drawPath(d.key, rand);
+              d3.select('.'+d.key).attr('id', d.key + 'ha');
+              d3.select('.item'+d.key).style('fill', rand).style('text-decoration','underline');
+            }
+          });
+
+        /*
+
+        var fdata = data.filter(function(el){
+          return (typeof el.name == 'string');
+        });
+        var fdata = fdata.filter(function(el){
+          return (el.name.length > 2);
+        });
+
+        console.log(fdata);
+        */
+
+      });
+
+
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.rawgit.com/SingaporeNews/singaporenews.github.io/master/js/docs.min.js"></script>
+  </body>
+</html>

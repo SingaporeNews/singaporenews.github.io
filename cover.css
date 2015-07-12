@@ -1,0 +1,232 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+a.twitter,
+a.twitter:focus,
+a.twitter:hover {
+  color: #3D85C6;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #fff;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #3D85C6;
+  border: 1px solid #3D85C6;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #fff;
+  font-family: Dinn;
+}
+body {
+  color: #000;
+  text-align: center;
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+.innerNav {
+  padding: 30px;
+}
+
+.inner.cover {
+  margin-top: 100px;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: center;
+  }
+  .masthead-nav {
+    float: center;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #333; /* IE8 proofing */
+  color: #333;
+}
+
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    background-color: #3D85C6;
+    color: #fff;
+    font-family: SilaneHead;
+}
+.navbar-title {
+  float:none;
+  color: #fff;
+  font-family: SilaneHead;
+  font-size: 36px;
+}
+.navbar-subtitle {
+  float:none;
+  color: #fff;
+  font-family: SilaneHead;
+  font-size: 22px;
+}
+.cover-chart {
+  position: relative;
+  margin-top: 100px;
+  width: 120%;
+  height: 80%;
+}
+.cover-streamgraph {
+  position: relative;
+  margin-top: 100px;
+  width: 120%;
+  height: 90%;
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container,
+  .cover-chart {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+  .cover-streamgraph {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead {
+    width: 100%;
+  }
+  .mastfoot,
+  .cover-container {
+    width: 800px;
+  }
+  .cover-chart {
+    width: 1000px;
+  }
+  .cover-streamgraph {
+    width: 1400px;
+  }
+}
+
+@font-face {
+  font-family: "SilaneHead";
+  src: url(http://singaporenews.github.io/static/SilaneHeadAtwenty.otf);
+}
+
+@font-face {
+  font-family: "Dinn";
+  src: url(http://singaporenews.github.io/static/DIN.ttf);
+}

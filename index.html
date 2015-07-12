@@ -4,314 +4,62 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Singapore News</title>
+    <title>Cover Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/charts_main.css" rel="stylesheet">
+    <link href="cover.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="http://d3js.org/d3.v3.js"></script>
-    <script type='text/javascript' src="http://bost.ocks.org/mike/fisheye/fisheye.js?0.0.3"> </script>
-    
-    <script>
-      function revealExplore(){
-        $('#learn').hide();
-        $('#context').hide();
-        $('#explore').show();
-        if($('#li_learn').hasClass('active')==true){
-          $('#li_learn').toggleClass();
-        }
-        if($('#li_context').hasClass('active')==true){
-          $('#li_context').toggleClass();
-        }
-        $('#li_explore').toggleClass('active');
-      }
-      function revealLearn(){
-        $('#learn').show();
-        $('#explore').hide();
-        $('#context').hide();
-        $('#li_learn').toggleClass();
-        if($('#li_explore').hasClass('active')==true){
-          $('#li_explore').toggleClass();
-        }
-        if($('#li_context').hasClass('active')==true){
-          $('#li_context').toggleClass();
-        }
-      }
-      function revealContext(){
-        $('#context').show();
-        $('#explore').hide();
-        $('#learn').hide();
-        $('#li_context').toggleClass('active');
-        if($('#li_explore').hasClass('active')==true){
-          $('#li_explore').toggleClass();
-        }
-        if($('#li_learn').hasClass('active')==true){
-          $('#li_learn').toggleClass();
-        }
-      }
-    </script>
-
   </head>
 
   <body>
 
     <div class="site-wrapper">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <p class="navbar-title" style="margin-bottom: 0px;">The Singapore Story</p>
+          <p class="navbar-subtitle" style="margin-bottom: 0px;">as told by the Straits Times</p>
+        </div>
+      </nav>
 
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
-          
+          <!--
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">The Singapore News Story</h3>
-              <!--
-              <ul class="nav masthead-nav">
-                <li class="active" id="li_learn"><a href="#" onclick="revealLearn();">Learn</a></li>
-                <li id="li_explore"><a href="#" onclick="revealExplore();">Explore</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-              -->
+              <h3 class="masthead-brand">Cover</h3>
             </div>
           </div>
-          
+        -->
           <div class="inner cover">
-
-            <!--
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="active"><a href="#frequency" role="tab" data-toggle="tab" style="background-image:url('http://singaporenews.github.io/static/noisy-texture.png'); font-size: 14px;">Frequency</a></li>
-              <li><a href="#search" role="tab" data-toggle="tab" style="background-image:url('http://singaporenews.github.io/static/noisy-texture.png'); font-size: 14px;">Search</a></li>
-            </ul>
-          -->
-
-            <!--
-            <div class="tab-content">
-            <div class="tab-pane active" style="font-size: 14px;" id="frequency">
-            -->
-
-            <div id="learn" style="display:block">
-              
-            <div class="row" style="padding-top:20px;">
-              <div class="col-md-2">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="start-group">
-                    Start year <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu scrollable-menu" id="start_year" role="menu">
-                    <li><a href="#">1955</a></li>
-                    <li><a href="#">1956</a></li>
-                    <li><a href="#">1957</a></li>
-                    <li><a href="#">1958</a></li>
-                    <li><a href="#">1959</a></li>
-                    <li><a href="#">1960</a></li>
-                    <li><a href="#">1961</a></li>
-                    <li><a href="#">1962</a></li>
-                    <li><a href="#">1963</a></li>
-                    <li><a href="#">1964</a></li>
-                    <li><a href="#">1965</a></li>
-                    <li><a href="#">1966</a></li>
-                    <li><a href="#">1967</a></li>
-                    <li><a href="#">1968</a></li>
-                    <li><a href="#">1969</a></li>
-                    <li><a href="#">1970</a></li>
-                    <li><a href="#">1971</a></li>
-                    <li><a href="#">1972</a></li>
-                    <li><a href="#">1973</a></li>
-                    <li><a href="#">1974</a></li>
-                    <li><a href="#">1975</a></li>
-                    <li><a href="#">1976</a></li>
-                    <li><a href="#">1977</a></li>
-                    <li><a href="#">1978</a></li>
-                    <li><a href="#">1979</a></li>
-                    <li><a href="#">1980</a></li>
-                    <li><a href="#">1981</a></li>
-                    <li><a href="#">1982</a></li>
-                    <li><a href="#">1983</a></li>
-                    <li><a href="#">1984</a></li>
-                    <li><a href="#">1985</a></li>
-                    <li><a href="#">1986</a></li>
-                    <li><a href="#">1987</a></li>
-                    <li><a href="#">1988</a></li>
-                    <li><a href="#">1989</a></li>
-                    <li><a href="#">1990</a></li>
-                    <li><a href="#">1991</a></li>
-                    <li><a href="#">1992</a></li>
-                    <li><a href="#">1993</a></li>
-                    <li><a href="#">1994</a></li>
-                    <li><a href="#">1995</a></li>
-                    <li><a href="#">1996</a></li>
-                    <li><a href="#">1997</a></li>
-                    <li><a href="#">1998</a></li>
-                    <li><a href="#">1999</a></li>
-                    <li><a href="#">2000</a></li>
-                    <li><a href="#">2001</a></li>
-                    <li><a href="#">2002</a></li>
-                    <li><a href="#">2003</a></li>
-                    <li><a href="#">2004</a></li>
-                    <li><a href="#">2005</a></li>
-                    <li><a href="#">2006</a></li>
-                    <li><a href="#">2007</a></li>
-                    <li><a href="#">2008</a></li>
-                    <li><a href="#">2009</a></li>                    
-                  </ul>
-                </div>
-              </div>
-
-
-              <div class="col-md-2">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="words-group">
-                    # of top words <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" id="top_num" role="menu">
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <li><a href="#">10</a></li>
-                    <li><a href="#">11</a></li>
-                    <li><a href="#">12</a></li>
-                    <li><a href="#">13</a></li>
-                    <li><a href="#">14</a></li>
-                    <li><a href="#">15</a></li>
-                    <li><a href="#">16</a></li>
-                    <li><a href="#">17</a></li>
-                    <li><a href="#">18</a></li>
-                    <li><a href="#">19</a></li>
-                    <li><a href="#">20</a></li>                    
-                  </ul>
-                </div>
-              </div>
-      
-              <div class="col-md-2">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="end-group">
-                    End year <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu scrollable-menu" id="end_year" role="menu">
-                    <li><a href="#">1956</a></li>
-                    <li><a href="#">1956</a></li>
-                    <li><a href="#">1957</a></li>
-                    <li><a href="#">1958</a></li>
-                    <li><a href="#">1959</a></li>
-                    <li><a href="#">1960</a></li>
-                    <li><a href="#">1961</a></li>
-                    <li><a href="#">1962</a></li>
-                    <li><a href="#">1963</a></li>
-                    <li><a href="#">1964</a></li>
-                    <li><a href="#">1965</a></li>
-                    <li><a href="#">1966</a></li>
-                    <li><a href="#">1967</a></li>
-                    <li><a href="#">1968</a></li>
-                    <li><a href="#">1969</a></li>
-                    <li><a href="#">1970</a></li>
-                    <li><a href="#">1971</a></li>
-                    <li><a href="#">1972</a></li>
-                    <li><a href="#">1973</a></li>
-                    <li><a href="#">1974</a></li>
-                    <li><a href="#">1975</a></li>
-                    <li><a href="#">1976</a></li>
-                    <li><a href="#">1977</a></li>
-                    <li><a href="#">1978</a></li>
-                    <li><a href="#">1979</a></li>
-                    <li><a href="#">1980</a></li>
-                    <li><a href="#">1981</a></li>
-                    <li><a href="#">1982</a></li>
-                    <li><a href="#">1983</a></li>
-                    <li><a href="#">1984</a></li>
-                    <li><a href="#">1985</a></li>
-                    <li><a href="#">1986</a></li>
-                    <li><a href="#">1987</a></li>
-                    <li><a href="#">1988</a></li>
-                    <li><a href="#">1989</a></li>
-                    <li><a href="#">1990</a></li>
-                    <li><a href="#">1991</a></li>
-                    <li><a href="#">1992</a></li>
-                    <li><a href="#">1993</a></li>
-                    <li><a href="#">1994</a></li>
-                    <li><a href="#">1995</a></li>
-                    <li><a href="#">1996</a></li>
-                    <li><a href="#">1997</a></li>
-                    <li><a href="#">1998</a></li>
-                    <li><a href="#">1999</a></li>
-                    <li><a href="#">2000</a></li>
-                    <li><a href="#">2001</a></li>
-                    <li><a href="#">2002</a></li>
-                    <li><a href="#">2003</a></li>
-                    <li><a href="#">2004</a></li>
-                    <li><a href="#">2005</a></li>
-                    <li><a href="#">2006</a></li>
-                    <li><a href="#">2007</a></li>
-                    <li><a href="#">2008</a></li>
-                    <li><a href="#">2009</a></li>                    
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-6" id="stream_label">
-              </div>
-
-            </div>
-            <div class="row" id="first">
-              <div class="col-md-12" id="chart">
-              </div>
-            </div>
-
+            <!--<h1 class="cover-heading">Cover your page.</h1>-->
+            <p class="lead">The digitisation of The Straits Times' 170-year-old archive has made it possible to carry out intense data analysis on the newspaper's online archive and capture the mood of the era in which the news stories appeared. This visualisation does that by highlighting keywords which appeared each year in The Straits Times, since 1845, and the stories that set the context for the keywords. The result is a dynamic portrayal of the changing buzzwords and social sentiment over time, which mirror Singapore's evolution.
+            </p>
+            <p class="lead">
+              <a href="http://singaporenews.github.io/treemap.html" class="btn btn-lg btn-default">Start exploring</a>
+            </p>
           </div>
-          <!--</div>-->
-
-          <!--<div class="tab-pane" id="search">-->
-
-          <div id="explore" style="display:none">
-            <div class="row" style="padding-top:20px;">
-              <div class="col-md-12">
-                <form name="test">
-                  <p>Enter a term from the headlines and press search. <input type="text" name="term">
-                  <input type="button" value="Search" onClick="showAndClearField(this.form)">
-                  </p>
-                </form>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12" id="line_chart"></div>
-              
-            </div>
-
-          </div>
-
-          <div id="context" style="display:none">
-            <div class="row">
-              <div class="col-md-2" id="force_list"></div>
-              <div class="col-md-10" id="chord_chart"></div>
-              
-            </div>
-
-          </div>
-          <!--</div>-->
-
-          <!--
-          </div>
-          </div>
-          -->
 
           <div class="mastfoot">
             <div class="inner">
-              <ul class="nav masthead-nav">
-                <li class="active" id="li_learn"><a href="#" onclick="revealLearn();">Learn</a></li>
-                <li id="li_explore"><a href="#" onclick="revealExplore();">Explore</a></li>
-                <li id="li_context"><a href="#" onclick="revealContext();">Context</a></li>
-              </ul>
+              <p>Created by <a class="twitter" href="http://twitter.com/Pmeins">@PMeins</a> and <a class="twitter" href="https://twitter.com/hansamad">@Hansamad</a></p>
             </div>
           </div>
 
@@ -320,29 +68,12 @@
       </div>
 
     </div>
-  </div>
-
-    <script>
-      var search_list = ['chinese','mandarin', 'campaign','scheme','policy','ban'];
-      //setInterval('showHeadlines()', 5000);
-      
-    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="/js/docs.min.js"></script>
-    
-    <!--<script src="http://d3js.org/d3.v2.min.js?2.9.5"></script>-->
-    <script src="http://singaporenews.github.io/js/streamgraph.js"></script>
-    <script src="http://singaporenews.github.io/js/search_line.js"></script>
-    <script src="http://singaporenews.github.io/js/forceGraph.js"></script>
-
-    
-    <script>
-      
-    </script>
+    <script src="http://cdn.rawgit.com/SingaporeNews/singaporenews.github.io/master/js/docs.min.js"></script>
   </body>
 </html>
