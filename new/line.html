@@ -248,7 +248,7 @@
         console.log(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
 
         //x.domain(d3.extent(words_data, function(d) { return d.key; }));
-        x.domain(d3.extent(data, function(d){ return parseDate(String(d.year)); }));
+        x.domain(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
 
         y.domain([
           d3.min(words_data, function(c) { return c.values; }),
