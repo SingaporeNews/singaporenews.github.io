@@ -253,8 +253,8 @@
         x.domain([parseDate('1845'), parseDate('2010')]);
 
         y.domain([
-          d3.min(words_data, function(c) { return c.values; }),
-          d3.max(words_data, function(c) { return c.values; })
+          d3.min(filtered_data, function(c) { return c.values; }),
+          d3.max(filtered_data, function(c) { return c.values; })
         ]);
 
         /*
