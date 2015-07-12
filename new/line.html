@@ -197,6 +197,8 @@
           d.year = +d.year;
         });
 
+        var redraw_words = [];
+
         var filter_words_by_length = d3.nest()
           .key(function(d){ return d.word; })
           .key(function(d){ return d.year; })
@@ -307,6 +309,7 @@
         //drawPath('Chinese');
 
         function drawPath(word, lineColor){
+
           var sampledata = data.filter(function(el){
             return (el.word == word);
           });
@@ -329,12 +332,25 @@
               })
             };
           });
+
+
+          // ******************************** REDRAW AXIS ****************** //
+          redraw_words.push(words);
+
+          var redraw_filtered_data = data.filter(function(el){
+            return (arrayContains(el.word, redraw_words));
+          });
+
+          
           y.domain([
-            d3.min(words_data, function(c) { return c.values; }),
-            d3.max(words_data, function(c) { return c.values; })
+            0,
+            d3.max(redraw_words, function(c) { return c.value; })
           ]);
 
           d3.select('.y.axis').transition().duration(750).call(yAxis);
+
+
+          // ******************************** END REDRAW AXIS ****************** //
 
           path = svg.append("path")
               .attr('class', word)
