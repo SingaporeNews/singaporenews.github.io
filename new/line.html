@@ -182,7 +182,6 @@
 
       var line = d3.svg.line()
           .interpolate("basis")
-          .defined(function(d) { return d.y != null; })
           .x(function(d) { return x(d.date); })
           .y(function(d) { return y(d.value); });
 
