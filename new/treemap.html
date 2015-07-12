@@ -56,7 +56,8 @@
             d3.json("Topwords_abstract_bycategory_v1.json", function(data){
               data.forEach(function(d){
                 d.count = +d.stfreq;
-                d.decade = d.year.substring(0,3) + '0s';
+                d.decade_s = d.year.substring(0,3) + '0';
+                d.decade = +d.decade_s;
                 d.year = +d.year;
               });
               console.log(data);
@@ -99,7 +100,7 @@
                     return "#fdbf6f";
                   }
                 })
-                .time({"value": "decade", "solo": ["1960s"]})
+                .time({"value": "decade", "solo": [1960]})
                 .draw()
 
 
