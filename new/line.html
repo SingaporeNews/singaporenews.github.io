@@ -190,7 +190,7 @@
         .append("g")
           .attr("transform", "translate(" + margin.right*4 + "," + margin.top + ")");
 
-      d3.json("Topwords_abstract_bycategory_v1.json", function(data){
+      d3.json("Topwords_abstract_bycategory_v2.json", function(data){
         data.forEach(function(d){
           d.value = +d.stfreq;
           d.year = +d.year;
