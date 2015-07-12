@@ -210,7 +210,15 @@
           filtered_by_length.push(d.key);
         });
 
-        console.log(filtered_by_length);
+        function arrayContains(needle, arrhaystack){
+          return (arrhaystack.indexOf(needle) > -1);
+        }
+
+        var filtered_data = data.filter(function(el){
+          return (arrayContains(el.word, filtered_by_length));
+        });
+
+        console.log(filtered_data);
 
 
 
