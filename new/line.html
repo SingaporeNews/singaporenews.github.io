@@ -269,6 +269,15 @@
             .attr("fill", "none");
         */
 
+        svg.append('g')
+            .attr('class', 'title')
+          .append('text')
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('dy', '.81em')
+            .style('text-anchor', 'middle')
+            .text('Select a word to draw it on the graph; select it again to remove it');
+
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
