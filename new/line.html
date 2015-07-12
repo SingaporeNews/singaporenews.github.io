@@ -335,7 +335,7 @@
 
 
           // ******************************** REDRAW AXIS ****************** //
-          redraw_words.push(words);
+          redraw_words.push(word);
 
           var redraw_filtered_data = data.filter(function(el){
             return (arrayContains(el.word, redraw_words));
@@ -346,7 +346,8 @@
             0,
             d3.max(redraw_filtered_data, function(c) { return c.value; })
           ]);
-          console.log(d3.max(redraw_filtered_data, function(c) { return c.value; }));
+          console.log(redraw_words)
+          console.log(redraw_filtered_data);
 
           d3.select('.y.axis').transition().duration(750).call(yAxis);
 
