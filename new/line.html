@@ -251,11 +251,13 @@
         //x.domain(d3.extent(words_data, function(d) { return d.key; }));
         //x.domain(d3.extent(filtered_data, function(d){ return parseDate(String(d.year)); }));
         x.domain([parseDate('1845'), parseDate('2010')]);
-
+        y.domain([0, 130]);
+        /*
         y.domain([
-          d3.min(filtered_data, function(c) { return c.value; }),
-          d3.max(filtered_data, function(c) { return c.value; })
+          d3.min(filtered_data, function(c) { return c.values; }),
+          d3.max(filtered_data, function(c) { return c.values; })
         ]);
+        */
 
         /*
         var path = svg.append("path")
