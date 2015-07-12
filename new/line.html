@@ -329,6 +329,7 @@
               })
             };
           });
+          console.log(d3.max(words_data, function(c) { return c.values; }))
 
           path = svg.append("path")
               .attr('class', word)
