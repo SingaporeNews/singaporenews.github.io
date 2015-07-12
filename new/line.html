@@ -218,12 +218,6 @@
           return (arrayContains(el.word, filtered_by_length));
         });
 
-        console.log(filtered_data);
-        console.log(data);
-
-
-
-
 
         var sampledata = data.filter(function(el){
           return (el.word == 'London');
@@ -394,7 +388,7 @@
           .key(function(d){ return d.word; })
           .rollup(function(leaves) { return d3.sum(leaves, function(d){ return d.value;
             })})
-          .entries(data);
+          .entries(filtered_data);
 
         nested_data.sort(function(a, b){ return b.values - a.values; });
 
