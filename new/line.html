@@ -272,7 +272,11 @@
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .call(xAxis)
+          .append('text')
+            .attr('dy', '.71em')
+            .style('text-anchor', 'middle')
+            .text('Year');
 
         svg.append("g")
             .attr("class", "y axis")
