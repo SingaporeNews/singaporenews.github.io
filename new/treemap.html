@@ -53,7 +53,7 @@
 
         <div class="cover-chart center-block">
           <script>
-            d3.json("Topwords_abstract_bycategory_v1.json", function(data){
+            d3.json("Topwords_abstract_bycategory_v2.json", function(data){
               data.forEach(function(d){
                 d.count = +d.stfreq;
                 d.decade_s = d.year.substring(0,3) + '0s';
