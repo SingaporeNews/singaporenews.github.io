@@ -86,7 +86,7 @@
                 .container(".cover-chart")
                 .data(data)
                 .type("tree_map")
-                .id(["year","category","word"])
+                .id(["category","word"])
                 .size("count")
                 .color(function(d){
                   if(d.category == 'events'){
@@ -99,7 +99,7 @@
                     return "#fdbf6f";
                   }
                 })
-                //.time({"value": "year", "solo": [1961,1962,1963,1964]})
+                .time({"value": "decade", "solo": ["1960s"]})
                 .draw()
 
 
