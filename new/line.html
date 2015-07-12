@@ -276,7 +276,7 @@
             .attr('y', 0)
             .attr('dy', '.81em')
             .style('text-anchor', 'middle')
-            .text('Select a word to draw it on the graph; select it again to remove it');
+            .text('Select a word to graph its frequency; select it again to remove it');
 
         svg.append("g")
             .attr("class", "x axis")
@@ -422,6 +422,16 @@
           .entries(filtered_data);
 
         nested_data.sort(function(a, b){ return b.values - a.values; });
+
+        ListSvg.append('g')
+            .attr('class', 'list_title')
+          .append('text')
+            .attr('x', 50)
+            .attr('y', 0)
+            .attr('dy', '.91em')
+            .style('text-anchor', 'middle')
+            .style('font-weight', 'bold')
+            .text('Select here:');
 
         var term_label = ListSvg.selectAll('.item')
                 .data(nested_data);
