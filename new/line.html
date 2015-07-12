@@ -341,10 +341,10 @@
             return (arrayContains(el.word, redraw_words));
           });
 
-          
+
           y.domain([
             0,
-            d3.max(redraw_words, function(c) { return c.value; })
+            d3.max(redraw_filtered_data, function(c) { return c.value; })
           ]);
 
           d3.select('.y.axis').transition().duration(750).call(yAxis);
