@@ -156,7 +156,7 @@
 
       var ListSvg = d3.select('div#word_list').append('svg')
           .attr('width', 225)
-          .attr('height', 5000)
+          .attr('height', 2000)
           .append('g')
             .attr("transform", "translate(" + margin.right + "," + margin.top + ")");
 
@@ -427,7 +427,7 @@
             .attr('class', 'list_title')
           .append('text')
             .attr('x', 50)
-            .attr('y', 0)
+            .attr('y', 5)
             .style('font-size', '18px')
             .style('font-weight', 'bold')
             .text('Select here:');
