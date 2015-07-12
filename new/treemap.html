@@ -77,10 +77,10 @@
 
 
               var attributes = [
-                {"name": "events", "hex": "#a6cee3"},
-                {"name": "personplace", "hex": "#b2df8a"},
-                {"name": "government", "hex": "#fb9a99"},
-                {"name": "business", "hex": "#fdbf6f"}
+                {"name": "Events and Society", "hex": "#a6cee3"},
+                {"name": "Persons and Places", "hex": "#b2df8a"},
+                {"name": "Politics and Power", "hex": "#fb9a99"},
+                {"name": "Business and Commerce", "hex": "#fdbf6f"}
               ]
 
               var visualization = d3plus.viz()
@@ -90,13 +90,13 @@
                 .id(["decade_s","category","word"])
                 .size("count")
                 .color(function(d){
-                  if(d.category == 'events'){
+                  if(d.category == 'Events and Society'){
                     return "#a6cee3";
-                  }else if(d.category == 'personplace'){
+                  }else if(d.category == 'Persons and Places'){
                     return "#b2df8a";
-                  }else if (d.category == 'government'){
+                  }else if (d.category == 'Politics and Power'){
                     return "#fb9a99";
-                  }else if (d.category == 'business'){
+                  }else if (d.category == 'Business and Commerce'){
                     return "#fdbf6f";
                   }else if (d.decade_s == '1960s'){
                     return "#a6cee3";
