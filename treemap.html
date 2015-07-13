@@ -92,7 +92,8 @@
                 {"name": "Business and Commerce", "hex": "#fdbf6f"}
               ]
 
-              var htmlButton = "<a id='linechart' href='http://singaporenews.github.io/line.html'>Click here to see this word's history</a>"
+              var htmlButton = ""
+              //"<a id='linechart' href='http://singaporenews.github.io/line.html'>Click here to see this word's history</a>"
 
               var visualization = d3plus.viz()
                 .container(".cover-chart")
@@ -160,7 +161,7 @@
                   }
                 })
                 .labels({"align": "center"})
-                .tooltip(['share','size'])
+                .tooltip({'html':htmlButton})
                 .legend(false)
                 .draw()
 
