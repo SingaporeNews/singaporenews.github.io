@@ -70,7 +70,6 @@
                 d.decade_s = d.year.substring(0,3) + '0s';
                 d.year = +d.year;
               });
-              console.log(data);
 
               /*
 
@@ -161,7 +160,7 @@
                   }
                 })
                 .labels({"align": "center"})
-                .tooltip(true)
+                .tooltip({'share','size'})
                 .legend(false)
                 .draw()
 
